@@ -1,7 +1,6 @@
 import babel from "@rollup/plugin-babel";
 import filesize from "rollup-plugin-filesize";
-import livereload from "rollup-plugin-livereload";
-import postcss from "rollup-plugin-postcss";
+import json from "@rollup/plugin-json";
 import sourcemaps from "rollup-plugin-sourcemaps";
 import {terser} from "rollup-plugin-terser";
 
@@ -20,12 +19,8 @@ export default (args) => {
                     babelHelpers: "bundled",
                 }),
                 filesize(),
-                watch ? livereload("dist") : terser(),
-                postcss({
-                    inject: false,
-                    sourceMap: watch,
-                    minimize: !watch,
-                }),
+                json(),
+                terser(),
                 sourcemaps(),
             ].filter((x) => x),
             watch: {
