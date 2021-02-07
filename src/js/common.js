@@ -7,6 +7,10 @@
  *
  */
 
+/* eslint-disable import/no-mutable-exports */
+
+import fetch from "cross-fetch";
+
 export function IEXJSException(message) {
   const error = new Error(message);
   return error;
@@ -14,25 +18,31 @@ export function IEXJSException(message) {
 
 IEXJSException.prototype = Object.create(Error.prototype);
 
-export const _URL_PREFIX = "https://api.iextrading.com/1.0/";
-export const _URL_PREFIX2 = "https://cloud.iexapis.com/{version}/";
-export const _URL_PREFIX2_SANDBOX = "https://sandbox.iexapis.com/{version}/";
+export const _URL_PREFIX = () => "https://api.iextrading.com/1.0/";
+export let _URL_PREFIX2 = (version) => `https://cloud.iexapis.com/${version}/`;
+export const _URL_PREFIX2_SANDBOX = (version) =>
+  `https://sandbox.iexapis.com/${version}/`;
 
 export const _SIO_URL_PREFIX = "https://ws-api.iextrading.com";
 export const _SIO_PORT = 443;
 
-export const _SSE_URL_PREFIX =
-  "https://cloud-sse.iexapis.com/{version}/{channel}?symbols={symbols}&token={token}";
-export const _SSE_URL_PREFIX_ALL =
-  "https://cloud-sse.iexapis.com/{version}/{channel}?token={token}";
-export const _SSE_DEEP_URL_PREFIX =
-  "https://cloud-sse.iexapis.com/{version}/deep?symbols={symbols}&channels={channels}&token={token}";
-export const _SSE_URL_PREFIX_SANDBOX =
-  "https://sandbox-sse.iexapis.com/v1/{channel}?symbols={symbols}&token={token}";
-export const _SSE_URL_PREFIX_ALL_SANDBOX =
-  "https://sandbox-sse.iexapis.com/v1/{channel}?token={token}";
-export const _SSE_DEEP_URL_PREFIX_SANDBOX =
-  "https://sandbox-sse.iexapis.com/v1/deep?symbols={symbols}&channels={channels}&token={token}";
+export const _SSE_URL_PREFIX = (version, channel, symbols, token) =>
+  `https://cloud-sse.iexapis.com/${version}/${channel}?symbols=${symbols}&token=${token}`;
+export const _SSE_URL_PREFIX_ALL = (version, channel, token) =>
+  `https://cloud-sse.iexapis.com/${version}/${channel}?token=${token}`;
+export const _SSE_DEEP_URL_PREFIX = (version, symbols, channels, token) =>
+  `https://cloud-sse.iexapis.com/${version}/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
+export const _SSE_URL_PREFIX_SANDBOX = (version, channel, symbols, token) =>
+  `https://sandbox-sse.iexapis.com/${version}/${channel}?symbols=${symbols}&token=${token}`;
+export const _SSE_URL_PREFIX_ALL_SANDBOX = (version, channel, token) =>
+  `https://sandbox-sse.iexapis.com/${version}/${channel}?token=${token}`;
+export const _SSE_DEEP_URL_PREFIX_SANDBOX = (
+  version,
+  symbols,
+  channels,
+  token,
+) =>
+  `https://sandbox-sse.iexapis.com/${version}/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
 
 export const _TIMEFRAME_CHART = [
   "max",
@@ -415,321 +425,218 @@ export const _INDICATOR_RETURNS = {
 };
 
 /**
- * """for backwards compat, accepting token and version but ignoring"""
+ *
+ * @param {string} url
  */
-export const _getJson = async (url, token = "", version = "", filter = "") => {
-  if (token) {
-    if (version === "sandbox") {
-      return _getJsonIEXCloudSandbox(url, token, version, filter);
+const _getJsonOrig = () => {
+  throw IEXJSException(
+    "Old IEX API is deprecated. For a free API token, sign up at https://iexcloud.io",
+  );
+};
+
+/**
+ * for IEX Cloud
+ * @param {object} options
+ */
+const _getJsonIEXCloudBase = async (options) => {
+  const {
+    base_url,
+    url,
+    token = "",
+    version = "stable",
+    filter = "",
+    format = "json",
+  } = options;
+
+  const endpoint = new URL(`${base_url(version)}${url}`);
+  endpoint.searchParams.append("token", token);
+  if (filter) endpoint.searchParams.append("filter", filter);
+
+  return fetch(endpoint.href, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(async (res) => {
+    if (res.ok) {
+      if (format === "json") {
+        return res.json();
+      }
+      return res.text();
     }
-    return _getJsonIEXCloud(url, token, version, filter);
-  }
-  return _getJsonOrig(url);
+    throw IEXJSException(`Response ${res.status} - ${await res.text()}`);
+  });
 };
 
 /**
  *
+ * @param {object} options
  */
-export const _postJson = (
-  url,
-  data = null,
-  json = null,
-  token = "",
-  version = "",
-  token_in_params = true,
-) => {
-  if (version === "sandbox") {
-    return _postJsonIEXCloudSandbox(
-      url,
-      data,
-      json,
-      token,
-      version,
-      token_in_params,
-    );
+const _getJsonIEXCloud = (options) =>
+  _getJsonIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
+
+/**
+ *
+ * @param {object} options
+ */
+const _getJsonIEXCloudSandbox = (options) =>
+  _getJsonIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
+
+/**
+ *
+ * @param {object} options
+ */
+const _postJsonIEXCloudBase = async (options) => {
+  const {
+    base_url,
+    url,
+    data = {},
+    token = "",
+    version = "stable",
+    token_in_params = true,
+    format = "json",
+  } = options;
+
+  const endpoint = new URL(`${base_url(version)}${url}`);
+
+  if (token_in_params) {
+    endpoint.searchParams.append("token", token);
   }
-  return _postJsonIEXCloud(url, data, json, token, version, token_in_params);
+
+  return fetch(endpoint, {
+    method: "POST",
+    body: token_in_params ? { token, ...data } : {},
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(async (res) => {
+    if (res.ok) {
+      if (format === "json") {
+        return res.json();
+      }
+      return res.text();
+    }
+    throw IEXJSException(`Response ${res.status} - ${await res.text()}`);
+  });
 };
 
-// def _deleteJson(url, token="", version=""):
-//     token = token or os.environ.get("IEX_TOKEN")
-//     if version == "sandbox":
-//         return _deleteJsonIEXCloudSandbox(url, token, version)
-//     return _deleteJsonIEXCloud(url, token, version)
+/**
+ *
+ * @param {object} options
+ */
+const _postJsonIEXCloud = (options) =>
+  _postJsonIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
 
-// def _getJsonOrig(url):
-//     raise PyEXception(
-//         "Old IEX API is deprecated. For a free API token, sign up at https://iexcloud.io"
-//     )
+/**
+ *
+ * @param {object} options
+ */
+const _postJsonIEXCloudSandbox = (options) =>
+  _postJsonIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
 
-// def _getJsonIEXCloudBase(base_url, url, token="", version="stable", filter=""):
-//     """for iex cloud"""
-//     url = base_url.format(version=version) + url
-//     params = {"token": token}
-//     if filter:
-//         params.update({"filter": filter})
-//     resp = requests.get(urlparse(url).geturl(), proxies=_PYEX_PROXIES, params=params)
-//     if resp.status_code == 200:
-//         return resp.json()
-//     raise PyEXception("Response %d - " % resp.status_code, resp.text)
+/**
+ *
+ * @param {object} options
+ */
+const _deleteJsonIEXCloudBase = async (options) => {
+  const {
+    base_url,
+    url,
+    token = "",
+    version = "stable",
+    format = "json",
+  } = options;
 
-// def _getJsonIEXCloud(url, token="", version="stable", filter=""):
-//     """for iex cloud"""
-//     return _getJsonIEXCloudBase(_URL_PREFIX2, url, token, version, filter)
+  const endpoint = new URL(`${base_url(version)}${url}`);
+  endpoint.searchParams.append("token", token);
 
-// def _postJsonIEXCloudBase(
-//     base_url,
-//     url,
-//     data=None,
-//     json=None,
-//     token="",
-//     version="stable",
-//     token_in_params=True,
-// ):
-//     """for iex cloud"""
-//     url = base_url.format(version=version) + url
-//     if token_in_params:
-//         params = {"token": token}
-//     else:
-//         params = {}
-//     resp = requests.post(
-//         urlparse(url).geturl(),
-//         data=data,
-//         json=json,
-//         proxies=_PYEX_PROXIES,
-//         params=params,
-//     )
-//     if resp.status_code == 200:
-//         return resp.json()
-//     raise PyEXception("Response %d - " % resp.status_code, resp.text)
+  return fetch(endpoint, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(async (res) => {
+    if (res.ok) {
+      if (format === "json") {
+        return res.json();
+      }
+      return res.text();
+    }
+    throw IEXJSException(`Response ${res.status} - ${await res.text()}`);
+  });
+};
 
-// def _postJsonIEXCloud(
-//     url, data=None, json=None, token="", version="stable", token_in_params=True
-// ):
-//     """for iex cloud"""
-//     return _postJsonIEXCloudBase(
-//         _URL_PREFIX2, data, json, token, version, token_in_params
-//     )
+const _deleteJsonIEXCloud = (options) =>
+  _deleteJsonIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
 
-// def _deleteJsonIEXCloudBase(base_url, url, token="", version="stable"):
-//     """for iex cloud"""
-//     url = base_url.format(version=version) + url
-//     params = {"token": token}
-//     resp = requests.delete(urlparse(url).geturl(), proxies=_PYEX_PROXIES, params=params)
-//     if resp.status_code == 200:
-//         return resp.json()
-//     raise PyEXception("Response %d - " % resp.status_code, resp.text)
+const _deleteJsonIEXCloudSandbox = (options) =>
+  _deleteJsonIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
 
-// def _deleteJsonIEXCloud(url, token="", version="stable"):
-//     """for iex cloud"""
-//     return _deleteJsonIEXCloud(_URL_PREFIX2, url, token, version)
+export const _strToList = (st) => {
+  if (typeof st === "string") {
+    return [st];
+  }
+  return st;
+};
 
-// def _getJsonIEXCloudSandbox(url, token="", version="stable", filter=""):
-//     """for iex cloud"""
-//     return _getJsonIEXCloudBase(_URL_PREFIX2_SANDBOX, url, token, "stable", filter)
+export const _strCommaSeparatedString = (st) => _strToList(st).join(",");
 
-// def _postJsonIEXCloudSandbox(
-//     url, data=None, json=None, token="", version="stable", token_in_params=True
-// ):
-//     """for iex cloud"""
-//     return _postJsonIEXCloudBase(
-//         _URL_PREFIX2_SANDBOX, url, data, json, token, "stable", token_in_params
-//     )
+export const _strOrDate = (st) => {
+  if (typeof st === "string") return st;
+  if (st instanceof Date)
+    return st.toISOString().slice(0, 10).replace(/-/g, "");
+  throw IEXJSException(`Not a date: ${typeof st} ${st}`);
+};
 
-// def _deleteJsonIEXCloudSandbox(url, token="", version="stable"):
-//     """for iex cloud"""
-//     return _deleteJsonIEXCloudBase(_URL_PREFIX2_SANDBOX, url, token, "stable")
+export const _dateRange = (st) => {
+  if (_DATE_RANGES.indexOf(st) < 0)
+    throw IEXJSException(`Must be a valid date range: got ${st}`);
+  return st;
+};
 
-// def _wsURL(url):
-//     """internal"""
-//     return "/1.0/" + url
+export const _raiseIfNotStr = (s) => {
+  if (typeof s !== "string")
+    throw IEXJSException(`Cannot use type ${typeof s}`);
+};
 
-// def _strToList(st):
-//     """internal"""
-//     if isinstance(st, string_types):
-//         return [st]
-//     return st
+export const _checkPeriodLast = (per, last) => {
+  if (per !== "quarter" && per !== "annual") {
+    throw IEXJSException("Period must be in {'quarter', 'annual'}");
+  }
+  if (per === "quarter") {
+    if (last < 1 || last > 12) {
+      throw IEXJSException("Last must be in [1, 12] for period 'quarter'");
+    }
+  } else if (last < 1 || last > 4) {
+    throw IEXJSException("Last must be in [1, 4] for period 'annual'");
+  }
+};
 
-// def _strCommaSeparatedString(st):
-//     """internal"""
-//     return ",".join(_strToList(st))
+export const _streamSSE = (url, on_data, accrue = false) => {
+  const messages = new EventSource(url);
 
-// def _strOrDate(st):
-//     """internal"""
-//     if isinstance(st, string_types):
-//         return st
-//     elif isinstance(st, datetime):
-//         return st.strftime("%Y%m%d")
-//     raise PyEXception("Not a date: %s", str(st))
+  // eslint-disable-next-line no-console
+  const callback = on_data || console.log;
 
-// def _dateRange(st):
-//     """internal"""
-//     if st not in _DATE_RANGES:
-//         raise PyEXception("Must be a valid date range: got {}".format(st))
-//     return st
+  messages.accrued = [];
 
-// def _raiseIfNotStr(s):
-//     """internal"""
-//     if s is not None and not isinstance(s, string_types):
-//         raise PyEXception("Cannot use type %s" % str(type(s)))
+  messages.onmessage = async (event) => {
+    // TODO stop
+    const datum = JSON.parse(event.data);
+    await callback(datum);
+    if (accrue) {
+      messages.accrued.push(datum);
+    }
+  };
 
-// def _checkPeriodLast(per, last):
-//     """check if period is ok with last"""
-//     if per not in ("quarter", "annual"):
-//         raise PyEXception("Period must be in {'quarter', 'annual'}")
-//     if per == "quarter":
-//         if last < 1 or last > 12:
-//             raise PyEXception("Last must be in [1, 12] for period 'quarter'")
-//     else:
-//         if last < 1 or last > 4:
-//             raise PyEXception("Last must be in [1, 4] for period 'annual'")
+  return messages;
+};
 
-// def _tryJson(data, raw=True):
-//     """internal"""
-//     if raw:
-//         return data
-//     try:
-//         return json.loads(data)
-//     except ValueError:
-//         return data
+export const overrideUrl = (url) => {
+  _URL_PREFIX2 = () => url;
+};
 
-// class WSClient(object):
-//     def __init__(
-//         self, addr, sendinit=None, on_data=None, on_open=None, on_close=None, raw=True
-//     ):
-//         """
-//         addr: path to sio
-//         sendinit: tuple to emit
-//         on_data, on_open, on_close: functions to call
-//         """
-//         self.addr = addr
-//         self.sendinit = sendinit
-
-//         on_data = on_data or print
-
-//         class Namespace(BaseNamespace):
-//             def on_connect(self, *data):
-//                 if on_open:
-//                     on_open(_tryJson(data, raw))
-
-//             def on_disconnect(self, *data):
-//                 if on_close:
-//                     on_close(_tryJson(data, raw))
-
-//             def on_message(self, data):
-//                 on_data(_tryJson(data, raw))
-
-//         self._Namespace = Namespace
-
-//     def run(self):
-//         self.socketIO = SocketIO(_SIO_URL_PREFIX, _SIO_PORT)
-//         self.namespace = self.socketIO.define(self._Namespace, self.addr)
-//         if self.sendinit:
-//             self.namespace.emit(*self.sendinit)
-//         self.socketIO.wait()
-
-// def _stream(url, sendinit=None, on_data=print):
-//     """internal"""
-//     cl = WSClient(url, sendinit=sendinit, on_data=on_data)
-//     return cl
-
-// def _streamSSE(url, on_data=print, accrue=False):
-//     """internal"""
-//     messages = SSEClient(url)
-//     if accrue:
-//         ret = []
-
-//     for msg in messages:
-//         data = msg.data
-
-//         try:
-//             on_data(json.loads(data))
-//             if accrue:
-//                 ret.append(msg)
-//         except PyEXStopSSE:
-//             # stop listening and return
-//             return ret
-//         except (json.JSONDecodeError, KeyboardInterrupt):
-//             raise
-//         except Exception:
-//             raise
-//     return ret
-
-// async def _streamSSEAsync(url, accrue=False):
-//     """internal"""
-//     from aiohttp_sse_client import client as sse_client
-
-//     async with sse_client.EventSource(url) as event_source:
-//         try:
-//             async for event in event_source:
-//                 yield json.loads(event.data)
-
-//         except (json.JSONDecodeError, KeyboardInterrupt):
-//             raise
-//         except ConnectionError:
-//             raise PyEXception("Could not connect to SSE Stream")
-//         except PyEXStopSSE:
-//             return
-//         except Exception:
-//             raise
-//     return
-
-// def _reindex(df, col):
-//     """internal"""
-//     if isinstance(col, list):
-//         if all([c in df.columns for c in col]):
-//             df.set_index(col, inplace=True)
-//     else:
-//         if col in df.columns:
-//             df.set_index(col, inplace=True)
-
-// def _toDatetime(df, cols=None, tcols=None):
-//     """internal"""
-//     if not isinstance(cols, list):
-//         cols = [cols]
-//     if not isinstance(tcols, list):
-//         tcols = [tcols]
-
-//     cols = cols + _STANDARD_DATE_FIELDS if cols is not None else _STANDARD_DATE_FIELDS
-//     tcols = (
-//         tcols + _STANDARD_TIME_FIELDS if tcols is not None else _STANDARD_TIME_FIELDS
-//     )
-
-//     for col in cols:
-//         if col in df.columns:
-//             try:
-//                 df[col] = pd.to_datetime(df[col], infer_datetime_format=True)
-//             except BaseException:
-//                 # skip error
-//                 continue
-
-//     for tcol in tcols:
-//         if tcol in df.columns:
-//             try:
-//                 df[tcol] = pd.to_datetime(df[tcol], unit="ms")
-//             except BaseException:
-//                 # skip error
-//                 continue
-
-// def setProxy(proxies=None):
-//     """Set proxies argument for requests
-
-//     Args:
-//         proxies (dict): Proxies to set
-//     """
-//     global _PYEX_PROXIES
-//     _PYEX_PROXIES = proxies
-
-// def overrideUrl(url):
-//     """Override the default IEX Cloud url"""
-//     global _URL_PREFIX2
-//     _URL_PREFIX2 = url
-
-// def overrideSSEUrl(url):
-//     """Override the default IEX Cloud SSE url"""
-//     global _SSE_URL_PREFIX
-//     _SSE_URL_PREFIX = url
-
+// TODO
 // def _expire(**temporal_args):
 //     if not os.path.exists(_PYEX_CACHE_FOLDER):
 //         os.makedirs(_PYEX_CACHE_FOLDER)
@@ -740,6 +647,7 @@ export const _postJson = (
 
 //     return _wrapper
 
+// TODO
 // def _interval(**temporal_args):
 //     if not os.path.exists(_PYEX_CACHE_FOLDER):
 //         os.makedirs(_PYEX_CACHE_FOLDER)
@@ -750,23 +658,78 @@ export const _postJson = (
 
 //     return _wrapper
 
-// def _requireSecret(token, allowSandbox=True):
-//     if token.startswith("sk") or (allowSandbox and token.startswith("Tsk")):
-//         return
-//     raise PyEXception("Requires secret token!")
+export const _requireSecret = (token, allowSandbox = true) => {
+  if (token.startswith("sk") || (allowSandbox && token.startswith("Tsk")))
+    return;
+  throw IEXJSException("Requires secret token!");
+};
 
-// def _quoteSymbols(symbols):
-//     """urlquote a potentially comma-separate list of symbols"""
-//     if isinstance(symbols, list):
-//         # comma separated, quote separately
-//         return ",".join(quote(symbol, safe="") for symbol in symbols)
-//     # not comma separated, just quote
-//     return quote(symbols, safe=",")
+export const _quoteSymbols = (symbols) => {
+  if (Array.isArray(symbols)) {
+    // comma separated, quote separately
+    return symbols.map((symbol) => encodeURIComponent(symbol)).join(",");
+  }
+  // not comma separated, just quote
+  return encodeURIComponent(symbols);
+};
 
-// def _timeseriesWrapper(kwargs, key=True, subkey=True):
-//     if key:
-//         if "key" in kwargs:
-//             raise PyEXception("Cannot pass `key` kwarg to timeseries, already used")
-//     if subkey:
-//         if "subkey" in kwargs:
-//             raise PyEXception("Cannot pass `subkey` kwarg to timeseries, already used")
+export const _timeseriesWrapper = (
+  options,
+  enforceKey = true,
+  enforceSubkey = true,
+) => {
+  if (enforceKey) {
+    const { key } = options;
+    if (!(key === undefined || key === null))
+      throw IEXJSException(
+        "Cannot pass `key` argument to timeseries, already used",
+      );
+  }
+  if (enforceSubkey) {
+    const { subkey } = options;
+    if (!(subkey === undefined || subkey === null))
+      throw IEXJSException(
+        "Cannot pass `subkey` argument to timeseries, already used",
+      );
+  }
+};
+
+/**
+ * for backwards compat, accepting token and version but ignoring
+ * @param {object} options
+ */
+export const _getJson = async (options) => {
+  const { url, token = "", version = "" } = options;
+  if (token) {
+    if (version === "sandbox") {
+      return _getJsonIEXCloudSandbox(options);
+    }
+    return _getJsonIEXCloud(options);
+  }
+  return _getJsonOrig(url);
+};
+
+/**
+ *
+ * @param {object} options
+ */
+export const _postJson = async (options) => {
+  const { version = "" } = options;
+
+  if (version === "sandbox") {
+    return _postJsonIEXCloudSandbox(options);
+  }
+  return _postJsonIEXCloud(options);
+};
+
+/**
+ *
+ * @param {object} options
+ */
+export const _deleteJson = (options) => {
+  const { version = "" } = options;
+  if (version === "sandbox") {
+    return _deleteJsonIEXCloudSandbox(options);
+  }
+  return _deleteJsonIEXCloud(options);
+};

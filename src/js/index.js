@@ -1,7 +1,6 @@
-import package from "../package.json";
+import pkg_json from "../../package.json";
 
-export const VERSION = package.version;
+export const VERSION = pkg_json.version;
 
 export * from "./client";
 export * from "./common";
-

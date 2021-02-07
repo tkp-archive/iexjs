@@ -9,7 +9,7 @@
 
 import { IEXJSException } from "./common";
 
-class Client {
+export class Client {
   constructor(api_token, version = "v1") {
     // TODO get from env in node
     // this._token = api_token || process.env.IEX_TOKEN;
@@ -34,7 +34,3 @@ class Client {
     this._version = version;
   }
 }
-
-module.exports = {
-  Client,
-};
