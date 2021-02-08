@@ -10,9 +10,9 @@
 import { IEXJSException } from "./common";
 
 export class Client {
-  constructor(api_token, version = "v1") {
-    // TODO get from env in node
-    // this._token = api_token || process.env.IEX_TOKEN;
+  constructor(options={}) {
+    const {api_token = (process?process.env.IEX_TOKEN:null) || "", version = "v1"} = options;
+
     this._token = api_token;
 
     if (!this._token) {
@@ -25,7 +25,7 @@ export class Client {
       throw IEXJSException("Unrecognized api version: {}".format(version));
     }
 
-    if (this._token.startswith("T") && version !== "sandbox") {
+    if (this._token.startsWith("T") && version !== "sandbox") {
       throw IEXJSException(
         "Using test key but attempting to connect to non-sandbox environment",
       );

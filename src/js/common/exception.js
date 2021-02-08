@@ -7,16 +7,9 @@
  *
  */
 
-// for babel
-import "regenerator-runtime/runtime.js";
+export function IEXJSException(message) {
+  const error = new Error(message);
+  return error;
+}
 
-import pkg_json from "../../package.json";
-export const VERSION = pkg_json.version;
-
-
-export * from "./common";
-export * from "./account";
-export * from "./alternative";
-
-
-export * from "./client";
+IEXJSException.prototype = Object.create(Error.prototype);
