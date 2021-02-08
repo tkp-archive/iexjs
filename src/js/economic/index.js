@@ -7,6 +7,4 @@
  *
  */
 
-export * from "./checks";
-export * from "./exception";
-export * from "./urls";
+// TODO after points is implemented

@@ -17,6 +17,18 @@ export const VERSION = pkg_json.version;
 export * from "./common";
 export * from "./account";
 export * from "./alternative";
-
+export * from "./commodities";
+export * from "./cryptocurrency";
+export * from "./economic";
+export * from "./fx";
+export * from "./marketdata";
+export * from "./options";
+export * from "./points";
+export * from "./premium";
+export * from "./rates";
+export * from "./refdata";
+export * from "./rules";
+export * from "./stats";
+export * from "./stocks";
 
 export * from "./client";
