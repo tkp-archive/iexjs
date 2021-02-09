@@ -219,11 +219,11 @@ Currently, the following methods are implemented:
 <!-- - [optionsSymbolsList](https://iexcloud.io/docs/api/#options-symbols) -->
 <!-- - [otcSymbols](https://iexcloud.io/docs/api/#otc-symbols) -->
 <!-- - [otcSymbolsList](https://iexcloud.io/docs/api/#otc-symbols) -->
-<!-- - [sectors](https://iexcloud.io/docs/api/#sectors) -->
+- [sectors](https://iexcloud.io/docs/api/#sectors)
 - [search](https://iexcloud.io/docs/api/#search)
 <!-- - [symbols](https://iexcloud.io/docs/api/#symbols) -->
 <!-- - [symbolsList](https://iexcloud.io/docs/api/#symbols) -->
-<!-- - [tags](https://iexcloud.io/docs/api/#tags) -->
+- [tags](https://iexcloud.io/docs/api/#tags)
 - [exchanges](https://iexcloud.io/docs/api/#u-s-exchanges)
 - [holidays](https://iexcloud.io/docs/api/#u-s-holidays-and-trading-dates)
 <!-- - [isinLookup](https://iexcloud.io/docs/api/#isin-mapping) -->
