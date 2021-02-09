@@ -12,3 +12,4 @@ export * from "./exchanges";
 export * from "./figi";
 export * from "./search";
 export * from "./sectors";
+export * from "./symbols";
