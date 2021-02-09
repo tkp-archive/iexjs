@@ -201,7 +201,7 @@ Currently, the following methods are implemented:
 <!-- - [unemployment](https://iexcloud.io/docs/api/#unemployment-rate) -->
 <!-- - [recessionProb](https://iexcloud.io/docs/api/#us-recession-probabilities) -->
 
-<!-- ### Reference Data -->
+### Reference Data
 
 <!-- - [cryptoSymbols](https://iexcloud.io/docs/api/#cryptocurrency-symbols) -->
 <!-- - [cryptoSymbolsList](https://iexcloud.io/docs/api/#cryptocurrency-symbols) -->
@@ -211,8 +211,8 @@ Currently, the following methods are implemented:
 <!-- - [iexSymbolsList](https://iexcloud.io/docs/api/#iex-symbols) -->
 <!-- - [internationalSymbols](https://iexcloud.io/docs/api/#international-symbols) -->
 <!-- - [internationalSymbolsList](https://iexcloud.io/docs/api/#international-symbols) -->
-<!-- - [internationalExchanges](https://iexcloud.io/docs/api/#international-exchanges) -->
-<!-- - [figi](https://iexcloud.io/docs/api/#figi-mapping) -->
+- [internationalExchanges](https://iexcloud.io/docs/api/#international-exchanges)
+- [figi](https://iexcloud.io/docs/api/#figi-mapping)
 <!-- - [mutualFundSymbols](https://iexcloud.io/docs/api/#mutual-fund-symbols) -->
 <!-- - [mutualFundSymbolsList](https://iexcloud.io/docs/api/#mutual-fund-symbols) -->
 <!-- - [optionsSymbols](https://iexcloud.io/docs/api/#options-symbols) -->
@@ -220,12 +220,12 @@ Currently, the following methods are implemented:
 <!-- - [otcSymbols](https://iexcloud.io/docs/api/#otc-symbols) -->
 <!-- - [otcSymbolsList](https://iexcloud.io/docs/api/#otc-symbols) -->
 <!-- - [sectors](https://iexcloud.io/docs/api/#sectors) -->
-<!-- - [search](https://iexcloud.io/docs/api/#search) -->
+- [search](https://iexcloud.io/docs/api/#search)
 <!-- - [symbols](https://iexcloud.io/docs/api/#symbols) -->
 <!-- - [symbolsList](https://iexcloud.io/docs/api/#symbols) -->
 <!-- - [tags](https://iexcloud.io/docs/api/#tags) -->
-<!-- - [exchanges](https://iexcloud.io/docs/api/#u-s-exchanges) -->
-<!-- - [holidays](https://iexcloud.io/docs/api/#u-s-holidays-and-trading-dates) -->
+- [exchanges](https://iexcloud.io/docs/api/#u-s-exchanges)
+- [holidays](https://iexcloud.io/docs/api/#u-s-holidays-and-trading-dates)
 <!-- - [isinLookup](https://iexcloud.io/docs/api/#isin-mapping) -->
 
 <!-- ### Other Reference -->

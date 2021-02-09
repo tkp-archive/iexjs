@@ -10,8 +10,11 @@
 import { IEXJSException } from "./common";
 
 export class Client {
-  constructor(options={}) {
-    const {api_token = (process?process.env.IEX_TOKEN:null) || "", version = "v1"} = options;
+  constructor(options = {}) {
+    const {
+      api_token = (process ? process.env.IEX_TOKEN : null) || "",
+      version = "v1",
+    } = options;
 
     this._token = api_token;
 

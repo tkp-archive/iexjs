@@ -15,8 +15,7 @@ import { IEXJSException } from "./exception";
 
 export const _URL_PREFIX = () => "https://api.iextrading.com/1.0/";
 export let _URL_PREFIX2 = (version) => `https://cloud.iexapis.com/${version}/`;
-export const _URL_PREFIX2_SANDBOX = () =>
-  `https://sandbox.iexapis.com/stable/`;
+export const _URL_PREFIX2_SANDBOX = () => `https://sandbox.iexapis.com/stable/`;
 
 export const _SIO_URL_PREFIX = "https://ws-api.iextrading.com";
 export const _SIO_PORT = 443;
@@ -31,11 +30,7 @@ export const _SSE_URL_PREFIX_SANDBOX = (version, channel, symbols, token) =>
   `https://sandbox-sse.iexapis.com/stable/${channel}?symbols=${symbols}&token=${token}`;
 export const _SSE_URL_PREFIX_ALL_SANDBOX = (channel, token) =>
   `https://sandbox-sse.iexapis.com/stable/${channel}?token=${token}`;
-export const _SSE_DEEP_URL_PREFIX_SANDBOX = (
-  symbols,
-  channels,
-  token,
-) =>
+export const _SSE_DEEP_URL_PREFIX_SANDBOX = (symbols, channels, token) =>
   `https://sandbox-sse.iexapis.com/stable/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
 
 /**
@@ -66,7 +61,6 @@ const _getJsonIEXCloudBase = async (options) => {
   endpoint.searchParams.append("token", token);
   if (filter) endpoint.searchParams.append("filter", filter);
 
-  console.log(endpoint.href)
   return fetch(endpoint.href, {
     method: "GET",
     headers: {
