@@ -153,53 +153,53 @@ Currently, the following methods are implemented:
 
 - [ceoCompensation](https://iexcloud.io/docs/api/#ceo-compensation)
 
-<!-- ### Treasuries -->
+### Treasuries
 
-<!-- #### Daily Treasury Rates -->
+#### Daily Treasury Rates
 
-<!-- - [thirtyYear](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [twentyYear](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [tenYear](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [fiveYear](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [twoYear](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [oneYear](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [sixMonth](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [threeMonth](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
-<!-- - [oneMonth](https://iexcloud.io/docs/api/#daily-treasury-rates) -->
+- [thirtyYear](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [twentyYear](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [tenYear](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [fiveYear](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [twoYear](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [oneYear](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [sixMonth](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [threeMonth](https://iexcloud.io/docs/api/#daily-treasury-rates)
+- [oneMonth](https://iexcloud.io/docs/api/#daily-treasury-rates)
 
-<!-- ### Commodities -->
+### Commodities
 
-<!-- - [wti](https://iexcloud.io/docs/api/#oil-prices) -->
-<!-- - [brent](https://iexcloud.io/docs/api/#oil-prices) -->
-<!-- - [natgas](https://iexcloud.io/docs/api/#natural-gas-price) -->
-<!-- - [heatoil](https://iexcloud.io/docs/api/#heating-oil-prices) -->
-<!-- - [jet](https://iexcloud.io/docs/api/#jet-fuel-prices) -->
-<!-- - [diesel](https://iexcloud.io/docs/api/#diesel-price) -->
-<!-- - [gasreg](https://iexcloud.io/docs/api/#gas-prices) -->
-<!-- - [gasmid](https://iexcloud.io/docs/api/#gas-prices) -->
-<!-- - [gasprm](https://iexcloud.io/docs/api/#gas-prices) -->
-<!-- - [propane](https://iexcloud.io/docs/api/#propane-prices) -->
+- [wti](https://iexcloud.io/docs/api/#oil-prices)
+- [brent](https://iexcloud.io/docs/api/#oil-prices)
+- [natgas](https://iexcloud.io/docs/api/#natural-gas-price)
+- [heatoil](https://iexcloud.io/docs/api/#heating-oil-prices)
+- [jet](https://iexcloud.io/docs/api/#jet-fuel-prices)
+- [diesel](https://iexcloud.io/docs/api/#diesel-price)
+- [gasreg](https://iexcloud.io/docs/api/#gas-prices)
+- [gasmid](https://iexcloud.io/docs/api/#gas-prices)
+- [gasprm](https://iexcloud.io/docs/api/#gas-prices)
+- [propane](https://iexcloud.io/docs/api/#propane-prices)
 
-<!-- ### Economic Data -->
+### Economic Data
 
-<!-- - [cdnj](https://iexcloud.io/docs/api/#cd-rates) -->
-<!-- - [cdj](https://iexcloud.io/docs/api/#cd-rates) -->
-<!-- - [cpi](https://iexcloud.io/docs/api/#consumer-price-index) -->
-<!-- - [creditcard](https://iexcloud.io/docs/api/#credit-card-interest-rate) -->
-<!-- - [fedfunds](https://iexcloud.io/docs/api/#federal-fund-rates) -->
-<!-- - [gdp](https://iexcloud.io/docs/api/#real-gdp) -->
-<!-- - [institutionalMoney](https://iexcloud.io/docs/api/#institutional-money-funds) -->
-<!-- - [initialClaims](https://iexcloud.io/docs/api/#initial-claims) -->
-<!-- - [indpro](https://iexcloud.io/docs/api/#industrial-production-index) -->
-<!-- - [us30](https://iexcloud.io/docs/api/#mortgage-rates) -->
-<!-- - [us15](https://iexcloud.io/docs/api/#mortgage-rates) -->
-<!-- - [us5](https://iexcloud.io/docs/api/#mortgage-rates) -->
-<!-- - [housing](https://iexcloud.io/docs/api/#total-housing-starts) -->
-<!-- - [payroll](https://iexcloud.io/docs/api/#total-payrolls) -->
-<!-- - [vehicles](https://iexcloud.io/docs/api/#total-vehicle-sales) -->
-<!-- - [retailMoney](https://iexcloud.io/docs/api/#retail-money-funds) -->
-<!-- - [unemployment](https://iexcloud.io/docs/api/#unemployment-rate) -->
-<!-- - [recessionProb](https://iexcloud.io/docs/api/#us-recession-probabilities) -->
+- [cdnj](https://iexcloud.io/docs/api/#cd-rates)
+- [cdj](https://iexcloud.io/docs/api/#cd-rates)
+- [cpi](https://iexcloud.io/docs/api/#consumer-price-index)
+- [creditcard](https://iexcloud.io/docs/api/#credit-card-interest-rate)
+- [fedfunds](https://iexcloud.io/docs/api/#federal-fund-rates)
+- [gdp](https://iexcloud.io/docs/api/#real-gdp)
+- [institutionalMoney](https://iexcloud.io/docs/api/#institutional-money-funds)
+- [initialClaims](https://iexcloud.io/docs/api/#initial-claims)
+- [indpro](https://iexcloud.io/docs/api/#industrial-production-index)
+- [us30](https://iexcloud.io/docs/api/#mortgage-rates)
+- [us15](https://iexcloud.io/docs/api/#mortgage-rates)
+- [us5](https://iexcloud.io/docs/api/#mortgage-rates)
+- [housing](https://iexcloud.io/docs/api/#total-housing-starts)
+- [payroll](https://iexcloud.io/docs/api/#total-payrolls)
+- [vehicles](https://iexcloud.io/docs/api/#total-vehicle-sales)
+- [retailMoney](https://iexcloud.io/docs/api/#retail-money-funds)
+- [unemployment](https://iexcloud.io/docs/api/#unemployment-rate)
+- [recessionProb](https://iexcloud.io/docs/api/#us-recession-probabilities)
 
 ### Reference Data
 
@@ -255,13 +255,13 @@ Currently, the following methods are implemented:
 <!-- - [threshold](https://iexcloud.io/docs/api/#listed-regulation-sho-threshold-securities-list-in-dev) -->
 <!-- - [tops](https://iexcloud.io/docs/api/#tops) -->
 
-<!-- #### Stats -->
+#### Stats
 
-<!-- - daily -->
-<!-- - summary -->
-<!-- - systemStats -->
-<!-- - recent -->
-<!-- - records -->
+- daily
+- summary
+- systemStats
+- recent
+- records
 
 ### Alternative
 

@@ -50,14 +50,14 @@ export const options = (symbol, expiration, side, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (side) {
     return _getJson({
-      url: `/stock/${symbol}/options/${expiration}/${side}`,
+      url: `stock/${symbol}/options/${expiration}/${side}`,
       token,
       version,
       filter,
     });
   }
   return _getJson({
-    url: `/stock/${symbol}/options/${expiration}`,
+    url: `stock/${symbol}/options/${expiration}`,
     token,
     version,
     filter,

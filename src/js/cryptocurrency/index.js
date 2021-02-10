@@ -22,7 +22,7 @@ import { Client } from "../client";
  */
 export const cryptoBook = (symbol, token, version, filter) =>
   _getJson({
-    url: `/crypto/${symbol}/book`,
+    url: `crypto/${symbol}/book`,
     token,
     version,
     filter,
@@ -44,7 +44,7 @@ Client.prototype.cryptoBook = function (symbol, filter) {
  */
 export const cryptoPrice = (symbol, token, version, filter) =>
   _getJson({
-    url: `/crypto/${symbol}/price`,
+    url: `crypto/${symbol}/price`,
     token,
     version,
     filter,
@@ -66,7 +66,7 @@ Client.prototype.cryptoPrice = function (symbol, filter) {
  */
 export const cryptoQuote = (symbol, token, version, filter) =>
   _getJson({
-    url: `/crypto/${symbol}/quote`,
+    url: `crypto/${symbol}/quote`,
     token,
     version,
     filter,

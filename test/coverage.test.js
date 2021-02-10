@@ -19,11 +19,39 @@ const {
   sentiment,
   ceoCompensation,
   // commodities
+  wti,
+  brent,
+  natgas,
+  heatoil,
+  jet,
+  diesel,
+  gasreg,
+  gasmid,
+  gasprm,
+  propane,
   // cryptocurrency
   cryptoBook,
   cryptoPrice,
   cryptoQuote,
   // economic
+  us30,
+  us15,
+  us5,
+  fedfunds,
+  creditcard,
+  cdnj,
+  cdj,
+  gdp,
+  indpro,
+  cpi,
+  payroll,
+  housing,
+  unemployment,
+  vehicles,
+  recessionProb,
+  initialClaims,
+  institutionalMoney,
+  retailMoney,
   // fx
   latestFX,
   convertFX,
@@ -36,6 +64,15 @@ const {
   points,
   // premium
   // rates
+  thirtyYear,
+  twentyYear,
+  tenYear,
+  fiveYear,
+  twoYear,
+  oneYear,
+  sixMonth,
+  threeMonth,
+  oneMonth,
   // refdata
   calendar,
   holidays,
@@ -64,6 +101,11 @@ const {
   isinLookup,
   // rules
   // stats
+  systemStats,
+  recent,
+  records,
+  summary,
+  daily,
   // stocks
 } = require("../src/js");
 
@@ -97,7 +139,47 @@ describe("Alternative", () => {
   });
 });
 
-describe("Commodities", () => {});
+describe("Commodities", () => {
+  test("wti", () => {
+    expect(wti).toBeDefined();
+  });
+
+  test("brent", () => {
+    expect(brent).toBeDefined();
+  });
+
+  test("natgas", () => {
+    expect(natgas).toBeDefined();
+  });
+
+  test("heatoil", () => {
+    expect(heatoil).toBeDefined();
+  });
+
+  test("jet", () => {
+    expect(jet).toBeDefined();
+  });
+
+  test("diesel", () => {
+    expect(diesel).toBeDefined();
+  });
+
+  test("gasreg", () => {
+    expect(gasreg).toBeDefined();
+  });
+
+  test("gasmid", () => {
+    expect(gasmid).toBeDefined();
+  });
+
+  test("gasprm", () => {
+    expect(gasprm).toBeDefined();
+  });
+
+  test("propane", () => {
+    expect(propane).toBeDefined();
+  });
+});
 
 describe("Cryptocurrency", () => {
   test("cryptoBook", () => {
@@ -111,7 +193,79 @@ describe("Cryptocurrency", () => {
   });
 });
 
-describe("Economic", () => {});
+describe("Economic", () => {
+  test("us30", () => {
+    expect(us30).toBeDefined();
+  });
+
+  test("us15", () => {
+    expect(us15).toBeDefined();
+  });
+
+  test("us5", () => {
+    expect(us5).toBeDefined();
+  });
+
+  test("fedfunds", () => {
+    expect(fedfunds).toBeDefined();
+  });
+
+  test("creditcard", () => {
+    expect(creditcard).toBeDefined();
+  });
+
+  test("cdnj", () => {
+    expect(cdnj).toBeDefined();
+  });
+
+  test("cdj", () => {
+    expect(cdj).toBeDefined();
+  });
+
+  test("gdp", () => {
+    expect(gdp).toBeDefined();
+  });
+
+  test("indpro", () => {
+    expect(indpro).toBeDefined();
+  });
+
+  test("cpi", () => {
+    expect(cpi).toBeDefined();
+  });
+
+  test("payroll", () => {
+    expect(payroll).toBeDefined();
+  });
+
+  test("housing", () => {
+    expect(housing).toBeDefined();
+  });
+
+  test("unemployment", () => {
+    expect(unemployment).toBeDefined();
+  });
+
+  test("vehicles", () => {
+    expect(vehicles).toBeDefined();
+  });
+
+  test("recessionProb", () => {
+    expect(recessionProb).toBeDefined();
+  });
+
+  test("initialClaims", () => {
+    expect(initialClaims).toBeDefined();
+  });
+
+  test("institutionalMoney", () => {
+    expect(institutionalMoney).toBeDefined();
+  });
+
+  test("retailMoney", () => {
+    expect(retailMoney).toBeDefined();
+  });
+});
 
 describe("FX", () => {
   test("latestFX", () => {
@@ -142,6 +296,44 @@ describe("Options", () => {
 describe("Points", () => {
   test("points", () => {
     expect(points).toBeDefined();
+  });
+});
+
+describe("Rates", () => {
+  test("thirtyYear", () => {
+    expect(thirtyYear).toBeDefined();
+  });
+
+  test("twentyYear", () => {
+    expect(twentyYear).toBeDefined();
+  });
+
+  test("tenYear", () => {
+    expect(tenYear).toBeDefined();
+  });
+
+  test("fiveYear", () => {
+    expect(fiveYear).toBeDefined();
+  });
+
+  test("twoYear", () => {
+    expect(twoYear).toBeDefined();
+  });
+
+  test("oneYear", () => {
+    expect(oneYear).toBeDefined();
+  });
+
+  test("sixMonth", () => {
+    expect(sixMonth).toBeDefined();
+  });
+
+  test("threeMonth", () => {
+    expect(threeMonth).toBeDefined();
+  });
+
+  test("oneMonth", () => {
+    expect(oneMonth).toBeDefined();
   });
 });
 
@@ -220,5 +412,23 @@ describe("RefData", () => {
   });
   test("isinLookup", () => {
     expect(isinLookup).toBeDefined();
+  });
+});
+
+describe("Stats", () => {
+  test("systemStats", () => {
+    expect(systemStats).toBeDefined();
+  });
+  test("recent", () => {
+    expect(recent).toBeDefined();
+  });
+  test("records", () => {
+    expect(records).toBeDefined();
+  });
+  test("summary", () => {
+    expect(summary).toBeDefined();
+  });
+  test("daily", () => {
+    expect(daily).toBeDefined();
   });
 });
