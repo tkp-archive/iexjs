@@ -32,7 +32,7 @@ Currently, the following methods are implemented:
 - [payAsYouGo](https://iexcloud.io/docs/api/#pay-as-you-go)
 - [usage](https://iexcloud.io/docs/api/#usage)
 
-<!-- ### Stocks -->
+### Stocks
 
 <!-- #### Stock Prices -->
 
@@ -60,7 +60,7 @@ Currently, the following methods are implemented:
 <!-- - [logoNotebook](https://iexcloud.io/docs/api/#logo) -->
 <!-- - [peers](https://iexcloud.io/docs/api/#peer-groups) -->
 
-<!-- #### Stock Fundamentals -->
+#### Stock Fundamentals
 
 <!-- - [balanceSheet](https://iexcloud.io/docs/api/#balance-sheet) -->
 <!-- - [cashFlow](https://iexcloud.io/docs/api/#cash-flow) -->
@@ -68,8 +68,8 @@ Currently, the following methods are implemented:
 <!-- - [earnings](https://iexcloud.io/docs/api/#earnings) -->
 <!-- - [financials](https://iexcloud.io/docs/api/#financials) -->
 <!-- - [incomeStatement](https://iexcloud.io/docs/api/#income-statement) -->
-<!-- - [tenQ](https://iexcloud.io/docs/api/#financials-as-reported) -->
-<!-- - [tenK](https://iexcloud.io/docs/api/#financials-as-reported) -->
+- [tenQ](https://iexcloud.io/docs/api/#financials-as-reported)
+- [tenK](https://iexcloud.io/docs/api/#financials-as-reported)
 <!-- - [stockSplits](https://iexcloud.io/docs/api/#splits-basic) -->
 
 <!-- #### Stock Research -->
@@ -116,10 +116,10 @@ Currently, the following methods are implemented:
 <!-- - [news](https://iexcloud.io/docs/api/#news) -->
 <!-- - [marketNews](https://iexcloud.io/docs/api/#news) -->
 
-<!-- #### Time Series -->
+#### Time Series
 
-<!-- - [timeSeriesInventory](https://iexcloud.io/docs/api/#time-series) -->
-<!-- - [timeSeries](https://iexcloud.io/docs/api/#time-series) -->
+- [timeSeriesInventory](https://iexcloud.io/docs/api/#time-series)
+- [timeSeries](https://iexcloud.io/docs/api/#time-series)
 
 <!-- #### Bulk -->
 
