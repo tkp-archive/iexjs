@@ -99,7 +99,7 @@ export const timeSeries = (options, token, version, filter) => {
     key = "",
     subkey = "",
     range = "",
-    calendar = false,
+    // calendar = false,
     limit = 1,
     subattribute = "",
     dateField = "",
@@ -157,12 +157,17 @@ Client.prototype.timeSeries = function (options, filter) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  */
 export const tenQ = (symbol, options, token, version, filter) =>
-  timeSeries({
-    id: "REPORTED_FINANCIALS",
-    key: symbol,
-    subkey: "10-Q",
-    ...options,
-  });
+  timeSeries(
+    {
+      id: "REPORTED_FINANCIALS",
+      key: symbol,
+      subkey: "10-Q",
+      ...options,
+    },
+    token,
+    version,
+    filter,
+  );
 
 Client.prototype.tenQ = function (options, filter) {
   return tenQ(options, this._token, this._version, filter);
@@ -178,12 +183,17 @@ Client.prototype.tenQ = function (options, filter) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  */
 export const tenK = (symbol, options, token, version, filter) =>
-  timeSeries({
-    id: "REPORTED_FINANCIALS",
-    key: symbol,
-    subkey: "10-K",
-    ...options,
-  });
+  timeSeries(
+    {
+      id: "REPORTED_FINANCIALS",
+      key: symbol,
+      subkey: "10-K",
+      ...options,
+    },
+    token,
+    version,
+    filter,
+  );
 
 Client.prototype.tenQ = function (options, filter) {
   return tenQ(options, this._token, this._version, filter);

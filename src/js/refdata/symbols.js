@@ -274,7 +274,7 @@ Client.prototype.fxSymbolsList = function () {
 
 const convertOptionsSymbolsToList = (data) => {
   const ret = [];
-  Object.keys(data).map((symbol) => {
+  Object.keys(data).forEach((symbol) => {
     data[symbol].forEach((date) => {
       ret.push(`${symbol}-${date}`);
     });
