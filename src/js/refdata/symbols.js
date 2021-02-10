@@ -272,11 +272,23 @@ Client.prototype.fxSymbolsList = function () {
   return fxSymbolsList(this._token, this._version);
 };
 
-export const optionsSymbolsList = (token, version) =>
-  convertToList(optionsSymbols(token, version, "symbol"));
+const convertOptionsSymbolsToList = (data) => {
+  const ret = [];
+  Object.keys(data).map((symbol) => {
+    data[symbol].forEach((date) => {
+      ret.push(`${symbol}-${date}`);
+    });
+  });
+  return ret;
+};
 
-Client.prototype.optionsSymbolsList = function () {
-  return convertToList(optionsSymbols(this._token, this._version, "symbol"));
+export const optionsSymbolsList = async (token, version) =>
+  convertOptionsSymbolsToList(await optionsSymbols(token, version, "symbol"));
+
+Client.prototype.optionsSymbolsList = async function () {
+  return convertOptionsSymbolsToList(
+    await optionsSymbols(this._token, this._version, "symbol"),
+  );
 };
 
 export const cryptoSymbolsList = (token, version) =>
