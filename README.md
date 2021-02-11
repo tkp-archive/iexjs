@@ -60,15 +60,14 @@ Currently, the following methods are implemented:
 
 #### Stock Fundamentals
 
-<!-- - [balanceSheet](https://iexcloud.io/docs/api/#balance-sheet) -->
-<!-- - [cashFlow](https://iexcloud.io/docs/api/#cash-flow) -->
-<!-- - [dividendsBasic](https://iexcloud.io/docs/api/#dividends-basic) -->
-<!-- - [earnings](https://iexcloud.io/docs/api/#earnings) -->
-<!-- - [financials](https://iexcloud.io/docs/api/#financials) -->
-<!-- - [incomeStatement](https://iexcloud.io/docs/api/#income-statement) -->
+- [balanceSheet](https://iexcloud.io/docs/api/#balance-sheet)
+- [cashFlow](https://iexcloud.io/docs/api/#cash-flow)
+- [dividendsBasic](https://iexcloud.io/docs/api/#dividends-basic)
+- [earnings](https://iexcloud.io/docs/api/#earnings)
+- [financials](https://iexcloud.io/docs/api/#financials)
+- [incomeStatement](https://iexcloud.io/docs/api/#income-statement)
 - [tenQ](https://iexcloud.io/docs/api/#financials-as-reported)
 - [tenK](https://iexcloud.io/docs/api/#financials-as-reported)
-<!-- - [stockSplits](https://iexcloud.io/docs/api/#splits-basic) -->
 
 #### Stock Research
 
@@ -81,7 +80,7 @@ Currently, the following methods are implemented:
 - [priceTarget](https://iexcloud.io/docs/api/#price-target)
 - [technicals](https://iexcloud.io/docs/api/#technical-indicators)
 
-<!-- #### Corporate Actions -->
+#### Corporate Actions
 
 <!-- - [bonusIssue](https://iexcloud.io/docs/api/#bonus-issue) -->
 <!-- - [distribution](https://iexcloud.io/docs/api/#distribution) -->
@@ -93,6 +92,7 @@ Currently, the following methods are implemented:
 <!-- - [securitySwap](https://iexcloud.io/docs/api/#security-swap) -->
 <!-- - [spinoff](https://iexcloud.io/docs/api/#spinoff) -->
 <!-- - [splits](https://iexcloud.io/docs/api/#splits) -->
+- [stockSplits (splits basic)](https://iexcloud.io/docs/api/#splits-basic)
 
 #### Market Info
 
