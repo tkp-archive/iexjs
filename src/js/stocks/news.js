@@ -30,8 +30,8 @@ export const news = (symbol, count, token, version, filter) => {
   });
 };
 
-Client.prototype.news = function (symbol, filter) {
-  return news(symbol, this._token, this._version, filter);
+Client.prototype.news = function (symbol, count, filter) {
+  return news(symbol, count, this._token, this._version, filter);
 };
 
 /**

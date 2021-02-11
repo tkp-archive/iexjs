@@ -92,7 +92,7 @@ export const estimates = (symbol, period, last, token, version, filter) => {
 };
 
 Client.prototype.estimates = function (symbol, period, last, filter) {
-  return estimates(symbol, this._token, this._version, filter);
+  return estimates(symbol, period, last, this._token, this._version, filter);
 };
 
 /**
@@ -457,7 +457,7 @@ export const technicals = (
     if (input2 || input3 || input4) {
       throw IEXJSException("Indicator takes at most 1 argument");
     }
-    base_url += `&input1=${input1}`;
+    base_url += `&input1=${input1 || ""}`;
   }
 
   if (
@@ -467,8 +467,8 @@ export const technicals = (
     if (input3 || input4) {
       throw IEXJSException("Indicator takes at most 2 argument");
     }
-    base_url += `&input1=${input1}`;
-    base_url += `&input2=${input2}`;
+    base_url += `&input1=${input1 || ""}`;
+    base_url += `&input2=${input2 || ""}`;
   }
 
   if (["macd", "stoch", "ultosc", "vidya"].indexOf(indicator)) {
@@ -476,14 +476,28 @@ export const technicals = (
     if (input4) {
       throw IEXJSException("Indicator takes at most 3 argument");
     }
-    base_url += `&input1=${input1}`;
-    base_url += `&input2=${input2}`;
-    base_url += `&input2=${input3}`;
+    base_url += `&input1=${input1 || ""}`;
+    base_url += `&input2=${input2 || ""}`;
+    base_url += `&input2=${input3 || ""}`;
   }
 
   return _getJson(base_url, token, version, filter);
 };
 
-Client.prototype.technicals = function (symbol, filter) {
-  return technicals(symbol, this._token, this._version, filter);
+Client.prototype.technicals = function (
+  symbol,
+  indicator,
+  range,
+  inputs,
+  filter,
+) {
+  return technicals(
+    symbol,
+    indicator,
+    range,
+    inputs,
+    this._token,
+    this._version,
+    filter,
+  );
 };

@@ -49,16 +49,14 @@ Currently, the following methods are implemented:
 <!-- - [quote](https://iexcloud.io/docs/api/#quote) -->
 <!-- - [volumeByVenue](https://iexcloud.io/docs/api/#volume-by-venue) -->
 
-<!-- #### Stock Profiles -->
+#### Stock Profiles
 
-<!-- - [company](https://iexcloud.io/docs/api/#company) -->
-<!-- - [insiderRoster](https://iexcloud.io/docs/api/#insider-roster) -->
-<!-- - [insiderSummary](https://iexcloud.io/docs/api/#insider-summary) -->
-<!-- - [insiderTransactions](https://iexcloud.io/docs/api/#insider-transactions) -->
-<!-- - [logo](https://iexcloud.io/docs/api/#logo) -->
-<!-- - [logoPNG](https://iexcloud.io/docs/api/#logo) -->
-<!-- - [logoNotebook](https://iexcloud.io/docs/api/#logo) -->
-<!-- - [peers](https://iexcloud.io/docs/api/#peer-groups) -->
+- [company](https://iexcloud.io/docs/api/#company)
+- [insiderRoster](https://iexcloud.io/docs/api/#insider-roster)
+- [insiderSummary](https://iexcloud.io/docs/api/#insider-summary)
+- [insiderTransactions](https://iexcloud.io/docs/api/#insider-transactions)
+- [logo](https://iexcloud.io/docs/api/#logo)
+- [peers](https://iexcloud.io/docs/api/#peer-groups)
 
 #### Stock Fundamentals
 
@@ -72,16 +70,16 @@ Currently, the following methods are implemented:
 - [tenK](https://iexcloud.io/docs/api/#financials-as-reported)
 <!-- - [stockSplits](https://iexcloud.io/docs/api/#splits-basic) -->
 
-<!-- #### Stock Research -->
+#### Stock Research
 
-<!-- - [advancedStats](https://iexcloud.io/docs/api/#advanced-stats) -->
-<!-- - [analystRecommendations](https://iexcloud.io/docs/api/#analyst-recommendations) -->
-<!-- - [estimates](https://iexcloud.io/docs/api/#estimates) -->
-<!-- - [fundOwnership](https://iexcloud.io/docs/api/#fund-ownership) -->
-<!-- - [institutionalOwnership](https://iexcloud.io/docs/api/#institutional-ownership) -->
-<!-- - [keyStats](https://iexcloud.io/docs/api/#key-stats) -->
-<!-- - [priceTarget](https://iexcloud.io/docs/api/#price-target) -->
-<!-- - [technicals](https://iexcloud.io/docs/api/#technical-indicators) -->
+- [advancedStats](https://iexcloud.io/docs/api/#advanced-stats)
+- [analystRecommendations](https://iexcloud.io/docs/api/#analyst-recommendations)
+- [estimates](https://iexcloud.io/docs/api/#estimates)
+- [fundOwnership](https://iexcloud.io/docs/api/#fund-ownership)
+- [institutionalOwnership](https://iexcloud.io/docs/api/#institutional-ownership)
+- [keyStats](https://iexcloud.io/docs/api/#key-stats)
+- [priceTarget](https://iexcloud.io/docs/api/#price-target)
+- [technicals](https://iexcloud.io/docs/api/#technical-indicators)
 
 <!-- #### Corporate Actions -->
 
@@ -96,25 +94,25 @@ Currently, the following methods are implemented:
 <!-- - [spinoff](https://iexcloud.io/docs/api/#spinoff) -->
 <!-- - [splits](https://iexcloud.io/docs/api/#splits) -->
 
-<!-- #### Market Info -->
+#### Market Info
 
-<!-- - [collections](https://iexcloud.io/docs/api/#collections) -->
-<!-- - [earningsToday](https://iexcloud.io/docs/api/#earnings-today) -->
-<!-- - [ipoToday](https://iexcloud.io/docs/api/#ipo-calendar) -->
-<!-- - [ipoUpcoming](https://iexcloud.io/docs/api/#ipo-calendar) -->
-<!-- - [list](https://iexcloud.io/docs/api/#list) -->
-<!-- - [marketVolume](https://iexcloud.io/docs/api/#market-volume-u-s) -->
-<!-- - [sectorPerformance](https://iexcloud.io/docs/api/#sector-performance) -->
-<!-- - [upcomingEvents](https://iexcloud.io/docs/api/#upcoming-events) -->
-<!-- - [upcomingEarnings](https://iexcloud.io/docs/api/#upcoming-events) -->
-<!-- - [upcomingDividends](https://iexcloud.io/docs/api/#upcoming-events) -->
-<!-- - [upcomingSplits](https://iexcloud.io/docs/api/#upcoming-events) -->
-<!-- - [upcomingIPOs](https://iexcloud.io/docs/api/#upcoming-events) -->
+- [collections](https://iexcloud.io/docs/api/#collections)
+- [earningsToday](https://iexcloud.io/docs/api/#earnings-today)
+- [ipoToday](https://iexcloud.io/docs/api/#ipo-calendar)
+- [ipoUpcoming](https://iexcloud.io/docs/api/#ipo-calendar)
+- [list](https://iexcloud.io/docs/api/#list)
+- [marketVolume](https://iexcloud.io/docs/api/#market-volume-u-s)
+- [sectorPerformance](https://iexcloud.io/docs/api/#sector-performance)
+- [upcomingEvents](https://iexcloud.io/docs/api/#upcoming-events)
+- [upcomingEarnings](https://iexcloud.io/docs/api/#upcoming-events)
+- [upcomingDividends](https://iexcloud.io/docs/api/#upcoming-events)
+- [upcomingSplits](https://iexcloud.io/docs/api/#upcoming-events)
+- [upcomingIPOs](https://iexcloud.io/docs/api/#upcoming-events)
 
-<!-- #### News -->
+#### News
 
-<!-- - [news](https://iexcloud.io/docs/api/#news) -->
-<!-- - [marketNews](https://iexcloud.io/docs/api/#news) -->
+- [news](https://iexcloud.io/docs/api/#news)
+- [marketNews](https://iexcloud.io/docs/api/#news)
 
 #### Time Series
 
@@ -125,12 +123,11 @@ Currently, the following methods are implemented:
 
 <!-- - batch -->
 
-<!-- #### Old/Unknown/Deprecated -->
+#### Old/Unknown/Deprecated
 
 <!-- - spread -->
 <!-- - shortInterest -->
-<!-- - marketShortInterest -->
-<!-- - relevant -->
+- marketShortInterest
 
 ### Crypto
 
