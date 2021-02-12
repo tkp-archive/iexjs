@@ -34,20 +34,20 @@ Currently, the following methods are implemented:
 
 ### Stocks
 
-<!-- #### Stock Prices -->
+#### Stock Prices
 
-<!-- - [book](https://iexcloud.io/docs/api/#book) -->
+- [book](https://iexcloud.io/docs/api/#book)
 <!-- - [chart](https://iexcloud.io/docs/api/#charts) -->
-<!-- - [delayedQuote](https://iexcloud.io/docs/api/#delayed-quote) -->
+- [delayedQuote](https://iexcloud.io/docs/api/#delayed-quote)
 <!-- - [intraday](https://iexcloud.io/docs/api/#intraday-prices) -->
-<!-- - [largestTrades](https://iexcloud.io/docs/api/#largest-trades) -->
-<!-- - [ohlc](https://iexcloud.io/docs/api/#open-close-price) -->
-<!-- - [marketOhlc](https://iexcloud.io/docs/api/#open-close-price) -->
-<!-- - [yesterday (previous day price)](https://iexcloud.io/docs/api/#previous-day-price) -->
-<!-- - [marketYesterday](https://iexcloud.io/docs/api/#previous-day-price) -->
-<!-- - [price](https://iexcloud.io/docs/api/#price-only) -->
-<!-- - [quote](https://iexcloud.io/docs/api/#quote) -->
-<!-- - [volumeByVenue](https://iexcloud.io/docs/api/#volume-by-venue) -->
+- [largestTrades](https://iexcloud.io/docs/api/#largest-trades)
+- [ohlc](https://iexcloud.io/docs/api/#open-close-price)
+- [marketOhlc](https://iexcloud.io/docs/api/#open-close-price)
+- [yesterday (previous day price)](https://iexcloud.io/docs/api/#previous-day-price)
+- [marketYesterday](https://iexcloud.io/docs/api/#previous-day-price)
+- [price](https://iexcloud.io/docs/api/#price-only)
+- [quote](https://iexcloud.io/docs/api/#quote)
+- [volumeByVenue](https://iexcloud.io/docs/api/#volume-by-venue)
 
 #### Stock Profiles
 
@@ -82,16 +82,16 @@ Currently, the following methods are implemented:
 
 #### Corporate Actions
 
-<!-- - [bonusIssue](https://iexcloud.io/docs/api/#bonus-issue) -->
-<!-- - [distribution](https://iexcloud.io/docs/api/#distribution) -->
-<!-- - [dividends](https://iexcloud.io/docs/api/#dividends) -->
-<!-- - [returnOfCapital](https://iexcloud.io/docs/api/#return-of-capital) -->
-<!-- - [rightsIssue](https://iexcloud.io/docs/api/#rights-issue) -->
-<!-- - [rightToPurchase](https://iexcloud.io/docs/api/#right-to-purchase) -->
-<!-- - [securityReclassification](https://iexcloud.io/docs/api/#security-reclassification) -->
-<!-- - [securitySwap](https://iexcloud.io/docs/api/#security-swap) -->
-<!-- - [spinoff](https://iexcloud.io/docs/api/#spinoff) -->
-<!-- - [splits](https://iexcloud.io/docs/api/#splits) -->
+- [bonusIssue](https://iexcloud.io/docs/api/#bonus-issue)
+- [distribution](https://iexcloud.io/docs/api/#distribution)
+- [dividends](https://iexcloud.io/docs/api/#dividends)
+- [returnOfCapital](https://iexcloud.io/docs/api/#return-of-capital)
+- [rightsIssue](https://iexcloud.io/docs/api/#rights-issue)
+- [rightToPurchase](https://iexcloud.io/docs/api/#right-to-purchase)
+- [securityReclassification](https://iexcloud.io/docs/api/#security-reclassification)
+- [securitySwap](https://iexcloud.io/docs/api/#security-swap)
+- [spinoff](https://iexcloud.io/docs/api/#spinoff)
+- [splits](https://iexcloud.io/docs/api/#splits)
 - [stockSplits (splits basic)](https://iexcloud.io/docs/api/#splits-basic)
 
 #### Market Info
@@ -119,9 +119,9 @@ Currently, the following methods are implemented:
 - [timeSeriesInventory](https://iexcloud.io/docs/api/#time-series)
 - [timeSeries](https://iexcloud.io/docs/api/#time-series)
 
-<!-- #### Bulk -->
+#### Bulk
 
-<!-- - batch -->
+- batch
 
 #### Old/Unknown/Deprecated
 
@@ -225,13 +225,13 @@ Currently, the following methods are implemented:
 - [holidays](https://iexcloud.io/docs/api/#u-s-holidays-and-trading-dates)
 - [isinLookup](https://iexcloud.io/docs/api/#isin-mapping)
 
-<!-- ### Other Reference -->
+### Other Reference
 
 <!-- - corporateActions -->
 <!-- - refDividends -->
 <!-- - nextDayExtDate -->
 <!-- - directory -->
-<!-- - [calendar](https://iexcloud.io/docs/api/#calendar) -->
+- [calendar](https://iexcloud.io/docs/api/#calendar)
 
 <!-- ### IEX Data -->
 
