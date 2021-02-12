@@ -245,202 +245,184 @@ Client.prototype.volumeByVenue = function (symbol, filter) {
   return volumeByVenue(symbol, this._token, this._version, filter);
 };
 
-// def chart(
-//     symbol,
-//     timeframe="1m",
-//     date=None,
-//     exactDate=None,
-//     last=-1,
-//     closeOnly=False,
-//     byDay=False,
-//     simplify=False,
-//     interval=-1,
-//     changeFromClose=False,
-//     displayPercent=False,
-//     sort="desc",
-//     includeToday=False,
-//     token="",
-//     version="",
-//     filter="",
-// ):
-//     """Historical price/volume data, daily and intraday
+/**
+ * Historical price/volume data, daily and intraday
+ *
+ * https://iexcloud.io/docs/api/#historical-prices
+ *
+ * @param {string} symbol ticker to request
+ * @param {string} timeframe Timeframe to request e.g. 1m
+ * @param {string} date date, if requesting intraday
+ * @param {string} exactDate Same as `date`, takes precedence
+ * @param {number} last If passed, chart data will return the last N elements from the time period defined by the range parameter
+ * @param {boolean} closeOnly Will return adjusted data only with keys date, close, and volume.
+ * @param {boolean} byDay Used only when range is date to return OHLCV data instead of minute bar data.
+ * @param {boolean} simplifyIf true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.
+ * @param {number} intervalIf passed, chart data will return every Nth element as defined by chartInterval
+ * @param {boolean} changeFromClose If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.
+ * @param {boolean} displayPercent If set to true, all percentage values will be multiplied by a factor of 100 (Ex: /stock/twtr/chart?displayPercent=true)
+ * @param {string} range Same format as the path parameter. This can be used for batch calls.
+ * @param {string} sort Can be "asc" or "desc" to sort results by date. Defaults to "desc"
+ * @param {boolean} includeToday If true, current trading day data is appended
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ */
+export const chart = (symbol, options, token, version, filter) => {
+  const {
+    timeframe = "1m",
+    date = "",
+    exactDate = "",
+    last = -1,
+    closeOnly = false,
+    byDay = false,
+    simplify = false,
+    interval = -1,
+    changeFromClose = false,
+    displayPercent = false,
+    sort = "desc",
+    includeToday = false,
+  } = options;
 
-//     https://iexcloud.io/docs/api/#historical-prices
-//     Data Schedule
-//     1d: -9:30-4pm ET Mon-Fri on regular market trading days
-//         -9:30-1pm ET on early close trading days
-//     All others:
-//         -Prior trading day available after 4am ET Tue-Sat
+  _raiseIfNotStr(symbol);
+  let base_url = `stock/${_quoteSymbols(symbol)}/chart/${timeframe}?`;
 
-//     Args:
-//         symbol (str): Ticker to request
-//         timeframe (str): Timeframe to request e.g. 1m
-//         date (datetime): date, if requesting intraday
-//         exactDate (str): Same as `date`, takes precedence
-//         last (int): If passed, chart data will return the last N elements from the time period defined by the range parameter
-//         closeOnly (bool): Will return adjusted data only with keys date, close, and volume.
-//         byDay (bool): Used only when range is date to return OHLCV data instead of minute bar data.
-//         simplify (bool) If true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.
-//         interval (int) If passed, chart data will return every Nth element as defined by chartInterval
-//         changeFromClose (bool): If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.
-//         displayPercent (bool): If set to true, all percentage values will be multiplied by a factor of 100 (Ex: /stock/twtr/chart?displayPercent=true)
-//         range (str): Same format as the path parameter. This can be used for batch calls.
-//         sort (str): Can be "asc" or "desc" to sort results by date. Defaults to "desc"
-//         includeToday (bool): If true, current trading day data is appended
-//         token (str): Access token
-//         version (str): API version
-//         filter (str): filters: https://iexcloud.io/docs/api/#filter-results
+  // exactDate takes precedence
+  let thedate = exactDate || date;
+  if (thedate) {
+    thedate = _strOrDate(thedate);
+  }
 
-//     Returns:
-//         dict or DataFrame: result
-//     """
-//     _raiseIfNotStr(symbol)
-//     symbol = _quoteSymbols(symbol)
+  if (timeframe && timeframe !== "1d") {
+    if (_TIMEFRAME_CHART.indexOf(timeframe) < 0) {
+      throw new IEXJSException(`Timeframe not recognized ${timeframe}`);
+    }
+  }
 
-//     base_url = "stock/{}/chart/{}?".format(symbol, timeframe)
+  // Assemble params
+  const params = {};
 
-//     # exactDate takes precedence
-//     date = exactDate or date
-//     if date:
-//         date = _strOrDate(date)
+  if (last > 0) params.chartLast = last;
+  if (closeOnly) params.chartCloseOnly = closeOnly;
+  if (byDay) params.chartByDay = byDay;
+  if (simplify) params.chartSimplify = simplify;
+  if (interval > 0) params.chartInterval = interval;
+  if (changeFromClose) params.changeFromClose = changeFromClose;
+  if (displayPercent) params.displayPercent = displayPercent;
+  if (exactDate) params.exactDate = exactDate;
+  if (sort) {
+    if (sort.lower() !== "asc" && sort.lower() !== "desc") {
+      throw new IEXJSException(`Sort not recognized: ${sort}`);
+    }
+    params.sort = sort.lower();
+  }
 
-//     if timeframe is not None and timeframe != "1d":
-//         if timeframe not in _TIMEFRAME_CHART:
-//             raise PyEXception("Range must be in {}".format(_TIMEFRAME_CHART))
+  if (includeToday) params.includeToday = includeToday;
 
-//     # Assemble params
-//     params = {}
+  if (thedate) {
+    base_url = `stock/${_quoteSymbols(symbol)}/chart/date/${thedate}?`;
+    if (Object.keys(params).length > 0) {
+      base_url += params
+        .entries()
+        .map((key, value) => `${key}=${value}`)
+        .join("&");
+    }
+    return _getJson({
+      url: base_url,
+      token,
+      version,
+      filter,
+    });
+  }
 
-//     # TODO need these?
-//     # if date:
-//     #     params["exactDate"] = date
-//     # if range:
-//     #     params["range"] = range
+  if (Object.keys(params).length > 0) {
+    base_url += params
+      .entries()
+      .map((key, value) => `${key}=${value}`)
+      .join("&");
+  }
+  return _getJson({
+    url: base_url,
+    token,
+    version,
+    filter,
+  });
+};
 
-//     if last > 0:
-//         params["chartLast"] = last
+Client.prototype.chart = function (symbol, options, filter) {
+  return chart(symbol, options, this._token, this._version, filter);
+};
 
-//     if closeOnly:
-//         params["chartCloseOnly"] = closeOnly
+/**
+ * This endpoint will return aggregated intraday prices in one minute buckets
+ *
+ * https://iexcloud.io/docs/api/#intraday-prices
+ *
+ * @param {string} symbol ticker to request
+ * @param {string} date (str): Formatted as YYYYMMDD. This can be used for batch calls when range is 1d or date. Currently supporting trailing 30 calendar days of minute bar data.
+ * @param {string} exactDate (str): Same as `date`, takes precedence
+ * @param {number} last (number): If passed, chart data will return the last N elements
+ * @param {boolean} IEXOnly (bool): Limits the return of intraday prices to IEX only data.
+ * @param {boolean} reset (bool): If true, chart will reset at midnight instead of the default behavior of 9:30am ET.
+ * @param {boolean} simplify (bool): If true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.
+ * @param {number} interval (number): If passed, chart data will return every Nth element as defined by chartInterval
+ * @param {boolean} changeFromClose (bool): If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.
+ * @param {boolean} IEXWhenNull (bool): By default, all market prefixed fields are 15 minute delayed, meaning the most recent 15 objects will be null. If this parameter is passed as true, all market prefixed fields that are null will be populated with IEX data if available.
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ */
+export const intraday = (symbol, options, token, version, filter) => {
+  const {
+    date = "",
+    exactDate = "",
+    last = -1,
+    IEXOnly = false,
+    reset = false,
+    simplify = false,
+    interval = -1,
+    changeFromClose = false,
+    IEXWhenNull = false,
+  } = options;
 
-//     if byDay:
-//         params["chartByDay"] = byDay
+  _raiseIfNotStr(symbol);
 
-//     if simplify:
-//         params["chartSimplify"] = simplify
+  // exactDate takes precedence
+  let thedate = exactDate || date;
+  if (thedate) {
+    thedate = _strOrDate(thedate);
+  }
 
-//     if interval > 0:
-//         params["chartInterval"] = interval
+  // Assemble params
+  const params = {};
 
-//     if changeFromClose:
-//         params["changeFromClose"] = changeFromClose
+  if (thedate) params.exactDate = thedate;
 
-//     if displayPercent:
-//         params["displayPercent"] = displayPercent
+  if (last > 0) params.chartLast = last;
+  if (last > 0) params.chartLast = last;
+  if (IEXOnly) params.chartIEXOnly = IEXOnly;
+  if (reset) params.chartReset = reset;
+  if (simplify) params.chartSimplify = simplify;
+  if (interval > 0) params.chartInterval = interval;
+  if (changeFromClose) params.changeFromClose = changeFromClose;
+  if (IEXWhenNull) params.chartIEXWhenNull = IEXWhenNull;
 
-//     if exactDate:
-//         params["exactDate"] = exactDate
+  let base_url = "stock/{}/intraday-prices?".format(symbol);
 
-//     if sort:
-//         if sort.lower() not in (
-//             "asc",
-//             "desc",
-//         ):
-//             raise PyEXception("Sort must be in (asc, desc), got: {}".format(sort))
+  if (Object.keys(params).length > 0) {
+    base_url += params
+      .entries()
+      .map((key, value) => `${key}=${value}`)
+      .join("&");
+  }
+  return _getJson({
+    url: base_url,
+    token,
+    version,
+    filter,
+  });
+};
 
-//         params["sort"] = sort.lower()
-
-//     if includeToday:
-//         params["includeToday"] = includeToday
-
-//     if date:
-//         base_url = "stock/{}/chart/date/{}?".format(symbol, date)
-
-//         if params:
-//             base_url += "&".join("{}={}".format(k, v) for k, v in params.items())
-//         return _getJson(base_url, token, version, filter)
-
-//     if params:
-//         base_url += "&".join("{}={}".format(k, v) for k, v in params.items())
-
-//     return _getJson(base_url, token, version, filter)
-
-// def intraday(
-//     symbol,
-//     date="",
-//     exactDate="",
-//     last=-1,
-//     IEXOnly=False,
-//     reset=False,
-//     simplify=False,
-//     interval=-1,
-//     changeFromClose=False,
-//     IEXWhenNull=False,
-//     token="",
-//     version="",
-//     filter="",
-// ):
-//     """This endpoint will return aggregated intraday prices in one minute buckets
-
-//     https://iexcloud.io/docs/api/#intraday-prices
-//     9:30-4pm ET Mon-Fri on regular market trading days
-//     9:30-1pm ET on early close trading days
-
-//     Args:
-//         symbol (str): Ticker to request
-//         date (str): Formatted as YYYYMMDD. This can be used for batch calls when range is 1d or date. Currently supporting trailing 30 calendar days of minute bar data.
-//         exactDate (str): Same as `date`, takes precedence
-//         last (number): If passed, chart data will return the last N elements
-//         IEXOnly (bool): Limits the return of intraday prices to IEX only data.
-//         reset (bool): If true, chart will reset at midnight instead of the default behavior of 9:30am ET.
-//         simplify (bool): If true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.
-//         interval (number): If passed, chart data will return every Nth element as defined by chartInterval
-//         changeFromClose (bool): If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.
-//         IEXWhenNull (bool): By default, all market prefixed fields are 15 minute delayed, meaning the most recent 15 objects will be null. If this parameter is passed as true, all market prefixed fields that are null will be populated with IEX data if available.
-//         token (str): Access token
-//         version (str): API version
-//         filter (str): filters: https://iexcloud.io/docs/api/#filter-results
-
-//     Returns:
-//         dict or DataFrame: result
-//     """
-//     _raiseIfNotStr(symbol)
-//     symbol = _quoteSymbols(symbol)
-
-//     # exactDate takes precedence
-//     date = exactDate or date
-//     if date:
-//         date = _strOrDate(date)
-
-//     # Assemble params
-//     params = {}
-
-//     if date:
-//         params["exactDate"] = date
-
-//     if last > 0:
-//         params["chartLast"] = last
-
-//     if IEXOnly:
-//         params["chartIEXOnly"] = IEXOnly
-
-//     if reset:
-//         params["chartReset"] = reset
-
-//     if simplify:
-//         params["chartSimplify"] = simplify
-
-//     if interval > 0:
-//         params["chartInterval"] = interval
-
-//     if changeFromClose:
-//         params["changeFromClose"] = changeFromClose
-
-//     if IEXWhenNull:
-//         params["chartIEXWhenNull"] = IEXWhenNull
-
-//     base_url = "stock/{}/intraday-prices?".format(symbol)
-
-//     if params:
-//         base_url += "&".join("{}={}".format(k, v) for k, v in params.items())
-//     return _getJson(base_url, token, version, filter)
+Client.prototype.intraday = function (symbol, options, filter) {
+  return intraday(symbol, options, this._token, this._version, filter);
+};

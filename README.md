@@ -37,9 +37,9 @@ Currently, the following methods are implemented:
 #### Stock Prices
 
 - [book](https://iexcloud.io/docs/api/#book)
-<!-- - [chart](https://iexcloud.io/docs/api/#charts) -->
+- [chart](https://iexcloud.io/docs/api/#charts)
 - [delayedQuote](https://iexcloud.io/docs/api/#delayed-quote)
-<!-- - [intraday](https://iexcloud.io/docs/api/#intraday-prices) -->
+- [intraday](https://iexcloud.io/docs/api/#intraday-prices)
 - [largestTrades](https://iexcloud.io/docs/api/#largest-trades)
 - [ohlc](https://iexcloud.io/docs/api/#open-close-price)
 - [marketOhlc](https://iexcloud.io/docs/api/#open-close-price)
@@ -125,8 +125,8 @@ Currently, the following methods are implemented:
 
 #### Old/Unknown/Deprecated
 
-<!-- - spread -->
-<!-- - shortInterest -->
+- spread
+- shortInterest
 - marketShortInterest
 
 ### Crypto
