@@ -315,53 +315,53 @@ Currently, the following methods are implemented:
 
 <!-- ### Wall Street Horizon -->
 
-<!-- - [analystDays](https://iexcloud.io/docs/api/#analyst-days) -->
-<!-- - [boardOfDirectorsMeeting](https://iexcloud.io/docs/api/#board-of-directors-meeting) -->
-<!-- - [businessUpdates](https://iexcloud.io/docs/api/#business-updates) -->
-<!-- - [buybacks](https://iexcloud.io/docs/api/#buybacks) -->
-<!-- - [capitalMarketsDay](https://iexcloud.io/docs/api/#capital-markets-day) -->
-<!-- - [companyTravel](https://iexcloud.io/docs/api/#company-travel) -->
-<!-- - [filingDueDates](https://iexcloud.io/docs/api/#filing-due-dates) -->
-<!-- - [fiscalQuarterEnd](https://iexcloud.io/docs/api/#fiscal-quarter-end) -->
-<!-- - [forum](https://iexcloud.io/docs/api/#forum) -->
-<!-- - [generalConference](https://iexcloud.io/docs/api/#general-conference) -->
-<!-- - [fdaAdvisoryCommitteeMeetings](https://iexcloud.io/docs/api/#fda-advisory-committee-meetings) -->
-<!-- - [holidaysWSH](https://iexcloud.io/docs/api/#holidays) -->
-<!-- - [indexChanges](https://iexcloud.io/docs/api/#index-changes) -->
-<!-- - [iposWSH](https://iexcloud.io/docs/api/#ipos) -->
-<!-- - [legalActions](https://iexcloud.io/docs/api/#legal-actions) -->
-<!-- - [mergersAndAcquisitions](https://iexcloud.io/docs/api/#mergers-acquisitions) -->
-<!-- - [productEventsDF](https://iexcloud.io/docs/api/#product-events) -->
-<!-- - [researchAndDevelopmentDays](https://iexcloud.io/docs/api/#research-and-development-days) -->
-<!-- - [sameStoreSales](https://iexcloud.io/docs/api/#same-store-sales) -->
-<!-- - [secondaryOfferings](https://iexcloud.io/docs/api/#secondary-offerings) -->
-<!-- - [seminars](https://iexcloud.io/docs/api/#seminars) -->
-<!-- - [shareholderMeetings](https://iexcloud.io/docs/api/#shareholder-meetings) -->
-<!-- - [summitMeetings](https://iexcloud.io/docs/api/#summit-meetings) -->
-<!-- - [tradeShows](https://iexcloud.io/docs/api/#trade-shows) -->
-<!-- - [witchingHours](https://iexcloud.io/docs/api/#witching-hours) -->
-<!-- - [workshops](https://iexcloud.io/docs/api/#workshops) -->
+- [analystDays](https://iexcloud.io/docs/api/#analyst-days)
+- [boardOfDirectorsMeeting](https://iexcloud.io/docs/api/#board-of-directors-meeting)
+- [businessUpdates](https://iexcloud.io/docs/api/#business-updates)
+- [buybacks](https://iexcloud.io/docs/api/#buybacks)
+- [capitalMarketsDay](https://iexcloud.io/docs/api/#capital-markets-day)
+- [companyTravel](https://iexcloud.io/docs/api/#company-travel)
+- [filingDueDates](https://iexcloud.io/docs/api/#filing-due-dates)
+- [fiscalQuarterEnd](https://iexcloud.io/docs/api/#fiscal-quarter-end)
+- [forum](https://iexcloud.io/docs/api/#forum)
+- [generalConference](https://iexcloud.io/docs/api/#general-conference)
+- [fdaAdvisoryCommitteeMeetings](https://iexcloud.io/docs/api/#fda-advisory-committee-meetings)
+- [holidaysWSH](https://iexcloud.io/docs/api/#holidays)
+- [indexChanges](https://iexcloud.io/docs/api/#index-changes)
+- [iposWSH](https://iexcloud.io/docs/api/#ipos)
+- [legalActions](https://iexcloud.io/docs/api/#legal-actions)
+- [mergersAndAcquisitions](https://iexcloud.io/docs/api/#mergers-acquisitions)
+- [productEventsDF](https://iexcloud.io/docs/api/#product-events)
+- [researchAndDevelopmentDays](https://iexcloud.io/docs/api/#research-and-development-days)
+- [sameStoreSales](https://iexcloud.io/docs/api/#same-store-sales)
+- [secondaryOfferings](https://iexcloud.io/docs/api/#secondary-offerings)
+- [seminars](https://iexcloud.io/docs/api/#seminars)
+- [shareholderMeetings](https://iexcloud.io/docs/api/#shareholder-meetings)
+- [summitMeetings](https://iexcloud.io/docs/api/#summit-meetings)
+- [tradeShows](https://iexcloud.io/docs/api/#trade-shows)
+- [witchingHours](https://iexcloud.io/docs/api/#witching-hours)
+- [workshops](https://iexcloud.io/docs/api/#workshops)
 
-<!-- ### Fraud Factors -->
+### Fraud Factors
 
-<!-- - [similarityIndex](https://iexcloud.io/docs/api/#similiarity-index) -->
-<!-- - [nonTimelyFilings](https://iexcloud.io/docs/api/#non-timely-filings) -->
+- [similarityIndex](https://iexcloud.io/docs/api/#similiarity-index)
+- [nonTimelyFilings](https://iexcloud.io/docs/api/#non-timely-filings)
 
-<!-- ### Extract Alpha -->
+### Extract Alpha
 
-<!-- - [cam1](https://iexcloud.io/docs/api/#cross-asset-model-1) -->
-<!-- - [esgCFPBComplaints](https://iexcloud.io/docs/api/#esg-cfpb-complaints) -->
-<!-- - [esgCPSCRecalls](https://iexcloud.io/docs/api/#esg-cpsc-recalls) -->
-<!-- - [esgDOLVisaApplications](https://iexcloud.io/docs/api/#esg-dol-visa-applications) -->
-<!-- - [esgEPAEnforcements](https://iexcloud.io/docs/api/#esg-epa-enforcements) -->
-<!-- - [esgEPAMilestones](https://iexcloud.io/docs/api/#esg-epa-milestones) -->
-<!-- - [esgFECIndividualCampaingContributions](https://iexcloud.io/docs/api/#esg-fec-individual-campaign-contributions) -->
-<!-- - [esgOSHAInspections](https://iexcloud.io/docs/api/#esg-osha-inspections) -->
-<!-- - [esgSenateLobbying](https://iexcloud.io/docs/api/#esg-senate-lobbying) -->
-<!-- - [esgUSASpending](https://iexcloud.io/docs/api/#esg-usa-spending) -->
-<!-- - [esgUSPTOPatentApplications](https://iexcloud.io/docs/api/#esg-uspto-patent-applications) -->
-<!-- - [esgUSPTOPatentGrants](https://iexcloud.io/docs/api/#esg-uspto-patent-grants) -->
-<!-- - [tacticalModel1](https://iexcloud.io/docs/api/#tactical-model-1) -->
+- [cam1](https://iexcloud.io/docs/api/#cross-asset-model-1)
+- [esgCFPBComplaints](https://iexcloud.io/docs/api/#esg-cfpb-complaints)
+- [esgCPSCRecalls](https://iexcloud.io/docs/api/#esg-cpsc-recalls)
+- [esgDOLVisaApplications](https://iexcloud.io/docs/api/#esg-dol-visa-applications)
+- [esgEPAEnforcements](https://iexcloud.io/docs/api/#esg-epa-enforcements)
+- [esgEPAMilestones](https://iexcloud.io/docs/api/#esg-epa-milestones)
+- [esgFECIndividualCampaingContributions](https://iexcloud.io/docs/api/#esg-fec-individual-campaign-contributions)
+- [esgOSHAInspections](https://iexcloud.io/docs/api/#esg-osha-inspections)
+- [esgSenateLobbying](https://iexcloud.io/docs/api/#esg-senate-lobbying)
+- [esgUSASpending](https://iexcloud.io/docs/api/#esg-usa-spending)
+- [esgUSPTOPatentApplications](https://iexcloud.io/docs/api/#esg-uspto-patent-applications)
+- [esgUSPTOPatentGrants](https://iexcloud.io/docs/api/#esg-uspto-patent-grants)
+- [tacticalModel1](https://iexcloud.io/docs/api/#tactical-model-1)
 
 ### Precision Alpha
 
@@ -381,23 +381,23 @@ Currently, the following methods are implemented:
 - [brainLanguageMetricsOnCompanyFilingsDifferenceAll](https://iexcloud.io/docs/api/#brain-companys-differences-in-language-metrics-on-company-annual-filings-from-prior-year)
 - [brainLanguageMetricsOnCompanyFilingsDifference](https://iexcloud.io/docs/api/#brain-companys-differences-in-language-metrics-on-company-annual-filings-from-prior-year)
 
-<!-- ### Kavout -->
+### Kavout
 
-<!-- - [kScore](https://iexcloud.io/docs/api/#k-score-for-us-equities) -->
-<!-- - [kScoreChina](https://iexcloud.io/docs/api/#k-score-for-china-a-shares) -->
+- [kScore](https://iexcloud.io/docs/api/#k-score-for-us-equities)
+- [kScoreChina](https://iexcloud.io/docs/api/#k-score-for-china-a-shares)
 
-<!-- ### Audit Analytics -->
+### Audit Analytics
 
-<!-- - [accountingQualityAndRiskMatrix](https://iexcloud.io/docs/api/#audit-analytics-accounting-quality-and-risk-matrix) -->
-<!-- - [directorAndOfficerChanges](https://iexcloud.io/docs/api/#audit-analytics-director-and-officer-changes) -->
+- [accountingQualityAndRiskMatrix](https://iexcloud.io/docs/api/#audit-analytics-accounting-quality-and-risk-matrix)
+- [directorAndOfficerChanges](https://iexcloud.io/docs/api/#audit-analytics-director-and-officer-changes)
 
-<!-- ### ValuEngine -->
+### ValuEngine
 
-<!-- - [valuEngineStockResearchReport](https://iexcloud.io/docs/api/#valuengine-stock-research-report) -->
+- [valuEngineStockResearchReport](https://iexcloud.io/docs/api/#valuengine-stock-research-report)
 
-<!-- ### StockTwits Sentiment -->
+### StockTwits Sentiment
 
-<!-- - [socialSentiment](https://iexcloud.io/docs/api/#social-sentiment) -->
+- [socialSentiment](https://iexcloud.io/docs/api/#social-sentiment)
 
 ## Development
 

@@ -13,10 +13,10 @@ import { timeSeries } from "../../stocks";
  * internal
  * @param {string} id
  * @param {string} symbol
- * @param  {object} kwargs
+ * @param  {object} timeseriesArgs
  * @returns
  */
-const _base = (id, symbol = "", token, version, filter, ...timeseriesArgs) =>
+const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
   timeSeries(
     {
       id,
@@ -38,7 +38,7 @@ const _base = (id, symbol = "", token, version, filter, ...timeseriesArgs) =>
  * @param  {object} rest
  */
 export const brain30DaySentiment = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -77,7 +77,7 @@ Client.prototype.brain30DaySentiment = function (
  * @param  {object} rest
  */
 export const brain7DaySentiment = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -116,7 +116,7 @@ Client.prototype.brain7DaySentiment = function (
  * @param  {object} rest
  */
 export const brain21DayMLReturnRanking = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -155,7 +155,7 @@ Client.prototype.brain21DayMLReturnRanking = function (
  * @param  {object} rest
  */
 export const brain10DayMLReturnRanking = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -194,7 +194,7 @@ Client.prototype.brain10DayMLReturnRanking = function (
  * @param  {object} rest
  */
 export const brain5DayMLReturnRanking = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -233,7 +233,7 @@ Client.prototype.brain5DayMLReturnRanking = function (
  * @param  {object} rest
  */
 export const brain3DayMLReturnRanking = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -272,7 +272,7 @@ Client.prototype.brain3DayMLReturnRanking = function (
  * @param  {object} rest
  */
 export const brain2DayMLReturnRanking = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -311,7 +311,7 @@ Client.prototype.brain2DayMLReturnRanking = function (
  * @param  {object} rest
  */
 export const brainLanguageMetricsOnCompanyFilingsAll = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -350,7 +350,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsAll = function (
  * @param  {object} rest
  */
 export const brainLanguageMetricsOnCompanyFilings = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -389,7 +389,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilings = function (
  * @param  {object} rest
  */
 export const brainLanguageMetricsOnCompanyFilingsDifferenceAll = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -428,7 +428,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsDifferenceAll = function (
  * @param  {object} rest
  */
 export const brainLanguageMetricsOnCompanyFilingsDifference = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,

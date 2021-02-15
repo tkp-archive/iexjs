@@ -13,10 +13,10 @@ import { timeSeries } from "../../stocks";
  * internal
  * @param {string} id
  * @param {string} symbol
- * @param  {object} kwargs
+ * @param  {object} timeseriesArgs
  * @returns
  */
-const _base = (id, symbol = "", token, version, filter, ...timeseriesArgs) =>
+const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
   timeSeries(
     {
       id,
@@ -38,7 +38,7 @@ const _base = (id, symbol = "", token, version, filter, ...timeseriesArgs) =>
  * @param  {object} rest
  */
 export const directorAndOfficerChanges = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
@@ -77,7 +77,7 @@ Client.prototype.directorAndOfficerChanges = function (
  * @param  {object} rest
  */
 export const accountingQualityAndRiskMatrix = (
-  symbol = "",
+  symbol,
   token,
   version,
   filter,
