@@ -24,7 +24,7 @@ export * from "./fx";
 export * from "./marketdata";
 export * from "./options";
 export * from "./points";
-// export * from "./premium";
+export * from "./premium";
 export * from "./rates";
 export * from "./refdata";
 export * from "./rules";
