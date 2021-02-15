@@ -6,3 +6,20 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
+import { Client } from "../client";
+import { _runSSE } from "./sse";
+
+/**
+ * Stream social sentiment
+ * https://iexcloud.io/docs/api/#sse-streaming
+ * @param {string} symbols
+ * @param {function} on_data
+ * @param {string} token
+ * @param {string} version
+ */
+export const sentimentSSE = (symbols, on_data, token, version) =>
+  _runSSE("sentiment", symbols, on_data, token, version);
+
+Client.prototype.sentimentSSE = function (symbols, on_data) {
+  return sentimentSSE(symbols, on_data, this._token, this._version);
+};

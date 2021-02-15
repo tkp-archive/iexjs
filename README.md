@@ -264,56 +264,56 @@ Currently, the following methods are implemented:
 
 - sentiment
 
-<!-- ## Streaming Data -->
+## Streaming Data
 
-<!-- ### SSE Streaming -->
+### SSE Streaming
 
-<!-- - [topsSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [lastSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [deepSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [tradesSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [auctionSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [bookSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [opHaltStatusSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [officialPriceSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [securityEventSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [ssrStatusSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [systemEventSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [tradeBreaksSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [tradingStatusSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
+- [topsSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [lastSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [deepSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [tradesSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [auctionSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [bookSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [opHaltStatusSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [officialPriceSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [securityEventSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [ssrStatusSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [systemEventSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [tradeBreaksSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [tradingStatusSSE](https://iexcloud.io/docs/api/#sse-streaming)
 
-<!-- ### Stocks -->
+### Stocks
 
-<!-- - [stocksUSNoUTPSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [stocksUSSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [stocksUS1SecondSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [stocksUS5SecondSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
-<!-- - [stocksUS1MinuteSSE](https://iexcloud.io/docs/api/#sse-streaming) -->
+- [stocksUSNoUTPSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [stocksUSSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [stocksUS1SecondSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [stocksUS5SecondSSE](https://iexcloud.io/docs/api/#sse-streaming)
+- [stocksUS1MinuteSSE](https://iexcloud.io/docs/api/#sse-streaming)
 
-<!-- ### News -->
+### News
 
-<!-- - [newsSSE](https://iexcloud.io/docs/api/#streaming-news) -->
+- [newsSSE](https://iexcloud.io/docs/api/#streaming-news)
 
-<!-- ### Sentiment -->
+### Sentiment
 
-<!-- - sentimentSSE -->
+- sentimentSSE
 
-<!-- ### FX -->
+### FX
 
-<!-- - fxSSE -->
-<!-- - forex1SecondSSE -->
-<!-- - forex5SecondSSE -->
-<!-- - forex1MinuteSSE -->
+- fxSSE
+- forex1SecondSSE
+- forex5SecondSSE
+- forex1MinuteSSE
 
-<!-- ### Crypto -->
+### Crypto
 
-<!-- - cryptoBookSSE -->
-<!-- - cryptoEventsSSE -->
-<!-- - cryptoQuotesSSE -->
+- cryptoBookSSE
+- cryptoEventsSSE
+- cryptoQuotesSSE
 
 ## Premium Data
 
-<!-- ### Wall Street Horizon -->
+### Wall Street Horizon
 
 - [analystDays](https://iexcloud.io/docs/api/#analyst-days)
 - [boardOfDirectorsMeeting](https://iexcloud.io/docs/api/#board-of-directors-meeting)

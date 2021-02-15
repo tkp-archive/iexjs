@@ -34,7 +34,9 @@
   },
   "dependencies": {
     "cross-fetch": "^3.0.6",
-    "regenerator-runtime": "^0.13.7"
+    "eventsource": "^1.0.7",
+    "regenerator-runtime": "^0.13.7",
+    "temporal-cache": "^0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
