@@ -104,7 +104,7 @@ Client.prototype.cashFlow = function (symbol, period, last, filter) {
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  */
-export const dividends = (symbol, timeframe, token, version, filter) => {
+export const dividendsBasic = (symbol, timeframe, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (_TIMEFRAME_DIVSPLIT.indexOf(timeframe || "ytd") < 0) {
     throw new IEXJSException("Timeframe not recognized");
@@ -117,8 +117,8 @@ export const dividends = (symbol, timeframe, token, version, filter) => {
   });
 };
 
-Client.prototype.dividends = function (symbol, timeframe, filter) {
-  return dividends(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.dividendsBasic = function (symbol, timeframe, filter) {
+  return dividendsBasic(symbol, timeframe, this._token, this._version, filter);
 };
 
 /**

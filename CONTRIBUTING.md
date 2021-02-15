@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contributing to pyEX!
+Thank you for your interest in contributing to iexjs!
 
 We invite you to contribute enhancements. Upon review you will be required to complete the [Contributor License Agreement (CLA)](https://github.com/iex/cla) before we are able to merge.
 
