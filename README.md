@@ -19,6 +19,7 @@ Install from npm
 ## Overview
 
 ### Full API
+
 Currently, the following methods are implemented:
 
 ### Data Points
@@ -233,24 +234,24 @@ Currently, the following methods are implemented:
 <!-- - directory -->
 - [calendar](https://iexcloud.io/docs/api/#calendar)
 
-<!-- ### IEX Data -->
+### IEX Data
 
-<!-- #### TOPS -->
+#### TOPS
 
-<!-- - [deep](https://iexcloud.io/docs/api/#deep) -->
-<!-- - [auction](https://iexcloud.io/docs/api/#deep-auction) -->
-<!-- - [bookDeep](https://iexcloud.io/docs/api/#deep-book) -->
-<!-- - [opHaltStatus](https://iexcloud.io/docs/api/#deep-operational-halt-status) -->
-<!-- - [officialPrice](https://iexcloud.io/docs/api/#deep-official-price) -->
-<!-- - [securityEvent](https://iexcloud.io/docs/api/#deep-security-event) -->
-<!-- - [ssrStatus](https://iexcloud.io/docs/api/#deep-short-sale-price-test-status) -->
-<!-- - [systemEvent](https://iexcloud.io/docs/api/#deep-system-event) -->
-<!-- - [trades](https://iexcloud.io/docs/api/#deep-trades) -->
-<!-- - [tradeBreak](https://iexcloud.io/docs/api/#deep-trade-break) -->
-<!-- - [tradingStatus](https://iexcloud.io/docs/api/#deep-trading-status) -->
-<!-- - [last](https://iexcloud.io/docs/api/#last) -->
-<!-- - [threshold](https://iexcloud.io/docs/api/#listed-regulation-sho-threshold-securities-list-in-dev) -->
-<!-- - [tops](https://iexcloud.io/docs/api/#tops) -->
+- [deep](https://iexcloud.io/docs/api/#deep)
+- [auction](https://iexcloud.io/docs/api/#deep-auction)
+- [bookDeep](https://iexcloud.io/docs/api/#deep-book)
+- [opHaltStatus](https://iexcloud.io/docs/api/#deep-operational-halt-status)
+- [officialPrice](https://iexcloud.io/docs/api/#deep-official-price)
+- [securityEvent](https://iexcloud.io/docs/api/#deep-security-event)
+- [ssrStatus](https://iexcloud.io/docs/api/#deep-short-sale-price-test-status)
+- [systemEvent](https://iexcloud.io/docs/api/#deep-system-event)
+- [trades](https://iexcloud.io/docs/api/#deep-trades)
+- [tradeBreak](https://iexcloud.io/docs/api/#deep-trade-break)
+- [tradingStatus](https://iexcloud.io/docs/api/#deep-trading-status)
+- [last](https://iexcloud.io/docs/api/#last)
+- [threshold](https://iexcloud.io/docs/api/#listed-regulation-sho-threshold-securities-list-in-dev)
+- [tops](https://iexcloud.io/docs/api/#tops)
 
 #### Stats
 
