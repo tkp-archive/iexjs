@@ -18,6 +18,27 @@ Install from npm
 
 ## Overview
 
+`iexjs` supports the IEX Cloud api through 2 interfaces. The first is a simple function call, passing in the api version and token as arguments
+
+```javascript
+const {chart} = require("iexjs");
+chart("AAPL", "1m", token, version).then((res) => {
+    console.log(res);
+});
+```
+
+Since the token rarely changes, we have a `Client` object for convenience:
+
+```javascript
+const {Client} = require("iexjs");
+const client = new Client({token, version});
+client.chart("AAPL", "1m").then((res) => {
+    console.log(res);
+});
+```
+
+The client will automatically pick up the API key from the environment variable `IEX_TOKEN`, or it can be passed as an argument. To use the IEX Cloud test environment, simple set `version: 'sandbox'`.
+
 ### Full API
 
 Currently, the following methods are implemented:
