@@ -471,14 +471,14 @@ export const _timeseriesWrapper = (
   enforceSubkey = true,
 ) => {
   if (enforceKey) {
-    const { key } = options;
+    const { key } = options || {};
     if (!(key === undefined || key === null))
       throw IEXJSException(
         "Cannot pass `key` argument to timeseries, already used",
       );
   }
   if (enforceSubkey) {
-    const { subkey } = options;
+    const { subkey } = options || {};
     if (!(subkey === undefined || subkey === null))
       throw IEXJSException(
         "Cannot pass `subkey` argument to timeseries, already used",

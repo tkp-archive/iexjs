@@ -282,7 +282,7 @@ export const chart = (symbol, options, token, version, filter) => {
     displayPercent = false,
     sort = "desc",
     includeToday = false,
-  } = options;
+  } = options || {};
 
   _raiseIfNotStr(symbol);
   let base_url = `stock/${_quoteSymbols(symbol)}/chart/${timeframe}?`;
@@ -311,10 +311,10 @@ export const chart = (symbol, options, token, version, filter) => {
   if (displayPercent) params.displayPercent = displayPercent;
   if (exactDate) params.exactDate = exactDate;
   if (sort) {
-    if (sort.lower() !== "asc" && sort.lower() !== "desc") {
+    if (sort.toLowerCase() !== "asc" && sort.toLowerCase() !== "desc") {
       throw new IEXJSException(`Sort not recognized: ${sort}`);
     }
-    params.sort = sort.lower();
+    params.sort = sort.toLowerCase();
   }
 
   if (includeToday) params.includeToday = includeToday;
@@ -322,8 +322,7 @@ export const chart = (symbol, options, token, version, filter) => {
   if (thedate) {
     base_url = `stock/${_quoteSymbols(symbol)}/chart/date/${thedate}?`;
     if (Object.keys(params).length > 0) {
-      base_url += params
-        .entries()
+      base_url += Object.entries(params)
         .map((key, value) => `${key}=${value}`)
         .join("&");
     }
@@ -336,8 +335,7 @@ export const chart = (symbol, options, token, version, filter) => {
   }
 
   if (Object.keys(params).length > 0) {
-    base_url += params
-      .entries()
+    base_url += Object.entries(params)
       .map((key, value) => `${key}=${value}`)
       .join("&");
   }
@@ -383,7 +381,7 @@ export const intraday = (symbol, options, token, version, filter) => {
     interval = -1,
     changeFromClose = false,
     IEXWhenNull = false,
-  } = options;
+  } = options || {};
 
   _raiseIfNotStr(symbol);
 
@@ -407,11 +405,10 @@ export const intraday = (symbol, options, token, version, filter) => {
   if (changeFromClose) params.changeFromClose = changeFromClose;
   if (IEXWhenNull) params.chartIEXWhenNull = IEXWhenNull;
 
-  let base_url = "stock/{}/intraday-prices?".format(symbol);
+  let base_url = `stock/${_quoteSymbols(symbol)}/intraday-prices?`;
 
   if (Object.keys(params).length > 0) {
-    base_url += params
-      .entries()
+    base_url += Object.entries(params)
       .map((key, value) => `${key}=${value}`)
       .join("&");
   }

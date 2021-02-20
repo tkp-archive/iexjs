@@ -9,6 +9,7 @@
 
 export * from "./cryptocurrency";
 export * from "./fx";
+export * from "./http";
 export * from "./news";
 export * from "./sentiment";
 export * from "./sse";

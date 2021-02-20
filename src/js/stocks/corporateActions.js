@@ -73,7 +73,7 @@ export const bonusIssue = (
       id: "advanced_bonus",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -81,8 +81,20 @@ export const bonusIssue = (
   );
 };
 
-Client.prototype.bonusIssue = function (symbol, timeframe, filter) {
-  return bonusIssue(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.bonusIssue = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return bonusIssue(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -113,7 +125,7 @@ export const distribution = (
       id: "advanced_distribution",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -121,8 +133,20 @@ export const distribution = (
   );
 };
 
-Client.prototype.distribution = function (symbol, timeframe, filter) {
-  return distribution(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.distribution = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return distribution(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -159,7 +183,7 @@ export const dividends = (
       id: "advanced_dividends",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -167,8 +191,20 @@ export const dividends = (
   );
 };
 
-Client.prototype.dividends = function (symbol, timeframe, filter) {
-  return dividends(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.dividends = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return dividends(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -199,7 +235,7 @@ export const returnOfCapital = (
       id: "advanced_return_of_capital",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -207,8 +243,20 @@ export const returnOfCapital = (
   );
 };
 
-Client.prototype.returnOfCapital = function (symbol, timeframe, filter) {
-  return returnOfCapital(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.returnOfCapital = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return returnOfCapital(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -239,7 +287,7 @@ export const rightsIssue = (
       id: "advanced_rights",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -247,8 +295,20 @@ export const rightsIssue = (
   );
 };
 
-Client.prototype.rightsIssue = function (symbol, timeframe, filter) {
-  return rightsIssue(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.rightsIssue = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return rightsIssue(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -279,7 +339,7 @@ export const rightToPurchase = (
       id: "advanced_right_to_purchase",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -287,8 +347,20 @@ export const rightToPurchase = (
   );
 };
 
-Client.prototype.rightToPurchase = function (symbol, timeframe, filter) {
-  return rightToPurchase(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.rightToPurchase = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return rightToPurchase(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -319,7 +391,7 @@ export const securityReclassification = (
       id: "advanced_security_reclassification",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -329,12 +401,14 @@ export const securityReclassification = (
 
 Client.prototype.securityReclassification = function (
   symbol,
-  timeframe,
+  refid,
+  timeseries_options,
   filter,
 ) {
   return securityReclassification(
     symbol,
-    timeframe,
+    refid,
+    timeseries_options,
     this._token,
     this._version,
     filter,
@@ -369,7 +443,7 @@ export const securitySwap = (
       id: "advanced_security_swap",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -377,8 +451,20 @@ export const securitySwap = (
   );
 };
 
-Client.prototype.securitySwap = function (symbol, timeframe, filter) {
-  return securitySwap(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.securitySwap = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return securitySwap(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -409,7 +495,7 @@ export const spinoff = (
       id: "advanced_spinoff",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -417,8 +503,20 @@ export const spinoff = (
   );
 };
 
-Client.prototype.spinoff = function (symbol, timeframe, filter) {
-  return spinoff(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.spinoff = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+) {
+  return spinoff(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };
 
 /**
@@ -449,7 +547,7 @@ export const splits = (
       id: "advanced_splits",
       key: symbol,
       subkey: refid || "",
-      ...timeseries_options,
+      ...(timeseries_options || {}),
     },
     token,
     version,
@@ -457,6 +555,13 @@ export const splits = (
   );
 };
 
-Client.prototype.splits = function (symbol, timeframe, filter) {
-  return splits(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.splits = function (symbol, refid, timeseries_options, filter) {
+  return splits(
+    symbol,
+    refid,
+    timeseries_options,
+    this._token,
+    this._version,
+    filter,
+  );
 };

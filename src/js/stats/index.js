@@ -130,6 +130,6 @@ export const daily = (date, last, token, version, filter) => {
   });
 };
 
-Client.prototype.daily = function (date, filter) {
-  return daily(date, this._token, this._version, filter);
+Client.prototype.daily = function (date, last, filter) {
+  return daily(date, last, this._token, this._version, filter);
 };

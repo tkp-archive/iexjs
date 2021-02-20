@@ -98,7 +98,7 @@ export const timeSeries = (options, token, version, filter) => {
     id = "",
     key = "",
     subkey = "",
-    range = "",
+    range = "1m",
     // calendar = false,
     limit = 1,
     subattribute = "",
@@ -108,7 +108,7 @@ export const timeSeries = (options, token, version, filter) => {
     on = "",
     last = 0,
     first = 0,
-  } = options;
+  } = options || {};
 
   if (!id) return timeSeriesInventory(token, version, filter);
 
@@ -162,15 +162,15 @@ export const tenQ = (symbol, options, token, version, filter) =>
       id: "REPORTED_FINANCIALS",
       key: symbol,
       subkey: "10-Q",
-      ...options,
+      ...(options || {}),
     },
     token,
     version,
     filter,
   );
 
-Client.prototype.tenQ = function (options, filter) {
-  return tenQ(options, this._token, this._version, filter);
+Client.prototype.tenQ = function (symbol, options, filter) {
+  return tenQ(symbol, options, this._token, this._version, filter);
 };
 
 /**
@@ -188,13 +188,13 @@ export const tenK = (symbol, options, token, version, filter) =>
       id: "REPORTED_FINANCIALS",
       key: symbol,
       subkey: "10-K",
-      ...options,
+      ...(options || {}),
     },
     token,
     version,
     filter,
   );
 
-Client.prototype.tenQ = function (options, filter) {
-  return tenQ(options, this._token, this._version, filter);
+Client.prototype.tenK = function (symbol, options, filter) {
+  return tenK(symbol, options, this._token, this._version, filter);
 };

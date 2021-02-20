@@ -64,6 +64,20 @@ const {
   forex1SecondSSE,
   forex5SecondSSE,
   forex1MinuteSSE,
+  tops,
+  last,
+  deep,
+  auction,
+  iexBook,
+  opHaltStatus,
+  officialPrice,
+  securityEvent,
+  ssrStatus,
+  systemEvent,
+  trades,
+  tradeBreak,
+  tradingStatus,
+  hist,
   newsSSE,
   sentimentSSE,
   lastSSE,
@@ -199,6 +213,74 @@ const {
   summary,
   daily,
   // stocks
+  batch,
+  stockSplits,
+  bonusIssue,
+  distribution,
+  dividends,
+  returnOfCapital,
+  rightsIssue,
+  rightToPurchase,
+  securityReclassification,
+  securitySwap,
+  spinoff,
+  splits,
+  balanceSheet,
+  cashFlow,
+  dividendsBasic,
+  earnings,
+  financials,
+  fundamentals,
+  incomeStatement,
+  collections,
+  earningsToday,
+  ipoToday,
+  ipoUpcoming,
+  list,
+  marketVolume,
+  marketOhlc,
+  marketYesterday,
+  sectorPerformance,
+  marketShortInterest,
+  upcomingEvents,
+  upcomingEarnings,
+  upcomingDividends,
+  upcomingSplits,
+  upcomingIPOs,
+  news,
+  marketNews,
+  book,
+  delayedQuote,
+  largestTrades,
+  ohlc,
+  yesterday,
+  previous,
+  price,
+  quote,
+  spread,
+  volumeByVenue,
+  chart,
+  intraday,
+  company,
+  insiderRoster,
+  insiderSummary,
+  insiderTransactions,
+  logo,
+  peers,
+  advancedStats,
+  analystRecommendations,
+  estimates,
+  fundOwnership,
+  institutionalOwnership,
+  keyStats,
+  priceTarget,
+  technicals,
+  threshold,
+  shortInterest,
+  timeSeriesInventory,
+  timeSeries,
+  tenQ,
+  tenK,
 } = require("../src/js");
 
 describe("Client", () => {
@@ -402,6 +484,62 @@ describe("MarketData", () => {
     expect(forex1MinuteSSE).toBeDefined();
   });
 
+  test("tops", () => {
+    expect(tops).toBeDefined();
+  });
+
+  test("last", () => {
+    expect(last).toBeDefined();
+  });
+
+  test("deep", () => {
+    expect(deep).toBeDefined();
+  });
+
+  test("auction", () => {
+    expect(auction).toBeDefined();
+  });
+
+  test("iexBook", () => {
+    expect(iexBook).toBeDefined();
+  });
+
+  test("opHaltStatus", () => {
+    expect(opHaltStatus).toBeDefined();
+  });
+
+  test("officialPrice", () => {
+    expect(officialPrice).toBeDefined();
+  });
+
+  test("securityEvent", () => {
+    expect(securityEvent).toBeDefined();
+  });
+
+  test("ssrStatus", () => {
+    expect(ssrStatus).toBeDefined();
+  });
+
+  test("systemEvent", () => {
+    expect(systemEvent).toBeDefined();
+  });
+
+  test("trades", () => {
+    expect(trades).toBeDefined();
+  });
+
+  test("tradeBreak", () => {
+    expect(tradeBreak).toBeDefined();
+  });
+
+  test("tradingStatus", () => {
+    expect(tradingStatus).toBeDefined();
+  });
+
+  test("hist", () => {
+    expect(hist).toBeDefined();
+  });
+
   test("newsSSE", () => {
     expect(newsSSE).toBeDefined();
   });
@@ -469,8 +607,6 @@ describe("MarketData", () => {
   test("stocksUS1MinuteSSE", () => {
     expect(stocksUS1MinuteSSE).toBeDefined();
   });
-
-
 });
 
 describe("Options", () => {
@@ -491,241 +627,240 @@ describe("Points", () => {
 
 describe("Premium", () => {
   test("directorAndOfficerChanges", () => {
-    expect(directorAndOfficerChanges,).toBeDefined();
+    expect(directorAndOfficerChanges).toBeDefined();
   });
 
   test("accountingQualityAndRiskMatrix", () => {
-    expect(accountingQualityAndRiskMatrix,).toBeDefined();
+    expect(accountingQualityAndRiskMatrix).toBeDefined();
   });
 
   test("brain30DaySentiment", () => {
-    expect(brain30DaySentiment,).toBeDefined();
+    expect(brain30DaySentiment).toBeDefined();
   });
 
   test("brain7DaySentiment", () => {
-    expect(brain7DaySentiment,).toBeDefined();
+    expect(brain7DaySentiment).toBeDefined();
   });
 
   test("brain21DayMLReturnRanking", () => {
-    expect(brain21DayMLReturnRanking,).toBeDefined();
+    expect(brain21DayMLReturnRanking).toBeDefined();
   });
 
   test("brain10DayMLReturnRanking", () => {
-    expect(brain10DayMLReturnRanking,).toBeDefined();
+    expect(brain10DayMLReturnRanking).toBeDefined();
   });
 
   test("brain5DayMLReturnRanking", () => {
-    expect(brain5DayMLReturnRanking,).toBeDefined();
+    expect(brain5DayMLReturnRanking).toBeDefined();
   });
 
   test("brain3DayMLReturnRanking", () => {
-    expect(brain3DayMLReturnRanking,).toBeDefined();
+    expect(brain3DayMLReturnRanking).toBeDefined();
   });
 
   test("brain2DayMLReturnRanking", () => {
-    expect(brain2DayMLReturnRanking,).toBeDefined();
+    expect(brain2DayMLReturnRanking).toBeDefined();
   });
 
   test("brainLanguageMetricsOnCompanyFilingsAll", () => {
-    expect(brainLanguageMetricsOnCompanyFilingsAll,).toBeDefined();
+    expect(brainLanguageMetricsOnCompanyFilingsAll).toBeDefined();
   });
 
   test("brainLanguageMetricsOnCompanyFilings", () => {
-    expect(brainLanguageMetricsOnCompanyFilings,).toBeDefined();
+    expect(brainLanguageMetricsOnCompanyFilings).toBeDefined();
   });
 
   test("brainLanguageMetricsOnCompanyFilingsDifferenceAll", () => {
-    expect(brainLanguageMetricsOnCompanyFilingsDifferenceAll,).toBeDefined();
+    expect(brainLanguageMetricsOnCompanyFilingsDifferenceAll).toBeDefined();
   });
 
   test("brainLanguageMetricsOnCompanyFilingsDifference", () => {
-    expect(brainLanguageMetricsOnCompanyFilingsDifference,).toBeDefined();
+    expect(brainLanguageMetricsOnCompanyFilingsDifference).toBeDefined();
   });
 
   test("cam1", () => {
-    expect(cam1,).toBeDefined();
+    expect(cam1).toBeDefined();
   });
 
   test("esgCFPBComplaints", () => {
-    expect(esgCFPBComplaints,).toBeDefined();
+    expect(esgCFPBComplaints).toBeDefined();
   });
 
   test("esgCPSCRecalls", () => {
-    expect(esgCPSCRecalls,).toBeDefined();
+    expect(esgCPSCRecalls).toBeDefined();
   });
 
   test("esgDOLVisaApplications", () => {
-    expect(esgDOLVisaApplications,).toBeDefined();
+    expect(esgDOLVisaApplications).toBeDefined();
   });
 
   test("esgEPAEnforcements", () => {
-    expect(esgEPAEnforcements,).toBeDefined();
+    expect(esgEPAEnforcements).toBeDefined();
   });
 
   test("esgEPAMilestones", () => {
-    expect(esgEPAMilestones,).toBeDefined();
+    expect(esgEPAMilestones).toBeDefined();
   });
 
   test("esgFECIndividualCampaingContributions", () => {
-    expect(esgFECIndividualCampaingContributions,).toBeDefined();
+    expect(esgFECIndividualCampaingContributions).toBeDefined();
   });
 
   test("esgOSHAInspections", () => {
-    expect(esgOSHAInspections,).toBeDefined();
+    expect(esgOSHAInspections).toBeDefined();
   });
 
   test("esgSenateLobbying", () => {
-    expect(esgSenateLobbying,).toBeDefined();
+    expect(esgSenateLobbying).toBeDefined();
   });
 
   test("esgUSASpending", () => {
-    expect(esgUSASpending,).toBeDefined();
+    expect(esgUSASpending).toBeDefined();
   });
 
   test("esgUSPTOPatentApplications", () => {
-    expect(esgUSPTOPatentApplications,).toBeDefined();
+    expect(esgUSPTOPatentApplications).toBeDefined();
   });
 
   test("esgUSPTOPatentGrants", () => {
-    expect(esgUSPTOPatentGrants,).toBeDefined();
+    expect(esgUSPTOPatentGrants).toBeDefined();
   });
 
   test("tacticalModel1", () => {
-    expect(tacticalModel1,).toBeDefined();
+    expect(tacticalModel1).toBeDefined();
   });
 
   test("similarityIndex", () => {
-    expect(similarityIndex,).toBeDefined();
+    expect(similarityIndex).toBeDefined();
   });
 
   test("nonTimelyFilings", () => {
-    expect(nonTimelyFilings,).toBeDefined();
+    expect(nonTimelyFilings).toBeDefined();
   });
 
   test("kScore", () => {
-    expect(kScore,).toBeDefined();
+    expect(kScore).toBeDefined();
   });
 
   test("kScoreChina", () => {
-    expect(kScoreChina,).toBeDefined();
+    expect(kScoreChina).toBeDefined();
   });
 
   test("precisionAlphaPriceDynamics", () => {
-    expect(precisionAlphaPriceDynamics,).toBeDefined();
+    expect(precisionAlphaPriceDynamics).toBeDefined();
   });
 
   test("socialSentiment", () => {
-    expect(socialSentiment,).toBeDefined();
+    expect(socialSentiment).toBeDefined();
   });
 
   test("valuEngineStockResearchReport", () => {
-    expect(valuEngineStockResearchReport,).toBeDefined();
+    expect(valuEngineStockResearchReport).toBeDefined();
   });
 
   test("analystDays", () => {
-    expect(analystDays,).toBeDefined();
+    expect(analystDays).toBeDefined();
   });
 
   test("boardOfDirectorsMeeting", () => {
-    expect(boardOfDirectorsMeeting,).toBeDefined();
+    expect(boardOfDirectorsMeeting).toBeDefined();
   });
 
   test("businessUpdates", () => {
-    expect(businessUpdates,).toBeDefined();
+    expect(businessUpdates).toBeDefined();
   });
 
   test("buybacks", () => {
-    expect(buybacks,).toBeDefined();
+    expect(buybacks).toBeDefined();
   });
 
   test("capitalMarketsDay", () => {
-    expect(capitalMarketsDay,).toBeDefined();
+    expect(capitalMarketsDay).toBeDefined();
   });
 
   test("companyTravel", () => {
-    expect(companyTravel,).toBeDefined();
+    expect(companyTravel).toBeDefined();
   });
 
   test("filingDueDates", () => {
-    expect(filingDueDates,).toBeDefined();
+    expect(filingDueDates).toBeDefined();
   });
 
   test("fiscalQuarterEnd", () => {
-    expect(fiscalQuarterEnd,).toBeDefined();
+    expect(fiscalQuarterEnd).toBeDefined();
   });
 
   test("forum", () => {
-    expect(forum,).toBeDefined();
+    expect(forum).toBeDefined();
   });
 
   test("generalConference", () => {
-    expect(generalConference,).toBeDefined();
+    expect(generalConference).toBeDefined();
   });
 
   test("fdaAdvisoryCommitteeMeetings", () => {
-    expect(fdaAdvisoryCommitteeMeetings,).toBeDefined();
+    expect(fdaAdvisoryCommitteeMeetings).toBeDefined();
   });
 
   test("holidaysWSH", () => {
-    expect(holidaysWSH,).toBeDefined();
+    expect(holidaysWSH).toBeDefined();
   });
 
   test("indexChanges", () => {
-    expect(indexChanges,).toBeDefined();
+    expect(indexChanges).toBeDefined();
   });
 
   test("iposWSH", () => {
-    expect(iposWSH,).toBeDefined();
+    expect(iposWSH).toBeDefined();
   });
 
   test("legalActions", () => {
-    expect(legalActions,).toBeDefined();
+    expect(legalActions).toBeDefined();
   });
 
   test("mergersAndAcquisitions", () => {
-    expect(mergersAndAcquisitions,).toBeDefined();
+    expect(mergersAndAcquisitions).toBeDefined();
   });
 
   test("productEvents", () => {
-    expect(productEvents,).toBeDefined();
+    expect(productEvents).toBeDefined();
   });
 
   test("researchAndDevelopmentDays", () => {
-    expect(researchAndDevelopmentDays,).toBeDefined();
+    expect(researchAndDevelopmentDays).toBeDefined();
   });
 
   test("sameStoreSales", () => {
-    expect(sameStoreSales,).toBeDefined();
+    expect(sameStoreSales).toBeDefined();
   });
 
   test("secondaryOfferings", () => {
-    expect(secondaryOfferings,).toBeDefined();
+    expect(secondaryOfferings).toBeDefined();
   });
 
   test("seminars", () => {
-    expect(seminars,).toBeDefined();
+    expect(seminars).toBeDefined();
   });
 
   test("shareholderMeetings", () => {
-    expect(shareholderMeetings,).toBeDefined();
+    expect(shareholderMeetings).toBeDefined();
   });
 
   test("summitMeetings", () => {
-    expect(summitMeetings,).toBeDefined();
+    expect(summitMeetings).toBeDefined();
   });
 
   test("tradeShows", () => {
-    expect(tradeShows,).toBeDefined();
+    expect(tradeShows).toBeDefined();
   });
 
   test("witchingHours", () => {
-    expect(witchingHours,).toBeDefined();
+    expect(witchingHours).toBeDefined();
   });
 
   test("workshops", () => {
-    expect(workshops,).toBeDefined();
+    expect(workshops).toBeDefined();
   });
-
 });
 
 describe("Rates", () => {
@@ -859,5 +994,279 @@ describe("Stats", () => {
   });
   test("daily", () => {
     expect(daily).toBeDefined();
+  });
+});
+
+describe("Stock", () => {
+  test("batch", () => {
+    expect(batch).toBeDefined();
+  });
+
+  test("stockSplits", () => {
+    expect(stockSplits).toBeDefined();
+  });
+
+  test("bonusIssue", () => {
+    expect(bonusIssue).toBeDefined();
+  });
+
+  test("distribution", () => {
+    expect(distribution).toBeDefined();
+  });
+
+  test("dividends", () => {
+    expect(dividends).toBeDefined();
+  });
+
+  test("returnOfCapital", () => {
+    expect(returnOfCapital).toBeDefined();
+  });
+
+  test("rightsIssue", () => {
+    expect(rightsIssue).toBeDefined();
+  });
+
+  test("rightToPurchase", () => {
+    expect(rightToPurchase).toBeDefined();
+  });
+
+  test("securityReclassification", () => {
+    expect(securityReclassification).toBeDefined();
+  });
+
+  test("securitySwap", () => {
+    expect(securitySwap).toBeDefined();
+  });
+
+  test("spinoff", () => {
+    expect(spinoff).toBeDefined();
+  });
+
+  test("splits", () => {
+    expect(splits).toBeDefined();
+  });
+
+  test("balanceSheet", () => {
+    expect(balanceSheet).toBeDefined();
+  });
+
+  test("cashFlow", () => {
+    expect(cashFlow).toBeDefined();
+  });
+
+  test("dividendsBasic", () => {
+    expect(dividendsBasic).toBeDefined();
+  });
+
+  test("earnings", () => {
+    expect(earnings).toBeDefined();
+  });
+
+  test("financials", () => {
+    expect(financials).toBeDefined();
+  });
+
+  test("fundamentals", () => {
+    expect(fundamentals).toBeDefined();
+  });
+
+  test("incomeStatement", () => {
+    expect(incomeStatement).toBeDefined();
+  });
+
+  test("collections", () => {
+    expect(collections).toBeDefined();
+  });
+
+  test("earningsToday", () => {
+    expect(earningsToday).toBeDefined();
+  });
+
+  test("ipoToday", () => {
+    expect(ipoToday).toBeDefined();
+  });
+
+  test("ipoUpcoming", () => {
+    expect(ipoUpcoming).toBeDefined();
+  });
+
+  test("list", () => {
+    expect(list).toBeDefined();
+  });
+
+  test("marketVolume", () => {
+    expect(marketVolume).toBeDefined();
+  });
+
+  test("marketOhlc", () => {
+    expect(marketOhlc).toBeDefined();
+  });
+
+  test("marketYesterday", () => {
+    expect(marketYesterday).toBeDefined();
+  });
+
+  test("sectorPerformance", () => {
+    expect(sectorPerformance).toBeDefined();
+  });
+
+  test("marketShortInterest", () => {
+    expect(marketShortInterest).toBeDefined();
+  });
+
+  test("upcomingEvents", () => {
+    expect(upcomingEvents).toBeDefined();
+  });
+
+  test("upcomingEarnings", () => {
+    expect(upcomingEarnings).toBeDefined();
+  });
+
+  test("upcomingDividends", () => {
+    expect(upcomingDividends).toBeDefined();
+  });
+
+  test("upcomingSplits", () => {
+    expect(upcomingSplits).toBeDefined();
+  });
+
+  test("upcomingIPOs", () => {
+    expect(upcomingIPOs).toBeDefined();
+  });
+
+  test("news", () => {
+    expect(news).toBeDefined();
+  });
+
+  test("marketNews", () => {
+    expect(marketNews).toBeDefined();
+  });
+
+  test("book", () => {
+    expect(book).toBeDefined();
+  });
+
+  test("delayedQuote", () => {
+    expect(delayedQuote).toBeDefined();
+  });
+
+  test("largestTrades", () => {
+    expect(largestTrades).toBeDefined();
+  });
+
+  test("ohlc", () => {
+    expect(ohlc).toBeDefined();
+  });
+
+  test("yesterday", () => {
+    expect(yesterday).toBeDefined();
+  });
+
+  test("previous", () => {
+    expect(previous).toBeDefined();
+  });
+
+  test("price", () => {
+    expect(price).toBeDefined();
+  });
+
+  test("quote", () => {
+    expect(quote).toBeDefined();
+  });
+
+  test("spread", () => {
+    expect(spread).toBeDefined();
+  });
+
+  test("volumeByVenue", () => {
+    expect(volumeByVenue).toBeDefined();
+  });
+
+  test("chart", () => {
+    expect(chart).toBeDefined();
+  });
+
+  test("intraday", () => {
+    expect(intraday).toBeDefined();
+  });
+
+  test("company", () => {
+    expect(company).toBeDefined();
+  });
+
+  test("insiderRoster", () => {
+    expect(insiderRoster).toBeDefined();
+  });
+
+  test("insiderSummary", () => {
+    expect(insiderSummary).toBeDefined();
+  });
+
+  test("insiderTransactions", () => {
+    expect(insiderTransactions).toBeDefined();
+  });
+
+  test("logo", () => {
+    expect(logo).toBeDefined();
+  });
+
+  test("peers", () => {
+    expect(peers).toBeDefined();
+  });
+
+  test("advancedStats", () => {
+    expect(advancedStats).toBeDefined();
+  });
+
+  test("analystRecommendations", () => {
+    expect(analystRecommendations).toBeDefined();
+  });
+
+  test("estimates", () => {
+    expect(estimates).toBeDefined();
+  });
+
+  test("fundOwnership", () => {
+    expect(fundOwnership).toBeDefined();
+  });
+
+  test("institutionalOwnership", () => {
+    expect(institutionalOwnership).toBeDefined();
+  });
+
+  test("keyStats", () => {
+    expect(keyStats).toBeDefined();
+  });
+
+  test("priceTarget", () => {
+    expect(priceTarget).toBeDefined();
+  });
+
+  test("technicals", () => {
+    expect(technicals).toBeDefined();
+  });
+
+  test("threshold", () => {
+    expect(threshold).toBeDefined();
+  });
+
+  test("shortInterest", () => {
+    expect(shortInterest).toBeDefined();
+  });
+
+  test("timeSeriesInventory", () => {
+    expect(timeSeriesInventory).toBeDefined();
+  });
+
+  test("timeSeries", () => {
+    expect(timeSeries).toBeDefined();
+  });
+
+  test("tenQ", () => {
+    expect(tenQ).toBeDefined();
+  });
+
+  test("tenK", () => {
+    expect(tenK).toBeDefined();
   });
 });

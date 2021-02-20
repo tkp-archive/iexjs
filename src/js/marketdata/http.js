@@ -21,22 +21,18 @@ import { Client } from "../client";
  */
 export const tops = (symbols, token, version, filter) => {
   if (symbols) {
-    return _getJson(
-      {
-        url: `tops?symbols=${_strToList(symbols).join(",")}%2b`,
-      },
+    return _getJson({
+      url: `tops?symbols=${_strToList(symbols).join(",")}%2b`,
       token,
       version,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `tops`,
-    },
+  return _getJson({
+    url: `tops`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.tops = function (symbols, filter) {
@@ -54,22 +50,18 @@ Client.prototype.tops = function (symbols, filter) {
  */
 export const last = (symbols, token, version, filter) => {
   if (symbols) {
-    return _getJson(
-      {
-        url: `last?symbols=${_strToList(symbols).join(",")}%2b`,
-      },
+    return _getJson({
+      url: `last?symbols=${_strToList(symbols).join(",")}%2b`,
       token,
       version,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `last`,
-    },
+  return _getJson({
+    url: `last`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.last = function (symbols, filter) {
@@ -93,22 +85,18 @@ Client.prototype.last = function (symbols, filter) {
 export const deep = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep?symbols=${symbol}`,
       token,
       version,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep`,
-    },
+  return _getJson({
+    url: `deep`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.deep = function (symbol, filter) {
@@ -127,23 +115,19 @@ Client.prototype.deep = function (symbol, filter) {
 export const auction = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/auction?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/auction?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/auction`,
-    },
+  return _getJson({
+    url: `deep/auction`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.auction = function (symbol, filter) {
@@ -158,30 +142,26 @@ Client.prototype.auction = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const book = (symbol, token, version, filter) => {
+export const iexBook = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/book?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/book?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/book`,
-    },
+  return _getJson({
+    url: `deep/book`,
     token,
     version,
     filter,
-  );
+  });
 };
 
-Client.prototype.book = function (symbol, filter) {
-  return book(symbol, this._token, this._version, filter);
+Client.prototype.iexBook = function (symbol, filter) {
+  return iexBook(symbol, this._token, this._version, filter);
 };
 
 /**
@@ -202,23 +182,19 @@ Client.prototype.book = function (symbol, filter) {
 export const opHaltStatus = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/op-halt-status?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/op-halt-status?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/op-halt-status`,
-    },
+  return _getJson({
+    url: `deep/op-halt-status`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.opHaltStatus = function (symbol, filter) {
@@ -239,23 +215,19 @@ Client.prototype.opHaltStatus = function (symbol, filter) {
 export const officialPrice = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/official-price?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/official-price?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/official-price`,
-    },
+  return _getJson({
+    url: `deep/official-price`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.officialPrice = function (symbol, filter) {
@@ -273,23 +245,19 @@ Client.prototype.officialPrice = function (symbol, filter) {
 export const securityEvent = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/security-event?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/security-event?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/security-event`,
-    },
+  return _getJson({
+    url: `deep/security-event`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.securityEvent = function (symbol, filter) {
@@ -313,23 +281,19 @@ Client.prototype.securityEvent = function (symbol, filter) {
 export const ssrStatus = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/ssr-status?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/ssr-status?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/ssr-status`,
-    },
+  return _getJson({
+    url: `deep/ssr-status`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.ssrStatus = function (symbol, filter) {
@@ -350,14 +314,12 @@ Client.prototype.ssrStatus = function (symbol, filter) {
 export const systemEvent = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/system-event?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/system-event?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
   return _getJson(
     {
@@ -384,23 +346,19 @@ Client.prototype.systemEvent = function (symbol, filter) {
 export const trades = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/trades?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/trades?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/trades`,
-    },
+  return _getJson({
+    url: `deep/trades`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.trades = function (symbol, filter) {
@@ -418,23 +376,19 @@ Client.prototype.trades = function (symbol, filter) {
 export const tradeBreak = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/trade-breaks?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/trade-breaks?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/trade-breaks`,
-    },
+  return _getJson({
+    url: `deep/trade-breaks`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.tradeBreak = function (symbol, filter) {
@@ -467,23 +421,19 @@ Client.prototype.tradeBreak = function (symbol, filter) {
 export const tradingStatus = (symbol, token, version, filter) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson(
-      {
-        url: `deep/trading-status?symbols=${symbol}`,
-      },
+    return _getJson({
+      url: `deep/trading-status?symbols=${symbol}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `deep/trading-status`,
-    },
+  return _getJson({
+    url: `deep/trading-status`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.tradingStatus = function (symbol, filter) {
@@ -498,23 +448,19 @@ Client.prototype.tradingStatus = function (symbol, filter) {
  */
 export const hist = (date, token, version, filter) => {
   if (date) {
-    return _getJson(
-      {
-        url: `hist?date=${_strOrDate(date)}`,
-      },
+    return _getJson({
+      url: `hist?date=${_strOrDate(date)}`,
       token,
       version,
       filter,
-    );
+    });
   }
-  return _getJson(
-    {
-      url: `hist`,
-    },
+  return _getJson({
+    url: `hist`,
     token,
     version,
     filter,
-  );
+  });
 };
 
 Client.prototype.hist = function (date, filter) {

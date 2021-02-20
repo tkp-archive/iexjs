@@ -338,8 +338,8 @@ export const technicals = (
   if (_INDICATORS.indexOf(indicator) < 0) {
     throw new IEXJSException("Indicator not recognized");
   }
-  if (range !== "1d") {
-    if (_TIMEFRAME_CHART.indexOf(range) < 0) {
+  if ((range || "1m") !== "1d") {
+    if (_TIMEFRAME_CHART.indexOf(range || "1m") < 0) {
       throw new IEXJSException("Range not recognized");
     }
   }

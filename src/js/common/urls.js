@@ -61,7 +61,6 @@ const _getJsonIEXCloudBase = async (options) => {
   const endpoint = new URL(`${base_url(version)}${url}`);
   endpoint.searchParams.append("token", token);
   if (filter) endpoint.searchParams.append("filter", filter);
-
   return fetch(endpoint.href, {
     method: "GET",
     headers: {
