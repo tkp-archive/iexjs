@@ -279,17 +279,14 @@ describe("Client - FX", () => {
   test("latestFX", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.latestFX("EURUSD");
-    console.log(res);
   });
   test("convertFX", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.convertFX("EURUSD", 5);
-    console.log(res);
   });
   test("historicalFX", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.historicalFX("EURUSD", "20210201");
-    console.log(res);
   });
 });
 
@@ -329,7 +326,6 @@ describe("Client - Points", () => {
   test("points", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.points(SYMBOL, "NEXTDIVIDENDDATE");
-    console.log(res);
   });
 });
 
@@ -337,55 +333,55 @@ describe("Client - Rates", () => {
   test("thirtyYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.thirtyYear();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("twentyYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.twentyYear();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("tenYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.tenYear();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("fiveYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fiveYear();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("twoYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.twoYear();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("oneYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.oneYear();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("sixMonth", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.sixMonth();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("threeMonth", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.threeMonth();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 
   test("oneMonth", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.oneMonth();
-    expect(res).toBe("number");
+    expect(typeof res).toBe("number");
   });
 });
 
@@ -393,175 +389,150 @@ describe("Client- RefData", () => {
   test("calendar", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.calendar();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("holidays", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.holidays();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("exchanges", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.exchanges();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("internationalExchanges", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.internationalExchanges();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("figi", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.figi(SYMBOL);
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("search", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.search();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("sectors", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.sectors();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("tags", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.tags();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("symbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.symbols();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("iexSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.iexSymbols();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("mutualFundSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.mutualFundSymbols();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("otcSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.otcSymbols();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("internationalSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.internationalSymbols();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("fxSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fxSymbols();
-    console.log(res);
-    expect(Array.isArray(res)).toBe(true);
+    expect(typeof res).toBe("object");
   });
 
   test("optionsSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.optionsSymbols();
-    console.log(res);
-    expect(Array.isArray(res)).toBe(true);
+    expect(typeof res).toBe("object");
   });
 
   test("cryptoSymbols", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.cryptoSymbols();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("symbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.symbolsList();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("iexSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.iexSymbolsList();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("mutualFundSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.mutualFundSymbolsList();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("otcSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.otcSymbolsList();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("internationalSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.internationalSymbolsList();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("fxSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fxSymbolsList();
-    console.log(res);
-    expect(Array.isArray(res)).toBe(true);
+    expect(typeof res).toBe("object");
   });
 
   test("optionsSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.optionsSymbolsList();
-    console.log(res);
-    expect(Array.isArray(res)).toBe(true);
+    expect(typeof res).toBe("object");
   });
 
   test("cryptoSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.cryptoSymbolsList();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 
   test("isinLookup", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.isinLookup();
-    console.log(res);
     expect(Array.isArray(res)).toBe(true);
   });
 });
