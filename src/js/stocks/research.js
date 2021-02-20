@@ -335,7 +335,7 @@ export const technicals = (
   filter,
 ) => {
   // eslint-disable-next-line no-param-reassign
-  inputs = inputs || {};
+  inputs = inputs || [];
   _raiseIfNotStr(symbol);
   if (_INDICATORS.indexOf(indicator) < 0) {
     throw new IEXJSException("Indicator not recognized");

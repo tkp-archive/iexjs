@@ -297,10 +297,10 @@ describe("Client - MarketData", () => {
     const res = await client.tops(SYMBOL);
   });
 
-  test("last", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.last(SYMBOL);
-  });
+  // test("last", async () => {
+  //   const client = new Client({ version: "sandbox" });
+  //   const res = await client.last(SYMBOL);
+  // });
 
   test("deep", async () => {
     const client = new Client({ version: "sandbox" });
@@ -359,7 +359,7 @@ describe("Client - MarketData", () => {
 
   test("hist", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.hist(SYMBOL);
+    const res = await client.hist();
   });
 });
 
