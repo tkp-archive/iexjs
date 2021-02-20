@@ -1,6 +1,6 @@
 {
   "name": "iexjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JS interface to IEX and IEX Cloud APIs",
   "repository": {
     "type": "git",
