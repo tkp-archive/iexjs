@@ -459,30 +459,31 @@ export const technicals = (
     if (input2 || input3 || input4) {
       throw IEXJSException("Indicator takes at most 1 argument");
     }
-    base_url += `&input1=${input1 || ""}`;
+    if (input1) base_url += `&input1=${input1}`;
   }
 
   if (
-    ["adosc", "apo", "bbands", "kvo", "ppo", "psar", "vosc"].indexOf(indicator)
+    ["adosc", "apo", "bbands", "kvo", "ppo", "psar", "vosc"].indexOf(
+      indicator,
+    ) >= 0
   ) {
     const [input1, input2, input3, input4] = inputs;
     if (input3 || input4) {
       throw IEXJSException("Indicator takes at most 2 argument");
     }
-    base_url += `&input1=${input1 || ""}`;
-    base_url += `&input2=${input2 || ""}`;
+    if (input1) base_url += `&input1=${input1}`;
+    if (input2) base_url += `&input2=${input2}`;
   }
 
-  if (["macd", "stoch", "ultosc", "vidya"].indexOf(indicator)) {
+  if (["macd", "stoch", "ultosc", "vidya"].indexOf(indicator) >= 0) {
     const [input1, input2, input3, input4] = inputs;
     if (input4) {
       throw IEXJSException("Indicator takes at most 3 argument");
     }
-    base_url += `&input1=${input1 || ""}`;
-    base_url += `&input2=${input2 || ""}`;
-    base_url += `&input2=${input3 || ""}`;
+    if (input1) base_url += `&input1=${input1}`;
+    if (input2) base_url += `&input2=${input2}`;
+    if (input3) base_url += `&input3=${input3}`;
   }
-
   return _getJson({ url: base_url, token, version, filter });
 };
 
