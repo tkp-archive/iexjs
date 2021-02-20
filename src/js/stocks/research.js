@@ -334,6 +334,8 @@ export const technicals = (
   version,
   filter,
 ) => {
+  // eslint-disable-next-line no-param-reassign
+  inputs = inputs || {};
   _raiseIfNotStr(symbol);
   if (_INDICATORS.indexOf(indicator) < 0) {
     throw new IEXJSException("Indicator not recognized");
@@ -451,7 +453,7 @@ export const technicals = (
       "wilders",
       "wma",
       "zlema",
-    ].indexOf(indicator)
+    ].indexOf(indicator) >= 0
   ) {
     const [input1, input2, input3, input4] = inputs;
     if (input2 || input3 || input4) {

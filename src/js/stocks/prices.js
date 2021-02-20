@@ -280,7 +280,7 @@ export const chart = (symbol, options, token, version, filter) => {
     interval = -1,
     changeFromClose = false,
     displayPercent = false,
-    sort = "desc",
+    sort = "",
     includeToday = false,
   } = options || {};
 

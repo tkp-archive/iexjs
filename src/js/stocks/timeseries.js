@@ -98,7 +98,7 @@ export const timeSeries = (options, token, version, filter) => {
     id = "",
     key = "",
     subkey = "",
-    range = "1m",
+    range = "",
     // calendar = false,
     limit = 1,
     subattribute = "",
