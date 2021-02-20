@@ -1,4 +1,4 @@
-# iexjs
+# <img src="https://raw.githubusercontent.com/timkpaine/iexjs/main/docs/img/icon.png" width="300">
 
 Javascript interface to [IEX Cloud](https://iexcloud.io/docs/api/)
 
