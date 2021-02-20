@@ -357,10 +357,10 @@ describe("Client - MarketData", () => {
     const res = await client.tradingStatus(SYMBOL);
   });
 
-  test("hist", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.hist();
-  });
+  // test("hist", async () => {
+  //   const client = new Client({ version: "sandbox" });
+  //   const res = await client.hist();
+  // });
 });
 
 describe("Client - Options", () => {

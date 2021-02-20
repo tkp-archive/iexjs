@@ -483,7 +483,7 @@ export const technicals = (
     base_url += `&input2=${input3 || ""}`;
   }
 
-  return _getJson(base_url, token, version, filter);
+  return _getJson({ url: base_url, token, version, filter });
 };
 
 Client.prototype.technicals = function (
