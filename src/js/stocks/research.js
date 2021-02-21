@@ -27,7 +27,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const advancedStats = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -52,7 +53,8 @@ Client.prototype.advancedStats = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const analystRecommendations = (
   symbol,
   token,
@@ -91,7 +93,8 @@ Client.prototype.analystRecommendations = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const estimates = (
   symbol,
   period,
@@ -136,7 +139,8 @@ Client.prototype.estimates = function (symbol, period, last, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const fundOwnership = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -161,7 +165,8 @@ Client.prototype.fundOwnership = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const institutionalOwnership = (
   symbol,
   token,
@@ -199,7 +204,8 @@ Client.prototype.institutionalOwnership = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const keyStats = (symbol, stat, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (stat) {
@@ -236,7 +242,8 @@ Client.prototype.keyStats = function (symbol, stat, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const priceTarget = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -372,7 +379,8 @@ Client.prototype.priceTarget = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+*/
 export const technicals = (
   symbol,
   indicator,

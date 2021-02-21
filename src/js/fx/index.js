@@ -19,7 +19,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const latestFX = (symbols, token, version, filter, format) => {
   if (symbols) {
     return _get({
@@ -53,7 +54,8 @@ Client.prototype.latestFX = function (symbols, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const convertFX = (symbols, amount, token, version, filter, format) => {
   if (symbols) {
     return _get({
@@ -93,7 +95,8 @@ Client.prototype.convertFX = function (symbols, amount, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const historicalFX = (
   symbols,
   from,

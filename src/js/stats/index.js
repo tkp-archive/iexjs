@@ -16,7 +16,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const systemStats = (token, version, filter) =>
   _get({
     url: `stats/intraday`,
@@ -35,7 +36,8 @@ Client.prototype.systemStats = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const recent = (token, version, filter) =>
   _get({
     url: `stats/recent`,
@@ -54,7 +56,8 @@ Client.prototype.recent = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const records = (token, version, filter) =>
   _get({
     url: `stats/records`,
@@ -74,7 +77,8 @@ Client.prototype.records = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const summary = (date, token, version, filter) => {
   if (date) {
     return _get({
@@ -104,7 +108,8 @@ Client.prototype.summary = function (date, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const daily = (date, last, token, version, filter) => {
   if (date) {
     return _get({

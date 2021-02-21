@@ -18,7 +18,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const figi = (
   figi_,
   token = "",

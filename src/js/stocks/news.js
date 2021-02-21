@@ -19,7 +19,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const news = (symbol, count, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -44,7 +45,8 @@ Client.prototype.news = function (symbol, count, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const marketNews = (count, token, version, filter, format) =>
   _get({
     url: `stock/market/news/last/${count || 10}`,

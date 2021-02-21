@@ -19,7 +19,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const company = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -44,7 +45,8 @@ Client.prototype.company = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const insiderRoster = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -69,7 +71,8 @@ Client.prototype.insiderRoster = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const insiderSummary = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -94,7 +97,8 @@ Client.prototype.insiderSummary = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const insiderTransactions = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -125,7 +129,8 @@ Client.prototype.insiderTransactions = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const logo = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -150,7 +155,8 @@ Client.prototype.logo = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const peers = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({

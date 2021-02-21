@@ -27,7 +27,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const book = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -53,7 +54,8 @@ Client.prototype.book = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const delayedQuote = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -78,7 +80,8 @@ Client.prototype.delayedQuote = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const largestTrades = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -104,7 +107,8 @@ Client.prototype.largestTrades = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const ohlc = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -130,7 +134,8 @@ Client.prototype.ohlc = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const yesterday = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -159,7 +164,8 @@ Client.prototype.previous = Client.prototype.yesterday;
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const price = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -185,7 +191,8 @@ Client.prototype.price = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const quote = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -211,7 +218,8 @@ Client.prototype.quote = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const spread = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -238,7 +246,8 @@ Client.prototype.spread = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const volumeByVenue = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -276,7 +285,8 @@ Client.prototype.volumeByVenue = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const chart = (symbol, options, token, version, filter, format) => {
   const {
     timeframe = "1m",
@@ -380,7 +390,8 @@ Client.prototype.chart = function (symbol, options, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const intraday = (symbol, options, token, version, filter, format) => {
   const {
     date = "",
