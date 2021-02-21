@@ -29,7 +29,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const collections = (
   tag,
   collectionName,
@@ -72,7 +73,8 @@ Client.prototype.collections = function (tag, collectionName, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const earningsToday = (token, version, filter, format) =>
   _get({
     url: `stock/market/today-earnings`,
@@ -95,7 +97,8 @@ Client.prototype.earningsToday = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const ipoToday = (token, version, filter, format) =>
   _get({
     url: `stock/market/today-ipos`,
@@ -118,7 +121,8 @@ Client.prototype.ipoToday = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const ipoUpcoming = (token, version, filter, format) =>
   _get({
     url: `stock/market/upcoming-ipos`,
@@ -141,7 +145,8 @@ Client.prototype.ipoUpcoming = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const list = (option, token, version, filter, format) => {
   // eslint-disable-next-line no-param-reassign
   option = option || "mostactive";
@@ -169,7 +174,8 @@ Client.prototype.list = function (option, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const marketVolume = (token, version, filter, format) =>
   _get({
     url: `market/`,
@@ -189,7 +195,8 @@ Client.prototype.marketVolume = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const marketOhlc = (token, version, filter, format) =>
   _get({
     url: `stock/market/ohlc`,
@@ -209,7 +216,8 @@ Client.prototype.marketOhlc = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const marketYesterday = (token, version, filter, format) =>
   _get({
     url: `stock/market/previous`,
@@ -234,7 +242,8 @@ Client.prototype.marketPrevious = Client.prototype.marketYesterday;
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const sectorPerformance = (token, version, filter, format) =>
   _get({
     url: `stock/market/sector-performance`,
@@ -257,7 +266,8 @@ Client.prototype.sectorPerformance = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const marketShortInterest = (date, token, version, filter, format) => {
   if (date) {
     return _get({
@@ -290,7 +300,8 @@ Client.prototype.marketShortInterest = function (date, filter, format) {
  * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const upcomingEvents = (
   symbol,
   refid,
@@ -339,7 +350,8 @@ Client.prototype.upcomingEvents = function (symbol, refid, filter, format) {
  * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const upcomingEarnings = (
   symbol,
   refid,
@@ -388,7 +400,8 @@ Client.prototype.upcomingEarnings = function (symbol, refid, filter, format) {
  * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const upcomingDividends = (
   symbol,
   refid,
@@ -437,7 +450,8 @@ Client.prototype.upcomingDividends = function (symbol, refid, filter, format) {
  * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const upcomingSplits = (
   symbol,
   refid,
@@ -486,7 +500,8 @@ Client.prototype.upcomingSplits = function (symbol, refid, filter, format) {
  * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const upcomingIPOs = (symbol, refid, token, version, filter, format) => {
   if (symbol) {
     _raiseIfNotStr(symbol);

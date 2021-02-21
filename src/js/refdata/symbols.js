@@ -18,7 +18,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const symbols = (
   token = "",
   version = "",
@@ -45,7 +46,8 @@ Client.prototype.symbols = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const iexSymbols = (
   token = "",
   version = "",
@@ -72,7 +74,8 @@ Client.prototype.iexSymbols = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const mutualFundSymbols = (
   token = "",
   version = "",
@@ -99,7 +102,8 @@ Client.prototype.mutualFundSymbols = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const otcSymbols = (
   token = "",
   version = "",
@@ -128,7 +132,8 @@ Client.prototype.otcSymbols = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const internationalSymbols = (
   region,
   exchange,
@@ -188,7 +193,8 @@ Client.prototype.internationalSymbols = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const fxSymbols = (
   token = "",
   version = "",
@@ -215,7 +221,8 @@ Client.prototype.fxSymbols = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const optionsSymbols = (
   token = "",
   version = "",
@@ -242,7 +249,8 @@ Client.prototype.optionsSymbols = function (filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const cryptoSymbols = (
   token = "",
   version = "",
@@ -359,7 +367,8 @@ Client.prototype.cryptoSymbolsList = function () {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const isinLookup = (
   isin,
   token = "",

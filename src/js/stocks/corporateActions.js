@@ -27,7 +27,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const stockSplits = (
   symbol,
   timeframe,
@@ -71,7 +72,8 @@ Client.prototype.stockSplits = function (symbol, timeframe, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const bonusIssue = (
   symbol,
   refid,
@@ -123,7 +125,8 @@ Client.prototype.bonusIssue = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const distribution = (
   symbol,
   refid,
@@ -181,7 +184,8 @@ Client.prototype.distribution = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const dividends = (
   symbol,
   refid,
@@ -233,7 +237,8 @@ Client.prototype.dividends = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const returnOfCapital = (
   symbol,
   refid,
@@ -285,7 +290,8 @@ Client.prototype.returnOfCapital = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const rightsIssue = (
   symbol,
   refid,
@@ -337,7 +343,8 @@ Client.prototype.rightsIssue = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const rightToPurchase = (
   symbol,
   refid,
@@ -389,7 +396,8 @@ Client.prototype.rightToPurchase = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const securityReclassification = (
   symbol,
   refid,
@@ -441,7 +449,8 @@ Client.prototype.securityReclassification = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const securitySwap = (
   symbol,
   refid,
@@ -497,7 +506,8 @@ Client.prototype.securitySwap = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const spinoff = (
   symbol,
   refid,
@@ -553,7 +563,8 @@ Client.prototype.spinoff = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const splits = (
   symbol,
   refid,

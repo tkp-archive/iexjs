@@ -28,7 +28,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const balanceSheet = async (
   symbol,
   period,
@@ -82,7 +83,8 @@ Client.prototype.balanceSheet = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const cashFlow = async (
   symbol,
   period,
@@ -129,7 +131,8 @@ Client.prototype.cashFlow = function (symbol, period, last, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const dividendsBasic = (
   symbol,
   timeframe,
@@ -174,7 +177,8 @@ Client.prototype.dividendsBasic = function (symbol, timeframe, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const earnings = async (
   symbol,
   period,
@@ -244,7 +248,8 @@ Client.prototype.earnings = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const financials = async (
   symbol,
   period,
@@ -291,7 +296,8 @@ Client.prototype.financials = function (symbol, period, last, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const fundamentals = async (
   symbol,
   period,
@@ -337,7 +343,8 @@ Client.prototype.fundamentals = function (symbol, period, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const incomeStatement = async (
   symbol,
   period,

@@ -15,7 +15,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const timeSeriesInventory = (token, version, filter, format) =>
   _get({
     url: `time-series`,
@@ -157,7 +158,8 @@ Client.prototype.timeSeries = function (options, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const tenQ = (symbol, options, token, version, filter, format) =>
   timeSeries(
     {
@@ -184,7 +186,8 @@ Client.prototype.tenQ = function (symbol, options, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const tenK = (symbol, options, token, version, filter, format) =>
   timeSeries(
     {
