@@ -484,10 +484,6 @@ describe("MarketData", () => {
     expect(forex1MinuteSSE).toBeDefined();
   });
 
-  test("tops", () => {
-    expect(tops).toBeDefined();
-  });
-
   test("newsSSE", () => {
     expect(newsSSE).toBeDefined();
   });
@@ -1216,6 +1212,10 @@ describe("Stock", () => {
 
   test("tenK", () => {
     expect(tenK).toBeDefined();
+  });
+  
+  test("tops", () => {
+    expect(iexTops).toBeDefined();
   });
 
   test("last", () => {
