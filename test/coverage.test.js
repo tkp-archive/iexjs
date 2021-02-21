@@ -56,7 +56,7 @@ const {
   latestFX,
   convertFX,
   historicalFX,
-  // marketdata
+  // streaming
   cryptoBookSSE,
   cryptoEventsSSE,
   cryptoQuotesSSE,
@@ -64,20 +64,6 @@ const {
   forex1SecondSSE,
   forex5SecondSSE,
   forex1MinuteSSE,
-  tops,
-  last,
-  deep,
-  auction,
-  iexBook,
-  opHaltStatus,
-  officialPrice,
-  securityEvent,
-  ssrStatus,
-  systemEvent,
-  trades,
-  tradeBreak,
-  tradingStatus,
-  hist,
   newsSSE,
   sentimentSSE,
   lastSSE,
@@ -281,6 +267,20 @@ const {
   timeSeries,
   tenQ,
   tenK,
+  iexTops,
+  iexLast,
+  iexDeep,
+  iexAuction,
+  iexBook,
+  iexOpHaltStatus,
+  iexOfficialPrice,
+  iexSecurityEvent,
+  iexSsrStatus,
+  iexSystemEvent,
+  iexTrades,
+  iexTradeBreak,
+  iexTradingStatus,
+  iexHist,
 } = require("../src/js");
 
 describe("Client", () => {
@@ -486,58 +486,6 @@ describe("MarketData", () => {
 
   test("tops", () => {
     expect(tops).toBeDefined();
-  });
-
-  test("last", () => {
-    expect(last).toBeDefined();
-  });
-
-  test("deep", () => {
-    expect(deep).toBeDefined();
-  });
-
-  test("auction", () => {
-    expect(auction).toBeDefined();
-  });
-
-  test("iexBook", () => {
-    expect(iexBook).toBeDefined();
-  });
-
-  test("opHaltStatus", () => {
-    expect(opHaltStatus).toBeDefined();
-  });
-
-  test("officialPrice", () => {
-    expect(officialPrice).toBeDefined();
-  });
-
-  test("securityEvent", () => {
-    expect(securityEvent).toBeDefined();
-  });
-
-  test("ssrStatus", () => {
-    expect(ssrStatus).toBeDefined();
-  });
-
-  test("systemEvent", () => {
-    expect(systemEvent).toBeDefined();
-  });
-
-  test("trades", () => {
-    expect(trades).toBeDefined();
-  });
-
-  test("tradeBreak", () => {
-    expect(tradeBreak).toBeDefined();
-  });
-
-  test("tradingStatus", () => {
-    expect(tradingStatus).toBeDefined();
-  });
-
-  test("hist", () => {
-    expect(hist).toBeDefined();
   });
 
   test("newsSSE", () => {
@@ -1269,4 +1217,57 @@ describe("Stock", () => {
   test("tenK", () => {
     expect(tenK).toBeDefined();
   });
+
+  test("last", () => {
+    expect(iexLast).toBeDefined();
+  });
+
+  test("deep", () => {
+    expect(iexDeep).toBeDefined();
+  });
+
+  test("auction", () => {
+    expect(iexAuction).toBeDefined();
+  });
+
+  test("iexBook", () => {
+    expect(iexBook).toBeDefined();
+  });
+
+  test("opHaltStatus", () => {
+    expect(iexOpHaltStatus).toBeDefined();
+  });
+
+  test("officialPrice", () => {
+    expect(iexOfficialPrice).toBeDefined();
+  });
+
+  test("securityEvent", () => {
+    expect(iexSecurityEvent).toBeDefined();
+  });
+
+  test("ssrStatus", () => {
+    expect(iexSsrStatus).toBeDefined();
+  });
+
+  test("systemEvent", () => {
+    expect(iexSystemEvent).toBeDefined();
+  });
+
+  test("trades", () => {
+    expect(iexTrades).toBeDefined();
+  });
+
+  test("tradeBreak", () => {
+    expect(iexTradeBreak).toBeDefined();
+  });
+
+  test("tradingStatus", () => {
+    expect(iexTradingStatus).toBeDefined();
+  });
+
+  test("hist", () => {
+    expect(iexHist).toBeDefined();
+  });
+
 });

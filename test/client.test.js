@@ -291,25 +291,25 @@ describe("Client - FX", () => {
   });
 });
 
-describe("Client - MarketData", () => {
+describe("Client - IEX", () => {
   test("tops", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tops(SYMBOL);
+    const res = await client.iexTops(SYMBOL);
   });
 
   // test("last", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.last(SYMBOL);
+  //   const res = await client.iexLast(SYMBOL);
   // });
 
   test("deep", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.deep(SYMBOL);
+    const res = await client.iexDeep(SYMBOL);
   });
 
   test("auction", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.auction(SYMBOL);
+    const res = await client.iexAuction(SYMBOL);
   });
 
   test("iexBook", async () => {
@@ -319,47 +319,47 @@ describe("Client - MarketData", () => {
 
   test("opHaltStatus", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.opHaltStatus(SYMBOL);
+    const res = await client.iexOpHaltStatus(SYMBOL);
   });
 
   test("officialPrice", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.officialPrice(SYMBOL);
+    const res = await client.iexOfficialPrice(SYMBOL);
   });
 
   test("securityEvent", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.securityEvent(SYMBOL);
+    const res = await client.iexSecurityEvent(SYMBOL);
   });
 
   test("ssrStatus", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.ssrStatus(SYMBOL);
+    const res = await client.iexSsrStatus(SYMBOL);
   });
 
   test("systemEvent", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.systemEvent(SYMBOL);
+    const res = await client.iexSystemEvent(SYMBOL);
   });
 
   test("trades", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.trades(SYMBOL);
+    const res = await client.iexTrades(SYMBOL);
   });
 
   test("tradeBreak", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tradeBreak(SYMBOL);
+    const res = await client.iexTradeBreak(SYMBOL);
   });
 
   test("tradingStatus", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tradingStatus(SYMBOL);
+    const res = await client.iexTradingStatus(SYMBOL);
   });
 
   // test("hist", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.hist();
+  //   const res = await client.iexHist();
   // });
 });
 
