@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _raiseIfNotStr } from "../common";
+import { _get, _raiseIfNotStr } from "../common";
 import { Client } from "../client";
 
 /**
@@ -21,26 +21,28 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const points = (symbol, key, token, version, filter) => {
+ * @param {string} format output format */
+export const points = (symbol, key, token, version, filter, format) => {
   _raiseIfNotStr(symbol || "market");
 
   if (key) {
-    return _getJson({
+    return _get({
       url: `data-points/${symbol || "market"}/${key}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `data-points/${symbol || "market"}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.points = function (symbol, key, filter) {
-  return points(symbol, key, this._token, this._version, filter);
+Client.prototype.points = function (symbol, key, filter, format) {
+  return points(symbol, key, this._token, this._version, filter, format);
 };

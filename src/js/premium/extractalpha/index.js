@@ -17,7 +17,7 @@ import { timeSeries } from "../../stocks";
  * @param  {object} timeseriesArgs
  * @returns
  */
-const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
+const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
   timeSeries(
     {
       id,
@@ -27,6 +27,7 @@ const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
     token,
     version,
     filter,
+    format,
   );
 
 /**
@@ -40,18 +41,33 @@ const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const cam1 = (symbol, token, version, filter, ...timeseriesArgs) =>
+export const cam1 = (
+  symbol,
+  token,
+  version,
+  filter,
+  format,
+  ...timeseriesArgs
+) =>
   _base(
     "PREMIUM_EXTRACT_ALPHA_CAM",
     symbol,
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
-Client.prototype.cam1 = function (symbol, filter, ...timeseriesArgs) {
-  return cam1(symbol, this._token, this._version, filter, ...timeseriesArgs);
+Client.prototype.cam1 = function (symbol, filter, format, ...timeseriesArgs) {
+  return cam1(
+    symbol,
+    this._token,
+    this._version,
+    filter,
+    format,
+    ...timeseriesArgs,
+  );
 };
 
 /**
@@ -71,6 +87,7 @@ export const esgCFPBComplaints = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 1;
@@ -80,6 +97,7 @@ export const esgCFPBComplaints = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -87,6 +105,7 @@ export const esgCFPBComplaints = (
 Client.prototype.esgCFPBComplaints = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgCFPBComplaints(
@@ -94,6 +113,7 @@ Client.prototype.esgCFPBComplaints = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -115,6 +135,7 @@ export const esgCPSCRecalls = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 5;
@@ -124,16 +145,23 @@ export const esgCPSCRecalls = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
 
-Client.prototype.esgCPSCRecalls = function (symbol, filter, ...timeseriesArgs) {
+Client.prototype.esgCPSCRecalls = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
   return esgCPSCRecalls(
     symbol,
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -156,6 +184,7 @@ export const esgDOLVisaApplications = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 8;
@@ -165,6 +194,7 @@ export const esgDOLVisaApplications = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -172,6 +202,7 @@ export const esgDOLVisaApplications = (
 Client.prototype.esgDOLVisaApplications = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgDOLVisaApplications(
@@ -179,6 +210,7 @@ Client.prototype.esgDOLVisaApplications = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -201,6 +233,7 @@ export const esgEPAEnforcements = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 2;
@@ -210,6 +243,7 @@ export const esgEPAEnforcements = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -217,6 +251,7 @@ export const esgEPAEnforcements = (
 Client.prototype.esgEPAEnforcements = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgEPAEnforcements(
@@ -224,6 +259,7 @@ Client.prototype.esgEPAEnforcements = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -243,6 +279,7 @@ export const esgEPAMilestones = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 3;
@@ -252,6 +289,7 @@ export const esgEPAMilestones = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -259,6 +297,7 @@ export const esgEPAMilestones = (
 Client.prototype.esgEPAMilestones = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgEPAMilestones(
@@ -266,6 +305,7 @@ Client.prototype.esgEPAMilestones = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -285,6 +325,7 @@ export const esgFECIndividualCampaingContributions = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 7;
@@ -294,6 +335,7 @@ export const esgFECIndividualCampaingContributions = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -301,6 +343,7 @@ export const esgFECIndividualCampaingContributions = (
 Client.prototype.esgFECIndividualCampaingContributions = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgFECIndividualCampaingContributions(
@@ -308,6 +351,7 @@ Client.prototype.esgFECIndividualCampaingContributions = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -328,6 +372,7 @@ export const esgOSHAInspections = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 4;
@@ -337,6 +382,7 @@ export const esgOSHAInspections = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -344,6 +390,7 @@ export const esgOSHAInspections = (
 Client.prototype.esgOSHAInspections = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgOSHAInspections(
@@ -351,6 +398,7 @@ Client.prototype.esgOSHAInspections = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -370,6 +418,7 @@ export const esgSenateLobbying = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 6;
@@ -379,6 +428,7 @@ export const esgSenateLobbying = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -386,6 +436,7 @@ export const esgSenateLobbying = (
 Client.prototype.esgSenateLobbying = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgSenateLobbying(
@@ -393,6 +444,7 @@ Client.prototype.esgSenateLobbying = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -415,6 +467,7 @@ export const esgUSASpending = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 9;
@@ -424,16 +477,23 @@ export const esgUSASpending = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
 
-Client.prototype.esgUSASpending = function (symbol, filter, ...timeseriesArgs) {
+Client.prototype.esgUSASpending = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
   return esgUSASpending(
     symbol,
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -454,6 +514,7 @@ export const esgUSPTOPatentApplications = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 10;
@@ -463,6 +524,7 @@ export const esgUSPTOPatentApplications = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -470,6 +532,7 @@ export const esgUSPTOPatentApplications = (
 Client.prototype.esgUSPTOPatentApplications = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgUSPTOPatentApplications(
@@ -477,6 +540,7 @@ Client.prototype.esgUSPTOPatentApplications = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -498,6 +562,7 @@ export const esgUSPTOPatentGrants = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) => {
   timeseriesArgs.subkey = 11;
@@ -507,6 +572,7 @@ export const esgUSPTOPatentGrants = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -514,6 +580,7 @@ export const esgUSPTOPatentGrants = (
 Client.prototype.esgUSPTOPatentGrants = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return esgUSPTOPatentGrants(
@@ -521,6 +588,7 @@ Client.prototype.esgUSPTOPatentGrants = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -544,6 +612,7 @@ export const tacticalModel1 = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -552,15 +621,22 @@ export const tacticalModel1 = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
-Client.prototype.tacticalModel1 = function (symbol, filter, ...timeseriesArgs) {
+Client.prototype.tacticalModel1 = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
   return tacticalModel1(
     symbol,
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };

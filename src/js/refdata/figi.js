@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _raiseIfNotStr } from "../common";
+import { _get, _raiseIfNotStr } from "../common";
 import { Client } from "../client";
 
 /**
@@ -18,17 +18,24 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const figi = (figi_, token = "", version = "", filter = "") => {
+ * @param {string} format output format */
+export const figi = (
+  figi_,
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) => {
   _raiseIfNotStr(figi_);
-  return _getJson({
+  return _get({
     url: `ref-data/figi?figi=${figi_}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.figi = function (figi_, filter) {
-  return figi(figi_, this._token, this._version, filter);
+Client.prototype.figi = function (figi_, filter, format) {
+  return figi(figi_, this._token, this._version, filter, format);
 };

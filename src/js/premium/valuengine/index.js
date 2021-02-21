@@ -7,7 +7,7 @@
  *
  */
 import { Client } from "../../client";
-import { IEXJSException, _getJson, _strOrDate } from "../../common";
+import { IEXJSException, _get, _strOrDate } from "../../common";
 
 /**
  * ValuEngine provides research on over 5,000 stocks with stock valuations, Buy/Hold/Sell recommendations, and forecasted target prices, so that you the individual investor can make informed decisions. Every ValuEngine Valuation and Forecast model for the U.S. equities markets has been extensively back-tested. ValuEngine’s performance exceeds that of many well-known stock-picking styles. Reports available since March 19th, 2020.
@@ -22,7 +22,7 @@ export const valuEngineStockResearchReport = (symbol, date, token, version) => {
   if (!symbol || !date) {
     throw new IEXJSException("symbol and date required");
   }
-  return _getJson(
+  return _get(
     {
       url: `files/download/VALUENGINE_REPORT?symbol=${symbol}&date=${_strOrDate(
         date,

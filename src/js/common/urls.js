@@ -38,7 +38,7 @@ export const _SSE_DEEP_URL_PREFIX_SANDBOX = (symbols, channels, token) =>
  *
  * @param {string} url
  */
-const _getJsonOrig = () => {
+const _getOrig = () => {
   throw IEXJSException(
     "Old IEX API is deprecated. For a free API token, sign up at https://iexcloud.io",
   );
@@ -48,7 +48,7 @@ const _getJsonOrig = () => {
  * for IEX Cloud
  * @param {object} options
  */
-const _getJsonIEXCloudBase = async (options) => {
+const _getIEXCloudBase = async (options) => {
   const {
     base_url,
     url,
@@ -81,21 +81,21 @@ const _getJsonIEXCloudBase = async (options) => {
  *
  * @param {object} options
  */
-const _getJsonIEXCloud = (options) =>
-  _getJsonIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
+const _getIEXCloud = (options) =>
+  _getIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
 
 /**
  *
  * @param {object} options
  */
-const _getJsonIEXCloudSandbox = (options) =>
-  _getJsonIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
+const _getIEXCloudSandbox = (options) =>
+  _getIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
 
 /**
  *
  * @param {object} options
  */
-const _postJsonIEXCloudBase = async (options) => {
+const _postIEXCloudBase = async (options) => {
   const {
     base_url,
     url,
@@ -133,21 +133,21 @@ const _postJsonIEXCloudBase = async (options) => {
  *
  * @param {object} options
  */
-const _postJsonIEXCloud = (options) =>
-  _postJsonIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
+const _postIEXCloud = (options) =>
+  _postIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
 
 /**
  *
  * @param {object} options
  */
-const _postJsonIEXCloudSandbox = (options) =>
-  _postJsonIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
+const _postIEXCloudSandbox = (options) =>
+  _postIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
 
 /**
  *
  * @param {object} options
  */
-const _deleteJsonIEXCloudBase = async (options) => {
+const _deleteIEXCloudBase = async (options) => {
   const {
     base_url,
     url,
@@ -175,11 +175,11 @@ const _deleteJsonIEXCloudBase = async (options) => {
   });
 };
 
-const _deleteJsonIEXCloud = (options) =>
-  _deleteJsonIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
+const _deleteIEXCloud = (options) =>
+  _deleteIEXCloudBase({ base_url: _URL_PREFIX2, ...options });
 
-const _deleteJsonIEXCloudSandbox = (options) =>
-  _deleteJsonIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
+const _deleteIEXCloudSandbox = (options) =>
+  _deleteIEXCloudBase({ base_url: _URL_PREFIX2_SANDBOX, ...options });
 
 export const _streamSSE = (url, on_data, accrue = false) => {
   const messages = new EventSource(url);
@@ -209,38 +209,38 @@ export const overrideUrl = (url) => {
  * for backwards compat, accepting token and version but ignoring
  * @param {object} options
  */
-export const _getJson = async (options) => {
+export const _get = async (options) => {
   const { url, token = "", version = "" } = options;
   if (token) {
     if (version === "sandbox") {
-      return _getJsonIEXCloudSandbox(options);
+      return _getIEXCloudSandbox(options);
     }
-    return _getJsonIEXCloud(options);
+    return _getIEXCloud(options);
   }
-  return _getJsonOrig(url);
+  return _getOrig(url);
 };
 
 /**
  *
  * @param {object} options
  */
-export const _postJson = async (options) => {
+export const _post = async (options) => {
   const { version = "" } = options;
 
   if (version === "sandbox") {
-    return _postJsonIEXCloudSandbox(options);
+    return _postIEXCloudSandbox(options);
   }
-  return _postJsonIEXCloud(options);
+  return _postIEXCloud(options);
 };
 
 /**
  *
  * @param {object} options
  */
-export const _deleteJson = (options) => {
+export const _delete = (options) => {
   const { version = "" } = options;
   if (version === "sandbox") {
-    return _deleteJsonIEXCloudSandbox(options);
+    return _deleteIEXCloudSandbox(options);
   }
-  return _deleteJsonIEXCloud(options);
+  return _deleteIEXCloud(options);
 };

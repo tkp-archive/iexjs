@@ -8,7 +8,7 @@
  */
 import {
   _TIMEFRAME_DIVSPLIT,
-  _getJson,
+  _get,
   _quoteSymbols,
   _raiseIfNotStr,
   _timeseriesWrapper,
@@ -27,22 +27,37 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const stockSplits = (symbol, timeframe, token, version, filter) => {
+ * @param {string} format output format */
+export const stockSplits = (
+  symbol,
+  timeframe,
+  token,
+  version,
+  filter,
+  format,
+) => {
   _raiseIfNotStr(symbol);
   if (_TIMEFRAME_DIVSPLIT.indexOf(timeframe || "ytd") < 0) {
     throw new IEXJSException("Timeframe not recognized");
   }
-  return _getJson({
+  return _get({
     url: `stock/${_quoteSymbols(symbol)}/splits/${timeframe || "ytd"}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.stockSplits = function (symbol, timeframe, filter) {
-  return stockSplits(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.stockSplits = function (symbol, timeframe, filter, format) {
+  return stockSplits(
+    symbol,
+    timeframe,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -56,7 +71,7 @@ Client.prototype.stockSplits = function (symbol, timeframe, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const bonusIssue = (
   symbol,
   refid,
@@ -108,7 +123,7 @@ Client.prototype.bonusIssue = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const distribution = (
   symbol,
   refid,
@@ -166,7 +181,7 @@ Client.prototype.distribution = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const dividends = (
   symbol,
   refid,
@@ -218,7 +233,7 @@ Client.prototype.dividends = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const returnOfCapital = (
   symbol,
   refid,
@@ -270,7 +285,7 @@ Client.prototype.returnOfCapital = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const rightsIssue = (
   symbol,
   refid,
@@ -322,7 +337,7 @@ Client.prototype.rightsIssue = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const rightToPurchase = (
   symbol,
   refid,
@@ -374,7 +389,7 @@ Client.prototype.rightToPurchase = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const securityReclassification = (
   symbol,
   refid,
@@ -426,7 +441,7 @@ Client.prototype.securityReclassification = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const securitySwap = (
   symbol,
   refid,
@@ -434,6 +449,7 @@ export const securitySwap = (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _timeseriesWrapper(timeseries_options);
@@ -448,6 +464,7 @@ export const securitySwap = (
     token,
     version,
     filter,
+    format,
   );
 };
 
@@ -456,6 +473,7 @@ Client.prototype.securitySwap = function (
   refid,
   timeseries_options,
   filter,
+  format,
 ) {
   return securitySwap(
     symbol,
@@ -464,6 +482,7 @@ Client.prototype.securitySwap = function (
     this._token,
     this._version,
     filter,
+    format,
   );
 };
 
@@ -478,7 +497,7 @@ Client.prototype.securitySwap = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const spinoff = (
   symbol,
   refid,
@@ -486,6 +505,7 @@ export const spinoff = (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _timeseriesWrapper(timeseries_options);
@@ -500,6 +520,7 @@ export const spinoff = (
     token,
     version,
     filter,
+    format,
   );
 };
 
@@ -508,6 +529,7 @@ Client.prototype.spinoff = function (
   refid,
   timeseries_options,
   filter,
+  format,
 ) {
   return spinoff(
     symbol,
@@ -516,6 +538,7 @@ Client.prototype.spinoff = function (
     this._token,
     this._version,
     filter,
+    format,
   );
 };
 
@@ -530,7 +553,7 @@ Client.prototype.spinoff = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const splits = (
   symbol,
   refid,
@@ -538,6 +561,7 @@ export const splits = (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _timeseriesWrapper(timeseries_options);
@@ -552,10 +576,17 @@ export const splits = (
     token,
     version,
     filter,
+    format,
   );
 };
 
-Client.prototype.splits = function (symbol, refid, timeseries_options, filter) {
+Client.prototype.splits = function (
+  symbol,
+  refid,
+  timeseries_options,
+  filter,
+  format,
+) {
   return splits(
     symbol,
     refid,
@@ -563,5 +594,6 @@ Client.prototype.splits = function (symbol, refid, timeseries_options, filter) {
     this._token,
     this._version,
     filter,
+    format,
   );
 };

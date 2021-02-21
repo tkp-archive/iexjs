@@ -10,7 +10,7 @@
 import {
   _TIMEFRAME_DIVSPLIT,
   _checkPeriodLast,
-  _getJson,
+  _get,
   _quoteSymbols,
   _raiseIfNotStr,
   IEXJSException,
@@ -28,7 +28,7 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const balanceSheet = async (
   symbol,
   period,
@@ -36,23 +36,39 @@ export const balanceSheet = async (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _getJson({
+    (await _get({
       url: `stock/${_quoteSymbols(symbol)}/balance-sheet?period=${
         period || "quarter"
       }&last=${last || 1}`,
       token,
       version,
       filter,
+      format,
     }).balancesheet) || []
   );
 };
 
-Client.prototype.balanceSheet = function (symbol, period, last, filter) {
-  return balanceSheet(symbol, period, last, this._token, this._version, filter);
+Client.prototype.balanceSheet = function (
+  symbol,
+  period,
+  last,
+  filter,
+  format,
+) {
+  return balanceSheet(
+    symbol,
+    period,
+    last,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -66,7 +82,7 @@ Client.prototype.balanceSheet = function (symbol, period, last, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const cashFlow = async (
   symbol,
   period,
@@ -74,23 +90,33 @@ export const cashFlow = async (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _getJson({
+    (await _get({
       url: `stock/${_quoteSymbols(symbol)}/cash-flow?period=${
         period || "quarter"
       }&last=${last || 1}`,
       token,
       version,
       filter,
+      format,
     }).cashflow) || []
   );
 };
 
-Client.prototype.cashFlow = function (symbol, period, last, filter) {
-  return cashFlow(symbol, period, last, this._token, this._version, filter);
+Client.prototype.cashFlow = function (symbol, period, last, filter, format) {
+  return cashFlow(
+    symbol,
+    period,
+    last,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -103,22 +129,37 @@ Client.prototype.cashFlow = function (symbol, period, last, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const dividendsBasic = (symbol, timeframe, token, version, filter) => {
+ * @param {string} format output format */
+export const dividendsBasic = (
+  symbol,
+  timeframe,
+  token,
+  version,
+  filter,
+  format,
+) => {
   _raiseIfNotStr(symbol);
   if (_TIMEFRAME_DIVSPLIT.indexOf(timeframe || "ytd") < 0) {
     throw new IEXJSException("Timeframe not recognized");
   }
-  return _getJson({
+  return _get({
     url: `stock/${_quoteSymbols(symbol)}/dividends/${timeframe || "ytd"}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.dividendsBasic = function (symbol, timeframe, filter) {
-  return dividendsBasic(symbol, timeframe, this._token, this._version, filter);
+Client.prototype.dividendsBasic = function (symbol, timeframe, filter, format) {
+  return dividendsBasic(
+    symbol,
+    timeframe,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -133,7 +174,7 @@ Client.prototype.dividendsBasic = function (symbol, timeframe, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const earnings = async (
   symbol,
   period,
@@ -142,34 +183,44 @@ export const earnings = async (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   if (field === undefined) {
     return (
-      (await _getJson({
+      (await _get({
         url: `stock/${_quoteSymbols(symbol)}/earnings?period=${
           period || "quarter"
         }&last=${last || 1}`,
         token,
         version,
         filter,
+        format,
       }).earnings) || []
     );
   }
   return (
-    (await _getJson({
+    (await _get({
       url: `stock/${_quoteSymbols(symbol)}/earnings/${
         last || 1
       }/${field}?period=${period || "quarter"}`,
       token,
       version,
       filter,
+      format,
     }).earnings) || []
   );
 };
 
-Client.prototype.earnings = function (symbol, period, last, field, filter) {
+Client.prototype.earnings = function (
+  symbol,
+  period,
+  last,
+  field,
+  filter,
+  format,
+) {
   return earnings(
     symbol,
     period,
@@ -178,6 +229,7 @@ Client.prototype.earnings = function (symbol, period, last, field, filter) {
     this._token,
     this._version,
     filter,
+    format,
   );
 };
 
@@ -192,7 +244,7 @@ Client.prototype.earnings = function (symbol, period, last, field, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const financials = async (
   symbol,
   period,
@@ -200,23 +252,33 @@ export const financials = async (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _getJson({
+    (await _get({
       url: `stock/${_quoteSymbols(symbol)}/financials?period=${
         period || "quarter"
       }&last=${last || 1}`,
       token,
       version,
       filter,
+      format,
     }).financials) || []
   );
 };
 
-Client.prototype.financials = function (symbol, period, last, filter) {
-  return financials(symbol, period, last, this._token, this._version, filter);
+Client.prototype.financials = function (symbol, period, last, filter, format) {
+  return financials(
+    symbol,
+    period,
+    last,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -229,24 +291,39 @@ Client.prototype.financials = function (symbol, period, last, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const fundamentals = async (symbol, period, token, version, filter) => {
+ * @param {string} format output format */
+export const fundamentals = async (
+  symbol,
+  period,
+  token,
+  version,
+  filter,
+  format,
+) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", 1);
   return (
-    (await _getJson({
+    (await _get({
       url: `stock/${_quoteSymbols(symbol)}/fundamentals?period=${
         period || "quarter"
       }`,
       token,
       version,
       filter,
+      format,
     }).fundamentals) || []
   );
 };
 
-Client.prototype.fundamentals = function (symbol, period, filter) {
-  return fundamentals(symbol, period, this._token, this._version, filter);
+Client.prototype.fundamentals = function (symbol, period, filter, format) {
+  return fundamentals(
+    symbol,
+    period,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -260,7 +337,7 @@ Client.prototype.fundamentals = function (symbol, period, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const incomeStatement = async (
   symbol,
   period,
@@ -268,22 +345,30 @@ export const incomeStatement = async (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _getJson({
+    (await _get({
       url: `stock/${_quoteSymbols(symbol)}/income?period=${
         period || "quarter"
       }&last=${last || 1}`,
       token,
       version,
       filter,
+      format,
     }).income) || []
   );
 };
 
-Client.prototype.incomeStatement = function (symbol, period, last, filter) {
+Client.prototype.incomeStatement = function (
+  symbol,
+  period,
+  last,
+  filter,
+  format,
+) {
   return incomeStatement(
     symbol,
     period,
@@ -291,5 +376,6 @@ Client.prototype.incomeStatement = function (symbol, period, last, filter) {
     this._token,
     this._version,
     filter,
+    format,
   );
 };

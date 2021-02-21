@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _strOrDate, _strToList } from "../common";
+import { _get, _strOrDate, _strToList } from "../common";
 import { Client } from "../client";
 
 /**
@@ -19,26 +19,28 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const latestFX = (symbols, token, version, filter) => {
+ * @param {string} format output format */
+export const latestFX = (symbols, token, version, filter, format) => {
   if (symbols) {
-    return _getJson({
+    return _get({
       url: `/fx/latest?symbols=${_strToList(symbols).join(",")}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `/fx/latest`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.latestFX = function (symbols, filter) {
-  return latestFX(symbols, this._token, this._version, filter);
+Client.prototype.latestFX = function (symbols, filter, format) {
+  return latestFX(symbols, this._token, this._version, filter, format);
 };
 
 /**
@@ -51,28 +53,30 @@ Client.prototype.latestFX = function (symbols, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const convertFX = (symbols, amount, token, version, filter) => {
+ * @param {string} format output format */
+export const convertFX = (symbols, amount, token, version, filter, format) => {
   if (symbols) {
-    return _getJson({
+    return _get({
       url: `/fx/convert?symbols=${_strToList(symbols).join(",")}&amount=${
         amount || ""
       }`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `/fx/convert?amount=${amount || ""}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.convertFX = function (symbols, amount, filter) {
-  return convertFX(symbols, amount, this._token, this._version, filter);
+Client.prototype.convertFX = function (symbols, amount, filter, format) {
+  return convertFX(symbols, amount, this._token, this._version, filter, format);
 };
 
 /**
@@ -89,7 +93,7 @@ Client.prototype.convertFX = function (symbols, amount, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const historicalFX = (
   symbols,
   from,
@@ -100,6 +104,7 @@ export const historicalFX = (
   token,
   version,
   filter,
+  format,
 ) => {
   let base_url = "/fx/historical?";
   if (symbols) base_url += `symbols=${_strToList(symbols).join(",")}&`;
@@ -108,11 +113,12 @@ export const historicalFX = (
   if (on) base_url += `to=${_strOrDate(on)}&`;
   if (last) base_url += `last=${last.toString()}&`;
   if (first) base_url += `last=${first.toString()}&`;
-  return _getJson({
+  return _get({
     url: base_url,
     token,
     version,
     filter,
+    format,
   });
 };
 
@@ -124,6 +130,7 @@ Client.prototype.historicalFX = function (
   last,
   first,
   filter,
+  format,
 ) {
   return historicalFX(
     symbols,
@@ -135,5 +142,6 @@ Client.prototype.historicalFX = function (
     this._token,
     this._version,
     filter,
+    format,
   );
 };

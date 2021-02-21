@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _strOrDate } from "../common";
+import { _get, _strOrDate } from "../common";
 import { Client } from "../client";
 
 /**
@@ -22,7 +22,7 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const calendar = (
   type = "holiday",
   direction = "next",
@@ -31,22 +31,25 @@ export const calendar = (
   token = "",
   version = "",
   filter = "",
+  format = "json",
 ) => {
   if (startDate) {
-    return _getJson({
+    return _get({
       url: `ref-data/us/dates/${type}/${direction}/${last}/${_strOrDate(
         startDate,
       )}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `ref-data/us/dates/${type}/${direction}/${last.toString()}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
@@ -58,6 +61,7 @@ Client.prototype.calendar = function (
   last,
   startDate,
   filter,
+  format,
 ) {
   return calendar(
     type,
@@ -67,6 +71,7 @@ Client.prototype.calendar = function (
     this._token,
     this._version,
     filter,
+    format,
   );
 };
 
@@ -76,6 +81,7 @@ Client.prototype.holidays = function (
   last,
   startDate,
   filter,
+  format,
 ) {
   return calendar(
     type,
@@ -85,5 +91,6 @@ Client.prototype.holidays = function (
     this._token,
     this._version,
     filter,
+    format,
   );
 };

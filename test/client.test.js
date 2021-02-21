@@ -592,7 +592,7 @@ describe("Client- RefData", () => {
   test("optionsSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.optionsSymbolsList();
-    expect(typeof res).toBe("object");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("cryptoSymbolsList", async () => {

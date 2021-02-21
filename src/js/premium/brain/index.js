@@ -16,7 +16,7 @@ import { timeSeries } from "../../stocks";
  * @param  {object} timeseriesArgs
  * @returns
  */
-const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
+const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
   timeSeries(
     {
       id,
@@ -26,6 +26,7 @@ const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
     token,
     version,
     filter,
+    format,
   );
 
 /**
@@ -42,6 +43,7 @@ export const brain30DaySentiment = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -50,12 +52,14 @@ export const brain30DaySentiment = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain30DaySentiment = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain30DaySentiment(
@@ -63,6 +67,7 @@ Client.prototype.brain30DaySentiment = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -81,6 +86,7 @@ export const brain7DaySentiment = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -89,12 +95,14 @@ export const brain7DaySentiment = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain7DaySentiment = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain7DaySentiment(
@@ -102,6 +110,7 @@ Client.prototype.brain7DaySentiment = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -120,6 +129,7 @@ export const brain21DayMLReturnRanking = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -128,12 +138,14 @@ export const brain21DayMLReturnRanking = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain21DayMLReturnRanking = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain21DayMLReturnRanking(
@@ -141,6 +153,7 @@ Client.prototype.brain21DayMLReturnRanking = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -159,6 +172,7 @@ export const brain10DayMLReturnRanking = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -167,12 +181,14 @@ export const brain10DayMLReturnRanking = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain10DayMLReturnRanking = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain10DayMLReturnRanking(
@@ -180,6 +196,7 @@ Client.prototype.brain10DayMLReturnRanking = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -198,6 +215,7 @@ export const brain5DayMLReturnRanking = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -206,12 +224,14 @@ export const brain5DayMLReturnRanking = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain5DayMLReturnRanking = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain5DayMLReturnRanking(
@@ -219,6 +239,7 @@ Client.prototype.brain5DayMLReturnRanking = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -237,6 +258,7 @@ export const brain3DayMLReturnRanking = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -245,12 +267,14 @@ export const brain3DayMLReturnRanking = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain3DayMLReturnRanking = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain3DayMLReturnRanking(
@@ -258,6 +282,7 @@ Client.prototype.brain3DayMLReturnRanking = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -276,6 +301,7 @@ export const brain2DayMLReturnRanking = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -284,12 +310,14 @@ export const brain2DayMLReturnRanking = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brain2DayMLReturnRanking = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brain2DayMLReturnRanking(
@@ -297,6 +325,7 @@ Client.prototype.brain2DayMLReturnRanking = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -315,6 +344,7 @@ export const brainLanguageMetricsOnCompanyFilingsAll = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -323,12 +353,14 @@ export const brainLanguageMetricsOnCompanyFilingsAll = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brainLanguageMetricsOnCompanyFilingsAll = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brainLanguageMetricsOnCompanyFilingsAll(
@@ -336,6 +368,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsAll = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -354,6 +387,7 @@ export const brainLanguageMetricsOnCompanyFilings = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -362,12 +396,14 @@ export const brainLanguageMetricsOnCompanyFilings = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brainLanguageMetricsOnCompanyFilings = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brainLanguageMetricsOnCompanyFilings(
@@ -375,6 +411,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilings = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -393,6 +430,7 @@ export const brainLanguageMetricsOnCompanyFilingsDifferenceAll = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -401,12 +439,14 @@ export const brainLanguageMetricsOnCompanyFilingsDifferenceAll = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brainLanguageMetricsOnCompanyFilingsDifferenceAll = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brainLanguageMetricsOnCompanyFilingsDifferenceAll(
@@ -414,6 +454,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsDifferenceAll = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };
@@ -432,6 +473,7 @@ export const brainLanguageMetricsOnCompanyFilingsDifference = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -440,12 +482,14 @@ export const brainLanguageMetricsOnCompanyFilingsDifference = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.brainLanguageMetricsOnCompanyFilingsDifference = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return brainLanguageMetricsOnCompanyFilingsDifference(
@@ -453,6 +497,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsDifference = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };

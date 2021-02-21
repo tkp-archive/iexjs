@@ -10,8 +10,8 @@
 import {
   _USAGE_TYPES,
   IEXJSException,
-  _getJson,
-  _postJson,
+  _get,
+  _post,
   _requireSecret,
 } from "../common";
 import { Client } from "../client";
@@ -28,17 +28,18 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const messageBudget = (totalMessages, token, version) => {
+export const messageBudget = (totalMessages, token, version, format) => {
   _requireSecret(token);
-  return _postJson({
+  return _post({
     url: `account/messagebudget?totalMessages=${totalMessages}`,
     token,
     version,
+    format,
   });
 };
 
-Client.prototype.messageBudget = function (totalMessages) {
-  return messageBudget(totalMessages, this._token, this._version);
+Client.prototype.messageBudget = function (totalMessages, format) {
+  return messageBudget(totalMessages, this._token, this._version, format);
 };
 
 /**
@@ -47,17 +48,18 @@ Client.prototype.messageBudget = function (totalMessages) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const metadata = (token, version) => {
+export const metadata = (token, version, format) => {
   _requireSecret(token);
-  return _getJson({
+  return _get({
     url: "account/metadata",
     token,
     version,
+    format,
   });
 };
 
-Client.prototype.metadata = function () {
-  return metadata(this._token, this._version);
+Client.prototype.metadata = function (format) {
+  return metadata(this._token, this._version, format);
 };
 
 /**
@@ -74,7 +76,7 @@ export const payAsYouGo = (allow = false, token = "", version = "") => {
       `allow must be boolean, got ${typeof allow} (${allow})`,
     );
   }
-  return _postJson({
+  return _post({
     url: `account/messagebudget?allow=${allow}`,
     token,
     version,
@@ -92,25 +94,27 @@ Client.prototype.payAsYouGo = function (allow) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const usage = (type, token = "", version = "") => {
+export const usage = (type, token, version, format) => {
   _requireSecret(token);
   if (type) {
     if (_USAGE_TYPES.indexOf(type) < 0) {
       throw IEXJSException(`Type must be defined or in ${_USAGE_TYPES}`);
     }
-    return _getJson({
+    return _get({
       url: `account/usage/${type}`,
       token,
       version,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `account/usage`,
     token,
     version,
+    format,
   });
 };
 
-Client.prototype.usage = function (type) {
-  return usage(type, this._token, this._version);
+Client.prototype.usage = function (type, format) {
+  return usage(type, this._token, this._version, format);
 };

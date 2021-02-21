@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _raiseIfNotStr } from "../common";
+import { _get, _raiseIfNotStr } from "../common";
 import { Client } from "../client";
 
 /**
@@ -19,19 +19,20 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const optionExpirations = (symbol, token, version, filter) => {
+ * @param {string} format output format */
+export const optionExpirations = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
-  return _getJson({
+  return _get({
     url: `/stock/${symbol}/options`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.optionExpirations = function (symbol, filter) {
-  return optionExpirations(symbol, this._token, this._version, filter);
+Client.prototype.optionExpirations = function (symbol, filter, format) {
+  return optionExpirations(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -45,25 +46,43 @@ Client.prototype.optionExpirations = function (symbol, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const options = (symbol, expiration, side, token, version, filter) => {
+ * @param {string} format output format */
+export const options = (
+  symbol,
+  expiration,
+  side,
+  token,
+  version,
+  filter,
+  format,
+) => {
   _raiseIfNotStr(symbol);
   if (side) {
-    return _getJson({
+    return _get({
       url: `stock/${symbol}/options/${expiration}/${side}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `stock/${symbol}/options/${expiration}`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.options = function (symbol, expiration, side, filter) {
-  return options(symbol, expiration, side, this._token, this._version, filter);
+Client.prototype.options = function (symbol, expiration, side, filter, format) {
+  return options(
+    symbol,
+    expiration,
+    side,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
