@@ -6,7 +6,7 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-import { _getJson, _dateRange, _quoteSymbols, _strOrDate } from "../common";
+import { _get, _dateRange, _quoteSymbols, _strOrDate } from "../common";
 import { Client } from "../client";
 
 /**
@@ -15,17 +15,18 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const timeSeriesInventory = (token, version, filter) =>
-  _getJson({
+ * @param {string} format output format */
+export const timeSeriesInventory = (token, version, filter, format) =>
+  _get({
     url: `time-series`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.timeSeriesInventory = function (filter) {
-  return timeSeriesInventory(this._token, this._version, filter);
+Client.prototype.timeSeriesInventory = function (filter, format) {
+  return timeSeriesInventory(this._token, this._version, filter, format);
 };
 
 /**
@@ -53,7 +54,7 @@ Client.prototype.timeSeriesInventory = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- *
+ * @param {string} format output format *
  *     Date Ranges:
  *     +--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
  *     | today        | Returns data for today                                                                                                                     |
@@ -93,7 +94,7 @@ Client.prototype.timeSeriesInventory = function (filter) {
  *     | next-quarter | Calendar data for next quarter. Requires calendar=true                                                                                     |
  *     +--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
  */
-export const timeSeries = (options, token, version, filter) => {
+export const timeSeries = (options, token, version, filter, format) => {
   const {
     id = "",
     key = "",
@@ -110,7 +111,7 @@ export const timeSeries = (options, token, version, filter) => {
     first = 0,
   } = options || {};
 
-  if (!id) return timeSeriesInventory(token, version, filter);
+  if (!id) return timeSeriesInventory(token, version, filter, format);
 
   let base_url = `time-series/${id}`;
   if (key) base_url += `/${_quoteSymbols(key)}`;
@@ -135,16 +136,17 @@ export const timeSeries = (options, token, version, filter) => {
   // TODO
   // if extra_params:
   //     base_url += "&".join("{}={}".format(k, v) for k, v in extra_params.items())
-  return _getJson({
+  return _get({
     url: base_url,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.timeSeries = function (options, filter) {
-  return timeSeries(options, this._token, this._version, filter);
+Client.prototype.timeSeries = function (options, filter, format) {
+  return timeSeries(options, this._token, this._version, filter, format);
 };
 
 /**
@@ -155,8 +157,8 @@ Client.prototype.timeSeries = function (options, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const tenQ = (symbol, options, token, version, filter) =>
+ * @param {string} format output format */
+export const tenQ = (symbol, options, token, version, filter, format) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -167,10 +169,11 @@ export const tenQ = (symbol, options, token, version, filter) =>
     token,
     version,
     filter,
+    format,
   );
 
-Client.prototype.tenQ = function (symbol, options, filter) {
-  return tenQ(symbol, options, this._token, this._version, filter);
+Client.prototype.tenQ = function (symbol, options, filter, format) {
+  return tenQ(symbol, options, this._token, this._version, filter, format);
 };
 
 /**
@@ -181,8 +184,8 @@ Client.prototype.tenQ = function (symbol, options, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const tenK = (symbol, options, token, version, filter) =>
+ * @param {string} format output format */
+export const tenK = (symbol, options, token, version, filter, format) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -193,8 +196,9 @@ export const tenK = (symbol, options, token, version, filter) =>
     token,
     version,
     filter,
+    format,
   );
 
-Client.prototype.tenK = function (symbol, options, filter) {
-  return tenK(symbol, options, this._token, this._version, filter);
+Client.prototype.tenK = function (symbol, options, filter, format) {
+  return tenK(symbol, options, this._token, this._version, filter, format);
 };

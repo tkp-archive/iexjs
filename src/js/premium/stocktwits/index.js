@@ -7,12 +7,7 @@
  *
  */
 import { Client } from "../../client";
-import {
-  IEXJSException,
-  _getJson,
-  _raiseIfNotStr,
-  _strOrDate,
-} from "../../common";
+import { IEXJSException, _get, _raiseIfNotStr, _strOrDate } from "../../common";
 
 /**
  * Pulls balance sheet data. Available quarterly (4 quarters) and annually (4 years)
@@ -25,7 +20,7 @@ import {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const socialSentiment = async (
   symbol,
   type,
@@ -33,6 +28,7 @@ export const socialSentiment = async (
   token,
   version,
   filter,
+  format,
 ) => {
   _raiseIfNotStr(symbol);
   if (["daily", "minute"].indexOf(type || "daily") < 0) {
@@ -46,15 +42,22 @@ export const socialSentiment = async (
     base_url += `/${date}`;
   }
 
-  return _getJson({
+  return _get({
     url: base_url,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.socialSentiment = function (symbol, type, date, filter) {
+Client.prototype.socialSentiment = function (
+  symbol,
+  type,
+  date,
+  filter,
+  format,
+) {
   return socialSentiment(
     symbol,
     type,
@@ -62,5 +65,6 @@ Client.prototype.socialSentiment = function (symbol, type, date, filter) {
     this._token,
     this._version,
     filter,
+    format,
   );
 };

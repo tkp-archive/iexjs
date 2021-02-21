@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _raiseIfNotStr, _strOrDate } from "../common";
+import { _get, _raiseIfNotStr, _strOrDate } from "../common";
 import { Client } from "../client";
 
 /**
@@ -21,22 +21,32 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const sentiment = (symbol, type, date, token, version, filter) => {
+ * @param {string} format output format */
+export const sentiment = (
+  symbol,
+  type,
+  date,
+  token,
+  version,
+  filter,
+  format,
+) => {
   _raiseIfNotStr(symbol);
   if (date) {
-    return _getJson({
+    return _get({
       url: `stock/${symbol}/sentiment/${type}/${_strOrDate(date)}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `stock/${symbol}/sentiment/${type}/`,
     token,
     version,
     filter,
+    format,
   });
 };
 
@@ -45,8 +55,17 @@ Client.prototype.sentiment = function (
   type = "daily",
   date = null,
   filter,
+  format,
 ) {
-  return sentiment(symbol, type, date, this._token, this._version, filter);
+  return sentiment(
+    symbol,
+    type,
+    date,
+    this._token,
+    this._version,
+    filter,
+    format,
+  );
 };
 
 /**
@@ -58,17 +77,18 @@ Client.prototype.sentiment = function (
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const ceoCompensation = (symbol, token, version, filter) => {
+ * @param {string} format output format */
+export const ceoCompensation = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
-  return _getJson({
+  return _get({
     url: `stock/${symbol}/ceo-compensation/`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.ceoCompensation = function (symbol, filter) {
-  return ceoCompensation(symbol, this._token, this._version, filter);
+Client.prototype.ceoCompensation = function (symbol, filter, format) {
+  return ceoCompensation(symbol, this._token, this._version, filter, format);
 };

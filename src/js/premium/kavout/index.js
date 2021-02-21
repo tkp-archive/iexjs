@@ -16,7 +16,7 @@ import { timeSeries } from "../../stocks";
  * @param  {object} timeseriesArgs
  * @returns
  */
-const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
+const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
   timeSeries(
     {
       id,
@@ -26,6 +26,7 @@ const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
     token,
     version,
     filter,
+    format,
   );
 
 /**
@@ -38,18 +39,33 @@ const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const kScore = (symbol, token, version, filter, ...timeseriesArgs) =>
+export const kScore = (
+  symbol,
+  token,
+  version,
+  filter,
+  format,
+  ...timeseriesArgs
+) =>
   _base(
     "PREMIUM_KAVOUT_KSCORE",
     symbol,
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
-Client.prototype.kScore = function (symbol, filter, ...timeseriesArgs) {
-  return kScore(symbol, this._token, this._version, filter, ...timeseriesArgs);
+Client.prototype.kScore = function (symbol, filter, format, ...timeseriesArgs) {
+  return kScore(
+    symbol,
+    this._token,
+    this._version,
+    filter,
+    format,
+    ...timeseriesArgs,
+  );
 };
 
 /**
@@ -74,6 +90,7 @@ export const kScoreChina = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -82,15 +99,22 @@ export const kScoreChina = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
-Client.prototype.kScoreChina = function (symbol, filter, ...timeseriesArgs) {
+Client.prototype.kScoreChina = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
   return kScoreChina(
     symbol,
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };

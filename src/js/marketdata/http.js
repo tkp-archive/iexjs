@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _raiseIfNotStr, _strOrDate, _strToList } from "../common";
+import { _get, _raiseIfNotStr, _strOrDate, _strToList } from "../common";
 import { Client } from "../client";
 
 /**
@@ -19,24 +19,27 @@ import { Client } from "../client";
  * @param {string} version
  * @param {string} filter
  */
-export const tops = (symbols, token, version, filter) => {
+export const tops = (symbols, token, version, filter, format) => {
   if (symbols) {
-    return _getJson({
+    return _get({
       url: `tops?symbols=${_strToList(symbols).join(",")}%2b`,
       token,
       version,
+      filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `tops`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.tops = function (symbols, filter) {
-  return tops(symbols, this._token, this._version, filter);
+Client.prototype.tops = function (symbols, filter, format) {
+  return tops(symbols, this._token, this._version, filter, format);
 };
 
 /**
@@ -48,24 +51,27 @@ Client.prototype.tops = function (symbols, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const last = (symbols, token, version, filter) => {
+export const last = (symbols, token, version, filter, format) => {
   if (symbols) {
-    return _getJson({
+    return _get({
       url: `last?symbols=${_strToList(symbols).join(",")}%2b`,
       token,
       version,
+      filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `last`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.last = function (symbols, filter) {
-  return last(symbols, this._token, this._version, filter);
+Client.prototype.last = function (symbols, filter, format) {
+  return last(symbols, this._token, this._version, filter, format);
 };
 
 /**
@@ -82,25 +88,28 @@ Client.prototype.last = function (symbols, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const deep = (symbol, token, version, filter) => {
+export const deep = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep?symbols=${symbol}`,
       token,
       version,
+      filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.deep = function (symbol, filter) {
-  return deep(symbol, this._token, this._version, filter);
+Client.prototype.deep = function (symbol, filter, format) {
+  return deep(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -112,26 +121,28 @@ Client.prototype.deep = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const auction = (symbol, token, version, filter) => {
+export const auction = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/auction?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/auction`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.auction = function (symbol, filter) {
-  return auction(symbol, this._token, this._version, filter);
+Client.prototype.auction = function (symbol, filter, format) {
+  return auction(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -142,26 +153,28 @@ Client.prototype.auction = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexBook = (symbol, token, version, filter) => {
+export const iexBook = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/book?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/book`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.iexBook = function (symbol, filter) {
-  return iexBook(symbol, this._token, this._version, filter);
+Client.prototype.iexBook = function (symbol, filter, format) {
+  return iexBook(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -179,26 +192,28 @@ Client.prototype.iexBook = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const opHaltStatus = (symbol, token, version, filter) => {
+export const opHaltStatus = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/op-halt-status?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/op-halt-status`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.opHaltStatus = function (symbol, filter) {
-  return opHaltStatus(symbol, this._token, this._version, filter);
+Client.prototype.opHaltStatus = function (symbol, filter, format) {
+  return opHaltStatus(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -212,26 +227,28 @@ Client.prototype.opHaltStatus = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const officialPrice = (symbol, token, version, filter) => {
+export const officialPrice = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/official-price?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/official-price`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.officialPrice = function (symbol, filter) {
-  return officialPrice(symbol, this._token, this._version, filter);
+Client.prototype.officialPrice = function (symbol, filter, format) {
+  return officialPrice(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -242,26 +259,28 @@ Client.prototype.officialPrice = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const securityEvent = (symbol, token, version, filter) => {
+export const securityEvent = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/security-event?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/security-event`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.securityEvent = function (symbol, filter) {
-  return securityEvent(symbol, this._token, this._version, filter);
+Client.prototype.securityEvent = function (symbol, filter, format) {
+  return securityEvent(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -278,26 +297,28 @@ Client.prototype.securityEvent = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const ssrStatus = (symbol, token, version, filter) => {
+export const ssrStatus = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/ssr-status?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/ssr-status`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.ssrStatus = function (symbol, filter) {
-  return ssrStatus(symbol, this._token, this._version, filter);
+Client.prototype.ssrStatus = function (symbol, filter, format) {
+  return ssrStatus(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -311,28 +332,30 @@ Client.prototype.ssrStatus = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const systemEvent = (symbol, token, version, filter) => {
+export const systemEvent = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/system-event?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson(
+  return _get(
     {
       url: `deep/system-event`,
     },
     token,
     version,
     filter,
+    format,
   );
 };
 
-Client.prototype.systemEvent = function (symbol, filter) {
-  return systemEvent(symbol, this._token, this._version, filter);
+Client.prototype.systemEvent = function (symbol, filter, format) {
+  return systemEvent(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -343,26 +366,28 @@ Client.prototype.systemEvent = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const trades = (symbol, token, version, filter) => {
+export const trades = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/trades?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/trades`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.trades = function (symbol, filter) {
-  return trades(symbol, this._token, this._version, filter);
+Client.prototype.trades = function (symbol, filter, format) {
+  return trades(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -373,26 +398,28 @@ Client.prototype.trades = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const tradeBreak = (symbol, token, version, filter) => {
+export const tradeBreak = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/trade-breaks?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/trade-breaks`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.tradeBreak = function (symbol, filter) {
-  return tradeBreak(symbol, this._token, this._version, filter);
+Client.prototype.tradeBreak = function (symbol, filter, format) {
+  return tradeBreak(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -418,26 +445,28 @@ Client.prototype.tradeBreak = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const tradingStatus = (symbol, token, version, filter) => {
+export const tradingStatus = (symbol, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
-    return _getJson({
+    return _get({
       url: `deep/trading-status?symbols=${symbol}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `deep/trading-status`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.tradingStatus = function (symbol, filter) {
-  return tradingStatus(symbol, this._token, this._version, filter);
+Client.prototype.tradingStatus = function (symbol, filter, format) {
+  return tradingStatus(symbol, this._token, this._version, filter, format);
 };
 
 /**
@@ -446,23 +475,25 @@ Client.prototype.tradingStatus = function (symbol, filter) {
  * @param {string} version
  * @param {string} filter
  */
-export const hist = (date, token, version, filter) => {
+export const hist = (date, token, version, filter, format) => {
   if (date) {
-    return _getJson({
+    return _get({
       url: `hist?date=${_strOrDate(date)}`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `hist`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.hist = function (date, filter) {
-  return hist(date, this._token, this._version, filter);
+Client.prototype.hist = function (date, filter, format) {
+  return hist(date, this._token, this._version, filter, format);
 };

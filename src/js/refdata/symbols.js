@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson } from "../common";
+import { _get } from "../common";
 import { Client } from "../client";
 
 /**
@@ -18,17 +18,23 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const symbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const symbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.symbols = function (filter) {
-  return symbols(this._token, this._version, filter);
+Client.prototype.symbols = function (filter, format) {
+  return symbols(this._token, this._version, filter, format);
 };
 
 /**
@@ -39,17 +45,23 @@ Client.prototype.symbols = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const iexSymbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const iexSymbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/iex/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.iexSymbols = function (filter) {
-  return iexSymbols(this._token, this._version, filter);
+Client.prototype.iexSymbols = function (filter, format) {
+  return iexSymbols(this._token, this._version, filter, format);
 };
 
 /**
@@ -60,17 +72,23 @@ Client.prototype.iexSymbols = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const mutualFundSymbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const mutualFundSymbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/mutual-funds/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.mutualFundSymbols = function (filter) {
-  return mutualFundSymbols(this._token, this._version, filter);
+Client.prototype.mutualFundSymbols = function (filter, format) {
+  return mutualFundSymbols(this._token, this._version, filter, format);
 };
 
 /**
@@ -81,17 +99,23 @@ Client.prototype.mutualFundSymbols = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const otcSymbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const otcSymbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/otc/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.otcSymbols = function (filter) {
-  return otcSymbols(this._token, this._version, filter);
+Client.prototype.otcSymbols = function (filter, format) {
+  return otcSymbols(this._token, this._version, filter, format);
 };
 
 /**
@@ -104,45 +128,55 @@ Client.prototype.otcSymbols = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const internationalSymbols = (
   region,
   exchange,
   token = "",
   version = "",
   filter = "",
+  format = "json",
 ) => {
   if (region) {
-    return _getJson({
+    return _get({
       url: `ref-data/region/${region}/symbols`,
       token,
       version,
       filter,
+      format,
     });
   }
   if (exchange) {
-    return _getJson({
+    return _get({
       url: `ref-data/exchange/${exchange}/symbols`,
       token,
       version,
       filter,
+      format,
     });
   }
-  return _getJson({
+  return _get({
     url: `ref-data/region/us/symbols`,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.internationalSymbols = function (region, exchange, filter) {
+Client.prototype.internationalSymbols = function (
+  region,
+  exchange,
+  filter,
+  format,
+) {
   return internationalSymbols(
     region,
     exchange,
     this._token,
     this._version,
     filter,
+    format,
   );
 };
 
@@ -154,17 +188,23 @@ Client.prototype.internationalSymbols = function (region, exchange, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const fxSymbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const fxSymbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/fx/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.fxSymbols = function (filter) {
-  return fxSymbols(this._token, this._version, filter);
+Client.prototype.fxSymbols = function (filter, format) {
+  return fxSymbols(this._token, this._version, filter, format);
 };
 
 /**
@@ -175,17 +215,23 @@ Client.prototype.fxSymbols = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const optionsSymbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const optionsSymbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/options/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.optionsSymbols = function (filter) {
-  return optionsSymbols(this._token, this._version, filter);
+Client.prototype.optionsSymbols = function (filter, format) {
+  return optionsSymbols(this._token, this._version, filter, format);
 };
 
 /**
@@ -196,17 +242,23 @@ Client.prototype.optionsSymbols = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const cryptoSymbols = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const cryptoSymbols = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/crypto/symbols`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.cryptoSymbols = function (filter) {
-  return cryptoSymbols(this._token, this._version, filter);
+Client.prototype.cryptoSymbols = function (filter, format) {
+  return cryptoSymbols(this._token, this._version, filter, format);
 };
 
 const convertToList = async (res) => (await res).map((record) => record.symbol);
@@ -307,15 +359,22 @@ Client.prototype.cryptoSymbolsList = function () {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const isinLookup = (isin, token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const isinLookup = (
+  isin,
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/isin?isin=${isin}`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.isinLookup = function (isin, filter) {
-  return isinLookup(isin, this._token, this._version, filter);
+Client.prototype.isinLookup = function (isin, filter, format) {
+  return isinLookup(isin, this._token, this._version, filter, format);
 };

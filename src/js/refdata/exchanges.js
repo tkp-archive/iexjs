@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson } from "../common";
+import { _get } from "../common";
 import { Client } from "../client";
 
 /**
@@ -18,17 +18,23 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const exchanges = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const exchanges = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/market/us/exchanges`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.exchanges = function (filter) {
-  return exchanges(this._token, this._version, filter);
+Client.prototype.exchanges = function (filter, format) {
+  return exchanges(this._token, this._version, filter, format);
 };
 
 /**
@@ -39,15 +45,21 @@ Client.prototype.exchanges = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const internationalExchanges = (token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const internationalExchanges = (
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `ref-data/exchanges`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.internationalExchanges = function (filter) {
-  return internationalExchanges(this._token, this._version, filter);
+Client.prototype.internationalExchanges = function (filter, format) {
+  return internationalExchanges(this._token, this._version, filter, format);
 };

@@ -16,7 +16,7 @@ import { timeSeries } from "../../stocks";
  * @param  {object} timeseriesArgs
  * @returns
  */
-const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
+const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
   timeSeries(
     {
       id,
@@ -26,6 +26,7 @@ const _base = (id, symbol, token, version, filter, ...timeseriesArgs) =>
     token,
     version,
     filter,
+    format,
   );
 
 /**
@@ -42,6 +43,7 @@ export const precisionAlphaPriceDynamics = (
   token,
   version,
   filter,
+  format,
   ...timeseriesArgs
 ) =>
   _base(
@@ -50,12 +52,14 @@ export const precisionAlphaPriceDynamics = (
     token,
     version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 
 Client.prototype.precisionAlphaPriceDynamics = function (
   symbol,
   filter,
+  format,
   ...timeseriesArgs
 ) {
   return precisionAlphaPriceDynamics(
@@ -63,6 +67,7 @@ Client.prototype.precisionAlphaPriceDynamics = function (
     this._token,
     this._version,
     filter,
+    format,
     ...timeseriesArgs,
   );
 };

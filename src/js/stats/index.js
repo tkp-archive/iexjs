@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson } from "../common";
+import { _get } from "../common";
 import { Client } from "../client";
 
 /**
@@ -16,9 +16,9 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const systemStats = (token, version, filter) =>
-  _getJson({
+  _get({
     url: `stats/intraday`,
     token,
     version,
@@ -35,9 +35,9 @@ Client.prototype.systemStats = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const recent = (token, version, filter) =>
-  _getJson({
+  _get({
     url: `stats/recent`,
     token,
     version,
@@ -54,9 +54,9 @@ Client.prototype.recent = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const records = (token, version, filter) =>
-  _getJson({
+  _get({
     url: `stats/records`,
     token,
     version,
@@ -74,17 +74,17 @@ Client.prototype.records = function (filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const summary = (date, token, version, filter) => {
   if (date) {
-    return _getJson({
+    return _get({
       url: `stats/historical?date=${date}`,
       token,
       version,
       filter,
     });
   }
-  return _getJson({
+  return _get({
     url: `stats/historical`,
     token,
     version,
@@ -104,10 +104,10 @@ Client.prototype.summary = function (date, filter) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
+ * @param {string} format output format */
 export const daily = (date, last, token, version, filter) => {
   if (date) {
-    return _getJson({
+    return _get({
       url: `stats/historical/daily?date=${date}`,
       token,
       version,
@@ -115,14 +115,14 @@ export const daily = (date, last, token, version, filter) => {
     });
   }
   if (last) {
-    return _getJson({
+    return _get({
       url: `stats/historical/daily?last=${last}`,
       token,
       version,
       filter,
     });
   }
-  return _getJson({
+  return _get({
     url: `stats/historical/daily`,
     token,
     version,

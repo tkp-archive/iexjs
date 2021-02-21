@@ -12,7 +12,7 @@ import {
   _BATCH_TYPES,
   _TIMEFRAME_CHART,
   IEXJSException,
-  _getJson,
+  _get,
   _quoteSymbols,
 } from "../common";
 import { Client } from "../client";
@@ -29,8 +29,17 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const batch = (symbols, fields, range, last, token, version, filter) => {
+ * @param {string} format output format */
+export const batch = (
+  symbols,
+  fields,
+  range,
+  last,
+  token,
+  version,
+  filter,
+  format,
+) => {
   fields = fields || "quote";
   range = range || "1m";
   last = last || 10;
@@ -66,15 +75,23 @@ export const batch = (symbols, fields, range, last, token, version, filter) => {
       ",",
     )}&range=${range}&last=${last}`;
   }
-  return _getJson({
+  return _get({
     url: route,
     token,
     version,
     filter,
+    format,
   });
 };
 
-Client.prototype.batch = function (symbols, fields, range, last, filter) {
+Client.prototype.batch = function (
+  symbols,
+  fields,
+  range,
+  last,
+  filter,
+  format,
+) {
   return batch(
     symbols,
     fields,
@@ -83,5 +100,6 @@ Client.prototype.batch = function (symbols, fields, range, last, filter) {
     this._token,
     this._version,
     filter,
+    format,
   );
 };

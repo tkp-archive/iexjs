@@ -7,7 +7,7 @@
  *
  */
 
-import { _getJson, _quoteSymbols } from "../common";
+import { _get, _quoteSymbols } from "../common";
 import { Client } from "../client";
 
 /**
@@ -19,15 +19,22 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- */
-export const search = (fragment, token = "", version = "", filter = "") =>
-  _getJson({
+ * @param {string} format output format */
+export const search = (
+  fragment,
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+) =>
+  _get({
     url: `search/${_quoteSymbols(fragment)}`,
     token,
     version,
     filter,
+    format,
   });
 
-Client.prototype.search = function (fragment, filter) {
-  return search(fragment, this._token, this._version, filter);
+Client.prototype.search = function (fragment, filter, format) {
+  return search(fragment, this._token, this._version, filter, format);
 };
