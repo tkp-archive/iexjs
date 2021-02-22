@@ -16,8 +16,8 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 
 const plugins = [
+  nodeResolve({ browser: true, preferBuiltins: true }),
   commonjs(),
-  nodeResolve(),
   babel({
     exclude: "node_modules/**",
     babelHelpers: "bundled",
@@ -35,7 +35,9 @@ export default (args) => {
       input: "src/js/index.js",
       output: {
         sourcemap: true,
-        file: "dist/umd/iexjs.js",
+        file: "dist/umd/iexjs.umd.js",
+        name: "iexjs",
+        format: "umd",
       },
       plugins,
       watch: {
@@ -47,7 +49,7 @@ export default (args) => {
       output: {
         sourcemap: true,
         format: "cjs",
-        file: "dist/cjs/iexjs.js",
+        file: "dist/iexjs.cjs.js",
       },
       plugins,
       watch: {

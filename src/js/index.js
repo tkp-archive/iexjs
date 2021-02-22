@@ -8,7 +8,7 @@
  */
 
 // for babel
-import "regenerator-runtime/runtime";
+// import "regenerator-runtime/runtime";
 
 import pkg_json from "../../package.json";
 
