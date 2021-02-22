@@ -14,6 +14,7 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 import { terser } from "rollup-plugin-terser";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 
 const plugins = [
   nodeResolve({ browser: true, preferBuiltins: true }),
@@ -22,6 +23,7 @@ const plugins = [
     exclude: "node_modules/**",
     babelHelpers: "bundled",
   }),
+  nodePolyfills(),
   filesize(),
   json(),
   terser(),
