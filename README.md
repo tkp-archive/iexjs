@@ -16,6 +16,8 @@ Install from npm
 
 `npm install --save iexjs`
 
+`iexjs` can run in the browser via native `fetch` and `eventsource`, or from node via [cross-fetch](https://www.npmjs.com/package/cross-fetch) and [eventsource](https://github.com/EventSource/eventsource).
+
 ## Overview
 
 `iexjs` supports the IEX Cloud api through 2 interfaces. The first is a simple function call, passing in the api version and token as arguments
