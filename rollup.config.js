@@ -6,7 +6,6 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-import * as path from "path";
 import babel from "@rollup/plugin-babel";
 import filesize from "rollup-plugin-filesize";
 import json from "@rollup/plugin-json";
@@ -18,6 +17,7 @@ import builtins from "rollup-plugin-node-builtins";
 import globals from "rollup-plugin-node-globals";
 import nodePolyfills from "rollup-plugin-node-polyfills";
 import inject from "@rollup/plugin-inject";
+import injectProcessEnv from "rollup-plugin-inject-process-env";
 
 import pkg from "./package.json";
 
@@ -42,6 +42,9 @@ export default () => [
       globals(),
       filesize(),
       json(),
+      injectProcessEnv({
+        IEX_TOKEN: "",
+      }),
       terser(),
       sourcemaps(),
     ],
