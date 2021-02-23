@@ -64,12 +64,41 @@ Client.prototype.stocksUS1SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
+export const stocksUSNoUTP1SecondSSE = (symbols, on_data, token, version) =>
+  _runSSE("stocksUSNoUTP1Second", symbols, on_data, token, version);
+
+Client.prototype.stocksUSNoUTP1SecondSSE = function (symbols, on_data) {
+  return stocksUSNoUTP1SecondSSE(symbols, on_data, this._token, this._version);
+};
+
+/**
+ * https://iexcloud.io/docs/api/#sse-streaming
+ * @param {string} symbols
+ * @param {function} on_data
+ * @param {string} token
+ * @param {string} version
+ */
 export const stocksUS5SecondSSE = (symbols, on_data, token, version) =>
   _runSSE("stocksUS5Second", symbols, on_data, token, version);
 
 Client.prototype.stocksUS5SecondSSE = function (symbols, on_data) {
   return stocksUS5SecondSSE(symbols, on_data, this._token, this._version);
 };
+
+/**
+ * https://iexcloud.io/docs/api/#sse-streaming
+ * @param {string} symbols
+ * @param {function} on_data
+ * @param {string} token
+ * @param {string} version
+ */
+export const stocksUSNoUTP5SecondSSE = (symbols, on_data, token, version) =>
+  _runSSE("stocksUSNoUTP5Second", symbols, on_data, token, version);
+
+Client.prototype.stocksUSNoUTP5SecondSSE = function (symbols, on_data) {
+  return stocksUSNoUTP5SecondSSE(symbols, on_data, this._token, this._version);
+};
+
 /**
  * https://iexcloud.io/docs/api/#sse-streaming
  * @param {string} symbols
@@ -82,4 +111,18 @@ export const stocksUS1MinuteSSE = (symbols, on_data, token, version) =>
 
 Client.prototype.stocksUS1MinuteSSE = function (symbols, on_data) {
   return stocksUS1MinuteSSE(symbols, on_data, this._token, this._version);
+};
+
+/**
+ * https://iexcloud.io/docs/api/#sse-streaming
+ * @param {string} symbols
+ * @param {function} on_data
+ * @param {string} token
+ * @param {string} version
+ */
+export const stocksUSNoUTP1MinuteSSE = (symbols, on_data, token, version) =>
+  _runSSE("stocksUSNoUTP1Minute", symbols, on_data, token, version);
+
+Client.prototype.stocksUSNoUTP1MinuteSSE = function (symbols, on_data) {
+  return stocksUSNoUTP1MinuteSSE(symbols, on_data, this._token, this._version);
 };
