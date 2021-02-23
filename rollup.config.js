@@ -6,7 +6,6 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-
 import babel from "@rollup/plugin-babel";
 import filesize from "rollup-plugin-filesize";
 import json from "@rollup/plugin-json";
@@ -14,45 +13,70 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 import { terser } from "rollup-plugin-terser";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import builtins from "rollup-plugin-node-builtins";
+import globals from "rollup-plugin-node-globals";
+import nodePolyfills from "rollup-plugin-node-polyfills";
+import inject from "@rollup/plugin-inject";
+import injectProcessEnv from "rollup-plugin-inject-process-env";
 
-const plugins = [
-  commonjs(),
-  nodeResolve(),
-  babel({
-    exclude: "node_modules/**",
-    babelHelpers: "bundled",
-  }),
-  filesize(),
-  json(),
-  terser(),
-  sourcemaps(),
+import pkg from "./package.json";
+
+export default () => [
+  {
+    input: "src/js/index.js",
+    output: {
+      sourcemap: true,
+      file: pkg.module,
+      name: "iexjs",
+      format: "esm",
+    },
+    plugins: [
+      nodeResolve({ browser: true }),
+      commonjs(),
+      babel({
+        exclude: "node_modules/**",
+        babelHelpers: "bundled",
+      }),
+      nodePolyfills(),
+      builtins(),
+      globals(),
+      filesize(),
+      json(),
+      injectProcessEnv({
+        IEX_TOKEN: "",
+      }),
+      terser(),
+      sourcemaps(),
+    ],
+    watch: {
+      clearScreen: false,
+    },
+  },
+  {
+    input: "src/js/index.js",
+    output: {
+      sourcemap: true,
+      format: "cjs",
+      file: "dist/cjs/iexjs.js",
+    },
+    plugins: [
+      inject({
+        EventSource: "eventsource", // inject for node
+        fetch: "cross-fetch", // inject for node
+      }),
+      nodeResolve({ browser: false, preferBuiltins: true }),
+      commonjs(),
+      babel({
+        exclude: "node_modules/**",
+        babelHelpers: "bundled",
+      }),
+      json(),
+      builtins(),
+      globals(),
+      sourcemaps(),
+    ],
+    watch: {
+      clearScreen: false,
+    },
+  },
 ];
-
-export default (args) => {
-  const watch = !!args.watch;
-  return [
-    {
-      input: "src/js/index.js",
-      output: {
-        sourcemap: true,
-        file: "dist/umd/iexjs.js",
-      },
-      plugins,
-      watch: {
-        clearScreen: false,
-      },
-    },
-    {
-      input: "src/js/index.js",
-      output: {
-        sourcemap: true,
-        format: "cjs",
-        file: "dist/cjs/iexjs.js",
-      },
-      plugins,
-      watch: {
-        clearScreen: false,
-      },
-    },
-  ];
-};

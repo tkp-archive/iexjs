@@ -7,9 +7,6 @@
  *
  */
 
-// for babel
-import "regenerator-runtime/runtime";
-
 import pkg_json from "../../package.json";
 
 export const VERSION = pkg_json.version;

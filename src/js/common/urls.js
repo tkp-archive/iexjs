@@ -9,8 +9,8 @@
 
 /* eslint-disable import/no-mutable-exports */
 
-import fetch from "cross-fetch";
-import EventSource from "eventsource";
+// import fetch from "cross-fetch";
+// import EventSource from "eventsource";
 
 import { IEXJSException } from "./exception";
 
