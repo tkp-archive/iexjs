@@ -9,6 +9,7 @@
 export * from "./batch";
 export * from "./corporateActions";
 export * from "./fundamentals";
+export * from "./iex";
 export * from "./marketInfo";
 export * from "./news";
 export * from "./prices";

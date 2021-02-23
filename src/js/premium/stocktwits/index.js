@@ -20,7 +20,8 @@ import { IEXJSException, _get, _raiseIfNotStr, _strOrDate } from "../../common";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const socialSentiment = async (
   symbol,
   type,

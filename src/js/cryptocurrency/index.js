@@ -19,7 +19,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const cryptoBook = (symbol, token, version, filter, format) =>
   _get({
     url: `crypto/${symbol}/book`,
@@ -42,7 +43,8 @@ Client.prototype.cryptoBook = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const cryptoPrice = (symbol, token, version, filter, format) =>
   _get({
     url: `crypto/${symbol}/price`,
@@ -65,7 +67,8 @@ Client.prototype.cryptoPrice = function (symbol, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const cryptoQuote = (symbol, token, version, filter, format) =>
   _get({
     url: `crypto/${symbol}/quote`,

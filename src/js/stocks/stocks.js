@@ -20,7 +20,8 @@ import { Client } from "../client";
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const threshold = (date, token, version, filter, format) => {
   if (date) {
     return _get({
@@ -54,7 +55,8 @@ Client.prototype.threshold = function (date, filter, format) {
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format */
+ * @param {string} format output format
+ */
 export const shortInterest = (symbol, date, token, version, filter, format) => {
   _raiseIfNotStr(symbol);
   if (date) {
