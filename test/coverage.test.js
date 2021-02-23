@@ -79,8 +79,11 @@ const {
   stocksUSNoUTPSSE,
   stocksUSSSE,
   stocksUS1SecondSSE,
+  stocksUSNoUTP1SecondSSE,
   stocksUS5SecondSSE,
+  stocksUSNoUTP5SecondSSE,
   stocksUS1MinuteSSE,
+  stocksUSNoUTP1MinuteSSE,
   // options
   optionExpirations,
   options,
@@ -542,14 +545,17 @@ describe("MarketData", () => {
 
   test("stocksUS1SecondSSE", () => {
     expect(stocksUS1SecondSSE).toBeDefined();
+    expect(stocksUSNoUTP1SecondSSE).toBeDefined();
   });
 
   test("stocksUS5SecondSSE", () => {
     expect(stocksUS5SecondSSE).toBeDefined();
+    expect(stocksUSNoUTP5SecondSSE).toBeDefined();
   });
 
   test("stocksUS1MinuteSSE", () => {
     expect(stocksUS1MinuteSSE).toBeDefined();
+    expect(stocksUSNoUTP1MinuteSSE).toBeDefined();
   });
 });
 
@@ -1213,7 +1219,7 @@ describe("Stock", () => {
   test("tenK", () => {
     expect(tenK).toBeDefined();
   });
-  
+
   test("tops", () => {
     expect(iexTops).toBeDefined();
   });
@@ -1269,5 +1275,4 @@ describe("Stock", () => {
   test("hist", () => {
     expect(iexHist).toBeDefined();
   });
-
 });

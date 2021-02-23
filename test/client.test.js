@@ -9,8 +9,8 @@
  */
 /* eslint-disable no-undef */
 
-const { Client } = require("../src/js");
 const fetch = require("cross-fetch");
+const { Client } = require("../src/js");
 
 const SYMBOL = "BAC";
 
@@ -612,7 +612,6 @@ describe("Client- RefData", () => {
     expect(Array.isArray(res)).toBe(true);
   });
 });
-
 
 describe("Stats", () => {
   test("systemStats", async () => {
