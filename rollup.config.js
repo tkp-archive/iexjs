@@ -6,7 +6,7 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-
+import * as path from "path";
 import babel from "@rollup/plugin-babel";
 import filesize from "rollup-plugin-filesize";
 import json from "@rollup/plugin-json";
@@ -17,7 +17,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import builtins from "rollup-plugin-node-builtins";
 import globals from "rollup-plugin-node-globals";
 import nodePolyfills from "rollup-plugin-node-polyfills";
-import replace from "@rollup/plugin-replace";
+import inject from "@rollup/plugin-inject";
 
 import pkg from "./package.json";
 
@@ -28,13 +28,9 @@ export default () => [
       sourcemap: true,
       file: pkg.module,
       name: "iexjs",
-      format: "umd",
+      format: "esm",
     },
-    external: ["eventsource"], // don't polyfill, bad in browser
     plugins: [
-      replace({
-        'import EventSource from "eventsource";': "", // backup just in case
-      }),
       nodeResolve({ browser: true }),
       commonjs(),
       babel({
@@ -61,6 +57,10 @@ export default () => [
       file: "dist/cjs/iexjs.js",
     },
     plugins: [
+      inject({
+        EventSource: "eventsource", // inject for node
+        fetch: "cross-fetch", // inject for node
+      }),
       nodeResolve({ browser: false, preferBuiltins: true }),
       commonjs(),
       babel({

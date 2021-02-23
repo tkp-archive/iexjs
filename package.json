@@ -10,11 +10,11 @@
     "node": ">=10.18.1"
   },
   "license": "Apache-2.0",
-  "main": "dist/umd/iexjs.js",
-  "module": "dist/umd/iexjs.js",
-  "browser": "dist/umd/iexjs.js",
-  "unpkg": "dist/umd/iexjs.js",
-  "jsdelivr": "dist/umd/iexjs.js",
+  "main": "dist/esm/iexjs.js",
+  "module": "dist/esm/iexjs.js",
+  "browser": "dist/esm/iexjs.js",
+  "unpkg": "dist/esm/iexjs.js",
+  "jsdelivr": "dist/esm/iexjs.js",
   "types": "index.d.ts",
   "files": [
     "dist/**/*",
@@ -32,6 +32,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@rollup/plugin-inject": "^4.0.2",
     "cross-fetch": "^3.0.6",
     "eventsource": "^1.0.7",
     "regenerator-runtime": "^0.13.7",
