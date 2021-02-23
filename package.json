@@ -10,11 +10,11 @@
     "node": ">=10.18.1"
   },
   "license": "Apache-2.0",
-  "main": "dist/iexjs.umd.js",
-  "module": "dist/iexjs.umd.js",
-  "browser": "dist/iexjs.umd.js",
-  "unpkg": "dist/iexjs.umd.js",
-  "jsdelivr": "dist/iexjs.umd.js",
+  "main": "dist/esm/iexjs.js",
+  "module": "dist/esm/iexjs.js",
+  "browser": "dist/esm/iexjs.js",
+  "unpkg": "dist/esm/iexjs.js",
+  "jsdelivr": "dist/esm/iexjs.js",
   "types": "index.d.ts",
   "files": [
     "dist/**/*",

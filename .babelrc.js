@@ -7,19 +7,28 @@
  *
  */
 
- const plugins = [
-  "@babel/plugin-proposal-class-properties", 
-  "@babel/plugin-proposal-object-rest-spread",
-];
-
-if (process.env.NODE_ENV === "test") {
-  plugins.push("@babel/plugin-transform-runtime");
-}
-
-
 module.exports = {
     presets: [
-      "@babel/env", 
-    ],    
-    plugins,
-  };
+        [
+            "@babel/preset-env",
+            {
+                targets: {
+                    chrome: "70",
+                    node: "12",
+                    ios: "13"
+                },
+                modules: process.env.BABEL_MODULE || false,
+                useBuiltIns: "usage",
+                corejs: 3
+            }
+        ]
+    ],
+    sourceType: "unambiguous",
+    plugins: [
+        "lodash",
+        ["@babel/plugin-proposal-decorators", {legacy: true}],
+        "transform-custom-element-classes",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-optional-chaining"
+    ]
+};
