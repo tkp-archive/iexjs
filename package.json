@@ -26,7 +26,7 @@
     "build": "npm-run-all -p build:*",
     "fix": "yarn lint --fix",
     "lint": "eslint src",
-    "test": "IEX_TOKEN=Tpk_ecc89ddf30a611e9958142010a80043c jest --config .jestrc.js"
+    "test": "NODE_ENV=test IEX_TOKEN=Tpk_ecc89ddf30a611e9958142010a80043c jest --config .jestrc.js"
   },
   "publishConfig": {
     "access": "public"
