@@ -17,6 +17,8 @@ import commonjs from "@rollup/plugin-commonjs";
 import builtins from "rollup-plugin-node-builtins";
 import globals from "rollup-plugin-node-globals";
 import nodePolyfills from "rollup-plugin-node-polyfills";
+import replace from "@rollup/plugin-replace";
+
 import pkg from "./package.json";
 
 export default () => [
@@ -28,10 +30,11 @@ export default () => [
       name: "iexjs",
       format: "umd",
     },
-    external: [
-      "eventsource"
-    ],
+    external: ["eventsource"], // don't polyfill, bad in browser
     plugins: [
+      replace({
+        'import EventSource from "eventsource";': "", // backup just in case
+      }),
       nodeResolve({ browser: true }),
       commonjs(),
       babel({
