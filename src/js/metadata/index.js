@@ -17,7 +17,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const timeseriesMetadata = (
+export const queryMetadata = (
   id,
   key,
   subkey,
@@ -46,14 +46,8 @@ export const timeseriesMetadata = (
   });
 };
 
-Client.prototype.timeseriesMetadata = function (
-  id,
-  key,
-  subkey,
-  filter,
-  format,
-) {
-  return timeseriesMetadata(
+Client.prototype.queryMetadata = function (id, key, subkey, filter, format) {
+  return queryMetadata(
     id,
     key,
     subkey,
