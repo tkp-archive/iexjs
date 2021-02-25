@@ -118,3 +118,22 @@ export const usage = (type, token, version, format) => {
 Client.prototype.usage = function (type, format) {
   return usage(type, this._token, this._version, format);
 };
+
+/**
+ * Used to retrieve current system status.
+ * https://iexcloud.io/docs/api/#status
+ * @param {string} type type to request
+ * @param {string} token Access token
+ * @param {string} version API version
+ */
+export const status = (token, version, format) =>
+  _get({
+    url: `status`,
+    token,
+    version,
+    format,
+  });
+
+Client.prototype.status = function (format) {
+  return status(this._token, this._version, format);
+};

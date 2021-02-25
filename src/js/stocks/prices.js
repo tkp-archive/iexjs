@@ -342,7 +342,7 @@ export const chart = (symbol, options, token, version, filter, format) => {
     base_url = `stock/${_quoteSymbols(symbol)}/chart/date/${thedate}?`;
     if (Object.keys(params).length > 0) {
       base_url += Object.entries(params)
-        .map((key, value) => `${key}=${value}`)
+        .map(([key, value]) => `${key}=${value}`)
         .join("&");
     }
     return _get({
@@ -356,7 +356,7 @@ export const chart = (symbol, options, token, version, filter, format) => {
 
   if (Object.keys(params).length > 0) {
     base_url += Object.entries(params)
-      .map((key, value) => `${key}=${value}`)
+      .map(([key, value]) => `${key}=${value}`)
       .join("&");
   }
   return _get({
@@ -431,7 +431,7 @@ export const intraday = (symbol, options, token, version, filter, format) => {
 
   if (Object.keys(params).length > 0) {
     base_url += Object.entries(params)
-      .map((key, value) => `${key}=${value}`)
+      .map(([key, value]) => `${key}=${value}`)
       .join("&");
   }
   return _get({
