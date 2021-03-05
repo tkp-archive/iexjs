@@ -122,7 +122,7 @@ export const timeSeries = (options, token, version, filter, format) => {
 
   if (range) base_url += `range=${_dateRange(range)}&`;
 
-  // TODO https://github.com/timkpaine/pyEX/issues/164
+  // TODO https://github.com/iexcloud/pyEX/issues/164
   // base_url += "calendar={}&".format(str(calendar))
 
   if (!last) base_url += `limit=${limit}&`;
