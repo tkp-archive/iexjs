@@ -131,6 +131,10 @@ const {
   socialSentiment,
   // valuengine
   valuEngineStockResearchReport,
+  valuEngineStockResearchReportDownload,
+  // new constructs
+  newConstructsReport,
+  newConstructsReportDownload,
   // wall street horizon
   analystDays,
   boardOfDirectorsMeeting,
@@ -195,6 +199,9 @@ const {
   cryptoSymbolsList,
   isinLookup,
   // rules
+  // files
+  files,
+  download,
   // stats
   systemStats,
   recent,
@@ -289,6 +296,16 @@ const {
 describe("Client", () => {
   test("Client", () => {
     expect(Client).toBeDefined();
+  });
+});
+
+describe("Files", () => {
+  test("files", () => {
+    expect(files).toBeDefined();
+  });
+
+  test("download", () => {
+    expect(download).toBeDefined();
   });
 });
 
@@ -706,6 +723,18 @@ describe("Premium", () => {
 
   test("valuEngineStockResearchReport", () => {
     expect(valuEngineStockResearchReport).toBeDefined();
+  });
+
+  test("valuEngineStockResearchReportDownload", () => {
+    expect(valuEngineStockResearchReportDownload).toBeDefined();
+  });
+
+  test("newConstructsReport", () => {
+    expect(newConstructsReport).toBeDefined();
+  });
+
+  test("newConstructsReportDownload", () => {
+    expect(newConstructsReportDownload).toBeDefined();
   });
 
   test("analystDays", () => {
