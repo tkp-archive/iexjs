@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>iexjs test</title>
+    </head>
+
+    <script src="iexjs.js" type="module">
+    </script>
+    <script type="module">
+        import {Client} from "./iexjs.js";
+        const client = new Client({api_token: "Tpk_ecc89ddf30a611e9958142010a80043c ", version:"sandbox"});
+        client.newConstructsReportDownload("AAPL", "20210318");
+    </script>
+
+    <body></body>
+</html>
