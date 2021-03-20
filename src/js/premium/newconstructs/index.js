@@ -35,12 +35,7 @@ export const newConstructsReport = (symbol, date, token, version) => {
  * @param {string} filter
  * @param  {object} rest
  */
-export const newConstructsReportDownload = (
-  symbol,
-  date,
-  token,
-  version,
-) => {
+export const newConstructsReportDownload = (symbol, date, token, version) => {
   if (!symbol || !date) {
     throw new IEXJSException("symbol and date required");
   }
@@ -48,22 +43,9 @@ export const newConstructsReportDownload = (
 };
 
 Client.prototype.newConstructsReport = function (symbol, date) {
-  return newConstructsReport(
-    symbol,
-    date,
-    this._token,
-    this._version,
-  );
+  return newConstructsReport(symbol, date, this._token, this._version);
 };
 
-Client.prototype.newConstructsReportDownload = function (
-  symbol,
-  date,
-) {
-  return newConstructsReportDownload(
-    symbol,
-    date,
-    this._token,
-    this._version,
-  );
+Client.prototype.newConstructsReportDownload = function (symbol, date) {
+  return newConstructsReportDownload(symbol, date, this._token, this._version);
 };

@@ -23,17 +23,15 @@ import { Client } from "../client";
 export const files = (id, symbol, date, token, version) => {
   if (id) {
     if (symbol && date) {
-      return _get(
-        {
-          url: `files/download/${id}?symbol=${symbol}&date=${_strOrDate(date)}`,
-          token,
-          version,
-        },
-      );
+      return _get({
+        url: `files/download/${id}?symbol=${symbol}&date=${_strOrDate(date)}`,
+        token,
+        version,
+      });
     }
-    return _get({ url: `files/info/${id}`, token, version});
+    return _get({ url: `files/info/${id}`, token, version });
   }
-  return _get({ url: "files", token, version});
+  return _get({ url: "files", token, version });
 };
 
 /**
