@@ -11,6 +11,7 @@ export * from "./brain";
 export * from "./extractalpha";
 export * from "./fraudfactors";
 export * from "./kavout";
+export * from "./newconstructs";
 export * from "./precisionalpha";
 export * from "./stocktwits";
 export * from "./valuengine";
