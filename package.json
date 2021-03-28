@@ -1,10 +1,10 @@
 {
   "name": "iexjs",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "JS interface to IEX and IEX Cloud APIs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/timkpaine/iexjs"
+    "url": "https://github.com/iexcloud/iexjs"
   },
   "engines": {
     "node": ">=10.18.1"
