@@ -368,6 +368,14 @@ describe("Client - IEX", () => {
   // });
 });
 
+describe("Client - metadata", () => {
+  test("metadata", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.queryMetadata();
+    expect(Array.isArray(res)).toBe(true);
+  });
+});
+
 describe("Client - Options", () => {
   test("optionsExpirations", async () => {
     const client = new Client({ version: "sandbox" });

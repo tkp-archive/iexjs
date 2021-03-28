@@ -84,6 +84,8 @@ const {
   stocksUSNoUTP5SecondSSE,
   stocksUS1MinuteSSE,
   stocksUSNoUTP1MinuteSSE,
+  // metadata
+  queryMetadata,
   // options
   optionExpirations,
   options,
@@ -573,6 +575,12 @@ describe("MarketData", () => {
   test("stocksUS1MinuteSSE", () => {
     expect(stocksUS1MinuteSSE).toBeDefined();
     expect(stocksUSNoUTP1MinuteSSE).toBeDefined();
+  });
+});
+
+describe("Metadata", () => {
+  test("metadata", () => {
+    expect(queryMetadata).toBeDefined();
   });
 });
 

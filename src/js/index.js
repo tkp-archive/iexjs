@@ -19,6 +19,7 @@ export * from "./cryptocurrency";
 export * from "./economic";
 export * from "./files";
 export * from "./fx";
+export * from "./metadata";
 export * from "./options";
 export * from "./points";
 export * from "./premium";
