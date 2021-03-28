@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/iexcloud/iexjs/main/docs/img/icon.png" width="300">
 
-Javascript interface to [IEX Cloud](https://iexcloud.io/docs/api/)
+JavaScript interface to [IEX Cloud](https://iexcloud.io/docs/api/)
 
 [![Build Status](https://github.com/iexcloud/iexjs/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/iexcloud/iexjs/actions?query=workflow%3A%22Build+Status%22)
 [![License](https://img.shields.io/github/license/iexcloud/iexjs.svg)](https://github.com/iexcloud/iexjs/)
