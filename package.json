@@ -1,6 +1,6 @@
 {
   "name": "iexjs",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "JS interface to IEX and IEX Cloud APIs",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
     "node": ">=10.18.1"
   },
   "license": "Apache-2.0",
-  "main": "dist/esm/iexjs.js",
+  "main": "dist/cjs/iexjs.js",
   "module": "dist/esm/iexjs.js",
   "browser": "dist/esm/iexjs.js",
   "unpkg": "dist/esm/iexjs.js",
