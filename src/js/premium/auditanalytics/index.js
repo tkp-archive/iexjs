@@ -38,7 +38,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const directorAndOfficerChanges = (
+export const directorAndOfficerChangesAuditAnalytics = (
   symbol,
   token,
   version,
@@ -56,13 +56,13 @@ export const directorAndOfficerChanges = (
     ...timeseriesArgs,
   );
 
-Client.prototype.directorAndOfficerChanges = function (
+Client.premium.prototype.directorAndOfficerChanges = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return directorAndOfficerChanges(
+  return directorAndOfficerChangesAuditAnalytics(
     symbol,
     this._token,
     this._version,
@@ -81,7 +81,7 @@ Client.prototype.directorAndOfficerChanges = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const accountingQualityAndRiskMatrix = (
+export const accountingQualityAndRiskMatrixAuditAnalytics = (
   symbol,
   token,
   version,
@@ -99,13 +99,13 @@ export const accountingQualityAndRiskMatrix = (
     ...timeseriesArgs,
   );
 
-Client.prototype.accountingQualityAndRiskMatrix = function (
+Client.premium.prototype.accountingQualityAndRiskMatrix = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return accountingQualityAndRiskMatrix(
+  return accountingQualityAndRiskMatrixAuditAnalytics(
     symbol,
     this._token,
     this._version,

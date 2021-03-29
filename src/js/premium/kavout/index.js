@@ -39,7 +39,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const kScore = (
+export const kScoreKavout = (
   symbol,
   token,
   version,
@@ -57,8 +57,13 @@ export const kScore = (
     ...timeseriesArgs,
   );
 
-Client.prototype.kScore = function (symbol, filter, format, ...timeseriesArgs) {
-  return kScore(
+Client.premium.prototype.kScore = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
+  return kScoreKavout(
     symbol,
     this._token,
     this._version,
@@ -85,7 +90,7 @@ Client.prototype.kScore = function (symbol, filter, format, ...timeseriesArgs) {
  * @param {string} filter
  * @param  {object} rest
  */
-export const kScoreChina = (
+export const kScoreChinaKavout = (
   symbol,
   token,
   version,
@@ -103,13 +108,13 @@ export const kScoreChina = (
     ...timeseriesArgs,
   );
 
-Client.prototype.kScoreChina = function (
+Client.premium.prototype.kScoreChina = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return kScoreChina(
+  return kScoreChinaKavout(
     symbol,
     this._token,
     this._version,
