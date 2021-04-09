@@ -7,11 +7,13 @@
  *
  */
 /* eslint-disable max-classes-per-file */
+/* eslint-disable new-cap */
 
 import { IEXJSException } from "./common";
 
 export class Client {
   static premium = class Premium {};
+
   static premiumfiles = class PremiumFiles {};
 
   constructor(options = {}) {
