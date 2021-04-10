@@ -19,7 +19,7 @@ import { IEXJSException } from "../../common";
  * @param {string} filter
  * @param  {object} rest
  */
-export const valuEngineStockResearchReport = (symbol, date, token, version) => {
+export const stockReportValuEngine = (symbol, date, token, version) => {
   if (!symbol || !date) {
     throw new IEXJSException("symbol and date required");
   }
@@ -35,32 +35,19 @@ export const valuEngineStockResearchReport = (symbol, date, token, version) => {
  * @param {string} filter
  * @param  {object} rest
  */
-export const valuEngineStockResearchReportDownload = (
-  symbol,
-  date,
-  token,
-  version,
-) => {
+export const downloadStockReportvaluEngine = (symbol, date, token, version) => {
   if (!symbol || !date) {
     throw new IEXJSException("symbol and date required");
   }
   return download("VALUENGINE_REPORT", symbol, date, token, version);
 };
 
-Client.prototype.valuEngineStockResearchReport = function (symbol, date) {
-  return valuEngineStockResearchReport(
-    symbol,
-    date,
-    this._token,
-    this._version,
-  );
+Client.premiumfiles.prototype.valuEngine = function (symbol, date) {
+  return stockReportValuEngine(symbol, date, this._token, this._version);
 };
 
-Client.prototype.valuEngineStockResearchReportDownload = function (
-  symbol,
-  date,
-) {
-  return valuEngineStockResearchReportDownload(
+Client.premiumfiles.prototype.downloadValuEngine = function (symbol, date) {
+  return downloadStockReportvaluEngine(
     symbol,
     date,
     this._token,

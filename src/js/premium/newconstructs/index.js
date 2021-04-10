@@ -19,7 +19,7 @@ import { IEXJSException } from "../../common";
  * @param {string} filter
  * @param  {object} rest
  */
-export const newConstructsReport = (symbol, date, token, version) => {
+export const reportNewConstructs = (symbol, date, token, version) => {
   if (!symbol || !date) {
     throw new IEXJSException("symbol and date required");
   }
@@ -35,17 +35,17 @@ export const newConstructsReport = (symbol, date, token, version) => {
  * @param {string} filter
  * @param  {object} rest
  */
-export const newConstructsReportDownload = (symbol, date, token, version) => {
+export const downloadReportNewConstructs = (symbol, date, token, version) => {
   if (!symbol || !date) {
     throw new IEXJSException("symbol and date required");
   }
   return download("VALUENGINE_REPORT", symbol, date, token, version);
 };
 
-Client.prototype.newConstructsReport = function (symbol, date) {
-  return newConstructsReport(symbol, date, this._token, this._version);
+Client.premiumfiles.prototype.newConstructs = function (symbol, date) {
+  return reportNewConstructs(symbol, date, this._token, this._version);
 };
 
-Client.prototype.newConstructsReportDownload = function (symbol, date) {
-  return newConstructsReportDownload(symbol, date, this._token, this._version);
+Client.premiumfiles.prototype.downloadNewConstructs = function (symbol, date) {
+  return downloadReportNewConstructs(symbol, date, this._token, this._version);
 };

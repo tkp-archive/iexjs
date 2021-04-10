@@ -22,7 +22,7 @@ import { IEXJSException, _get, _raiseIfNotStr, _strOrDate } from "../../common";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const socialSentiment = async (
+export const socialSentimentStockTwits = async (
   symbol,
   type,
   date,
@@ -52,14 +52,14 @@ export const socialSentiment = async (
   });
 };
 
-Client.prototype.socialSentiment = function (
+Client.premium.prototype.socialSentiment = function (
   symbol,
   type,
   date,
   filter,
   format,
 ) {
-  return socialSentiment(
+  return socialSentimentStockTwits(
     symbol,
     type,
     date,

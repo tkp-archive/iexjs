@@ -38,7 +38,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain30DaySentiment = (
+export const thirtyDaySentimentBrain = (
   symbol,
   token,
   version,
@@ -56,13 +56,13 @@ export const brain30DaySentiment = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain30DaySentiment = function (
+Client.premium.prototype.thirtyDaySentiment = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain30DaySentiment(
+  return thirtyDaySentimentBrain(
     symbol,
     this._token,
     this._version,
@@ -81,7 +81,7 @@ Client.prototype.brain30DaySentiment = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain7DaySentiment = (
+export const sevenDaySentimentBrain = (
   symbol,
   token,
   version,
@@ -99,13 +99,13 @@ export const brain7DaySentiment = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain7DaySentiment = function (
+Client.premium.prototype.sevenDaySentiment = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain7DaySentiment(
+  return sevenDaySentimentBrain(
     symbol,
     this._token,
     this._version,
@@ -124,7 +124,7 @@ Client.prototype.brain7DaySentiment = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain21DayMLReturnRanking = (
+export const twentyOneDayMLReturnRankingBrain = (
   symbol,
   token,
   version,
@@ -142,13 +142,13 @@ export const brain21DayMLReturnRanking = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain21DayMLReturnRanking = function (
+Client.premium.prototype.twentyOneDayMLReturnRanking = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain21DayMLReturnRanking(
+  return twentyOneDayMLReturnRankingBrain(
     symbol,
     this._token,
     this._version,
@@ -167,7 +167,7 @@ Client.prototype.brain21DayMLReturnRanking = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain10DayMLReturnRanking = (
+export const tenDayMLReturnRankingBrain = (
   symbol,
   token,
   version,
@@ -185,13 +185,13 @@ export const brain10DayMLReturnRanking = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain10DayMLReturnRanking = function (
+Client.premium.prototype.tenDayMLReturnRanking = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain10DayMLReturnRanking(
+  return tenDayMLReturnRankingBrain(
     symbol,
     this._token,
     this._version,
@@ -210,7 +210,7 @@ Client.prototype.brain10DayMLReturnRanking = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain5DayMLReturnRanking = (
+export const fiveDayMLReturnRankingBrain = (
   symbol,
   token,
   version,
@@ -228,13 +228,13 @@ export const brain5DayMLReturnRanking = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain5DayMLReturnRanking = function (
+Client.premium.prototype.fiveDayMLReturnRanking = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain5DayMLReturnRanking(
+  return fiveDayMLReturnRankingBrain(
     symbol,
     this._token,
     this._version,
@@ -253,7 +253,7 @@ Client.prototype.brain5DayMLReturnRanking = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain3DayMLReturnRanking = (
+export const threeDayMLReturnRankingBrain = (
   symbol,
   token,
   version,
@@ -271,13 +271,13 @@ export const brain3DayMLReturnRanking = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain3DayMLReturnRanking = function (
+Client.premium.prototype.threeDayMLReturnRanking = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain3DayMLReturnRanking(
+  return threeDayMLReturnRankingBrain(
     symbol,
     this._token,
     this._version,
@@ -296,7 +296,7 @@ Client.prototype.brain3DayMLReturnRanking = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brain2DayMLReturnRanking = (
+export const twoDayMLReturnRankingBrain = (
   symbol,
   token,
   version,
@@ -314,13 +314,13 @@ export const brain2DayMLReturnRanking = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brain2DayMLReturnRanking = function (
+Client.premium.prototype.twoDayMLReturnRanking = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brain2DayMLReturnRanking(
+  return twoDayMLReturnRankingBrain(
     symbol,
     this._token,
     this._version,
@@ -339,7 +339,7 @@ Client.prototype.brain2DayMLReturnRanking = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brainLanguageMetricsOnCompanyFilingsAll = (
+export const languageMetricsOnCompanyFilingsAllBrain = (
   symbol,
   token,
   version,
@@ -357,13 +357,13 @@ export const brainLanguageMetricsOnCompanyFilingsAll = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brainLanguageMetricsOnCompanyFilingsAll = function (
+Client.premium.prototype.languageMetricsOnCompanyFilingsAll = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brainLanguageMetricsOnCompanyFilingsAll(
+  return languageMetricsOnCompanyFilingsAllBrain(
     symbol,
     this._token,
     this._version,
@@ -382,7 +382,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsAll = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brainLanguageMetricsOnCompanyFilings = (
+export const languageMetricsOnCompanyFilingsBrain = (
   symbol,
   token,
   version,
@@ -400,13 +400,13 @@ export const brainLanguageMetricsOnCompanyFilings = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brainLanguageMetricsOnCompanyFilings = function (
+Client.premium.prototype.languageMetricsOnCompanyFilings = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brainLanguageMetricsOnCompanyFilings(
+  return languageMetricsOnCompanyFilingsBrain(
     symbol,
     this._token,
     this._version,
@@ -425,7 +425,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilings = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brainLanguageMetricsOnCompanyFilingsDifferenceAll = (
+export const languageMetricsOnCompanyFilingsDifferenceAllBrain = (
   symbol,
   token,
   version,
@@ -443,13 +443,13 @@ export const brainLanguageMetricsOnCompanyFilingsDifferenceAll = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brainLanguageMetricsOnCompanyFilingsDifferenceAll = function (
+Client.premium.prototype.languageMetricsOnCompanyFilingsDifferenceAll = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brainLanguageMetricsOnCompanyFilingsDifferenceAll(
+  return languageMetricsOnCompanyFilingsDifferenceAllBrain(
     symbol,
     this._token,
     this._version,
@@ -468,7 +468,7 @@ Client.prototype.brainLanguageMetricsOnCompanyFilingsDifferenceAll = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const brainLanguageMetricsOnCompanyFilingsDifference = (
+export const languageMetricsOnCompanyFilingsDifferenceBrain = (
   symbol,
   token,
   version,
@@ -486,13 +486,13 @@ export const brainLanguageMetricsOnCompanyFilingsDifference = (
     ...timeseriesArgs,
   );
 
-Client.prototype.brainLanguageMetricsOnCompanyFilingsDifference = function (
+Client.premium.prototype.languageMetricsOnCompanyFilingsDifference = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return brainLanguageMetricsOnCompanyFilingsDifference(
+  return languageMetricsOnCompanyFilingsDifferenceBrain(
     symbol,
     this._token,
     this._version,

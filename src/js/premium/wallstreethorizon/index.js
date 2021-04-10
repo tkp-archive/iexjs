@@ -38,7 +38,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const analystDays = (
+export const analystDaysWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -56,13 +56,13 @@ export const analystDays = (
     ...timeseriesArgs,
   );
 
-Client.prototype.analystDays = function (
+Client.premium.prototype.analystDays = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return analystDays(
+  return analystDaysWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -81,7 +81,7 @@ Client.prototype.analystDays = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const boardOfDirectorsMeeting = (
+export const boardOfDirectorsMeetingWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -99,13 +99,13 @@ export const boardOfDirectorsMeeting = (
     ...timeseriesArgs,
   );
 
-Client.prototype.boardOfDirectorsMeeting = function (
+Client.premium.prototype.boardOfDirectorsMeeting = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return boardOfDirectorsMeeting(
+  return boardOfDirectorsMeetingWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -124,7 +124,7 @@ Client.prototype.boardOfDirectorsMeeting = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const businessUpdates = (
+export const businessUpdatesWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -142,13 +142,13 @@ export const businessUpdates = (
     ...timeseriesArgs,
   );
 
-Client.prototype.businessUpdates = function (
+Client.premium.prototype.businessUpdates = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return businessUpdates(
+  return businessUpdatesWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -167,7 +167,7 @@ Client.prototype.businessUpdates = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const buybacks = (
+export const buybacksWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -185,13 +185,13 @@ export const buybacks = (
     ...timeseriesArgs,
   );
 
-Client.prototype.buybacks = function (
+Client.premium.prototype.buybacks = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return buybacks(
+  return buybacksWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -210,7 +210,7 @@ Client.prototype.buybacks = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const capitalMarketsDay = (
+export const capitalMarketsDayWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -228,13 +228,13 @@ export const capitalMarketsDay = (
     ...timeseriesArgs,
   );
 
-Client.prototype.capitalMarketsDay = function (
+Client.premium.prototype.capitalMarketsDay = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return capitalMarketsDay(
+  return capitalMarketsDayWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -253,7 +253,7 @@ Client.prototype.capitalMarketsDay = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const companyTravel = (
+export const companyTravelWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -271,13 +271,13 @@ export const companyTravel = (
     ...timeseriesArgs,
   );
 
-Client.prototype.companyTravel = function (
+Client.premium.prototype.companyTravel = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return companyTravel(
+  return companyTravelWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -296,7 +296,7 @@ Client.prototype.companyTravel = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const filingDueDates = (
+export const filingDueDatesWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -314,13 +314,13 @@ export const filingDueDates = (
     ...timeseriesArgs,
   );
 
-Client.prototype.filingDueDates = function (
+Client.premium.prototype.filingDueDates = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return filingDueDates(
+  return filingDueDatesWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -339,7 +339,7 @@ Client.prototype.filingDueDates = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const fiscalQuarterEnd = (
+export const fiscalQuarterEndWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -357,13 +357,13 @@ export const fiscalQuarterEnd = (
     ...timeseriesArgs,
   );
 
-Client.prototype.fiscalQuarterEnd = function (
+Client.premium.prototype.fiscalQuarterEnd = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return fiscalQuarterEnd(
+  return fiscalQuarterEndWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -382,7 +382,7 @@ Client.prototype.fiscalQuarterEnd = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const forum = (
+export const forumWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -400,8 +400,13 @@ export const forum = (
     ...timeseriesArgs,
   );
 
-Client.prototype.forum = function (symbol, filter, format, ...timeseriesArgs) {
-  return forum(
+Client.premium.prototype.forum = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
+  return forumWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -420,7 +425,7 @@ Client.prototype.forum = function (symbol, filter, format, ...timeseriesArgs) {
  * @param {string} filter
  * @param  {object} rest
  */
-export const generalConference = (
+export const generalConferenceWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -438,13 +443,13 @@ export const generalConference = (
     ...timeseriesArgs,
   );
 
-Client.prototype.generalConference = function (
+Client.premium.prototype.generalConference = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return generalConference(
+  return generalConferenceWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -463,7 +468,7 @@ Client.prototype.generalConference = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const fdaAdvisoryCommitteeMeetings = (
+export const fdaAdvisoryCommitteeMeetingsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -481,13 +486,13 @@ export const fdaAdvisoryCommitteeMeetings = (
     ...timeseriesArgs,
   );
 
-Client.prototype.fdaAdvisoryCommitteeMeetings = function (
+Client.premium.prototype.fdaAdvisoryCommitteeMeetings = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return fdaAdvisoryCommitteeMeetings(
+  return fdaAdvisoryCommitteeMeetingsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -506,7 +511,7 @@ Client.prototype.fdaAdvisoryCommitteeMeetings = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const holidaysWSH = (
+export const holidaysWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -524,13 +529,13 @@ export const holidaysWSH = (
     ...timeseriesArgs,
   );
 
-Client.prototype.holidaysWSH = function (
+Client.premium.prototype.holidays = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return holidaysWSH(
+  return holidaysWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -549,7 +554,7 @@ Client.prototype.holidaysWSH = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const indexChanges = (
+export const indexChangesWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -567,13 +572,13 @@ export const indexChanges = (
     ...timeseriesArgs,
   );
 
-Client.prototype.indexChanges = function (
+Client.premium.prototype.indexChanges = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return indexChanges(
+  return indexChangesWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -592,7 +597,7 @@ Client.prototype.indexChanges = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const iposWSH = (
+export const iposWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -610,13 +615,13 @@ export const iposWSH = (
     ...timeseriesArgs,
   );
 
-Client.prototype.iposWSH = function (
+Client.premium.prototype.ipos = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return iposWSH(
+  return iposWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -635,7 +640,7 @@ Client.prototype.iposWSH = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const legalActions = (
+export const legalActionsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -653,13 +658,13 @@ export const legalActions = (
     ...timeseriesArgs,
   );
 
-Client.prototype.legalActions = function (
+Client.premium.prototype.legalActions = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return legalActions(
+  return legalActionsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -678,7 +683,7 @@ Client.prototype.legalActions = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const mergersAndAcquisitions = (
+export const mergersAndAcquisitionsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -696,13 +701,13 @@ export const mergersAndAcquisitions = (
     ...timeseriesArgs,
   );
 
-Client.prototype.mergersAndAcquisitions = function (
+Client.premium.prototype.mergersAndAcquisitions = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return mergersAndAcquisitions(
+  return mergersAndAcquisitionsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -721,7 +726,7 @@ Client.prototype.mergersAndAcquisitions = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const productEvents = (
+export const productEventsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -739,13 +744,13 @@ export const productEvents = (
     ...timeseriesArgs,
   );
 
-Client.prototype.productEvents = function (
+Client.premium.prototype.productEvents = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return productEvents(
+  return productEventsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -764,7 +769,7 @@ Client.prototype.productEvents = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const researchAndDevelopmentDays = (
+export const researchAndDevelopmentDaysWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -782,13 +787,13 @@ export const researchAndDevelopmentDays = (
     ...timeseriesArgs,
   );
 
-Client.prototype.researchAndDevelopmentDays = function (
+Client.premium.prototype.researchAndDevelopmentDays = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return researchAndDevelopmentDays(
+  return researchAndDevelopmentDaysWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -807,7 +812,7 @@ Client.prototype.researchAndDevelopmentDays = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const sameStoreSales = (
+export const sameStoreSalesWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -825,13 +830,13 @@ export const sameStoreSales = (
     ...timeseriesArgs,
   );
 
-Client.prototype.sameStoreSales = function (
+Client.premium.prototype.sameStoreSales = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return sameStoreSales(
+  return sameStoreSalesWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -853,7 +858,7 @@ Client.prototype.sameStoreSales = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const secondaryOfferings = (
+export const secondaryOfferingsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -871,13 +876,13 @@ export const secondaryOfferings = (
     ...timeseriesArgs,
   );
 
-Client.prototype.secondaryOfferings = function (
+Client.premium.prototype.secondaryOfferings = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return secondaryOfferings(
+  return secondaryOfferingsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -896,7 +901,7 @@ Client.prototype.secondaryOfferings = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const seminars = (
+export const seminarsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -914,13 +919,13 @@ export const seminars = (
     ...timeseriesArgs,
   );
 
-Client.prototype.seminars = function (
+Client.premium.prototype.seminars = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return seminars(
+  return seminarsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -939,7 +944,7 @@ Client.prototype.seminars = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const shareholderMeetings = (
+export const shareholderMeetingsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -957,13 +962,13 @@ export const shareholderMeetings = (
     ...timeseriesArgs,
   );
 
-Client.prototype.shareholderMeetings = function (
+Client.premium.prototype.shareholderMeetings = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return shareholderMeetings(
+  return shareholderMeetingsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -982,7 +987,7 @@ Client.prototype.shareholderMeetings = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const summitMeetings = (
+export const summitMeetingsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -1000,13 +1005,13 @@ export const summitMeetings = (
     ...timeseriesArgs,
   );
 
-Client.prototype.summitMeetings = function (
+Client.premium.prototype.summitMeetings = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return summitMeetings(
+  return summitMeetingsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -1025,7 +1030,7 @@ Client.prototype.summitMeetings = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const tradeShows = (
+export const tradeShowsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -1043,13 +1048,13 @@ export const tradeShows = (
     ...timeseriesArgs,
   );
 
-Client.prototype.tradeShows = function (
+Client.premium.prototype.tradeShows = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return tradeShows(
+  return tradeShowsWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -1068,7 +1073,7 @@ Client.prototype.tradeShows = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const witchingHours = (
+export const witchingHoursWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -1086,13 +1091,13 @@ export const witchingHours = (
     ...timeseriesArgs,
   );
 
-Client.prototype.witchingHours = function (
+Client.premium.prototype.witchingHours = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return witchingHours(
+  return witchingHoursWallStreetHorizon(
     symbol,
     this._token,
     this._version,
@@ -1111,7 +1116,7 @@ Client.prototype.witchingHours = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const workshops = (
+export const workshopsWallStreetHorizon = (
   symbol,
   token,
   version,
@@ -1129,13 +1134,13 @@ export const workshops = (
     ...timeseriesArgs,
   );
 
-Client.prototype.workshops = function (
+Client.premium.prototype.workshops = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return workshops(
+  return workshopsWallStreetHorizon(
     symbol,
     this._token,
     this._version,

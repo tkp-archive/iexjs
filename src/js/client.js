@@ -6,10 +6,16 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
+/* eslint-disable max-classes-per-file */
+/* eslint-disable new-cap */
 
 import { IEXJSException } from "./common";
 
 export class Client {
+  static premium = class Premium {};
+
+  static premiumfiles = class PremiumFiles {};
+
   constructor(options = {}) {
     const {
       api_token = (process ? process.env.IEX_TOKEN : null) || "",
@@ -35,5 +41,11 @@ export class Client {
     }
 
     this._version = version;
+
+    // this is easier than worrying about rebinding
+    this.premium = new Client.premium();
+    this.premiumfiles = new Client.premiumfiles();
+    this.premium._token = this._token;
+    this.premium._version = this._version;
   }
 }

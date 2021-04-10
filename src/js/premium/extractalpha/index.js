@@ -41,7 +41,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const cam1 = (
+export const cam1ExtractAlpha = (
   symbol,
   token,
   version,
@@ -59,8 +59,13 @@ export const cam1 = (
     ...timeseriesArgs,
   );
 
-Client.prototype.cam1 = function (symbol, filter, format, ...timeseriesArgs) {
-  return cam1(
+Client.premium.prototype.cam1 = function (
+  symbol,
+  filter,
+  format,
+  ...timeseriesArgs
+) {
+  return cam1ExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -82,7 +87,7 @@ Client.prototype.cam1 = function (symbol, filter, format, ...timeseriesArgs) {
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgCFPBComplaints = (
+export const esgCFPBComplaintsExtractAlpha = (
   symbol,
   token,
   version,
@@ -102,13 +107,13 @@ export const esgCFPBComplaints = (
   );
 };
 
-Client.prototype.esgCFPBComplaints = function (
+Client.premium.prototype.esgCFPBComplaints = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgCFPBComplaints(
+  return esgCFPBComplaintsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -130,7 +135,7 @@ Client.prototype.esgCFPBComplaints = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgCPSCRecalls = (
+export const esgCPSCRecallsExtractAlpha = (
   symbol,
   token,
   version,
@@ -150,13 +155,13 @@ export const esgCPSCRecalls = (
   );
 };
 
-Client.prototype.esgCPSCRecalls = function (
+Client.premium.prototype.esgCPSCRecalls = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgCPSCRecalls(
+  return esgCPSCRecallsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -179,7 +184,7 @@ Client.prototype.esgCPSCRecalls = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgDOLVisaApplications = (
+export const esgDOLVisaApplicationsExtractAlpha = (
   symbol,
   token,
   version,
@@ -199,13 +204,13 @@ export const esgDOLVisaApplications = (
   );
 };
 
-Client.prototype.esgDOLVisaApplications = function (
+Client.premium.prototype.esgDOLVisaApplications = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgDOLVisaApplications(
+  return esgDOLVisaApplicationsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -228,7 +233,7 @@ Client.prototype.esgDOLVisaApplications = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgEPAEnforcements = (
+export const esgEPAEnforcementsExtractAlpha = (
   symbol,
   token,
   version,
@@ -248,13 +253,13 @@ export const esgEPAEnforcements = (
   );
 };
 
-Client.prototype.esgEPAEnforcements = function (
+Client.premium.prototype.esgEPAEnforcements = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgEPAEnforcements(
+  return esgEPAEnforcementsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -274,7 +279,7 @@ Client.prototype.esgEPAEnforcements = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgEPAMilestones = (
+export const esgEPAMilestonesExtractAlpha = (
   symbol,
   token,
   version,
@@ -294,13 +299,13 @@ export const esgEPAMilestones = (
   );
 };
 
-Client.prototype.esgEPAMilestones = function (
+Client.premium.prototype.esgEPAMilestones = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgEPAMilestones(
+  return esgEPAMilestonesExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -320,7 +325,7 @@ Client.prototype.esgEPAMilestones = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgFECIndividualCampaingContributions = (
+export const esgFECIndividualCampaingContributionsExtractAlpha = (
   symbol,
   token,
   version,
@@ -340,13 +345,13 @@ export const esgFECIndividualCampaingContributions = (
   );
 };
 
-Client.prototype.esgFECIndividualCampaingContributions = function (
+Client.premium.prototype.esgFECIndividualCampaingContributions = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgFECIndividualCampaingContributions(
+  return esgFECIndividualCampaingContributionsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -367,7 +372,7 @@ Client.prototype.esgFECIndividualCampaingContributions = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgOSHAInspections = (
+export const esgOSHAInspectionsExtractAlpha = (
   symbol,
   token,
   version,
@@ -387,13 +392,13 @@ export const esgOSHAInspections = (
   );
 };
 
-Client.prototype.esgOSHAInspections = function (
+Client.premium.prototype.esgOSHAInspections = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgOSHAInspections(
+  return esgOSHAInspectionsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -413,7 +418,7 @@ Client.prototype.esgOSHAInspections = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgSenateLobbying = (
+export const esgSenateLobbyingExtractAlpha = (
   symbol,
   token,
   version,
@@ -433,13 +438,13 @@ export const esgSenateLobbying = (
   );
 };
 
-Client.prototype.esgSenateLobbying = function (
+Client.premium.prototype.esgSenateLobbying = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgSenateLobbying(
+  return esgSenateLobbyingExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -462,7 +467,7 @@ Client.prototype.esgSenateLobbying = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgUSASpending = (
+export const esgUSASpendingExtractAlpha = (
   symbol,
   token,
   version,
@@ -482,13 +487,13 @@ export const esgUSASpending = (
   );
 };
 
-Client.prototype.esgUSASpending = function (
+Client.premium.prototype.esgUSASpending = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgUSASpending(
+  return esgUSASpendingExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -509,7 +514,7 @@ Client.prototype.esgUSASpending = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgUSPTOPatentApplications = (
+export const esgUSPTOPatentApplicationsExtractAlpha = (
   symbol,
   token,
   version,
@@ -529,13 +534,13 @@ export const esgUSPTOPatentApplications = (
   );
 };
 
-Client.prototype.esgUSPTOPatentApplications = function (
+Client.premium.prototype.esgUSPTOPatentApplications = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgUSPTOPatentApplications(
+  return esgUSPTOPatentApplicationsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -557,7 +562,7 @@ Client.prototype.esgUSPTOPatentApplications = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const esgUSPTOPatentGrants = (
+export const esgUSPTOPatentGrantsExtractAlpha = (
   symbol,
   token,
   version,
@@ -577,13 +582,13 @@ export const esgUSPTOPatentGrants = (
   );
 };
 
-Client.prototype.esgUSPTOPatentGrants = function (
+Client.premium.prototype.esgUSPTOPatentGrants = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return esgUSPTOPatentGrants(
+  return esgUSPTOPatentGrantsExtractAlpha(
     symbol,
     this._token,
     this._version,
@@ -607,7 +612,7 @@ Client.prototype.esgUSPTOPatentGrants = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const tacticalModel1 = (
+export const tacticalModel1ExtractAlpha = (
   symbol,
   token,
   version,
@@ -625,13 +630,13 @@ export const tacticalModel1 = (
     ...timeseriesArgs,
   );
 
-Client.prototype.tacticalModel1 = function (
+Client.premium.prototype.tacticalModel1 = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return tacticalModel1(
+  return tacticalModel1ExtractAlpha(
     symbol,
     this._token,
     this._version,

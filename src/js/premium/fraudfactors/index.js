@@ -41,7 +41,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const similarityIndex = (
+export const similarityIndexFraudFactors = (
   symbol,
   token,
   version,
@@ -59,13 +59,13 @@ export const similarityIndex = (
     ...timeseriesArgs,
   );
 
-Client.prototype.similarityIndex = function (
+Client.premium.prototype.similarityIndex = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return similarityIndex(
+  return similarityIndexFraudFactors(
     symbol,
     this._token,
     this._version,
@@ -86,7 +86,7 @@ Client.prototype.similarityIndex = function (
  * @param {string} filter
  * @param  {object} rest
  */
-export const nonTimelyFilings = (
+export const nonTimelyFilingsFraudFactors = (
   symbol,
   token,
   version,
@@ -104,13 +104,13 @@ export const nonTimelyFilings = (
     ...timeseriesArgs,
   );
 
-Client.prototype.nonTimelyFilings = function (
+Client.premium.prototype.nonTimelyFilings = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return nonTimelyFilings(
+  return nonTimelyFilingsFraudFactors(
     symbol,
     this._token,
     this._version,

@@ -38,7 +38,7 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * @param {string} filter
  * @param  {object} rest
  */
-export const precisionAlphaPriceDynamics = (
+export const priceDynamicsPrecisionAlpha = (
   symbol,
   token,
   version,
@@ -56,13 +56,13 @@ export const precisionAlphaPriceDynamics = (
     ...timeseriesArgs,
   );
 
-Client.prototype.precisionAlphaPriceDynamics = function (
+Client.premium.prototype.priceDynamics = function (
   symbol,
   filter,
   format,
   ...timeseriesArgs
 ) {
-  return precisionAlphaPriceDynamics(
+  return priceDynamicsPrecisionAlpha(
     symbol,
     this._token,
     this._version,
