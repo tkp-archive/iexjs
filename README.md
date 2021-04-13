@@ -33,7 +33,7 @@ Since the token rarely changes, we have a `Client` object for convenience:
 
 ```javascript
 const {Client} = require("iexjs");
-const client = new Client({token, version});
+const client = new Client({api_token: "YOUR_TOKEN_HERE", version: "v1"});
 client.chart("AAPL", "1m").then((res) => {
     console.log(res);
 });
