@@ -357,33 +357,3 @@ export const cryptoSymbolsList = (token, version) =>
 Client.prototype.cryptoSymbolsList = function () {
   return convertToList(cryptoSymbols(this._token, this._version, "symbol"));
 };
-
-/**
- * This call returns an array of symbols that IEX Cloud supports for API calls.
- *
- * https://iexcloud.io/docs/api/#isin-mapping
- *
- * @param {string} isin isin
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
- */
-export const isinLookup = (
-  isin,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
-) =>
-  _get({
-    url: `ref-data/isin?isin=${isin}`,
-    token,
-    version,
-    filter,
-    format,
-  });
-
-Client.prototype.isinLookup = function (isin, filter, format) {
-  return isinLookup(isin, this._token, this._version, filter, format);
-};

@@ -59,19 +59,36 @@ const _getIEXCloudBase = async (options) => {
     filter = "",
     format = "json",
   } = options;
-
+  let contentType;
   const endpoint = new URL(`${base_url(version)}${url}`);
   endpoint.searchParams.append("token", token);
+
   if (filter) endpoint.searchParams.append("filter", filter);
+
+  if (format === "csv" || format === "text") {
+    endpoint.searchParams.append("format", format);
+    contentType = "test/plain";
+  } else if (format === "schema") {
+    endpoint.searchParams.append("schema", true);
+    contentType = "application/json";
+  } else {
+    contentType = "application/json";
+  }
+
+  console.log(endpoint.href);
   return fetch(endpoint.href, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": contentType,
     },
   }).then(async (res) => {
     if (res.ok) {
       if (format === "json") {
         return res.json();
+      }
+      if (format === "schema") {
+        const ret = res.json();
+        return Array.isArray(ret) ? ret[0] : ret;
       }
       return res.text();
     }
