@@ -200,6 +200,7 @@ const {
   optionsSymbolsList,
   cryptoSymbolsList,
   isinLookup,
+  ricLookup,
   // rules
   // files
   files,
@@ -966,6 +967,9 @@ describe("RefData", () => {
   });
   test("isinLookup", () => {
     expect(isinLookup).toBeDefined();
+  });
+  test("ricLookup", () => {
+    expect(ricLookup).toBeDefined();
   });
 });
 
