@@ -1069,18 +1069,18 @@ describe("Schema arg", () => {
   const client = new Client({ version: "sandbox" });
 
   test("json", async () => {
-    const res = await client.quote(SYMBOL, format="json");
+    const res = await client.quote(SYMBOL, null, "json");
     expect(typeof res).toBe("object");
   });
 
   test("csv", async () => {
-    const res = await client.quote(SYMBOL, format="cvs");
+    const res = await client.quote(SYMBOL, null, "csv");
     expect(typeof res).toBe("string");
   });
 
   test("schema", async () => {
-    const res = await client.quote(SYMBOL, format="schema");
+    const res = await client.quote(SYMBOL, null, "schema");
     expect(typeof res).toBe("object");
-    expect(res["symbol"]).toBe("string");
+    expect(res.symbol).toBe("string");
   });
 });
