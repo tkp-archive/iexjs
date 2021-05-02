@@ -17,7 +17,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const timeSeriesInventory = (token, version, filter, format) =>
+export const timeSeriesInventory = ({ token, version, filter, format }) =>
   _get({
     url: `time-series`,
     token,
@@ -26,8 +26,13 @@ export const timeSeriesInventory = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.timeSeriesInventory = function (filter, format) {
-  return timeSeriesInventory(this._token, this._version, filter, format);
+Client.prototype.timeSeriesInventory = function ({ filter, format }) {
+  return timeSeriesInventory({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -95,7 +100,7 @@ Client.prototype.timeSeriesInventory = function (filter, format) {
  *     | next-quarter | Calendar data for next quarter. Requires calendar=true                                                                                     |
  *     +--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
  */
-export const timeSeries = (options, token, version, filter, format) => {
+export const timeSeries = (options, { token, version, filter, format }) => {
   const {
     id = "",
     key = "",
@@ -112,7 +117,7 @@ export const timeSeries = (options, token, version, filter, format) => {
     first = 0,
   } = options || {};
 
-  if (!id) return timeSeriesInventory(token, version, filter, format);
+  if (!id) return timeSeriesInventory({ token, version, filter, format });
 
   let base_url = `time-series/${id}`;
   if (key) base_url += `/${_quoteSymbols(key)}`;
@@ -146,8 +151,13 @@ export const timeSeries = (options, token, version, filter, format) => {
   });
 };
 
-Client.prototype.timeSeries = function (options, filter, format) {
-  return timeSeries(options, this._token, this._version, filter, format);
+Client.prototype.timeSeries = function (options, { filter, format }) {
+  return timeSeries(options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -160,7 +170,7 @@ Client.prototype.timeSeries = function (options, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const tenQ = (symbol, options, token, version, filter, format) =>
+export const tenQ = (symbol, options, { token, version, filter, format }) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -168,14 +178,21 @@ export const tenQ = (symbol, options, token, version, filter, format) =>
       subkey: "10-Q",
       ...(options || {}),
     },
-    token,
-    version,
-    filter,
-    format,
+    {
+      token,
+      version,
+      filter,
+      format,
+    },
   );
 
-Client.prototype.tenQ = function (symbol, options, filter, format) {
-  return tenQ(symbol, options, this._token, this._version, filter, format);
+Client.prototype.tenQ = function (symbol, options, { filter, format }) {
+  return tenQ(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -188,7 +205,7 @@ Client.prototype.tenQ = function (symbol, options, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const tenK = (symbol, options, token, version, filter, format) =>
+export const tenK = (symbol, options, { token, version, filter, format }) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -196,12 +213,19 @@ export const tenK = (symbol, options, token, version, filter, format) =>
       subkey: "10-K",
       ...(options || {}),
     },
-    token,
-    version,
-    filter,
-    format,
+    {
+      token,
+      version,
+      filter,
+      format,
+    },
   );
 
-Client.prototype.tenK = function (symbol, options, filter, format) {
-  return tenK(symbol, options, this._token, this._version, filter, format);
+Client.prototype.tenK = function (symbol, options, { filter, format }) {
+  return tenK(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
