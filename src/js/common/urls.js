@@ -75,7 +75,6 @@ const _getIEXCloudBase = async (options) => {
     contentType = "application/json";
   }
 
-  console.log(endpoint.href);
   return fetch(endpoint.href, {
     method: "GET",
     headers: {
