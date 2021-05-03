@@ -134,7 +134,10 @@ export const insiderTransactions = (
   });
 };
 
-Client.prototype.insiderTransactions = function (symbol, { filter, format } = {}) {
+Client.prototype.insiderTransactions = function (
+  symbol,
+  { filter, format } = {},
+) {
   return insiderTransactions(symbol, {
     token: this._token,
     version: this._version,

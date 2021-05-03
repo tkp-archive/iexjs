@@ -510,7 +510,11 @@ export const intraday = (
   });
 };
 
-Client.prototype.intraday = function (symbol, options, { filter, format } = {}) {
+Client.prototype.intraday = function (
+  symbol,
+  options,
+  { filter, format } = {},
+) {
   return intraday(symbol, options, {
     token: this._token,
     version: this._version,
