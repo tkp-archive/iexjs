@@ -128,7 +128,7 @@ const {
   kScoreKavout,
   kScoreChinaKavout,
   // precision alpha
-  precisionAlphaPriceDynamics,
+  priceDynamicsPrecisionAlpha,
   // stocktwits
   socialSentimentStockTwits,
   // valuengine
@@ -724,8 +724,8 @@ describe("Premium", () => {
     expect(kScoreChinaKavout).toBeDefined();
   });
 
-  test("precisionAlphaPriceDynamics", () => {
-    expect(precisionAlphaPriceDynamics).toBeDefined();
+  test("priceDynamicsPrecisionAlpha", () => {
+    expect(priceDynamicsPrecisionAlpha).toBeDefined();
   });
 
   test("socialSentiment", () => {
