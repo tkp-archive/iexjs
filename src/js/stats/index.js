@@ -18,7 +18,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const systemStats = ({ token, version, filter, format }) =>
+export const systemStats = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stats/intraday`,
     token,
@@ -27,7 +27,7 @@ export const systemStats = ({ token, version, filter, format }) =>
     format,
   });
 
-Client.prototype.systemStats = function ({ filter, format }) {
+Client.prototype.systemStats = function ({ filter, format } = {}) {
   return systemStats({
     token: this._token,
     version: this._version,
@@ -44,7 +44,7 @@ Client.prototype.systemStats = function ({ filter, format }) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const recent = ({ token, version, filter, format }) =>
+export const recent = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stats/recent`,
     token,
@@ -53,7 +53,7 @@ export const recent = ({ token, version, filter, format }) =>
     format,
   });
 
-Client.prototype.recent = function ({ filter, format }) {
+Client.prototype.recent = function ({ filter, format } = {}) {
   return recent({ token: this._token, version: this._version, filter, format });
 };
 
@@ -65,7 +65,7 @@ Client.prototype.recent = function ({ filter, format }) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const records = ({ token, version, filter, format }) =>
+export const records = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stats/records`,
     token,
@@ -74,7 +74,7 @@ export const records = ({ token, version, filter, format }) =>
     format,
   });
 
-Client.prototype.records = function ({ filter, format }) {
+Client.prototype.records = function ({ filter, format } = {}) {
   return records({
     token: this._token,
     version: this._version,
@@ -92,7 +92,7 @@ Client.prototype.records = function ({ filter, format }) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const summary = (date, { token, version, filter, format }) => {
+export const summary = (date, { token, version, filter, format } = {}) => {
   if (date) {
     return _get({
       url: `stats/historical?date=${date}`,
@@ -111,7 +111,7 @@ export const summary = (date, { token, version, filter, format }) => {
   });
 };
 
-Client.prototype.summary = function (date, { filter, format }) {
+Client.prototype.summary = function (date, { filter, format } = {}) {
   return summary(date, {
     token: this._token,
     version: this._version,
@@ -130,7 +130,7 @@ Client.prototype.summary = function (date, { filter, format }) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const daily = (date, last, { token, version, filter, format }) => {
+export const daily = (date, last, { token, version, filter, format } = {}) => {
   if (date) {
     return _get({
       url: `stats/historical/daily?date=${date}`,
@@ -157,7 +157,7 @@ export const daily = (date, last, { token, version, filter, format }) => {
   });
 };
 
-Client.prototype.daily = function (date, last, { filter, format }) {
+Client.prototype.daily = function (date, last, { filter, format } = {}) {
   return daily(date, last, {
     token: this._token,
     version: this._version,
