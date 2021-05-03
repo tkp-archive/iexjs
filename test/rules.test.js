@@ -24,3 +24,9 @@ jest.setTimeout(50000);
 afterEach(async () => {
   await new Promise((r) => setTimeout(r, 100));
 });
+
+describe("Client", () => {
+  test("Exists", () => {
+    expect(Client).toBeDefined();
+  });
+});
