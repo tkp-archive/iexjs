@@ -36,10 +36,7 @@ export const batch = (
   fields,
   range,
   last,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   fields = fields || "quote";
   range = range || "1m";
@@ -90,17 +87,12 @@ Client.prototype.batch = function (
   fields,
   range,
   last,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return batch(
-    symbols,
-    fields,
-    range,
-    last,
-    this._token,
-    this._version,
+  return batch(symbols, fields, range, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };

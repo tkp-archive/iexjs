@@ -21,7 +21,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const company = (symbol, token, version, filter, format) => {
+export const company = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/company`,
@@ -32,8 +32,13 @@ export const company = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.company = function (symbol, filter, format) {
-  return company(symbol, this._token, this._version, filter, format);
+Client.prototype.company = function (symbol, { filter, format } = {}) {
+  return company(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -47,7 +52,10 @@ Client.prototype.company = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const insiderRoster = (symbol, token, version, filter, format) => {
+export const insiderRoster = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/insider-roster`,
@@ -58,8 +66,13 @@ export const insiderRoster = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.insiderRoster = function (symbol, filter, format) {
-  return insiderRoster(symbol, this._token, this._version, filter, format);
+Client.prototype.insiderRoster = function (symbol, { filter, format } = {}) {
+  return insiderRoster(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -73,7 +86,10 @@ Client.prototype.insiderRoster = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const insiderSummary = (symbol, token, version, filter, format) => {
+export const insiderSummary = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/insider-summary`,
@@ -84,8 +100,13 @@ export const insiderSummary = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.insiderSummary = function (symbol, filter, format) {
-  return insiderSummary(symbol, this._token, this._version, filter, format);
+Client.prototype.insiderSummary = function (symbol, { filter, format } = {}) {
+  return insiderSummary(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -99,7 +120,10 @@ Client.prototype.insiderSummary = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const insiderTransactions = (symbol, token, version, filter, format) => {
+export const insiderTransactions = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/insider-transactions`,
@@ -110,14 +134,13 @@ export const insiderTransactions = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.insiderTransactions = function (symbol, filter, format) {
-  return insiderTransactions(
-    symbol,
-    this._token,
-    this._version,
+Client.prototype.insiderTransactions = function (symbol, { filter, format } = {}) {
+  return insiderTransactions(symbol, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -131,7 +154,7 @@ Client.prototype.insiderTransactions = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const logo = (symbol, token, version, filter, format) => {
+export const logo = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/logo`,
@@ -142,8 +165,13 @@ export const logo = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.logo = function (symbol, filter, format) {
-  return logo(symbol, this._token, this._version, filter, format);
+Client.prototype.logo = function (symbol, { filter, format } = {}) {
+  return logo(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -157,7 +185,7 @@ Client.prototype.logo = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const peers = (symbol, token, version, filter, format) => {
+export const peers = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/peers`,
@@ -168,6 +196,11 @@ export const peers = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.peers = function (symbol, filter, format) {
-  return peers(symbol, this._token, this._version, filter, format);
+Client.prototype.peers = function (symbol, { filter, format } = {}) {
+  return peers(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

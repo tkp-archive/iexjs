@@ -19,7 +19,7 @@ import { Client } from "../client";
  * @param {string} version
  * @param {string} filter
  */
-export const iexTops = (symbols, token, version, filter, format) => {
+export const iexTops = (symbols, { token, version, filter, format } = {}) => {
   if (symbols) {
     return _get({
       url: `tops?symbols=${_strToList(symbols).join(",")}%2b`,
@@ -38,8 +38,13 @@ export const iexTops = (symbols, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexTops = function (symbols, filter, format) {
-  return iexTops(symbols, this._token, this._version, filter, format);
+Client.prototype.iexTops = function (symbols, { filter, format } = {}) {
+  return iexTops(symbols, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -51,7 +56,7 @@ Client.prototype.iexTops = function (symbols, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexLast = (symbols, token, version, filter, format) => {
+export const iexLast = (symbols, { token, version, filter, format } = {}) => {
   if (symbols) {
     return _get({
       url: `last?symbols=${_strToList(symbols).join(",")}%2b`,
@@ -70,8 +75,13 @@ export const iexLast = (symbols, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexLast = function (symbols, filter, format) {
-  return iexLast(symbols, this._token, this._version, filter, format);
+Client.prototype.iexLast = function (symbols, { filter, format } = {}) {
+  return iexLast(symbols, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -88,7 +98,7 @@ Client.prototype.iexLast = function (symbols, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexDeep = (symbol, token, version, filter, format) => {
+export const iexDeep = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -108,8 +118,13 @@ export const iexDeep = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexDeep = function (symbol, filter, format) {
-  return iexDeep(symbol, this._token, this._version, filter, format);
+Client.prototype.iexDeep = function (symbol, { filter, format } = {}) {
+  return iexDeep(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -121,7 +136,7 @@ Client.prototype.iexDeep = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexAuction = (symbol, token, version, filter, format) => {
+export const iexAuction = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -141,8 +156,13 @@ export const iexAuction = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexAuction = function (symbol, filter, format) {
-  return iexAuction(symbol, this._token, this._version, filter, format);
+Client.prototype.iexAuction = function (symbol, { filter, format } = {}) {
+  return iexAuction(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -153,7 +173,7 @@ Client.prototype.iexAuction = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexBook = (symbol, token, version, filter, format) => {
+export const iexBook = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -173,8 +193,13 @@ export const iexBook = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexBook = function (symbol, filter, format) {
-  return iexBook(symbol, this._token, this._version, filter, format);
+Client.prototype.iexBook = function (symbol, { filter, format } = {}) {
+  return iexBook(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -192,7 +217,10 @@ Client.prototype.iexBook = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexOpHaltStatus = (symbol, token, version, filter, format) => {
+export const iexOpHaltStatus = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -212,8 +240,13 @@ export const iexOpHaltStatus = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexOpHaltStatus = function (symbol, filter, format) {
-  return iexOpHaltStatus(symbol, this._token, this._version, filter, format);
+Client.prototype.iexOpHaltStatus = function (symbol, { filter, format } = {}) {
+  return iexOpHaltStatus(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -227,7 +260,10 @@ Client.prototype.iexOpHaltStatus = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexOfficialPrice = (symbol, token, version, filter, format) => {
+export const iexOfficialPrice = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -247,8 +283,13 @@ export const iexOfficialPrice = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexOfficialPrice = function (symbol, filter, format) {
-  return iexOfficialPrice(symbol, this._token, this._version, filter, format);
+Client.prototype.iexOfficialPrice = function (symbol, { filter, format } = {}) {
+  return iexOfficialPrice(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -259,7 +300,10 @@ Client.prototype.iexOfficialPrice = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexSecurityEvent = (symbol, token, version, filter, format) => {
+export const iexSecurityEvent = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -279,8 +323,13 @@ export const iexSecurityEvent = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexSecurityEvent = function (symbol, filter, format) {
-  return iexSecurityEvent(symbol, this._token, this._version, filter, format);
+Client.prototype.iexSecurityEvent = function (symbol, { filter, format } = {}) {
+  return iexSecurityEvent(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -297,7 +346,10 @@ Client.prototype.iexSecurityEvent = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexSsrStatus = (symbol, token, version, filter, format) => {
+export const iexSsrStatus = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -317,8 +369,13 @@ export const iexSsrStatus = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexSsrStatus = function (symbol, filter, format) {
-  return iexSsrStatus(symbol, this._token, this._version, filter, format);
+Client.prototype.iexSsrStatus = function (symbol, { filter, format } = {}) {
+  return iexSsrStatus(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -332,7 +389,10 @@ Client.prototype.iexSsrStatus = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexSystemEvent = (symbol, token, version, filter, format) => {
+export const iexSystemEvent = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -354,8 +414,13 @@ export const iexSystemEvent = (symbol, token, version, filter, format) => {
   );
 };
 
-Client.prototype.iexSystemEvent = function (symbol, filter, format) {
-  return iexSystemEvent(symbol, this._token, this._version, filter, format);
+Client.prototype.iexSystemEvent = function (symbol, { filter, format } = {}) {
+  return iexSystemEvent(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -366,7 +431,7 @@ Client.prototype.iexSystemEvent = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexTrades = (symbol, token, version, filter, format) => {
+export const iexTrades = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -386,8 +451,13 @@ export const iexTrades = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexTrades = function (symbol, filter, format) {
-  return iexTrades(symbol, this._token, this._version, filter, format);
+Client.prototype.iexTrades = function (symbol, { filter, format } = {}) {
+  return iexTrades(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -398,7 +468,10 @@ Client.prototype.iexTrades = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexTradeBreak = (symbol, token, version, filter, format) => {
+export const iexTradeBreak = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -418,8 +491,13 @@ export const iexTradeBreak = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexTradeBreak = function (symbol, filter, format) {
-  return iexTradeBreak(symbol, this._token, this._version, filter, format);
+Client.prototype.iexTradeBreak = function (symbol, { filter, format } = {}) {
+  return iexTradeBreak(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -445,7 +523,10 @@ Client.prototype.iexTradeBreak = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexTradingStatus = (symbol, token, version, filter, format) => {
+export const iexTradingStatus = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (symbol) {
     return _get({
@@ -465,8 +546,13 @@ export const iexTradingStatus = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexTradingStatus = function (symbol, filter, format) {
-  return iexTradingStatus(symbol, this._token, this._version, filter, format);
+Client.prototype.iexTradingStatus = function (symbol, { filter, format } = {}) {
+  return iexTradingStatus(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -475,7 +561,7 @@ Client.prototype.iexTradingStatus = function (symbol, filter, format) {
  * @param {string} version
  * @param {string} filter
  */
-export const iexHist = (date, token, version, filter, format) => {
+export const iexHist = (date, { token, version, filter, format } = {}) => {
   if (date) {
     return _get({
       url: `hist?date=${_strOrDate(date)}`,
@@ -494,6 +580,11 @@ export const iexHist = (date, token, version, filter, format) => {
   });
 };
 
-Client.prototype.iexHist = function (date, filter, format) {
-  return iexHist(date, this._token, this._version, filter, format);
+Client.prototype.iexHist = function (date, { filter, format } = {}) {
+  return iexHist(date, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

@@ -25,38 +25,25 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 100));
 });
 
-describe("Client", () => {
-  test("Exists", () => {
-    expect(Client).toBeDefined();
-  });
-});
-
-describe("Client - Account", () => {
-  test("messageBudget", async () => {
+describe("Client - Cryptocurrency", () => {
+  test("cryptoBook", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.messageBudget).toBeDefined();
+    const res = await client.cryptoBook("BTCUSD");
+    expect(typeof res).toBe("object");
+    expect(res.symbol).toBe("BTCUSD");
   });
 
-  test("metadata", async () => {
+  test("cryptoPrice", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.metadata).toBeDefined();
+    const res = await client.cryptoPrice("BTCUSD");
+    expect(typeof res).toBe("object");
+    expect(res.symbol).toBe("BTCUSD");
   });
 
-  test("payAsYouGo", async () => {
+  test("cryptoQuote", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.payAsYouGo).toBeDefined();
-  });
-
-  test("usage", async () => {
-    const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.usage).toBeDefined();
+    const res = await client.cryptoQuote("BTCUSD");
+    // expect(typeof res).toBe("object");
+    // expect(res.symbol).toBe(SYMBOL);
   });
 });

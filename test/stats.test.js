@@ -25,38 +25,30 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 100));
 });
 
-describe("Client", () => {
-  test("Exists", () => {
-    expect(Client).toBeDefined();
-  });
-});
-
-describe("Client - Account", () => {
-  test("messageBudget", async () => {
+describe("Stats", () => {
+  test("systemStats", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.messageBudget).toBeDefined();
+    const res = await client.systemStats();
+    expect(res).toBeDefined();
   });
-
-  test("metadata", async () => {
+  test("recent", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.metadata).toBeDefined();
+    const res = await client.recent();
+    expect(res).toBeDefined();
   });
-
-  test("payAsYouGo", async () => {
+  test("records", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.payAsYouGo).toBeDefined();
+    const res = await client.records();
+    expect(res).toBeDefined();
   });
-
-  test("usage", async () => {
+  test("summary", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.usage).toBeDefined();
+    const res = await client.summary();
+    expect(res).toBeDefined();
+  });
+  test("daily", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.daily();
+    expect(res).toBeDefined();
   });
 });

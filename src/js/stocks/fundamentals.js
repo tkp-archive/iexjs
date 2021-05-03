@@ -34,10 +34,7 @@ export const balanceSheet = async (
   symbol,
   period,
   last,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
@@ -58,18 +55,14 @@ Client.prototype.balanceSheet = function (
   symbol,
   period,
   last,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return balanceSheet(
-    symbol,
-    period,
-    last,
-    this._token,
-    this._version,
+  return balanceSheet(symbol, period, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -89,10 +82,7 @@ export const cashFlow = async (
   symbol,
   period,
   last,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
@@ -109,16 +99,18 @@ export const cashFlow = async (
   );
 };
 
-Client.prototype.cashFlow = function (symbol, period, last, filter, format) {
-  return cashFlow(
-    symbol,
-    period,
-    last,
-    this._token,
-    this._version,
+Client.prototype.cashFlow = function (
+  symbol,
+  period,
+  last,
+  { filter, format } = {},
+) {
+  return cashFlow(symbol, period, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -136,10 +128,7 @@ Client.prototype.cashFlow = function (symbol, period, last, filter, format) {
 export const dividendsBasic = (
   symbol,
   timeframe,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   if (_TIMEFRAME_DIVSPLIT.indexOf(timeframe || "ytd") < 0) {
@@ -154,15 +143,17 @@ export const dividendsBasic = (
   });
 };
 
-Client.prototype.dividendsBasic = function (symbol, timeframe, filter, format) {
-  return dividendsBasic(
-    symbol,
-    timeframe,
-    this._token,
-    this._version,
+Client.prototype.dividendsBasic = function (
+  symbol,
+  timeframe,
+  { filter, format } = {},
+) {
+  return dividendsBasic(symbol, timeframe, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -184,10 +175,7 @@ export const earnings = async (
   period,
   last,
   field,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
@@ -222,19 +210,14 @@ Client.prototype.earnings = function (
   period,
   last,
   field,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return earnings(
-    symbol,
-    period,
-    last,
-    field,
-    this._token,
-    this._version,
+  return earnings(symbol, period, last, field, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -254,10 +237,7 @@ export const financials = async (
   symbol,
   period,
   last,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
@@ -274,16 +254,18 @@ export const financials = async (
   );
 };
 
-Client.prototype.financials = function (symbol, period, last, filter, format) {
-  return financials(
-    symbol,
-    period,
-    last,
-    this._token,
-    this._version,
+Client.prototype.financials = function (
+  symbol,
+  period,
+  last,
+  { filter, format } = {},
+) {
+  return financials(symbol, period, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -301,10 +283,7 @@ Client.prototype.financials = function (symbol, period, last, filter, format) {
 export const fundamentals = async (
   symbol,
   period,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", 1);
@@ -321,15 +300,17 @@ export const fundamentals = async (
   );
 };
 
-Client.prototype.fundamentals = function (symbol, period, filter, format) {
-  return fundamentals(
-    symbol,
-    period,
-    this._token,
-    this._version,
+Client.prototype.fundamentals = function (
+  symbol,
+  period,
+  { filter, format } = {},
+) {
+  return fundamentals(symbol, period, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -349,10 +330,7 @@ export const incomeStatement = async (
   symbol,
   period,
   last,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
@@ -373,16 +351,12 @@ Client.prototype.incomeStatement = function (
   symbol,
   period,
   last,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return incomeStatement(
-    symbol,
-    period,
-    last,
-    this._token,
-    this._version,
+  return incomeStatement(symbol, period, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
