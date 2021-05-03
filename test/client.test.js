@@ -566,6 +566,12 @@ describe("Client- RefData", () => {
     expect(Array.isArray(res)).toBe(true);
   });
 
+  test("futuresSymbols", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.futuresSymbols();
+    expect(Array.isArray(res)).toBe(true);
+  });
+
   test("symbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.symbolsList();
@@ -611,6 +617,12 @@ describe("Client- RefData", () => {
   test("cryptoSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.cryptoSymbolsList();
+    expect(Array.isArray(res)).toBe(true);
+  });
+
+  test("futuresSymbolsList", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.futuresSymbolsList();
     expect(Array.isArray(res)).toBe(true);
   });
 

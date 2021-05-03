@@ -191,6 +191,7 @@ const {
   fxSymbols,
   optionsSymbols,
   cryptoSymbols,
+  futuresSymbols,
   symbolsList,
   iexSymbolsList,
   mutualFundSymbolsList,
@@ -199,6 +200,7 @@ const {
   fxSymbolsList,
   optionsSymbolsList,
   cryptoSymbolsList,
+  futuresSymbolsList,
   isinLookup,
   ricLookup,
   // rules
@@ -294,7 +296,6 @@ const {
   iexTradeBreak,
   iexTradingStatus,
   iexHist,
-  priceDynamicsPrecisionAlpha,
 } = require("../src/js");
 
 describe("Client", () => {
@@ -644,7 +645,7 @@ describe("Premium", () => {
   });
 
   test("brainLanguageMetricsOnCompanyFilings", () => {
-    expect(languageMetricsOnCompanyFilingsAllBrain).toBeDefined();
+    expect(languageMetricsOnCompanyFilingsBrain).toBeDefined();
   });
 
   test("brainLanguageMetricsOnCompanyFilingsDifferenceAll", () => {
@@ -662,8 +663,6 @@ describe("Premium", () => {
   test("esgCFPBComplaints", () => {
     expect(esgCFPBComplaintsExtractAlpha).toBeDefined();
   });
-
-
 
   test("esgCPSCRecalls", () => {
     expect(esgCPSCRecallsExtractAlpha).toBeDefined();
@@ -726,7 +725,7 @@ describe("Premium", () => {
   });
 
   test("precisionAlphaPriceDynamics", () => {
-    expect(priceDynamicsPrecisionAlpha).toBeDefined();
+    expect(precisionAlphaPriceDynamics).toBeDefined();
   });
 
   test("socialSentiment", () => {
@@ -941,6 +940,9 @@ describe("RefData", () => {
   test("cryptoSymbols", () => {
     expect(cryptoSymbols).toBeDefined();
   });
+  test("futuresSymbols", () => {
+    expect(futuresSymbols).toBeDefined();
+  });
   test("symbolsList", () => {
     expect(symbolsList).toBeDefined();
   });
@@ -964,6 +966,9 @@ describe("RefData", () => {
   });
   test("cryptoSymbolsList", () => {
     expect(cryptoSymbolsList).toBeDefined();
+  });
+  test("futuresSymbolsList", () => {
+    expect(futuresSymbolsList).toBeDefined();
   });
   test("isinLookup", () => {
     expect(isinLookup).toBeDefined();
