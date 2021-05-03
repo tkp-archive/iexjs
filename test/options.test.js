@@ -22,7 +22,7 @@ beforeAll(() => {
 jest.setTimeout(50000);
 
 afterEach(async () => {
-  await new Promise((r) => setTimeout(r, 100));
+  await new Promise((r) => setTimeout(r, 500));
 });
 
 describe("Client - Options", () => {
