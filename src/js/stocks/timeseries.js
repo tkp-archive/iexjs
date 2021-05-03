@@ -125,7 +125,7 @@ export const timeSeries = (options, token, version, filter, format) => {
   // TODO https://github.com/iexcloud/pyEX/issues/164
   // base_url += "calendar={}&".format(str(calendar))
 
-  if (!last) base_url += `limit=${limit}&`;
+  if (!last && (!to || !from)) base_url += `limit=${limit}&`;
   if (subattribute) base_url += `subattribute=${subattribute}&`;
   if (dateField) base_url += `dateField=${dateField}&`;
   if (from) base_url += `from=${_strOrDate(from)}&`;
