@@ -386,7 +386,7 @@ Client.prototype.upcomingEvents = function (
   exactDate,
   { filter, format } = {},
 ) {
-  return upcomingEvents(symbol, refid, {
+  return upcomingEvents(symbol, exactDate, {
     token: this._token,
     version: this._version,
     filter,
@@ -439,7 +439,7 @@ Client.prototype.upcomingEarnings = function (
   exactDate,
   { filter, format } = {},
 ) {
-  return upcomingEarnings(symbol, refid, {
+  return upcomingEarnings(symbol, exactDate, {
     token: this._token,
     version: this._version,
     filter,
@@ -492,7 +492,7 @@ Client.prototype.upcomingDividends = function (
   exactDate,
   { filter, format } = {},
 ) {
-  return upcomingDividends(symbol, refid, {
+  return upcomingDividends(symbol, exactDate, {
     token: this._token,
     version: this._version,
     filter,
@@ -512,6 +512,7 @@ Client.prototype.upcomingDividends = function (
  * @param {string} format output format
  */
 export const upcomingSplits = (
+  symbol,
   exactDate,
   { token, version, filter, format } = {},
 ) => {
@@ -544,7 +545,7 @@ Client.prototype.upcomingSplits = function (
   exactDate,
   { filter, format } = {},
 ) {
-  return upcomingSplits(symbol, refid, {
+  return upcomingSplits(symbol, exactDate, {
     token: this._token,
     version: this._version,
     filter,
@@ -597,7 +598,7 @@ Client.prototype.upcomingIPOs = function (
   exactDate,
   { filter, format } = {},
 ) {
-  return upcomingIPOs(symbol, refid, {
+  return upcomingIPOs(symbol, exactDate, {
     token: this._token,
     version: this._version,
     filter,
