@@ -23,10 +23,7 @@ import { Client } from "../client";
  */
 export const ricLookup = (
   ric,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) =>
   _get({
     url: `ref-data/ric?ric=${ric}`,
@@ -36,6 +33,11 @@ export const ricLookup = (
     format,
   });
 
-Client.prototype.ricLookup = function (ric, filter, format) {
-  return ricLookup(ric, this._token, this._version, filter, format);
+Client.prototype.ricLookup = function (ric, { filter, format } = {}) {
+  return ricLookup(ric, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

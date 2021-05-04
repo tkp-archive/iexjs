@@ -22,10 +22,7 @@ import { Client } from "../client";
  */
 export const figi = (
   figi_,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   _raiseIfNotStr(figi_);
   return _get({
@@ -37,6 +34,11 @@ export const figi = (
   });
 };
 
-Client.prototype.figi = function (figi_, filter, format) {
-  return figi(figi_, this._token, this._version, filter, format);
+Client.prototype.figi = function (figi_, { filter, format } = {}) {
+  return figi(figi_, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

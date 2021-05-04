@@ -29,10 +29,7 @@ export const calendar = (
   direction = "next",
   last = 1,
   startDate = null,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   if (startDate) {
     return _get({
@@ -61,19 +58,14 @@ Client.prototype.calendar = function (
   direction,
   last,
   startDate,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return calendar(
-    type,
-    direction,
-    last,
-    startDate,
-    this._token,
-    this._version,
+  return calendar(type, direction, last, startDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 Client.prototype.holidays = function (
@@ -81,17 +73,12 @@ Client.prototype.holidays = function (
   direction,
   last,
   startDate,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return calendar(
-    type,
-    direction,
-    last,
-    startDate,
-    this._token,
-    this._version,
+  return calendar(type, direction, last, startDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };

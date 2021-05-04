@@ -23,10 +23,7 @@ import { Client } from "../client";
  */
 export const isinLookup = (
   isin,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) =>
   _get({
     url: `ref-data/isin?isin=${isin}`,
@@ -36,6 +33,11 @@ export const isinLookup = (
     format,
   });
 
-Client.prototype.isinLookup = function (isin, filter, format) {
-  return isinLookup(isin, this._token, this._version, filter, format);
+Client.prototype.isinLookup = function (isin, { filter, format } = {}) {
+  return isinLookup(isin, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
