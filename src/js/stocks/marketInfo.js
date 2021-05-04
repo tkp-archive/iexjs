@@ -347,20 +347,22 @@ Client.prototype.marketShortInterest = function (
  * https://iexcloud.io/docs/api/#upcoming-events
  *
  * @param {string} symbol Symbol to look up
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {string} exactDate Optional. Exact date for which to get data
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const upcomingEvents = (
   symbol,
-  refid,
+  exactDate,
   { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
     return _get({
-      url: `stock/${_quoteSymbols(symbol)}/upcoming-events`,
+      url: `stock/${_quoteSymbols(symbol)}/upcoming-events${
+        exactDate ? `?exactDate=${exactDate}` : ""
+      }`,
       token,
       version,
       filter,
@@ -369,7 +371,9 @@ export const upcomingEvents = (
   }
 
   return _get({
-    url: `stock/market/upcoming-events`,
+    url: `stock/market/upcoming-events${
+      exactDate ? `?exactDate=${exactDate}` : ""
+    }`,
     token,
     version,
     filter,
@@ -379,7 +383,7 @@ export const upcomingEvents = (
 
 Client.prototype.upcomingEvents = function (
   symbol,
-  refid,
+  exactDate,
   { filter, format } = {},
 ) {
   return upcomingEvents(symbol, refid, {
@@ -396,20 +400,22 @@ Client.prototype.upcomingEvents = function (
  * https://iexcloud.io/docs/api/#upcoming-events
  *
  * @param {string} symbol Symbol to look up
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {string} exactDate Optional. Exact date for which to get data
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const upcomingEarnings = (
   symbol,
-  refid,
+  exactDate,
   { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
     return _get({
-      url: `stock/${_quoteSymbols(symbol)}/upcoming-earnings`,
+      url: `stock/${_quoteSymbols(symbol)}/upcoming-earnings${
+        exactDate ? `?exactDate=${exactDate}` : ""
+      }`,
       token,
       version,
       filter,
@@ -418,7 +424,9 @@ export const upcomingEarnings = (
   }
 
   return _get({
-    url: `stock/market/upcoming-earnings`,
+    url: `stock/market/upcoming-earnings${
+      exactDate ? `?exactDate=${exactDate}` : ""
+    }`,
     token,
     version,
     filter,
@@ -428,7 +436,7 @@ export const upcomingEarnings = (
 
 Client.prototype.upcomingEarnings = function (
   symbol,
-  refid,
+  exactDate,
   { filter, format } = {},
 ) {
   return upcomingEarnings(symbol, refid, {
@@ -445,20 +453,22 @@ Client.prototype.upcomingEarnings = function (
  * https://iexcloud.io/docs/api/#upcoming-events
  *
  * @param {string} symbol Symbol to look up
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {string} exactDate Optional. Exact date for which to get data
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const upcomingDividends = (
   symbol,
-  refid,
+  exactDate,
   { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
     return _get({
-      url: `stock/${_quoteSymbols(symbol)}/upcoming-dividends`,
+      url: `stock/${_quoteSymbols(symbol)}/upcoming-dividends${
+        exactDate ? `?exactDate=${exactDate}` : ""
+      }`,
       token,
       version,
       filter,
@@ -467,7 +477,9 @@ export const upcomingDividends = (
   }
 
   return _get({
-    url: `stock/market/upcoming-dividends`,
+    url: `stock/market/upcoming-dividends${
+      exactDate ? `?exactDate=${exactDate}` : ""
+    }`,
     token,
     version,
     filter,
@@ -477,7 +489,7 @@ export const upcomingDividends = (
 
 Client.prototype.upcomingDividends = function (
   symbol,
-  refid,
+  exactDate,
   { filter, format } = {},
 ) {
   return upcomingDividends(symbol, refid, {
@@ -494,20 +506,21 @@ Client.prototype.upcomingDividends = function (
  * https://iexcloud.io/docs/api/#upcoming-events
  *
  * @param {string} symbol Symbol to look up
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {string} exactDate Optional. Exact date for which to get data
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const upcomingSplits = (
-  symbol,
-  refid,
+  exactDate,
   { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
     return _get({
-      url: `stock/${_quoteSymbols(symbol)}/upcoming-splits`,
+      url: `stock/${_quoteSymbols(symbol)}/upcoming-splits${
+        exactDate ? `?exactDate=${exactDate}` : ""
+      }`,
       token,
       version,
       filter,
@@ -516,7 +529,9 @@ export const upcomingSplits = (
   }
 
   return _get({
-    url: `stock/market/upcoming-splits`,
+    url: `stock/market/upcoming-splits${
+      exactDate ? `?exactDate=${exactDate}` : ""
+    }`,
     token,
     version,
     filter,
@@ -526,7 +541,7 @@ export const upcomingSplits = (
 
 Client.prototype.upcomingSplits = function (
   symbol,
-  refid,
+  exactDate,
   { filter, format } = {},
 ) {
   return upcomingSplits(symbol, refid, {
@@ -543,20 +558,22 @@ Client.prototype.upcomingSplits = function (
  * https://iexcloud.io/docs/api/#upcoming-events
  *
  * @param {string} symbol Symbol to look up
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {string} exactDate Optional. Exact date for which to get data
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const upcomingIPOs = (
   symbol,
-  refid,
+  exactDate,
   { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
     return _get({
-      url: `stock/${_quoteSymbols(symbol)}/upcoming-ipos`,
+      url: `stock/${_quoteSymbols(symbol)}/upcoming-ipos${
+        exactDate ? `?exactDate=${exactDate}` : ""
+      }`,
       token,
       version,
       filter,
@@ -565,7 +582,9 @@ export const upcomingIPOs = (
   }
 
   return _get({
-    url: `stock/market/upcoming-ipos`,
+    url: `stock/market/upcoming-ipos${
+      exactDate ? `?exactDate=${exactDate}` : ""
+    }`,
     token,
     version,
     filter,
@@ -575,7 +594,7 @@ export const upcomingIPOs = (
 
 Client.prototype.upcomingIPOs = function (
   symbol,
-  refid,
+  exactDate,
   { filter, format } = {},
 ) {
   return upcomingIPOs(symbol, refid, {
