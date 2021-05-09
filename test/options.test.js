@@ -25,38 +25,25 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client", () => {
-  test("Exists", () => {
-    expect(Client).toBeDefined();
-  });
-});
-
-describe("Client - Account", () => {
-  test("messageBudget", async () => {
+describe("Client - Options", () => {
+  test("optionsExpirations", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.messageBudget).toBeDefined();
+    const res = await client.optionExpirations(SYMBOL);
+    // expect(typeof res).toBe("object");
+    // expect(res.symbol).toBe(SYMBOL);
   });
 
-  test("metadata", async () => {
+  test("options", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.metadata).toBeDefined();
+    const res = await client.options(SYMBOL, "20210416");
+    // expect(typeof res).toBe("object");
+    // expect(res.symbol).toBe(SYMBOL);
   });
 
-  test("payAsYouGo", async () => {
+  test("options", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.payAsYouGo).toBeDefined();
-  });
-
-  test("usage", async () => {
-    const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.usage).toBeDefined();
+    const res = await client.options(SYMBOL, "20210416", "call");
+    // expect(typeof res).toBe("object");
+    // expect(res.symbol).toBe(SYMBOL);
   });
 });

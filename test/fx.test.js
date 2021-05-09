@@ -25,38 +25,20 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client", () => {
-  test("Exists", () => {
-    expect(Client).toBeDefined();
-  });
-});
-
-describe("Client - Account", () => {
-  test("messageBudget", async () => {
+describe("Client - FX", () => {
+  test("latestFX", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.messageBudget).toBeDefined();
+    const res = await client.latestFX({ symbols: "EURUSD" });
   });
-
-  test("metadata", async () => {
+  test("convertFX", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.metadata).toBeDefined();
+    const res = await client.convertFX({ symbols: "EURUSD", amount: 5 });
   });
-
-  test("payAsYouGo", async () => {
+  test("historicalFX", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.payAsYouGo).toBeDefined();
-  });
-
-  test("usage", async () => {
-    const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.usage).toBeDefined();
+    const res = await client.historicalFX({
+      symbols: "EURUSD",
+      date: "20210201",
+    });
   });
 });

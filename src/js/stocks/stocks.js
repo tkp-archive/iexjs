@@ -22,7 +22,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const threshold = (date, token, version, filter, format) => {
+export const threshold = (date, { token, version, filter, format } = {}) => {
   if (date) {
     return _get({
       url: `stock/market/threshold-securities/${_strOrDate(date)}`,
@@ -41,8 +41,13 @@ export const threshold = (date, token, version, filter, format) => {
   });
 };
 
-Client.prototype.threshold = function (date, filter, format) {
-  return threshold(date, this._token, this._version, filter, format);
+Client.prototype.threshold = function (date, { filter, format } = {}) {
+  return threshold(date, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -57,7 +62,11 @@ Client.prototype.threshold = function (date, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const shortInterest = (symbol, date, token, version, filter, format) => {
+export const shortInterest = (
+  symbol,
+  date,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (date) {
     return _get({
@@ -77,13 +86,15 @@ export const shortInterest = (symbol, date, token, version, filter, format) => {
   });
 };
 
-Client.prototype.shortInterest = function (symbol, date, filter, format) {
-  return shortInterest(
-    symbol,
-    date,
-    this._token,
-    this._version,
+Client.prototype.shortInterest = function (
+  symbol,
+  date,
+  { filter, format } = {},
+) {
+  return shortInterest(symbol, date, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };

@@ -31,7 +31,7 @@ export const BOOK = "book";
 export const SYSTEMEVENT = "system-event";
 export const ALL = "deep";
 
-export const _runSSE = (method, symbols, on_data, token, version) => {
+export const _runSSE = (method, symbols, on_data, { token, version } = {}) => {
   if (!method) {
     throw new IEXJSException("method cannot be blank");
   }
@@ -73,11 +73,14 @@ export const _runSSE = (method, symbols, on_data, token, version) => {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const topsSSE = (symbols, on_data, token, version) =>
+export const topsSSE = (symbols, on_data, { token, version } = {}) =>
   _runSSE("tops", symbols, on_data, token, version);
 
 Client.prototype.topsSSE = function (symbols, on_data) {
-  return topsSSE(symbols, on_data, this._token, this._version);
+  return topsSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -89,11 +92,14 @@ Client.prototype.topsSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const lastSSE = (symbols, on_data, token, version) =>
-  _runSSE("last", symbols, on_data, token, version);
+export const lastSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("last", symbols, on_data, { token, version });
 
 Client.prototype.lastSSE = function (symbols, on_data) {
-  return lastSSE(symbols, on_data, this._token, this._version);
+  return lastSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -111,7 +117,12 @@ Client.prototype.lastSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const deepSSE = (symbols, channels, on_data, token, version) => {
+export const deepSSE = (
+  symbols,
+  channels,
+  on_data,
+  { token, version } = {},
+) => {
   if (!channels) {
     throw new IEXJSException("Must specify channels for deepSSE endpoints");
   }
@@ -159,7 +170,10 @@ export const deepSSE = (symbols, channels, on_data, token, version) => {
 };
 
 Client.prototype.deepSSE = function (symbols, channels, on_data) {
-  return deepSSE(symbols, channels, on_data, this._token, this._version);
+  return deepSSE(symbols, channels, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -170,7 +184,7 @@ Client.prototype.deepSSE = function (symbols, channels, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const tradesSSE = (symbols, on_data, token, version) => {
+export const tradesSSE = (symbols, on_data, { token, version } = {}) => {
   if (version === "sandbox") {
     return _streamSSE(
       _SSE_DEEP_URL_PREFIX_SANDBOX(
@@ -193,7 +207,10 @@ export const tradesSSE = (symbols, on_data, token, version) => {
 };
 
 Client.prototype.tradesSSE = function (symbols, on_data) {
-  return tradesSSE(symbols, on_data, this._token, this._version);
+  return tradesSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -205,11 +222,14 @@ Client.prototype.tradesSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const auctionSSE = (symbols, on_data, token, version) =>
-  _runSSE("auction", symbols, on_data, token, version);
+export const auctionSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("auction", symbols, on_data, { token, version });
 
 Client.prototype.auctionSSE = function (symbols, on_data) {
-  return auctionSSE(symbols, on_data, this._token, this._version);
+  return auctionSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -220,11 +240,14 @@ Client.prototype.auctionSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const bookSSE = (symbols, on_data, token, version) =>
-  _runSSE("book", symbols, on_data, token, version);
+export const bookSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("book", symbols, on_data, { token, version });
 
 Client.prototype.bookSSE = function (symbols, on_data) {
-  return bookSSE(symbols, on_data, this._token, this._version);
+  return bookSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 /**
  * The Exchange may suspend trading of one or more securities on IEX for operational reasons and indicates such operational halt using the Operational halt status message.
@@ -241,11 +264,14 @@ Client.prototype.bookSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const opHaltStatusSSE = (symbols, on_data, token, version) =>
-  _runSSE("op-halt-status", symbols, on_data, token, version);
+export const opHaltStatusSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("op-halt-status", symbols, on_data, { token, version });
 
 Client.prototype.opHaltStatusSSE = function (symbols, on_data) {
-  return opHaltStatusSSE(symbols, on_data, this._token, this._version);
+  return opHaltStatusSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -257,11 +283,14 @@ Client.prototype.opHaltStatusSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const officialPriceSSE = (symbols, on_data, token, version) =>
-  _runSSE("official-price", symbols, on_data, token, version);
+export const officialPriceSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("official-price", symbols, on_data, { token, version });
 
 Client.prototype.officialPriceSSE = function (symbols, on_data) {
-  return officialPriceSSE(symbols, on_data, this._token, this._version);
+  return officialPriceSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 /**
  * The Security event message is used to indicate events that apply to a security. A Security event message will be sent whenever such event occurs
@@ -271,11 +300,14 @@ Client.prototype.officialPriceSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const securityEventSSE = (symbols, on_data, token, version) =>
-  _runSSE("security-event", symbols, on_data, token, version);
+export const securityEventSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("security-event", symbols, on_data, { token, version });
 
 Client.prototype.securityEventSSE = function (symbols, on_data) {
-  return securityEventSSE(symbols, on_data, this._token, this._version);
+  return securityEventSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 /**
  * In association with Rule 201 of Regulation SHO, the Short Sale Price Test Message is used to indicate when a short sale price test restriction is in effect for a security.
@@ -290,11 +322,14 @@ Client.prototype.securityEventSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const ssrStatusSSE = (symbols, on_data, token, version) =>
-  _runSSE("ssr-status", symbols, on_data, token, version);
+export const ssrStatusSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("ssr-status", symbols, on_data, { token, version });
 
 Client.prototype.ssrStatusSSE = function (symbols, on_data) {
-  return ssrStatusSSE(symbols, on_data, this._token, this._version);
+  return ssrStatusSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 /**
  * The System event message is used to indicate events that apply to the market or the data feed.
@@ -307,11 +342,14 @@ Client.prototype.ssrStatusSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const systemEventSSE = (symbols, on_data, token, version) =>
-  _runSSE("system-event", symbols, on_data, token, version);
+export const systemEventSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("system-event", symbols, on_data, { token, version });
 
 Client.prototype.systemEventSSE = function (symbols, on_data) {
-  return systemEventSSE(symbols, on_data, this._token, this._version);
+  return systemEventSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -323,11 +361,14 @@ Client.prototype.systemEventSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const tradeBreaksSSE = (symbols, on_data, token, version) =>
-  _runSSE("trade-breaks", symbols, on_data, token, version);
+export const tradeBreaksSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("trade-breaks", symbols, on_data, { token, version });
 
 Client.prototype.tradeBreaksSSE = function (symbols, on_data) {
-  return tradeBreaksSSE(symbols, on_data, this._token, this._version);
+  return tradeBreaksSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -353,9 +394,12 @@ Client.prototype.tradeBreaksSSE = function (symbols, on_data) {
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const tradingStatusSSE = (symbols, on_data, token, version) =>
-  _runSSE("trading-status", symbols, on_data, token, version);
+export const tradingStatusSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("trading-status", symbols, on_data, { token, version });
 
 Client.prototype.tradingStatusSSE = function (symbols, on_data) {
-  return tradingStatusSSE(symbols, on_data, this._token, this._version);
+  return tradingStatusSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };

@@ -12,19 +12,18 @@ import { Client } from "../client";
 /**
  * Get inventory of available time series endpoints
  *
+ * @param {object} options
+ * @param {string} options.id timeseries id
+ * @param {string} options.key timeseries key
+ * @param {string} options.subkey timeseries subkey
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const queryMetadata = (
-  id,
-  key,
-  subkey,
-  token,
-  version,
-  filter,
-  format,
+  { id, key, subkey } = {},
+  { token, version, filter, format } = {},
 ) => {
   let url = "metadata/time-series";
   if (id) {
@@ -46,14 +45,17 @@ export const queryMetadata = (
   });
 };
 
-Client.prototype.queryMetadata = function (id, key, subkey, filter, format) {
+Client.prototype.queryMetadata = function (
+  { id, key, subkey } = {},
+  { filter, format } = {},
+) {
   return queryMetadata(
-    id,
-    key,
-    subkey,
-    this._token,
-    this._version,
-    filter,
-    format,
+    { id, key, subkey },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
   );
 };

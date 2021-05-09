@@ -21,7 +21,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const news = (symbol, last, token, version, filter, format) => {
+export const news = (symbol, last, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/news/last/${last || 10}`,
@@ -32,8 +32,13 @@ export const news = (symbol, last, token, version, filter, format) => {
   });
 };
 
-Client.prototype.news = function (symbol, last, filter, format) {
-  return news(symbol, last, this._token, this._version, filter, format);
+Client.prototype.news = function (symbol, last, { filter, format } = {}) {
+  return news(symbol, last, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -47,7 +52,7 @@ Client.prototype.news = function (symbol, last, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const marketNews = (last, token, version, filter, format) =>
+export const marketNews = (last, { token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/news/last/${last || 10}`,
     token,
@@ -56,6 +61,11 @@ export const marketNews = (last, token, version, filter, format) =>
     format,
   });
 
-Client.prototype.marketNews = function (last, filter, format) {
-  return marketNews(last, this._token, this._version, filter, format);
+Client.prototype.marketNews = function (last, { filter, format } = {}) {
+  return marketNews(last, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

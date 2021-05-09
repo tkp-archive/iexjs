@@ -29,7 +29,10 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const advancedStats = (symbol, token, version, filter, format) => {
+export const advancedStats = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/advanced-stats`,
@@ -40,8 +43,13 @@ export const advancedStats = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.advancedStats = function (symbol, filter, format) {
-  return advancedStats(symbol, this._token, this._version, filter, format);
+Client.prototype.advancedStats = function (symbol, { filter, format } = {}) {
+  return advancedStats(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -57,10 +65,7 @@ Client.prototype.advancedStats = function (symbol, filter, format) {
  */
 export const analystRecommendations = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -72,14 +77,16 @@ export const analystRecommendations = (
   });
 };
 
-Client.prototype.analystRecommendations = function (symbol, filter, format) {
-  return analystRecommendations(
-    symbol,
-    this._token,
-    this._version,
+Client.prototype.analystRecommendations = function (
+  symbol,
+  { filter, format } = {},
+) {
+  return analystRecommendations(symbol, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -99,10 +106,7 @@ export const estimates = (
   symbol,
   period,
   last,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
@@ -117,16 +121,18 @@ export const estimates = (
   });
 };
 
-Client.prototype.estimates = function (symbol, period, last, filter, format) {
-  return estimates(
-    symbol,
-    period,
-    last,
-    this._token,
-    this._version,
+Client.prototype.estimates = function (
+  symbol,
+  period,
+  last,
+  { filter, format } = {},
+) {
+  return estimates(symbol, period, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -141,7 +147,10 @@ Client.prototype.estimates = function (symbol, period, last, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const fundOwnership = (symbol, token, version, filter, format) => {
+export const fundOwnership = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/fund-ownership`,
@@ -152,8 +161,13 @@ export const fundOwnership = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.fundOwnership = function (symbol, filter, format) {
-  return fundOwnership(symbol, this._token, this._version, filter, format);
+Client.prototype.fundOwnership = function (symbol, { filter, format } = {}) {
+  return fundOwnership(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -169,10 +183,7 @@ Client.prototype.fundOwnership = function (symbol, filter, format) {
  */
 export const institutionalOwnership = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   return _get({
@@ -184,14 +195,16 @@ export const institutionalOwnership = (
   });
 };
 
-Client.prototype.institutionalOwnership = function (symbol, filter, format) {
-  return institutionalOwnership(
-    symbol,
-    this._token,
-    this._version,
+Client.prototype.institutionalOwnership = function (
+  symbol,
+  { filter, format } = {},
+) {
+  return institutionalOwnership(symbol, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -206,7 +219,11 @@ Client.prototype.institutionalOwnership = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const keyStats = (symbol, stat, token, version, filter, format) => {
+export const keyStats = (
+  symbol,
+  stat,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   if (stat) {
     if (_KEY_STATS.indexOf(stat) < 0) {
@@ -229,8 +246,13 @@ export const keyStats = (symbol, stat, token, version, filter, format) => {
   });
 };
 
-Client.prototype.keyStats = function (symbol, stat, filter, format) {
-  return keyStats(symbol, stat, this._token, this._version, filter, format);
+Client.prototype.keyStats = function (symbol, stat, { filter, format } = {}) {
+  return keyStats(symbol, stat, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -244,7 +266,10 @@ Client.prototype.keyStats = function (symbol, stat, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const priceTarget = (symbol, token, version, filter, format) => {
+export const priceTarget = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/price-target`,
@@ -255,8 +280,13 @@ export const priceTarget = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.priceTarget = function (symbol, filter, format) {
-  return priceTarget(symbol, this._token, this._version, filter, format);
+Client.prototype.priceTarget = function (symbol, { filter, format } = {}) {
+  return priceTarget(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -386,10 +416,7 @@ export const technicals = (
   indicator,
   range,
   inputs,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   // eslint-disable-next-line no-param-reassign
   inputs = inputs || [];
@@ -549,15 +576,12 @@ Client.prototype.technicals = function (
   indicator,
   range,
   inputs,
-  filter,
+  { filter, format } = {},
 ) {
-  return technicals(
-    symbol,
-    indicator,
-    range,
-    inputs,
-    this._token,
-    this._version,
+  return technicals(symbol, indicator, range, inputs, {
+    token: this._token,
+    version: this._version,
     filter,
-  );
+    format,
+  });
 };

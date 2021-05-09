@@ -21,7 +21,10 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const optionExpirations = (symbol, token, version, filter, format) => {
+export const optionExpirations = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `/stock/${symbol}/options`,
@@ -32,8 +35,16 @@ export const optionExpirations = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.optionExpirations = function (symbol, filter, format) {
-  return optionExpirations(symbol, this._token, this._version, filter, format);
+Client.prototype.optionExpirations = function (
+  symbol,
+  { filter, format } = {},
+) {
+  return optionExpirations(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -53,10 +64,7 @@ export const options = (
   symbol,
   expiration,
   side,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   if (side) {
@@ -77,14 +85,16 @@ export const options = (
   });
 };
 
-Client.prototype.options = function (symbol, expiration, side, filter, format) {
-  return options(
-    symbol,
-    expiration,
-    side,
-    this._token,
-    this._version,
+Client.prototype.options = function (
+  symbol,
+  expiration,
+  side,
+  { filter, format } = {},
+) {
+  return options(symbol, expiration, side, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };

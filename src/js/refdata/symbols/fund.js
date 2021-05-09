@@ -21,12 +21,12 @@ import { Client } from "../../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const mutualFundSymbols = (
+export const mutualFundSymbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/mutual-funds/symbols`,
     token,
@@ -35,13 +35,24 @@ export const mutualFundSymbols = (
     format,
   });
 
-Client.prototype.mutualFundSymbols = function (filter, format) {
-  return mutualFundSymbols(this._token, this._version, filter, format);
+Client.prototype.mutualFundSymbols = function ({ filter, format } = {}) {
+  return mutualFundSymbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const mutualFundSymbolsList = (token, version) =>
-  convertToList(mutualFundSymbols(token, version, "symbol"));
+export const mutualFundSymbolsList = ({ token, version } = {}) =>
+  convertToList(mutualFundSymbols({ token, version, filter: "symbol" }));
 
 Client.prototype.mutualFundSymbolsList = function () {
-  return convertToList(mutualFundSymbols(this._token, this._version, "symbol"));
+  return convertToList(
+    mutualFundSymbols({
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
+  );
 };

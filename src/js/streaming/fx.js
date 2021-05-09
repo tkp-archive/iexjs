@@ -22,11 +22,18 @@ export const FOREX1MINUTE = "forex1Minute";
  * @param {string} token
  * @param {string} version
  */
-export const fxSSE = (symbols, on_data, token, version, name = "forex") =>
-  _runSSE(name, symbols, on_data, token, version);
+export const fxSSE = (
+  symbols,
+  on_data,
+  name = "forex",
+  { token, version } = {},
+) => _runSSE(name, symbols, on_data, { token, version });
 
 Client.prototype.fxSSE = function (symbols, on_data) {
-  return fxSSE(symbols, on_data, this._token, this._version);
+  return fxSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -37,11 +44,14 @@ Client.prototype.fxSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const forex1SecondSSE = (symbols, on_data, token, version) =>
-  fxSSE(symbols, on_data, token, version, "forex1Second");
+export const forex1SecondSSE = (symbols, on_data, { token, version } = {}) =>
+  fxSSE(symbols, on_data, "forex1Second", { token, version });
 
 Client.prototype.forex1SecondSSE = function (symbols, on_data) {
-  return forex1SecondSSE(symbols, on_data, this._token, this._version);
+  return forex1SecondSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -52,11 +62,14 @@ Client.prototype.forex1SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const forex5SecondSSE = (symbols, on_data, token, version) =>
-  fxSSE(symbols, on_data, token, version, "forex5Second");
+export const forex5SecondSSE = (symbols, on_data, { token, version } = {}) =>
+  fxSSE(symbols, on_data, "forex5Second", { token, version });
 
 Client.prototype.forex5SecondSSE = function (symbols, on_data) {
-  return forex5SecondSSE(symbols, on_data, this._token, this._version);
+  return forex5SecondSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -67,9 +80,12 @@ Client.prototype.forex5SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const forex1MinuteSSE = (symbols, on_data, token, version) =>
-  fxSSE(symbols, on_data, token, version, "forex1Minute");
+export const forex1MinuteSSE = (symbols, on_data, { token, version } = {}) =>
+  fxSSE(symbols, on_data, "forex1Minute", { token, version });
 
 Client.prototype.forex1MinuteSSE = function (symbols, on_data) {
-  return forex1MinuteSSE(symbols, on_data, this._token, this._version);
+  return forex1MinuteSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };

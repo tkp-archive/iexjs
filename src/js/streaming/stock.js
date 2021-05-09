@@ -22,11 +22,14 @@ export const STOCKSUS1MINUTE = "stocksUS1Minute";
  * @param {string} token
  * @param {string} version
  */
-export const stocksUSNoUTPSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUSNoUTP", symbols, on_data, token, version);
+export const stocksUSNoUTPSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("stocksUSNoUTP", symbols, on_data, { token, version });
 
 Client.prototype.stocksUSNoUTPSSE = function (symbols, on_data) {
-  return stocksUSNoUTPSSE(symbols, on_data, this._token, this._version);
+  return stocksUSNoUTPSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -36,11 +39,14 @@ Client.prototype.stocksUSNoUTPSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUSSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUS", symbols, on_data, token, version);
+export const stocksUSSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("stocksUS", symbols, on_data, { token, version });
 
 Client.prototype.stocksUSSSE = function (symbols, on_data) {
-  return stocksUSSSE(symbols, on_data, this._token, this._version);
+  return stocksUSSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -50,11 +56,14 @@ Client.prototype.stocksUSSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUS1SecondSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUS1Second", symbols, on_data, token, version);
+export const stocksUS1SecondSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("stocksUS1Second", symbols, on_data, { token, version });
 
 Client.prototype.stocksUS1SecondSSE = function (symbols, on_data) {
-  return stocksUS1SecondSSE(symbols, on_data, this._token, this._version);
+  return stocksUS1SecondSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -64,11 +73,17 @@ Client.prototype.stocksUS1SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUSNoUTP1SecondSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUSNoUTP1Second", symbols, on_data, token, version);
+export const stocksUSNoUTP1SecondSSE = (
+  symbols,
+  on_data,
+  { token, version } = {},
+) => _runSSE("stocksUSNoUTP1Second", symbols, on_data, { token, version });
 
 Client.prototype.stocksUSNoUTP1SecondSSE = function (symbols, on_data) {
-  return stocksUSNoUTP1SecondSSE(symbols, on_data, this._token, this._version);
+  return stocksUSNoUTP1SecondSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -78,11 +93,14 @@ Client.prototype.stocksUSNoUTP1SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUS5SecondSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUS5Second", symbols, on_data, token, version);
+export const stocksUS5SecondSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("stocksUS5Second", symbols, on_data, { token, version });
 
 Client.prototype.stocksUS5SecondSSE = function (symbols, on_data) {
-  return stocksUS5SecondSSE(symbols, on_data, this._token, this._version);
+  return stocksUS5SecondSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -92,11 +110,17 @@ Client.prototype.stocksUS5SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUSNoUTP5SecondSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUSNoUTP5Second", symbols, on_data, token, version);
+export const stocksUSNoUTP5SecondSSE = (
+  symbols,
+  on_data,
+  { token, version } = {},
+) => _runSSE("stocksUSNoUTP5Second", symbols, on_data, { token, version });
 
 Client.prototype.stocksUSNoUTP5SecondSSE = function (symbols, on_data) {
-  return stocksUSNoUTP5SecondSSE(symbols, on_data, this._token, this._version);
+  return stocksUSNoUTP5SecondSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -106,11 +130,14 @@ Client.prototype.stocksUSNoUTP5SecondSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUS1MinuteSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUS1Minute", symbols, on_data, token, version);
+export const stocksUS1MinuteSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("stocksUS1Minute", symbols, on_data, { token, version });
 
 Client.prototype.stocksUS1MinuteSSE = function (symbols, on_data) {
-  return stocksUS1MinuteSSE(symbols, on_data, this._token, this._version);
+  return stocksUS1MinuteSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -120,9 +147,15 @@ Client.prototype.stocksUS1MinuteSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const stocksUSNoUTP1MinuteSSE = (symbols, on_data, token, version) =>
-  _runSSE("stocksUSNoUTP1Minute", symbols, on_data, token, version);
+export const stocksUSNoUTP1MinuteSSE = (
+  symbols,
+  on_data,
+  { token, version } = {},
+) => _runSSE("stocksUSNoUTP1Minute", symbols, on_data, { token, version });
 
 Client.prototype.stocksUSNoUTP1MinuteSSE = function (symbols, on_data) {
-  return stocksUSNoUTP1MinuteSSE(symbols, on_data, this._token, this._version);
+  return stocksUSNoUTP1MinuteSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };

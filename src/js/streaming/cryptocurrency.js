@@ -21,11 +21,14 @@ export const CRYPTOQUOTES = "cryptoQuotes";
  * @param {string} token
  * @param {string} version
  */
-export const cryptoBookSSE = (symbols, on_data, token, version) =>
-  _runSSE("cryptoBook", symbols, on_data, token, version);
+export const cryptoBookSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("cryptoBook", symbols, on_data, { token, version });
 
 Client.prototype.cryptoBookSSE = function (symbols, on_data) {
-  return cryptoBookSSE(symbols, on_data, this._token, this._version);
+  return cryptoBookSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -36,11 +39,14 @@ Client.prototype.cryptoBookSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const cryptoEventsSSE = (symbols, on_data, token, version) =>
-  _runSSE("cryptoEvents", symbols, on_data, token, version);
+export const cryptoEventsSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("cryptoEvents", symbols, on_data, { token, version });
 
 Client.prototype.cryptoEventsSSE = function (symbols, on_data) {
-  return cryptoEventsSSE(symbols, on_data, this._token, this._version);
+  return cryptoEventsSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
 
 /**
@@ -51,9 +57,12 @@ Client.prototype.cryptoEventsSSE = function (symbols, on_data) {
  * @param {string} token
  * @param {string} version
  */
-export const cryptoQuotesSSE = (symbols, on_data, token, version) =>
-  _runSSE("cryptoQuotes", symbols, on_data, token, version);
+export const cryptoQuotesSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("cryptoQuotes", symbols, on_data, { token, version });
 
 Client.prototype.cryptoQuotesSSE = function (symbols, on_data) {
-  return cryptoQuotesSSE(symbols, on_data, this._token, this._version);
+  return cryptoQuotesSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };

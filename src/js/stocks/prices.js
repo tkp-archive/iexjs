@@ -23,13 +23,12 @@ import { Client } from "../client";
  * https://iextrading.com/developer/docs/#book
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const book = (symbol, token, version, filter, format) => {
+export const book = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/book`,
@@ -40,8 +39,13 @@ export const book = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.book = function (symbol, filter, format) {
-  return book(symbol, this._token, this._version, filter, format);
+Client.prototype.book = function (symbol, { filter, format } = {}) {
+  return book(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -56,7 +60,10 @@ Client.prototype.book = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const delayedQuote = (symbol, token, version, filter, format) => {
+export const delayedQuote = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/delayed-quote`,
@@ -67,8 +74,13 @@ export const delayedQuote = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.delayedQuote = function (symbol, filter, format) {
-  return delayedQuote(symbol, this._token, this._version, filter, format);
+Client.prototype.delayedQuote = function (symbol, { filter, format } = {}) {
+  return delayedQuote(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 /**
  * This returns 15 minute delayed, last sale eligible trades.
@@ -76,13 +88,15 @@ Client.prototype.delayedQuote = function (symbol, filter, format) {
  * https://iexcloud.io/docs/api/#largest-trades
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const largestTrades = (symbol, token, version, filter, format) => {
+export const largestTrades = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/largest-trades`,
@@ -93,8 +107,13 @@ export const largestTrades = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.largestTrades = function (symbol, filter, format) {
-  return largestTrades(symbol, this._token, this._version, filter, format);
+Client.prototype.largestTrades = function (symbol, { filter, format } = {}) {
+  return largestTrades(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -103,13 +122,12 @@ Client.prototype.largestTrades = function (symbol, filter, format) {
  * https://iexcloud.io/docs/api/#ohlc
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const ohlc = (symbol, token, version, filter, format) => {
+export const ohlc = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/ohlc`,
@@ -120,8 +138,13 @@ export const ohlc = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.ohlc = function (symbol, filter, format) {
-  return ohlc(symbol, this._token, this._version, filter, format);
+Client.prototype.ohlc = function (symbol, { filter, format } = {}) {
+  return ohlc(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -130,13 +153,12 @@ Client.prototype.ohlc = function (symbol, filter, format) {
  * https://iexcloud.io/docs/api/#previous-day-prices
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const yesterday = (symbol, token, version, filter, format) => {
+export const yesterday = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/previous`,
@@ -147,8 +169,13 @@ export const yesterday = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.yesterday = function (symbol, filter, format) {
-  return yesterday(symbol, this._token, this._version, filter, format);
+Client.prototype.yesterday = function (symbol, { filter, format } = {}) {
+  return yesterday(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 export const previous = yesterday;
@@ -160,13 +187,12 @@ Client.prototype.previous = Client.prototype.yesterday;
  * https://iexcloud.io/docs/api/#price
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const price = (symbol, token, version, filter, format) => {
+export const price = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/price`,
@@ -177,8 +203,13 @@ export const price = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.price = function (symbol, filter, format) {
-  return price(symbol, this._token, this._version, filter, format);
+Client.prototype.price = function (symbol, { filter, format } = {}) {
+  return price(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -187,13 +218,12 @@ Client.prototype.price = function (symbol, filter, format) {
  * https://iexcloud.io/docs/api/#quote
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const quote = (symbol, token, version, filter, format) => {
+export const quote = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/quote`,
@@ -204,8 +234,13 @@ export const quote = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.quote = function (symbol, filter, format) {
-  return quote(symbol, this._token, this._version, filter, format);
+Client.prototype.quote = function (symbol, { filter, format } = {}) {
+  return quote(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -214,13 +249,12 @@ Client.prototype.quote = function (symbol, filter, format) {
  * https://iexcloud.io/docs/api/#price-only
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const spread = (symbol, token, version, filter, format) => {
+export const spread = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/effective-spread`,
@@ -231,8 +265,13 @@ export const spread = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.spread = function (symbol, filter, format) {
-  return spread(symbol, this._token, this._version, filter, format);
+Client.prototype.spread = function (symbol, { filter, format } = {}) {
+  return spread(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -248,7 +287,10 @@ Client.prototype.spread = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const volumeByVenue = (symbol, token, version, filter, format) => {
+export const volumeByVenue = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/volume-by-venue`,
@@ -259,8 +301,13 @@ export const volumeByVenue = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.volumeByVenue = function (symbol, filter, format) {
-  return volumeByVenue(symbol, this._token, this._version, filter, format);
+Client.prototype.volumeByVenue = function (symbol, { filter, format } = {}) {
+  return volumeByVenue(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -287,7 +334,11 @@ Client.prototype.volumeByVenue = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const chart = (symbol, options, token, version, filter, format) => {
+export const chart = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) => {
   const {
     timeframe = "1m",
     date = "",
@@ -368,8 +419,13 @@ export const chart = (symbol, options, token, version, filter, format) => {
   });
 };
 
-Client.prototype.chart = function (symbol, options, filter, format) {
-  return chart(symbol, options, this._token, this._version, filter, format);
+Client.prototype.chart = function (symbol, options, { filter, format } = {}) {
+  return chart(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -392,7 +448,11 @@ Client.prototype.chart = function (symbol, options, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const intraday = (symbol, options, token, version, filter, format) => {
+export const intraday = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) => {
   const {
     date = "",
     exactDate = "",
@@ -443,6 +503,15 @@ export const intraday = (symbol, options, token, version, filter, format) => {
   });
 };
 
-Client.prototype.intraday = function (symbol, options, filter, format) {
-  return intraday(symbol, options, this._token, this._version, filter, format);
+Client.prototype.intraday = function (
+  symbol,
+  options,
+  { filter, format } = {},
+) {
+  return intraday(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
