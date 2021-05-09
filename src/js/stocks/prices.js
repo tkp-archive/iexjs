@@ -23,7 +23,6 @@ import { Client } from "../client";
  * https://iextrading.com/developer/docs/#book
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -89,7 +88,6 @@ Client.prototype.delayedQuote = function (symbol, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#largest-trades
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -124,7 +122,6 @@ Client.prototype.largestTrades = function (symbol, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#ohlc
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -156,7 +153,6 @@ Client.prototype.ohlc = function (symbol, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#previous-day-prices
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -191,7 +187,6 @@ Client.prototype.previous = Client.prototype.yesterday;
  * https://iexcloud.io/docs/api/#price
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -223,7 +218,6 @@ Client.prototype.price = function (symbol, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#quote
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -255,7 +249,6 @@ Client.prototype.quote = function (symbol, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#price-only
  *
  * @param {string} symbol ticker to request
- * @param {number} count number to get
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
