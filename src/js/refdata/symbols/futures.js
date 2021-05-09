@@ -21,12 +21,12 @@ import { Client } from "../../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const futuresSymbols = (
+export const futuresSymbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/futures/symbols`,
     token,
@@ -35,13 +35,24 @@ export const futuresSymbols = (
     format,
   });
 
-Client.prototype.futuresSymbols = function (filter, format) {
-  return futuresSymbols(this._token, this._version, filter, format);
+Client.prototype.futuresSymbols = function ({ filter, format } = {}) {
+  return futuresSymbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const futuresSymbolsList = (token, version) =>
-  convertToList(futuresSymbols(token, version, "symbol"));
+export const futuresSymbolsList = ({ token, version } = {}) =>
+  convertToList(futuresSymbols({ token, version, filter: "symbol" }));
 
 Client.prototype.futuresSymbolsList = function () {
-  return convertToList(futuresSymbols(this._token, this._version, "symbol"));
+  return convertToList(
+    futuresSymbols({
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
+  );
 };
