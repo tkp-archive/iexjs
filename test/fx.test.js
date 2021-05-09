@@ -28,14 +28,17 @@ afterEach(async () => {
 describe("Client - FX", () => {
   test("latestFX", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.latestFX("EURUSD");
+    const res = await client.latestFX({ symbols: "EURUSD" });
   });
   test("convertFX", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.convertFX("EURUSD", 5);
+    const res = await client.convertFX({ symbols: "EURUSD", amount: 5 });
   });
   test("historicalFX", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.historicalFX("EURUSD", "20210201");
+    const res = await client.historicalFX({
+      symbols: "EURUSD",
+      date: "20210201",
+    });
   });
 });

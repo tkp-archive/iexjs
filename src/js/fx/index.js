@@ -21,7 +21,10 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const latestFX = (symbols, { token, version, filter, format } = {}) => {
+export const latestFX = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
   if (symbols) {
     return _get({
       url: `/fx/latest?symbols=${_strToList(symbols).join(",")}`,
@@ -40,13 +43,19 @@ export const latestFX = (symbols, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.latestFX = function (symbols, { filter, format } = {}) {
-  return latestFX(symbols, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.latestFX = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return latestFX(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
