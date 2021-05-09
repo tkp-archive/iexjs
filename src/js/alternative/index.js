@@ -87,7 +87,7 @@ export const ceoCompensation = (
   });
 };
 
-Client.prototype.ceoCompensation = function (symbol, { filter, format }) {
+Client.prototype.ceoCompensation = function (symbol, { filter, format } = {}) {
   return ceoCompensation(symbol, {
     token: this._token,
     version: this._version,
