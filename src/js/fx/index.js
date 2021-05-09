@@ -21,7 +21,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const latestFX = (symbols, token, version, filter, format) => {
+export const latestFX = (symbols, { token, version, filter, format } = {}) => {
   if (symbols) {
     return _get({
       url: `/fx/latest?symbols=${_strToList(symbols).join(",")}`,
@@ -40,8 +40,13 @@ export const latestFX = (symbols, token, version, filter, format) => {
   });
 };
 
-Client.prototype.latestFX = function (symbols, filter, format) {
-  return latestFX(symbols, this._token, this._version, filter, format);
+Client.prototype.latestFX = function (symbols, { filter, format } = {}) {
+  return latestFX(symbols, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -49,6 +54,7 @@ Client.prototype.latestFX = function (symbols, filter, format) {
  *
  * https://iexcloud.io/docs/api/#currency-conversion
  *
+ * @param {object} options
  * @param {string} symbols comma seperated list of symbols
  * @param {number} amount amount to convert
  * @param {string} token Access token
@@ -56,7 +62,10 @@ Client.prototype.latestFX = function (symbols, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const convertFX = (symbols, amount, token, version, filter, format) => {
+export const convertFX = (
+  { symbols, amount } = {},
+  { token, version, filter, format } = {},
+) => {
   if (symbols) {
     return _get({
       url: `/fx/convert?symbols=${_strToList(symbols).join(",")}&amount=${
@@ -77,8 +86,14 @@ export const convertFX = (symbols, amount, token, version, filter, format) => {
   });
 };
 
-Client.prototype.convertFX = function (symbols, amount, filter, format) {
-  return convertFX(symbols, amount, this._token, this._version, filter, format);
+Client.prototype.convertFX = function (
+  { symbols, amount } = {},
+  { filter, format } = {},
+) {
+  return convertFX(
+    { symbols, amount },
+    { token: this._token, version: this._version, filter, format },
+  );
 };
 
 /**
@@ -86,28 +101,21 @@ Client.prototype.convertFX = function (symbols, amount, filter, format) {
  *
  * https://iexcloud.io/docs/api/#historical-daily
  *
- * @param {string} symbols comma seperated list of symbols
- * @param {string or date} from Returns data on or after the given from date. Format YYYY-MM-DD
- * @param {string or date} to Returns data on or before the given to date. Format YYYY-MM-DD
- * @param {string or date} on Returns data on the given date. Format YYYY-MM-DD
- * @param {number} last Returns the latest n number of records in the series
- * @param {number} first Returns the first n number of records in the series
+ * @param {object} options
+ * @param {string} options.symbols comma seperated list of symbols
+ * @param {string or date} options.from Returns data on or after the given from date. Format YYYY-MM-DD
+ * @param {string or date} options.to Returns data on or before the given to date. Format YYYY-MM-DD
+ * @param {string or date} options.on Returns data on the given date. Format YYYY-MM-DD
+ * @param {number} options.last Returns the latest n number of records in the series
+ * @param {number} options.first Returns the first n number of records in the series
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const historicalFX = (
-  symbols,
-  from,
-  to,
-  on,
-  last,
-  first,
-  token,
-  version,
-  filter,
-  format,
+  { symbols, from, to, on, last, first } = {},
+  { token, version, filter, format } = {},
 ) => {
   let base_url = "/fx/historical?";
   if (symbols) base_url += `symbols=${_strToList(symbols).join(",")}&`;
@@ -126,25 +134,12 @@ export const historicalFX = (
 };
 
 Client.prototype.historicalFX = function (
-  symbols,
-  from,
-  to,
-  on,
-  last,
-  first,
-  filter,
-  format,
+  { symbols, from, to, on, last, first } = {},
+  { filter, format } = {},
 ) {
   return historicalFX(
-    symbols,
-    from,
-    to,
-    on,
-    last,
-    first,
-    this._token,
-    this._version,
-    filter,
-    format,
+    { symbols, from, to, on, last, first },
+
+    { token: this._token, version: this._version, filter, format },
   );
 };
