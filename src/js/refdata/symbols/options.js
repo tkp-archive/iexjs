@@ -20,12 +20,12 @@ import { Client } from "../../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const optionsSymbols = (
+export const optionsSymbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/options/symbols`,
     token,
@@ -34,8 +34,13 @@ export const optionsSymbols = (
     format,
   });
 
-Client.prototype.optionsSymbols = function (filter, format) {
-  return optionsSymbols(this._token, this._version, filter, format);
+Client.prototype.optionsSymbols = function ({ filter, format } = {}) {
+  return optionsSymbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 const convertOptionsSymbolsToList = (data) => {
@@ -48,11 +53,17 @@ const convertOptionsSymbolsToList = (data) => {
   return ret;
 };
 
-export const optionsSymbolsList = async (token, version) =>
-  convertOptionsSymbolsToList(await optionsSymbols(token, version, "symbol"));
+export const optionsSymbolsList = async ({ token, version } = {}) =>
+  convertOptionsSymbolsToList(
+    await optionsSymbols({ token, version, filter: "symbol" }),
+  );
 
 Client.prototype.optionsSymbolsList = async function () {
   return convertOptionsSymbolsToList(
-    await optionsSymbols(this._token, this._version, "symbol"),
+    await optionsSymbols({
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
   );
 };
