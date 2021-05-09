@@ -104,3 +104,6 @@ dist
 .tern-port
 tmp.js
 .DS_Store
+
+docs/_build
+docs/index.md

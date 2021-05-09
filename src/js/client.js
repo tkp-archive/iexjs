@@ -11,6 +11,9 @@
 
 import { IEXJSException } from "./common";
 
+/**
+ * IEX Cloud client
+ */
 export class Client {
   static premium = class Premium {};
 
