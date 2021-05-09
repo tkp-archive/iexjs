@@ -27,10 +27,7 @@ export const sentiment = (
   symbol,
   type,
   date,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   if (date) {
@@ -55,18 +52,14 @@ Client.prototype.sentiment = function (
   symbol,
   type = "daily",
   date = null,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return sentiment(
-    symbol,
-    type,
-    date,
-    this._token,
-    this._version,
+  return sentiment(symbol, type, date, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -80,7 +73,10 @@ Client.prototype.sentiment = function (
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const ceoCompensation = (symbol, token, version, filter, format) => {
+export const ceoCompensation = (
+  symbol,
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${symbol}/ceo-compensation/`,
@@ -91,6 +87,11 @@ export const ceoCompensation = (symbol, token, version, filter, format) => {
   });
 };
 
-Client.prototype.ceoCompensation = function (symbol, filter, format) {
-  return ceoCompensation(symbol, this._token, this._version, filter, format);
+Client.prototype.ceoCompensation = function (symbol, { filter, format }) {
+  return ceoCompensation(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
