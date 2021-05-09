@@ -20,12 +20,12 @@ import { Client } from "../../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const cryptoSymbols = (
+export const cryptoSymbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/crypto/symbols`,
     token,
@@ -34,13 +34,24 @@ export const cryptoSymbols = (
     format,
   });
 
-Client.prototype.cryptoSymbols = function (filter, format) {
-  return cryptoSymbols(this._token, this._version, filter, format);
+Client.prototype.cryptoSymbols = function ({ filter, format } = {}) {
+  return cryptoSymbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const cryptoSymbolsList = (token, version) =>
-  convertToList(cryptoSymbols(token, version, "symbol"));
+export const cryptoSymbolsList = ({ token, version } = {}) =>
+  convertToList(cryptoSymbols({ token, version, filter: "symbol" }));
 
 Client.prototype.cryptoSymbolsList = function () {
-  return convertToList(cryptoSymbols(this._token, this._version, "symbol"));
+  return convertToList(
+    cryptoSymbols({
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
+  );
 };
