@@ -16,14 +16,19 @@ import { Client } from "../client";
  * We also provide update times for some endpoints which allow you to call an endpoint only once it has new data.
  *
  * https://iexcloud.io/docs/api/#data-points
- *
- * @param {string} symbol ticker
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol ticker
+ * @param {string} options.key key value
+ * @param {object} common
+ * @param {string} common.token Access token
+ * @param {string} common.version API version
+ * @param {string} common.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} common.format output format
  */
-export const points = (symbol, key, token, version, filter, format) => {
+export const points = (
+  { symbol, key } = {},
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol || "market");
 
   if (key) {
@@ -44,6 +49,12 @@ export const points = (symbol, key, token, version, filter, format) => {
   });
 };
 
-Client.prototype.points = function (symbol, key, filter, format) {
-  return points(symbol, key, this._token, this._version, filter, format);
+Client.prototype.points = function (
+  { symbol, key } = {},
+  { filter, format } = {},
+) {
+  return points(
+    { symbol, key },
+    { token: this._token, version: this._version, filter, format },
+  );
 };
