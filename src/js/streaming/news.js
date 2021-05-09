@@ -17,9 +17,12 @@ import { _runSSE } from "./sse";
  * @param {string} token
  * @param {string} version
  */
-export const newsSSE = (symbols, on_data, token, version) =>
-  _runSSE("news-stream", symbols, on_data, token, version);
+export const newsSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("news-stream", symbols, on_data, { token, version });
 
 Client.prototype.newsSSE = function (symbols, on_data) {
-  return newsSSE(symbols, on_data, this._token, this._version);
+  return newsSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };
