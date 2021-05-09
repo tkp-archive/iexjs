@@ -164,7 +164,10 @@ export const internationalSymbolsList = (
     ),
   );
 
-Client.prototype.internationalSymbolsList = function ({ region, exchange }) {
+Client.prototype.internationalSymbolsList = function ({
+  region,
+  exchange,
+} = {}) {
   return convertToList(
     internationalSymbols(
       { region, exchange },
