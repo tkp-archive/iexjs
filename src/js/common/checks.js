@@ -8,6 +8,8 @@
  */
 import { IEXJSException } from "./exception";
 
+const _TIMEFRAME_REGEX = /^((q|Q)[1-4]|(h|H)[1-2])?(1|2)(0|9)[0-9][0-9]/;
+
 export const _TIMEFRAME_CHART = [
   "max",
   "5y",
@@ -405,7 +407,7 @@ export const _strOrDate = (st) => {
 };
 
 export const _dateRange = (st) => {
-  if (_DATE_RANGES.indexOf(st) < 0)
+  if (_DATE_RANGES.indexOf(st) < 0 && !_TIMEFRAME_REGEX.test(st))
     throw IEXJSException(`Must be a valid date range: got ${st}`);
   return st;
 };
