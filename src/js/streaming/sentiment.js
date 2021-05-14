@@ -17,9 +17,12 @@ import { _runSSE } from "./sse";
  * @param {string} token
  * @param {string} version
  */
-export const sentimentSSE = (symbols, on_data, token, version) =>
-  _runSSE("sentiment", symbols, on_data, token, version);
+export const sentimentSSE = (symbols, on_data, { token, version } = {}) =>
+  _runSSE("sentiment", symbols, on_data, { token, version });
 
 Client.prototype.sentimentSSE = function (symbols, on_data) {
-  return sentimentSSE(symbols, on_data, this._token, this._version);
+  return sentimentSSE(symbols, on_data, {
+    token: this._token,
+    version: this._version,
+  });
 };

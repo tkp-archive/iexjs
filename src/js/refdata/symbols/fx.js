@@ -20,12 +20,12 @@ import { Client } from "../../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const fxSymbols = (
+export const fxSymbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/fx/symbols`,
     token,
@@ -34,12 +34,17 @@ export const fxSymbols = (
     format,
   });
 
-Client.prototype.fxSymbols = function (filter, format) {
-  return fxSymbols(this._token, this._version, filter, format);
+Client.prototype.fxSymbols = function ({ filter, format } = {}) {
+  return fxSymbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const fxSymbolsList = async (token, version) => {
-  const fx = await fxSymbols(token, version);
+export const fxSymbolsList = async ({ token, version } = {}) => {
+  const fx = await fxSymbols({ token, version });
   const ret = [[], []];
   fx.currencies.forEach((record) => {
     ret[0].push(record.code);
@@ -51,5 +56,5 @@ export const fxSymbolsList = async (token, version) => {
 };
 
 Client.prototype.fxSymbolsList = function () {
-  return fxSymbolsList(this._token, this._version);
+  return fxSymbolsList({ token: this._token, version: this._version });
 };

@@ -25,7 +25,7 @@ import { Client } from "../client";
  * @param {string} version API version
  * @param {string} format output format
  */
-export const lookup = (lookup_, token, version, format = "json") => {
+export const lookup = (lookup_, { token, version, format = "json" } = {}) => {
   _raiseIfNotStr(lookup_);
   if (lookup_) {
     return _get({ url: `rules/lookup/${lookup_}`, token, version, format });
@@ -33,8 +33,12 @@ export const lookup = (lookup_, token, version, format = "json") => {
   return _get({ url: "rules/schema", token, version, format });
 };
 
-Client.prototype.lookup = function (lookup_, format) {
-  return lookup(lookup_, this._token, this._version, format);
+Client.prototype.lookup = function (lookup_, { format }) {
+  return lookup(lookup_, {
+    token: this._token,
+    version: this._version,
+    format,
+  });
 };
 
 /**
@@ -45,11 +49,11 @@ Client.prototype.lookup = function (lookup_, format) {
  * @param {string} version API version
  * @param {string} format output format
  */
-export const schema = (token, version, format = "json") =>
+export const schema = ({ token, version, format = "json" } = {}) =>
   _get({ url: "rules/schema", token, version, format });
 
-Client.prototype.schema = function (format) {
-  return schema(this._token, this._version, format);
+Client.prototype.schema = function ({ format } = {}) {
+  return schema({ token: this._token, version: this._version, format });
 };
 
 /**
@@ -70,9 +74,7 @@ export const create = (
   ruleSet,
   type,
   existingId,
-  token,
-  version,
-  format = "json",
+  { token, version, format = "json" } = {},
 ) => {
   type = type || "any";
   if (type !== "any" && type !== "all") {
@@ -113,18 +115,13 @@ Client.prototype.create = function (
   ruleSet,
   type,
   existingId,
-  format,
+  { format },
 ) {
-  return create(
-    rule,
-    ruleName,
-    ruleSet,
-    type,
-    existingId,
-    this._token,
-    this._version,
+  return create(rule, ruleName, ruleSet, type, existingId, {
+    token: this._token,
+    version: this._version,
     format,
-  );
+  });
 };
 
 /**
@@ -134,7 +131,7 @@ Client.prototype.create = function (
  * @param {string} version API version
  * @param {string} format output format
  */
-export const pause = (ruleId, token, version, format = "json") =>
+export const pause = (ruleId, { token, version, format = "json" } = {}) =>
   _post({
     url: "rules/pause",
     json: { ruleId, token },
@@ -144,8 +141,8 @@ export const pause = (ruleId, token, version, format = "json") =>
     format,
   });
 
-Client.prototype.pause = function (ruleId, format) {
-  return pause(ruleId, this._token, this._version, format);
+Client.prototype.pause = function (ruleId, { format } = {}) {
+  return pause(ruleId, { token: this._token, version: this._version, format });
 };
 /**
  * You can control the output of rules by pausing and resume per rule id.
@@ -154,7 +151,7 @@ Client.prototype.pause = function (ruleId, format) {
  * @param {string} version API version
  * @param {string} format output format
  */
-export const resume = (ruleId, token, version, format = "json") =>
+export const resume = (ruleId, { token, version, format = "json" } = {}) =>
   _post({
     url: "rules/resume",
     json: { ruleId, token },
@@ -164,8 +161,8 @@ export const resume = (ruleId, token, version, format = "json") =>
     format,
   });
 
-Client.prototype.resume = function (ruleId, format) {
-  return resume(ruleId, this._token, this._version, format);
+Client.prototype.resume = function (ruleId, { format } = {}) {
+  return resume(ruleId, { token: this._token, version: this._version, format });
 };
 
 /**
@@ -175,15 +172,19 @@ Client.prototype.resume = function (ruleId, format) {
  * @param {string} version API version
  * @param {string} format output format
  */
-export const delete_ = (ruleId, token, version, format = "json") =>
+export const delete_ = (ruleId, { token, version, format = "json" } = {}) =>
   _delete({
     url: `rules/${ruleId}`,
     token,
     version,
     format,
   });
-Client.prototype.delete = function (ruleId, format) {
-  return delete_(ruleId, this._token, this._version, format);
+Client.prototype.delete = function (ruleId, { format } = {}) {
+  return delete_(ruleId, {
+    token: this._token,
+    version: this._version,
+    format,
+  });
 };
 /**
  * Rule information such as the current rule status and execution statistics.
@@ -192,15 +193,15 @@ Client.prototype.delete = function (ruleId, format) {
  * @param {string} version API version
  * @param {string} format output format
  */
-export const rule = (ruleId, token, version, format = "json") =>
+export const rule = (ruleId, { token, version, format = "json" } = {}) =>
   _get({
     url: `rules/info/${ruleId}`,
     token,
     version,
     format,
   });
-Client.prototype.rule = function (ruleId, format) {
-  return rule(ruleId, this._token, this._version, format);
+Client.prototype.rule = function (ruleId, { format } = {}) {
+  return rule(ruleId, { token: this._token, version: this._version, format });
 };
 /**
  * List all rules that are currently on your account. Each rule object returned will include the current rule status and execution statistics."""
@@ -208,15 +209,15 @@ Client.prototype.rule = function (ruleId, format) {
  * @param {string} version API version
  * @param {string} format output format
  */
-export const rules = (token, version, format = "json") =>
+export const rules = ({ token, version, format = "json" } = {}) =>
   _get({
     url: "rules",
     token,
     version,
     format,
   });
-Client.prototype.rules = function (format) {
-  return rules(this._token, this._version, format);
+Client.prototype.rules = function ({ format } = {}) {
+  return rules({ token: this._token, version: this._version, format });
 };
 /**
  * If you choose `logs` as your rule output method, IEX Cloud will save the output objects on our server. You can use this method to retrieve those data objects.
@@ -225,13 +226,14 @@ Client.prototype.rules = function (format) {
  * @param {string} version API version
  * @param {string} format output format
  */
-export const output = (ruleId, token, version, format = "json") =>
+export const output = (ruleId, { token, version, format = "json" } = {}) =>
   _get({
     url: `rules/output/${ruleId}`,
     token,
     version,
     format,
   });
-Client.prototype.output = function (ruleId, format) {
-  return output(ruleId, this._token, this._version, format);
+
+Client.prototype.output = function (ruleId, { format } = {}) {
+  return output(ruleId, { token: this._token, version: this._version, format });
 };

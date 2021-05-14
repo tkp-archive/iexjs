@@ -34,10 +34,7 @@ import { Client } from "../client";
 export const collections = (
   tag,
   collectionName,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   if (_COLLECTION_TAGS.indexOf(tag) < 0) {
     throw new IEXJSException("Uncrecognized tag");
@@ -53,15 +50,17 @@ export const collections = (
   });
 };
 
-Client.prototype.collections = function (tag, collectionName, filter, format) {
-  return collections(
-    tag,
-    collectionName,
-    this._token,
-    this._version,
+Client.prototype.collections = function (
+  tag,
+  collectionName,
+  { filter, format } = {},
+) {
+  return collections(tag, collectionName, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -75,7 +74,7 @@ Client.prototype.collections = function (tag, collectionName, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const earningsToday = (token, version, filter, format) =>
+export const earningsToday = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/today-earnings`,
     token,
@@ -84,8 +83,13 @@ export const earningsToday = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.earningsToday = function (filter, format) {
-  return earningsToday(this._token, this._version, filter, format);
+Client.prototype.earningsToday = function ({ filter, format } = {}) {
+  return earningsToday({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -99,7 +103,7 @@ Client.prototype.earningsToday = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const ipoToday = (token, version, filter, format) =>
+export const ipoToday = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/today-ipos`,
     token,
@@ -108,8 +112,13 @@ export const ipoToday = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.ipoToday = function (filter, format) {
-  return ipoToday(this._token, this._version, filter, format);
+Client.prototype.ipoToday = function ({ filter, format } = {}) {
+  return ipoToday({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -123,7 +132,7 @@ Client.prototype.ipoToday = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const ipoUpcoming = (token, version, filter, format) =>
+export const ipoUpcoming = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/upcoming-ipos`,
     token,
@@ -132,8 +141,13 @@ export const ipoUpcoming = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.ipoUpcoming = function (filter, format) {
-  return ipoUpcoming(this._token, this._version, filter, format);
+Client.prototype.ipoUpcoming = function ({ filter, format } = {}) {
+  return ipoUpcoming({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -147,7 +161,7 @@ Client.prototype.ipoUpcoming = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const list = (option, token, version, filter, format) => {
+export const list = (option, { token, version, filter, format } = {}) => {
   // eslint-disable-next-line no-param-reassign
   option = option || "mostactive";
   if (_LIST_OPTIONS.indexOf(option) < 0) {
@@ -162,8 +176,13 @@ export const list = (option, token, version, filter, format) => {
   });
 };
 
-Client.prototype.list = function (option, filter, format) {
-  return list(option, this._token, this._version, filter, format);
+Client.prototype.list = function (option, { filter, format } = {}) {
+  return list(option, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -176,7 +195,7 @@ Client.prototype.list = function (option, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const marketVolume = (token, version, filter, format) =>
+export const marketVolume = ({ token, version, filter, format } = {}) =>
   _get({
     url: `market/`,
     token,
@@ -185,8 +204,13 @@ export const marketVolume = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.marketVolume = function (filter, format) {
-  return marketVolume(this._token, this._version, filter, format);
+Client.prototype.marketVolume = function ({ filter, format } = {}) {
+  return marketVolume({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -197,7 +221,7 @@ Client.prototype.marketVolume = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const marketOhlc = (token, version, filter, format) =>
+export const marketOhlc = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/ohlc`,
     token,
@@ -206,8 +230,13 @@ export const marketOhlc = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.marketOhlc = function (filter, format) {
-  return marketOhlc(this._token, this._version, filter, format);
+Client.prototype.marketOhlc = function ({ filter, format } = {}) {
+  return marketOhlc({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -218,7 +247,7 @@ Client.prototype.marketOhlc = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const marketYesterday = (token, version, filter, format) =>
+export const marketYesterday = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/previous`,
     token,
@@ -227,8 +256,13 @@ export const marketYesterday = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.marketYesterday = function (filter, format) {
-  return marketYesterday(this._token, this._version, filter, format);
+Client.prototype.marketYesterday = function ({ filter, format } = {}) {
+  return marketYesterday({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 export const marketPrevious = marketYesterday;
@@ -244,7 +278,7 @@ Client.prototype.marketPrevious = Client.prototype.marketYesterday;
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const sectorPerformance = (token, version, filter, format) =>
+export const sectorPerformance = ({ token, version, filter, format } = {}) =>
   _get({
     url: `stock/market/sector-performance`,
     token,
@@ -253,8 +287,13 @@ export const sectorPerformance = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.sectorPerformance = function (filter, format) {
-  return sectorPerformance(this._token, this._version, filter, format);
+Client.prototype.sectorPerformance = function ({ filter, format } = {}) {
+  return sectorPerformance({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -268,7 +307,10 @@ Client.prototype.sectorPerformance = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const marketShortInterest = (date, token, version, filter, format) => {
+export const marketShortInterest = (
+  date,
+  { token, version, filter, format } = {},
+) => {
   if (date) {
     return _get({
       url: `stock/market/short-interest/${_strOrDate(date)}`,
@@ -287,8 +329,16 @@ export const marketShortInterest = (date, token, version, filter, format) => {
   });
 };
 
-Client.prototype.marketShortInterest = function (date, filter, format) {
-  return marketShortInterest(date, this._token, this._version, filter, format);
+Client.prototype.marketShortInterest = function (
+  date,
+  { filter, format } = {},
+) {
+  return marketShortInterest(date, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -305,10 +355,7 @@ Client.prototype.marketShortInterest = function (date, filter, format) {
 export const upcomingEvents = (
   symbol,
   exactDate,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
@@ -334,15 +381,17 @@ export const upcomingEvents = (
   });
 };
 
-Client.prototype.upcomingEvents = function (symbol, exactDate, filter, format) {
-  return upcomingEvents(
-    symbol,
-    exactDate,
-    this._token,
-    this._version,
+Client.prototype.upcomingEvents = function (
+  symbol,
+  exactDate,
+  { filter, format } = {},
+) {
+  return upcomingEvents(symbol, exactDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -359,10 +408,7 @@ Client.prototype.upcomingEvents = function (symbol, exactDate, filter, format) {
 export const upcomingEarnings = (
   symbol,
   exactDate,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
@@ -391,17 +437,14 @@ export const upcomingEarnings = (
 Client.prototype.upcomingEarnings = function (
   symbol,
   exactDate,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return upcomingEarnings(
-    symbol,
-    exactDate,
-    this._token,
-    this._version,
+  return upcomingEarnings(symbol, exactDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -418,10 +461,7 @@ Client.prototype.upcomingEarnings = function (
 export const upcomingDividends = (
   symbol,
   exactDate,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
@@ -450,17 +490,14 @@ export const upcomingDividends = (
 Client.prototype.upcomingDividends = function (
   symbol,
   exactDate,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return upcomingDividends(
-    symbol,
-    exactDate,
-    this._token,
-    this._version,
+  return upcomingDividends(symbol, exactDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -477,10 +514,7 @@ Client.prototype.upcomingDividends = function (
 export const upcomingSplits = (
   symbol,
   exactDate,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
@@ -506,15 +540,17 @@ export const upcomingSplits = (
   });
 };
 
-Client.prototype.upcomingSplits = function (symbol, exactDate, filter, format) {
-  return upcomingSplits(
-    symbol,
-    exactDate,
-    this._token,
-    this._version,
+Client.prototype.upcomingSplits = function (
+  symbol,
+  exactDate,
+  { filter, format } = {},
+) {
+  return upcomingSplits(symbol, exactDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
 
 /**
@@ -531,10 +567,7 @@ Client.prototype.upcomingSplits = function (symbol, exactDate, filter, format) {
 export const upcomingIPOs = (
   symbol,
   exactDate,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   if (symbol) {
     _raiseIfNotStr(symbol);
@@ -560,13 +593,15 @@ export const upcomingIPOs = (
   });
 };
 
-Client.prototype.upcomingIPOs = function (symbol, exactDate, filter, format) {
-  return upcomingIPOs(
-    symbol,
-    exactDate,
-    this._token,
-    this._version,
+Client.prototype.upcomingIPOs = function (
+  symbol,
+  exactDate,
+  { filter, format } = {},
+) {
+  return upcomingIPOs(symbol, exactDate, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };

@@ -21,12 +21,12 @@ import { Client } from "../../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const symbols = (
+export const symbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/symbols`,
     token,
@@ -35,8 +35,13 @@ export const symbols = (
     format,
   });
 
-Client.prototype.symbols = function (filter, format) {
-  return symbols(this._token, this._version, filter, format);
+Client.prototype.symbols = function ({ filter, format } = {}) {
+  return symbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -49,12 +54,12 @@ Client.prototype.symbols = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const otcSymbols = (
+export const otcSymbols = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/otc/symbols`,
     token,
@@ -63,8 +68,13 @@ export const otcSymbols = (
     format,
   });
 
-Client.prototype.otcSymbols = function (filter, format) {
-  return otcSymbols(this._token, this._version, filter, format);
+Client.prototype.otcSymbols = function ({ filter, format } = {}) {
+  return otcSymbols({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -72,20 +82,17 @@ Client.prototype.otcSymbols = function (filter, format) {
  *
  * https://iexcloud.io/docs/api/#international-symbols
  *
- * @param {string} region 2 letter case insensitive string of country codes using ISO 3166-1 alpha-2
- * @param {string} exchange Case insensitive string of Exchange using IEX Supported Exchanges list
+ * @param {object} options
+ * @param {string} options.region 2 letter case insensitive string of country codes using ISO 3166-1 alpha-2
+ * @param {string} options.exchange Case insensitive string of Exchange using IEX Supported Exchanges list
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const internationalSymbols = (
-  region,
-  exchange,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { region, exchange } = {},
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   if (region) {
     return _get({
@@ -115,48 +122,56 @@ export const internationalSymbols = (
 };
 
 Client.prototype.internationalSymbols = function (
-  region,
-  exchange,
-  filter,
-  format,
+  { region, exchange } = {},
+  { filter, format } = {},
 ) {
   return internationalSymbols(
-    region,
-    exchange,
-    this._token,
-    this._version,
-    filter,
-    format,
+    { region, exchange },
+    { token: this._token, version: this._version, filter, format },
   );
 };
 
-export const symbolsList = (token, version) =>
-  convertToList(symbols(token, version, "symbol"));
+export const symbolsList = ({ token, version } = {}) =>
+  convertToList(symbols({ token, version, filter: "symbol" }));
 
 Client.prototype.symbolsList = function () {
-  return convertToList(symbols(this._token, this._version, "symbol"));
+  return convertToList(
+    symbols({ token: this._token, version: this._version, filter: "symbol" }),
+  );
 };
 
-export const otcSymbolsList = (token, version) =>
-  convertToList(otcSymbols(token, version, "symbol"));
+export const otcSymbolsList = ({ token, version } = {}) =>
+  convertToList(otcSymbols({ token, version, filter: "symbol" }));
 
 Client.prototype.otcSymbolsList = function () {
-  return convertToList(otcSymbols(this._token, this._version, "symbol"));
+  return convertToList(
+    otcSymbols({
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
+  );
 };
 
-export const internationalSymbolsList = (region, exchange, token, version) =>
+export const internationalSymbolsList = (
+  { region, exchange } = {},
+  { token, version } = {},
+) =>
   convertToList(
-    internationalSymbols(region, exchange, token, version, "symbol"),
+    internationalSymbols(
+      { region, exchange },
+      { token, version, filter: "symbol" },
+    ),
   );
 
-Client.prototype.internationalSymbolsList = function (region, exchange) {
+Client.prototype.internationalSymbolsList = function ({
+  region,
+  exchange,
+} = {}) {
   return convertToList(
     internationalSymbols(
-      region,
-      exchange,
-      this._token,
-      this._version,
-      "symbol",
+      { region, exchange },
+      { token: this._token, version: this._version, filter: "symbol" },
     ),
   );
 };

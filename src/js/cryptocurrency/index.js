@@ -21,7 +21,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const cryptoBook = (symbol, token, version, filter, format) =>
+export const cryptoBook = (symbol, { token, version, filter, format } = {}) =>
   _get({
     url: `crypto/${symbol}/book`,
     token,
@@ -30,8 +30,13 @@ export const cryptoBook = (symbol, token, version, filter, format) =>
     format,
   });
 
-Client.prototype.cryptoBook = function (symbol, filter, format) {
-  return cryptoBook(symbol, this._token, this._version, filter, format);
+Client.prototype.cryptoBook = function (symbol, { filter, format } = {}) {
+  return cryptoBook(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -45,7 +50,7 @@ Client.prototype.cryptoBook = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const cryptoPrice = (symbol, token, version, filter, format) =>
+export const cryptoPrice = (symbol, { token, version, filter, format } = {}) =>
   _get({
     url: `crypto/${symbol}/price`,
     token,
@@ -54,8 +59,13 @@ export const cryptoPrice = (symbol, token, version, filter, format) =>
     format,
   });
 
-Client.prototype.cryptoPrice = function (symbol, filter, format) {
-  return cryptoPrice(symbol, this._token, this._version, filter, format);
+Client.prototype.cryptoPrice = function (symbol, { filter, format } = {}) {
+  return cryptoPrice(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -69,7 +79,7 @@ Client.prototype.cryptoPrice = function (symbol, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const cryptoQuote = (symbol, token, version, filter, format) =>
+export const cryptoQuote = (symbol, { token, version, filter, format } = {}) =>
   _get({
     url: `crypto/${symbol}/quote`,
     token,
@@ -78,6 +88,11 @@ export const cryptoQuote = (symbol, token, version, filter, format) =>
     format,
   });
 
-Client.prototype.cryptoQuote = function (symbol, filter, format) {
-  return cryptoQuote(symbol, this._token, this._version, filter, format);
+Client.prototype.cryptoQuote = function (symbol, { filter, format } = {}) {
+  return cryptoQuote(symbol, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

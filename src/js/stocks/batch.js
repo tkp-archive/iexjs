@@ -23,9 +23,10 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#batch-requests
  *
  * @param {string} symbols List of tickers to request
- * @param {string} fields List of fields to request
- * @param {string} range Date range for chart
- * @param {number} last last number of records
+ * @param {object} options
+ * @param {string} options.fields List of fields to request
+ * @param {string} options.range Date range for chart
+ * @param {number} options.last last number of records
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -33,13 +34,8 @@ import { Client } from "../client";
  */
 export const batch = (
   symbols,
-  fields,
-  range,
-  last,
-  token,
-  version,
-  filter,
-  format,
+  { fields, range, last } = {},
+  { token, version, filter, format } = {},
 ) => {
   fields = fields || "quote";
   range = range || "1m";
@@ -87,20 +83,13 @@ export const batch = (
 
 Client.prototype.batch = function (
   symbols,
-  fields,
-  range,
-  last,
-  filter,
-  format,
+  { fields, range, last } = {},
+  { filter, format } = {},
 ) {
-  return batch(
-    symbols,
-    fields,
-    range,
-    last,
-    this._token,
-    this._version,
+  return batch(symbols, fields, range, last, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };

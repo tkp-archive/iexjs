@@ -20,12 +20,12 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const exchanges = (
+export const exchanges = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/market/us/exchanges`,
     token,
@@ -34,8 +34,13 @@ export const exchanges = (
     format,
   });
 
-Client.prototype.exchanges = function (filter, format) {
-  return exchanges(this._token, this._version, filter, format);
+Client.prototype.exchanges = function ({ filter, format } = {}) {
+  return exchanges({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -48,12 +53,12 @@ Client.prototype.exchanges = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const internationalExchanges = (
+export const internationalExchanges = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/exchanges`,
     token,
@@ -62,6 +67,11 @@ export const internationalExchanges = (
     format,
   });
 
-Client.prototype.internationalExchanges = function (filter, format) {
-  return internationalExchanges(this._token, this._version, filter, format);
+Client.prototype.internationalExchanges = function ({ filter, format } = {}) {
+  return internationalExchanges({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

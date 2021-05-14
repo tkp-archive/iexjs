@@ -15,24 +15,19 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#u-s-exchanges
  *
- * @param {string} type "holiday" or "trade"
- * @param {string} direction "next" or "last"
- * @param {number} last number to move in direction
- * @param {string} startDate start date for next or last, YYYYMMDD
+ * @param {object} options
+ * @param {string} options.type "holiday" or "trade"
+ * @param {string} options.direction "next" or "last"
+ * @param {number} options.last number to move in direction
+ * @param {string} options.startDate start date for next or last, YYYYMMDD
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const calendar = (
-  type = "holiday",
-  direction = "next",
-  last = 1,
-  startDate = null,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { type = "holiday", direction = "next", last = 1, startDate = null } = {},
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   if (startDate) {
     return _get({
@@ -57,41 +52,31 @@ export const calendar = (
 export const holidays = calendar;
 
 Client.prototype.calendar = function (
-  type,
-  direction,
-  last,
-  startDate,
-  filter,
-  format,
+  { type, direction, last, startDate } = {},
+  { filter, format } = {},
 ) {
   return calendar(
-    type,
-    direction,
-    last,
-    startDate,
-    this._token,
-    this._version,
-    filter,
-    format,
+    { type, direction, last, startDate },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
   );
 };
 
 Client.prototype.holidays = function (
-  type,
-  direction,
-  last,
-  startDate,
-  filter,
-  format,
+  { type, direction, last, startDate } = {},
+  { filter, format } = {},
 ) {
   return calendar(
-    type,
-    direction,
-    last,
-    startDate,
-    this._token,
-    this._version,
-    filter,
-    format,
+    { type, direction, last, startDate },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
   );
 };

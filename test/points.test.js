@@ -25,38 +25,16 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client", () => {
-  test("Exists", () => {
-    expect(Client).toBeDefined();
-  });
-});
-
-describe("Client - Account", () => {
-  test("messageBudget", async () => {
+describe("Client - Points", () => {
+  test("points", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.messageBudget).toBeDefined();
+    const res = await client.points(SYMBOL);
+    // console.log(res);
+    expect(Array.isArray(res)).toBe(true);
   });
 
-  test("metadata", async () => {
+  test("points", async () => {
     const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.metadata).toBeDefined();
-  });
-
-  test("payAsYouGo", async () => {
-    const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.payAsYouGo).toBeDefined();
-  });
-
-  test("usage", async () => {
-    const client = new Client({ version: "sandbox" });
-
-    // can't test without secret token
-    expect(client.usage).toBeDefined();
+    const res = await client.points(SYMBOL, "NEXTDIVIDENDDATE");
   });
 });

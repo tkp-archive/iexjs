@@ -20,12 +20,12 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const sectors = (
+export const sectors = ({
   token = "",
   version = "",
   filter = "",
   format = "json",
-) =>
+} = {}) =>
   _get({
     url: `ref-data/sectors`,
     token,
@@ -34,8 +34,13 @@ export const sectors = (
     format,
   });
 
-Client.prototype.sectors = function (filter, format) {
-  return sectors(this._token, this._version, filter, format);
+Client.prototype.sectors = function ({ filter, format } = {}) {
+  return sectors({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -48,7 +53,12 @@ Client.prototype.sectors = function (filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const tags = (token = "", version = "", filter = "", format = "json") =>
+export const tags = ({
+  token = "",
+  version = "",
+  filter = "",
+  format = "json",
+} = {}) =>
   _get({
     url: `ref-data/tags`,
     token,
@@ -57,6 +67,6 @@ export const tags = (token = "", version = "", filter = "", format = "json") =>
     format,
   });
 
-Client.prototype.tags = function (filter, format) {
-  return tags(this._token, this._version, filter, format);
+Client.prototype.tags = function ({ filter, format } = {}) {
+  return tags({ token: this._token, version: this._version, filter, format });
 };

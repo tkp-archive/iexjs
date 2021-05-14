@@ -23,10 +23,7 @@ import { Client } from "../client";
  */
 export const search = (
   fragment,
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
+  { token = "", version = "", filter = "", format = "json" } = {},
 ) =>
   _get({
     url: `search/${_quoteSymbols(fragment)}`,
@@ -36,6 +33,11 @@ export const search = (
     format,
   });
 
-Client.prototype.search = function (fragment, filter, format) {
-  return search(fragment, this._token, this._version, filter, format);
+Client.prototype.search = function (fragment, { filter, format } = {}) {
+  return search(fragment, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
