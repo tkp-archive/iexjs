@@ -6,7 +6,7 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-import { _get, _dateRange, _quoteSymbols, _strOrDate } from "../common";
+import { _get, _dateRange, _quoteSymbols, _strOrDate, IEXJSException } from "../common";
 import { Client } from "../client";
 
 /**
@@ -58,6 +58,7 @@ Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
  * @param {string} options.on (Returns data on the given date. Format YYYY-MM-DD
  * @param {number} options.last Returns the latest n number of records in the series
  * @param {number} options.first Returns the first n number of records in the series
+ * @param {string} options.sort Order of results
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -119,6 +120,7 @@ export const timeSeries = (
     on = "",
     last = 0,
     first = 0,
+    sort = "",
   } = options || {};
 
   if (!id) return timeSeriesInventory({ token, version, filter, format });
@@ -142,6 +144,12 @@ export const timeSeries = (
   if (on) base_url += `on=${_strOrDate(on)}&`;
   if (last) base_url += `last=${last}&`;
   if (first) base_url += `first=${first}&`;
+  if (sort) {
+    if (sort.toLowerCase() !== "asc" && sort.toLowerCase() !== "desc") {
+      throw new IEXJSException(`Sort not recognized: ${sort}`);
+    }
+    base_url += `sort=${sort}&`;
+  }
 
   // TODO
   // if extra_params:
