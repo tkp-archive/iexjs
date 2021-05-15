@@ -6,7 +6,13 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-import { _get, _dateRange, _quoteSymbols, _strOrDate, IEXJSException } from "../common";
+import {
+  _get,
+  _dateRange,
+  _quoteSymbols,
+  _strOrDate,
+  IEXJSException,
+} from "../common";
 import { Client } from "../client";
 
 /**
