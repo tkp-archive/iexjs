@@ -110,7 +110,7 @@ export const timeSeries = (
     key = "",
     subkey = "",
     range = "",
-    // calendar = false,
+    calendar = false,
     limit = 1,
     subattribute = "",
     dateField = "",
@@ -131,8 +131,7 @@ export const timeSeries = (
 
   if (range) base_url += `range=${_dateRange(range)}&`;
 
-  // TODO https://github.com/iexcloud/pyEX/issues/164
-  // base_url += "calendar={}&".format(str(calendar))
+  if (calendar) base_url += "calendar={}&".format(str(calendar));
 
   if (!last && (!to || !from)) base_url += `limit=${limit}&`;
   if (subattribute) base_url += `subattribute=${subattribute}&`;
