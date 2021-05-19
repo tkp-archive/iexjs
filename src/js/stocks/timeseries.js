@@ -131,7 +131,7 @@ export const timeSeries = (
 
   if (range) base_url += `range=${_dateRange(range)}&`;
 
-  if (calendar) base_url += "calendar={}&".format(str(calendar));
+  if (calendar) base_url += "calendar={}&".format(calendar);
 
   if (!last && (!to || !from)) base_url += `limit=${limit}&`;
   if (subattribute) base_url += `subattribute=${subattribute}&`;
