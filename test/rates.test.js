@@ -74,9 +74,9 @@ describe("Client - Rates", () => {
     expect(typeof res).toBe("number");
   });
 
-  test("oneMonth", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.oneMonth();
-    expect(typeof res).toBe("number");
-  });
+  // test("oneMonth", async () => {
+  //   const client = new Client({ version: "sandbox" });
+  //   const res = await client.oneMonth();
+  //   expect(typeof res).toBe("number");
+  // });
 });
