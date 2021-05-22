@@ -8,7 +8,7 @@
  */
 /* eslint-disable no-param-reassign */
 import { Client } from "../../client";
-import { timeSeries } from "../../stocks";
+import { timeSeries } from "../../timeseries";
 
 /**
  * internal

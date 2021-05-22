@@ -282,6 +282,8 @@ const {
   timeSeries,
   tenQ,
   tenK,
+  twentyF,
+  fortyF,
   iexTops,
   iexLast,
   iexDeep,
@@ -1267,6 +1269,14 @@ describe("Stock", () => {
 
   test("tenK", () => {
     expect(tenK).toBeDefined();
+  });
+
+  test("twentyF", () => {
+    expect(twentyF).toBeDefined();
+  });
+
+  test("fortyF", () => {
+    expect(fortyF).toBeDefined();
   });
 
   test("tops", () => {

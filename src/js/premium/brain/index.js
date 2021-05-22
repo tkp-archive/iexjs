@@ -7,7 +7,7 @@
  *
  */
 import { Client } from "../../client";
-import { timeSeries } from "../../stocks";
+import { timeSeries } from "../../timeseries";
 
 /**
  * internal

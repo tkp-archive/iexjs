@@ -410,18 +410,6 @@ describe("Stock", () => {
   //   expect(res).toBeDefined();
   // });
 
-  test("timeSeriesInventory", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.timeSeriesInventory(SYMBOL);
-    expect(res).toBeDefined();
-  });
-
-  test("timeSeries", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.timeSeries(SYMBOL);
-    expect(res).toBeDefined();
-  });
-
   test("tenQ", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.tenQ(SYMBOL);
@@ -431,6 +419,18 @@ describe("Stock", () => {
   test("tenK", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.tenK(SYMBOL);
+    expect(res).toBeDefined();
+  });
+
+  test("twentyF", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.tenK("BABA");
+    expect(res).toBeDefined();
+  });
+
+  test("fortyF", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.tenK("SHOP");
     expect(res).toBeDefined();
   });
 });

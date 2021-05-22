@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* ***************************************************************************
  *
  * Copyright (c) 2021, the iexjs authors.
@@ -6,7 +7,6 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
 const fetch = require("cross-fetch");
@@ -25,22 +25,16 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client - metadata", () => {
-  test("metadata", async () => {
+describe("Timeseries", () => {
+  test("timeSeriesInventory", async () => {
     const client = new Client({ version: "sandbox" });
-    let res;
-    try {
-      res = await client.queryMetadata("SPLITS");
-    } catch {
-      // try again
-      res = await client.queryMetadata("SPLITS");
-    }
-    expect(Array.isArray(res)).toBe(true);
+    const res = await client.timeSeriesInventory(SYMBOL);
+    expect(res).toBeDefined();
   });
 
-  test("metadata - any", async () => {
+  test("timeSeries", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.queryMetadata({ key: SYMBOL });
-    expect(Array.isArray(res)).toBe(true);
+    const res = await client.timeSeries(SYMBOL);
+    expect(res).toBeDefined();
   });
 });

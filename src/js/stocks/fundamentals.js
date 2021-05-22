@@ -16,6 +16,7 @@ import {
   IEXJSException,
 } from "../common";
 import { Client } from "../client";
+import { timeSeries } from "../timeseries";
 
 /**
  * Pulls balance sheet data. Available quarterly (4 quarters) and annually (4 years)
@@ -354,6 +355,142 @@ Client.prototype.incomeStatement = function (
   { filter, format } = {},
 ) {
   return incomeStatement(symbol, period, last, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Get company's 10-Q statement
+ *
+ * @param {string} symbol company symbol
+ * @param {object} options `timeseries` options
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+export const tenQ = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
+  timeSeries(
+    {
+      id: "REPORTED_FINANCIALS",
+      key: symbol,
+      subkey: "10-Q",
+      ...(options || {}),
+    },
+    { token, version, filter, format },
+  );
+
+Client.prototype.tenQ = function (symbol, options, { filter, format } = {}) {
+  return tenQ(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Get company's 10-K statement
+ *
+ * @param {string} symbol company symbol
+ * @param {object} options `timeseries` options
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+export const tenK = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
+  timeSeries(
+    {
+      id: "REPORTED_FINANCIALS",
+      key: symbol,
+      subkey: "10-K",
+      ...(options || {}),
+    },
+    { token, version, filter, format },
+  );
+
+Client.prototype.tenK = function (symbol, options, { filter, format } = {}) {
+  return tenK(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Get company's 20-F statement
+ *
+ * @param {string} symbol company symbol
+ * @param {object} options `timeseries` options
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+export const twentyF = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
+  timeSeries(
+    {
+      id: "REPORTED_FINANCIALS",
+      key: symbol,
+      subkey: "20-F",
+      ...(options || {}),
+    },
+    { token, version, filter, format },
+  );
+
+Client.prototype.twentyF = function (symbol, options, { filter, format } = {}) {
+  return twentyF(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Get company's 40-F statement
+ *
+ * @param {string} symbol company symbol
+ * @param {object} options `timeseries` options
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+export const fortyF = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
+  timeSeries(
+    {
+      id: "REPORTED_FINANCIALS",
+      key: symbol,
+      subkey: "40-F",
+      ...(options || {}),
+    },
+    { token, version, filter, format },
+  );
+
+Client.prototype.fortyF = function (symbol, options, { filter, format } = {}) {
+  return fortyF(symbol, options, {
     token: this._token,
     version: this._version,
     filter,
