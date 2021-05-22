@@ -372,7 +372,11 @@ Client.prototype.incomeStatement = function (
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const tenQ = (symbol, options, token, version, filter, format) =>
+export const tenQ = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -380,14 +384,16 @@ export const tenQ = (symbol, options, token, version, filter, format) =>
       subkey: "10-Q",
       ...(options || {}),
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
-Client.prototype.tenQ = function (symbol, options, filter, format) {
-  return tenQ(symbol, options, this._token, this._version, filter, format);
+Client.prototype.tenQ = function (symbol, options, { filter, format } = {}) {
+  return tenQ(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -400,7 +406,11 @@ Client.prototype.tenQ = function (symbol, options, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const tenK = (symbol, options, token, version, filter, format) =>
+export const tenK = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -408,14 +418,16 @@ export const tenK = (symbol, options, token, version, filter, format) =>
       subkey: "10-K",
       ...(options || {}),
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
-Client.prototype.tenK = function (symbol, options, filter, format) {
-  return tenK(symbol, options, this._token, this._version, filter, format);
+Client.prototype.tenK = function (symbol, options, { filter, format } = {}) {
+  return tenK(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -428,7 +440,11 @@ Client.prototype.tenK = function (symbol, options, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const twentyF = (symbol, options, token, version, filter, format) =>
+export const twentyF = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -436,14 +452,16 @@ export const twentyF = (symbol, options, token, version, filter, format) =>
       subkey: "20-F",
       ...(options || {}),
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
-Client.prototype.twentyF = function (symbol, options, filter, format) {
-  return twentyF(symbol, options, this._token, this._version, filter, format);
+Client.prototype.twentyF = function (symbol, options, { filter, format } = {}) {
+  return twentyF(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -456,7 +474,11 @@ Client.prototype.twentyF = function (symbol, options, filter, format) {
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const fortyF = (symbol, options, token, version, filter, format) =>
+export const fortyF = (
+  symbol,
+  options,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -464,12 +486,14 @@ export const fortyF = (symbol, options, token, version, filter, format) =>
       subkey: "40-F",
       ...(options || {}),
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
-Client.prototype.fortyF = function (symbol, options, filter, format) {
-  return fortyF(symbol, options, this._token, this._version, filter, format);
+Client.prototype.fortyF = function (symbol, options, { filter, format } = {}) {
+  return fortyF(symbol, options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
