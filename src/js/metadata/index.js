@@ -26,6 +26,8 @@ export const queryMetadata = (
   { token, version, filter, format } = {},
 ) => {
   let url = "metadata/time-series";
+  // eslint-disable-next-line no-param-reassign
+  if (!id && key) id = "any";
   if (id) {
     url += `/${id}`;
     if (key) {

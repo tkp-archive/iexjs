@@ -37,4 +37,10 @@ describe("Client - metadata", () => {
     }
     expect(Array.isArray(res)).toBe(true);
   });
+
+  test("metadata - any", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.queryMetadata({ key: SYMBOL });
+    expect(Array.isArray(res)).toBe(true);
+  });
 });
