@@ -28,7 +28,13 @@ afterEach(async () => {
 describe("Client - metadata", () => {
   test("metadata", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.queryMetadata();
+    let res;
+    try {
+      res = await client.queryMetadata("SPLITS");
+    } catch {
+      // try again
+      res = await client.queryMetadata("SPLITS");
+    }
     expect(Array.isArray(res)).toBe(true);
   });
 
