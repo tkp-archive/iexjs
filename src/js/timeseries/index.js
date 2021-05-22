@@ -17,7 +17,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const timeSeriesInventory = (token, version, filter, format) =>
+export const timeSeriesInventory = ({ token, version, filter, format } = {}) =>
   _get({
     url: `time-series`,
     token,
@@ -26,7 +26,7 @@ export const timeSeriesInventory = (token, version, filter, format) =>
     format,
   });
 
-Client.prototype.timeSeriesInventory = function (filter, format) {
+Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
   return timeSeriesInventory(this._token, this._version, filter, format);
 };
 
@@ -95,7 +95,10 @@ Client.prototype.timeSeriesInventory = function (filter, format) {
  *     | next-quarter | Calendar data for next quarter. Requires calendar=true                                                                                     |
  *     +--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
  */
-export const timeSeries = (options, token, version, filter, format) => {
+export const timeSeries = (
+  options,
+  { token, version, filter, format } = {},
+) => {
   const {
     id = "",
     key = "",
@@ -146,6 +149,6 @@ export const timeSeries = (options, token, version, filter, format) => {
   });
 };
 
-Client.prototype.timeSeries = function (options, filter, format) {
+Client.prototype.timeSeries = function (options, { filter, format } = {}) {
   return timeSeries(options, this._token, this._version, filter, format);
 };

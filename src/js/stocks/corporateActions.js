@@ -14,8 +14,8 @@ import {
   _timeseriesWrapper,
   IEXJSException,
 } from "../common";
-import { timeSeries } from "../timeseries";
 import { Client } from "../client";
+import { timeSeries } from "../timeseries";
 
 /**
  * Stock split history
