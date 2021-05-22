@@ -29,5 +29,6 @@ export * from "./rules";
 export * from "./stats";
 export * from "./stocks";
 export * from "./streaming";
+export * from "./timeseries";
 
 export * from "./client";

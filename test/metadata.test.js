@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* ***************************************************************************
  *
  * Copyright (c) 2021, the iexjs authors.
@@ -7,6 +6,7 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
 const fetch = require("cross-fetch");
