@@ -433,4 +433,16 @@ describe("Stock", () => {
     const res = await client.tenK(SYMBOL);
     expect(res).toBeDefined();
   });
+
+  test("twentyF", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.tenK("BABA");
+    expect(res).toBeDefined();
+  });
+
+  test("fortyF", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.tenK("SHOP");
+    expect(res).toBeDefined();
+  });
 });

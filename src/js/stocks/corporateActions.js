@@ -14,7 +14,7 @@ import {
   _timeseriesWrapper,
   IEXJSException,
 } from "../common";
-import { timeSeries } from "./timeseries";
+import { timeSeries } from "../timeseries";
 import { Client } from "../client";
 
 /**
