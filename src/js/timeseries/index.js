@@ -27,7 +27,12 @@ export const timeSeriesInventory = ({ token, version, filter, format } = {}) =>
   });
 
 Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
-  return timeSeriesInventory(this._token, this._version, filter, format);
+  return timeSeriesInventory({
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
 /**
@@ -115,7 +120,7 @@ export const timeSeries = (
     first = 0,
   } = options || {};
 
-  if (!id) return timeSeriesInventory(token, version, filter, format);
+  if (!id) return timeSeriesInventory({ token, version, filter, format });
 
   let base_url = `time-series/${id}`;
   if (key) base_url += `/${_quoteSymbols(key)}`;
@@ -150,5 +155,10 @@ export const timeSeries = (
 };
 
 Client.prototype.timeSeries = function (options, { filter, format } = {}) {
-  return timeSeries(options, this._token, this._version, filter, format);
+  return timeSeries(options, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };

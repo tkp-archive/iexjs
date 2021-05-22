@@ -410,18 +410,6 @@ describe("Stock", () => {
   //   expect(res).toBeDefined();
   // });
 
-  test("timeSeriesInventory", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.timeSeriesInventory(SYMBOL);
-    expect(res).toBeDefined();
-  });
-
-  test("timeSeries", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.timeSeries(SYMBOL);
-    expect(res).toBeDefined();
-  });
-
   test("tenQ", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.tenQ(SYMBOL);
