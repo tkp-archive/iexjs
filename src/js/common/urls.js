@@ -230,7 +230,7 @@ export const _streamSSE = (url, on_data, accrue = false) => {
  * @param {string} url
  * @param {string} env
  */
-export const overrideUrl = (url = "", env = "") => {
+export const overrideUrl = ({ url = "", env = "" } = {}) => {
   if (env) {
     _URL_PREFIX_CLOUD = (version) =>
       `https://cloud.${env}.iexapis.com/${version}/`;
