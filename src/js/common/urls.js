@@ -14,10 +14,11 @@ import { IEXJSException } from "./exception";
 export const _URL_PREFIX = () => "https://api.iextrading.com/1.0/";
 export let _URL_PREFIX_CLOUD = (version) =>
   `https://cloud.iexapis.com/${version}/`;
-export const _URL_PREFIX_CLOUD_SANDBOX = () =>
+export let _URL_PREFIX_CLOUD_SANDBOX = () =>
   `https://sandbox.iexapis.com/stable/`;
 
 const _URL_PREFIX_CLOUD_ORIG = _URL_PREFIX_CLOUD;
+const _URL_PREFIX_CLOUD_SANDBOX_ORIG = _URL_PREFIX_CLOUD_SANDBOX;
 
 export const _SIO_URL_PREFIX = "https://ws-api.iextrading.com";
 export const _SIO_PORT = 443;
@@ -25,16 +26,21 @@ export const _SIO_PORT = 443;
 export let _SSE_URL_PREFIX = (version, channel, symbols, token) =>
   `https://cloud-sse.iexapis.com/${version}/${channel}?symbols=${symbols}&token=${token}`;
 const _SSE_URL_PREFIX_ORIG = _SSE_URL_PREFIX;
-export const _SSE_URL_PREFIX_ALL = (version, channel, token) =>
+export let _SSE_URL_PREFIX_ALL = (version, channel, token) =>
   `https://cloud-sse.iexapis.com/${version}/${channel}?token=${token}`;
-export const _SSE_DEEP_URL_PREFIX = (version, symbols, channels, token) =>
+const _SSE_URL_PREFIX_ALL_ORIG = _SSE_URL_PREFIX_ALL;
+export let _SSE_DEEP_URL_PREFIX = (version, symbols, channels, token) =>
   `https://cloud-sse.iexapis.com/${version}/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
-export const _SSE_URL_PREFIX_SANDBOX = (version, channel, symbols, token) =>
+const _SSE_DEEP_URL_PREFIX_ORIG = _SSE_DEEP_URL_PREFIX;
+export let _SSE_URL_PREFIX_SANDBOX = (version, channel, symbols, token) =>
   `https://sandbox-sse.iexapis.com/stable/${channel}?symbols=${symbols}&token=${token}`;
-export const _SSE_URL_PREFIX_ALL_SANDBOX = (channel, token) =>
+const _SSE_URL_PREFIX_SANDBOX_ORIG = _SSE_URL_PREFIX_SANDBOX;
+export let _SSE_URL_PREFIX_ALL_SANDBOX = (channel, token) =>
   `https://sandbox-sse.iexapis.com/stable/${channel}?token=${token}`;
-export const _SSE_DEEP_URL_PREFIX_SANDBOX = (symbols, channels, token) =>
+const _SSE_URL_PREFIX_ALL_SANDBOX_ORIG = _SSE_URL_PREFIX_ALL_SANDBOX;
+export let _SSE_DEEP_URL_PREFIX_SANDBOX = (symbols, channels, token) =>
   `https://sandbox-sse.iexapis.com/stable/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
+const _SSE_DEEP_URL_PREFIX_SANDBOX_ORIG = _SSE_DEEP_URL_PREFIX_SANDBOX;
 
 /**
  *
@@ -224,26 +230,40 @@ export const _streamSSE = (url, on_data, accrue = false) => {
  * @param {string} url
  * @param {string} env
  */
-export const overrideUrl = (url = "", env = "") => {
-  if (env)
+export const overrideUrl = ({ url = "", env = "" } = {}) => {
+  if (env) {
     _URL_PREFIX_CLOUD = (version) =>
       `https://cloud.${env}.iexapis.com/${version}/`;
-  else if (url) _URL_PREFIX_CLOUD = () => url;
-  // reset
-  else _URL_PREFIX_CLOUD = _URL_PREFIX_CLOUD_ORIG;
-};
-
-/**
- * Override the default IEX Cloud SSE url
- * @param {string} url
- * @param {string} env
- */
-export const overrideSSEUrl = (url = "", env = "") => {
-  if (env)
+    _URL_PREFIX_CLOUD = (version) =>
+      `https://cloud.${env}.iexapis.com/${version}/`;
+    _URL_PREFIX_CLOUD_SANDBOX = () =>
+      `https://sandbox.${env}.iexapis.com/stable/`;
     _SSE_URL_PREFIX = (version, channel, symbols, token) =>
       `https://cloud-sse.${env}.iexapis.com/${version}/${channel}?symbols=${symbols}&token=${token}`;
-  else if (url) _SSE_URL_PREFIX = () => url;
-  else _SSE_URL_PREFIX = _SSE_URL_PREFIX_ORIG;
+    _SSE_URL_PREFIX_ALL = (version, channel, token) =>
+      `https://cloud-sse.${env}.iexapis.com/${version}/${channel}?token=${token}`;
+    _SSE_DEEP_URL_PREFIX = (version, symbols, channels, token) =>
+      `https://cloud-sse.${env}.iexapis.com/${version}/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
+    _SSE_URL_PREFIX_SANDBOX = (version, channel, symbols, token) =>
+      `https://sandbox-sse.${env}.iexapis.com/stable/${channel}?symbols=${symbols}&token=${token}`;
+    _SSE_URL_PREFIX_ALL_SANDBOX = (channel, token) =>
+      `https://sandbox-sse.${env}.iexapis.com/stable/${channel}?token=${token}`;
+    _SSE_DEEP_URL_PREFIX_SANDBOX = (symbols, channels, token) =>
+      `https://sandbox-sse.${env}.iexapis.com/stable/deep?symbols=${symbols}&channels=${channels}&token=${token}`;
+  } else if (url) {
+    _URL_PREFIX_CLOUD = () => url;
+    _URL_PREFIX_CLOUD_SANDBOX = () => url;
+  } else {
+    // reset
+    _URL_PREFIX_CLOUD = _URL_PREFIX_CLOUD_ORIG;
+    _URL_PREFIX_CLOUD_SANDBOX = _URL_PREFIX_CLOUD_SANDBOX_ORIG;
+    _SSE_URL_PREFIX = _SSE_URL_PREFIX_ORIG;
+    _SSE_URL_PREFIX_ALL = _SSE_URL_PREFIX_ALL_ORIG;
+    _SSE_DEEP_URL_PREFIX = _SSE_DEEP_URL_PREFIX_ORIG;
+    _SSE_URL_PREFIX_SANDBOX = _SSE_URL_PREFIX_SANDBOX_ORIG;
+    _SSE_URL_PREFIX_ALL_SANDBOX = _SSE_URL_PREFIX_ALL_SANDBOX_ORIG;
+    _SSE_DEEP_URL_PREFIX_SANDBOX = _SSE_DEEP_URL_PREFIX_SANDBOX_ORIG;
+  }
 };
 
 /**
