@@ -232,7 +232,13 @@ describe("Stock", () => {
 
   test("news", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.news(SYMBOL);
+    const res = await client.news({ symbol: SYMBOL });
+    expect(res).toBeDefined();
+  });
+
+  test("news - language", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.news({ symbol: SYMBOL, language: "en" });
     expect(res).toBeDefined();
   });
 
