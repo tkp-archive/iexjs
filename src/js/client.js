@@ -19,8 +19,9 @@ export class Client {
   constructor(options = {}) {
     const {
       api_token = (process ? process.env.IEX_TOKEN : null) || "",
-      version = "v1",
     } = options;
+
+    let { version = "v1" } = options;
 
     this._token = api_token;
 
@@ -35,9 +36,10 @@ export class Client {
     }
 
     if (this._token.startsWith("T") && version !== "sandbox") {
-      throw IEXJSException(
-        "Using test key but attempting to connect to non-sandbox environment",
+      console.warn(
+        "Using test key but attempting to connect to non-sandbox environment. Switching to sandbox",
       );
+      version = "sandbox";
     }
 
     this._version = version;

@@ -23,18 +23,18 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#balance-sheet
  *
- * @param {string} symbol Ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {number} last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {number} options.last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const balanceSheet = async (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -55,17 +55,18 @@ export const balanceSheet = async (
 };
 
 Client.prototype.balanceSheet = function (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { filter, format } = {},
 ) {
-  return balanceSheet(symbol, period, last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return balanceSheet(
+    { symbol, period, last },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -73,18 +74,18 @@ Client.prototype.balanceSheet = function (
  *
  * https://iexcloud.io/docs/api/#cash-flow
  *
- * @param {string} symbol Ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {number} last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {number} options.last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const cashFlow = async (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -105,17 +106,18 @@ export const cashFlow = async (
 };
 
 Client.prototype.cashFlow = function (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { filter, format } = {},
 ) {
-  return cashFlow(symbol, period, last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return cashFlow(
+    { symbol, period, last },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -123,16 +125,17 @@ Client.prototype.cashFlow = function (
  *
  * https://iexcloud.io/docs/api/#dividends
  *
- * @param {string} symbol Ticker to request
- * @param {string} timeframe timeframe for data
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.timeframe timeframe for data
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const dividendsBasic = (
-  symbol,
-  timeframe,
+  { symbol, timeframe } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -149,16 +152,18 @@ export const dividendsBasic = (
 };
 
 Client.prototype.dividendsBasic = function (
-  symbol,
-  timeframe,
+  { symbol, timeframe } = {},
   { filter, format } = {},
 ) {
-  return dividendsBasic(symbol, timeframe, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return dividendsBasic(
+    { symbol, timeframe },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -166,20 +171,19 @@ Client.prototype.dividendsBasic = function (
  *
  * https://iexcloud.io/docs/api/#earnings
  *
- * @param {string} symbol Ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {number} last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
- * @param {string} field sub field to fetch
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {number} options.last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
+ * @param {string} options.field sub field to fetch
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const earnings = async (
-  symbol,
-  period,
-  last,
-  field,
+  { symbol, period, last, field } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -213,18 +217,18 @@ export const earnings = async (
 };
 
 Client.prototype.earnings = function (
-  symbol,
-  period,
-  last,
-  field,
+  { symbol, period, last, field } = {},
   { filter, format } = {},
 ) {
-  return earnings(symbol, period, last, field, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return earnings(
+    { symbol, period, last, field },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -232,18 +236,18 @@ Client.prototype.earnings = function (
  *
  * https://iexcloud.io/docs/api/#financials
  *
- * @param {string} symbol Ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {number} last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {number} options.last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const financials = async (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -264,17 +268,18 @@ export const financials = async (
 };
 
 Client.prototype.financials = function (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { filter, format } = {},
 ) {
-  return financials(symbol, period, last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return financials(
+    { symbol, period, last },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -282,16 +287,17 @@ Client.prototype.financials = function (
  *
  * https://iexcloud.io/docs/api/#advanced-fundamentals
  *
- * @param {string} symbol Ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const fundamentals = async (
-  symbol,
-  period,
+  { symbol, period } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -312,16 +318,18 @@ export const fundamentals = async (
 };
 
 Client.prototype.fundamentals = function (
-  symbol,
-  period,
+  { symbol, period } = {},
   { filter, format } = {},
 ) {
-  return fundamentals(symbol, period, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return fundamentals(
+    { symbol, period },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -329,18 +337,18 @@ Client.prototype.fundamentals = function (
  *
  * https://iexcloud.io/docs/api/#income-statement
  *
- * @param {string} symbol Ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {number} last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {number} options.last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const incomeStatement = async (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -361,35 +369,35 @@ export const incomeStatement = async (
 };
 
 Client.prototype.incomeStatement = function (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { filter, format } = {},
 ) {
-  return incomeStatement(symbol, period, last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return incomeStatement(
+    { symbol, period, last },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * Get company's 10-Q statement
  *
- * @param {string} symbol company symbol
  * @param {object} options `timeseries` options
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {string} options.symbol company symbol
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const tenQ = (
-  symbol,
-  options,
-  { token, version, filter, format } = {},
-) =>
-  timeSeries(
+export const tenQ = (options, { token, version, filter, format } = {}) => {
+  const { symbol } = options;
+  _raiseIfNotStr(symbol);
+  return timeSeries(
     {
       id: "REPORTED_FINANCIALS",
       key: symbol,
@@ -398,9 +406,10 @@ export const tenQ = (
     },
     { token, version, filter, format },
   );
+};
 
-Client.prototype.tenQ = function (symbol, options, { filter, format } = {}) {
-  return tenQ(symbol, options, {
+Client.prototype.tenQ = function (options, { filter, format } = {}) {
+  return tenQ(options, {
     token: this._token,
     version: this._version,
     filter,
@@ -411,19 +420,18 @@ Client.prototype.tenQ = function (symbol, options, { filter, format } = {}) {
 /**
  * Get company's 10-K statement
  *
- * @param {string} symbol company symbol
  * @param {object} options `timeseries` options
+ * @param {string} options.symbol company symbol
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const tenK = (
-  symbol,
-  options,
-  { token, version, filter, format } = {},
-) =>
-  timeSeries(
+export const tenK = (options, { token, version, filter, format } = {}) => {
+  const { symbol } = options;
+  _raiseIfNotStr(symbol);
+
+  return timeSeries(
     {
       id: "REPORTED_FINANCIALS",
       key: symbol,
@@ -432,6 +440,7 @@ export const tenK = (
     },
     { token, version, filter, format },
   );
+};
 
 Client.prototype.tenK = function (symbol, options, { filter, format } = {}) {
   return tenK(symbol, options, {
@@ -445,19 +454,18 @@ Client.prototype.tenK = function (symbol, options, { filter, format } = {}) {
 /**
  * Get company's 20-F statement
  *
- * @param {string} symbol company symbol
  * @param {object} options `timeseries` options
+ * @param {string} options.symbol company symbol
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const twentyF = (
-  symbol,
-  options,
-  { token, version, filter, format } = {},
-) =>
-  timeSeries(
+export const twentyF = (options, { token, version, filter, format } = {}) => {
+  const { symbol } = options;
+  _raiseIfNotStr(symbol);
+
+  return timeSeries(
     {
       id: "REPORTED_FINANCIALS",
       key: symbol,
@@ -466,9 +474,10 @@ export const twentyF = (
     },
     { token, version, filter, format },
   );
+};
 
-Client.prototype.twentyF = function (symbol, options, { filter, format } = {}) {
-  return twentyF(symbol, options, {
+Client.prototype.twentyF = function (options, { filter, format } = {}) {
+  return twentyF(options, {
     token: this._token,
     version: this._version,
     filter,
@@ -479,18 +488,16 @@ Client.prototype.twentyF = function (symbol, options, { filter, format } = {}) {
 /**
  * Get company's 40-F statement
  *
- * @param {string} symbol company symbol
  * @param {object} options `timeseries` options
+ * @param {string} options.symbol company symbol
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const fortyF = (
-  symbol,
-  options,
-  { token, version, filter, format } = {},
-) =>
+export const fortyF = (options, { token, version, filter, format } = {}) => {
+  const { symbol } = options;
+  _raiseIfNotStr(symbol);
   timeSeries(
     {
       id: "REPORTED_FINANCIALS",
@@ -500,9 +507,10 @@ export const fortyF = (
     },
     { token, version, filter, format },
   );
+};
 
-Client.prototype.fortyF = function (symbol, options, { filter, format } = {}) {
-  return fortyF(symbol, options, {
+Client.prototype.fortyF = function (options, { filter, format } = {}) {
+  return fortyF(options, {
     token: this._token,
     version: this._version,
     filter,
