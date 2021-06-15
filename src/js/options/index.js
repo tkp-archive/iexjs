@@ -60,7 +60,7 @@ Client.prototype.optionExpirations = function (
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const options = (
+export const stockOptions = (
   symbol,
   expiration,
   side,
@@ -85,13 +85,13 @@ export const options = (
   });
 };
 
-Client.prototype.options = function (
+Client.prototype.stockOptions = function (
   symbol,
   expiration,
   side,
   { filter, format } = {},
 ) {
-  return options(symbol, expiration, side, {
+  return stockOptions(symbol, expiration, side, {
     token: this._token,
     version: this._version,
     filter,

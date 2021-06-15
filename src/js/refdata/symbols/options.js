@@ -15,27 +15,28 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#options-symbols
  *
+ * @param {string} symbol Underlying symbol
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const optionsSymbols = ({
+export const optionsSymbols = (symbol, {
   token = "",
   version = "",
   filter = "",
   format = "json",
 } = {}) =>
   _get({
-    url: `ref-data/options/symbols`,
+    url: `ref-data/options/symbols${symbol ? `/${symbol}` : ""}`,
     token,
     version,
     filter,
     format,
   });
 
-Client.prototype.optionsSymbols = function ({ filter, format } = {}) {
-  return optionsSymbols({
+Client.prototype.optionsSymbols = function (symbol, { filter, format } = {}) {
+  return optionsSymbols(symbol, {
     token: this._token,
     version: this._version,
     filter,
