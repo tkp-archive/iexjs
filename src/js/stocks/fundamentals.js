@@ -40,15 +40,17 @@ export const balanceSheet = async (
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _get({
-      url: `stock/${_quoteSymbols(symbol)}/balance-sheet?period=${
-        period || "quarter"
-      }&last=${last || 1}`,
-      token,
-      version,
-      filter,
-      format,
-    }).balancesheet) || []
+    (
+      await _get({
+        url: `stock/${_quoteSymbols(symbol)}/balance-sheet?period=${
+          period || "quarter"
+        }&last=${last || 1}`,
+        token,
+        version,
+        filter,
+        format,
+      })
+    ).balancesheet || []
   );
 };
 
@@ -88,15 +90,17 @@ export const cashFlow = async (
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _get({
-      url: `stock/${_quoteSymbols(symbol)}/cash-flow?period=${
-        period || "quarter"
-      }&last=${last || 1}`,
-      token,
-      version,
-      filter,
-      format,
-    }).cashflow) || []
+    (
+      await _get({
+        url: `stock/${_quoteSymbols(symbol)}/cash-flow?period=${
+          period || "quarter"
+        }&last=${last || 1}`,
+        token,
+        version,
+        filter,
+        format,
+      })
+    ).cashflow || []
   );
 };
 
@@ -182,15 +186,17 @@ export const earnings = async (
   _checkPeriodLast(period || "quarter", last || 1);
   if (field === undefined) {
     return (
-      (await _get({
-        url: `stock/${_quoteSymbols(symbol)}/earnings?period=${
-          period || "quarter"
-        }&last=${last || 1}`,
-        token,
-        version,
-        filter,
-        format,
-      }).earnings) || []
+      (
+        await _get({
+          url: `stock/${_quoteSymbols(symbol)}/earnings?period=${
+            period || "quarter"
+          }&last=${last || 1}`,
+          token,
+          version,
+          filter,
+          format,
+        })
+      ).earnings || []
     );
   }
   return (
@@ -243,15 +249,17 @@ export const financials = async (
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _get({
-      url: `stock/${_quoteSymbols(symbol)}/financials?period=${
-        period || "quarter"
-      }&last=${last || 1}`,
-      token,
-      version,
-      filter,
-      format,
-    }).financials) || []
+    (
+      await _get({
+        url: `stock/${_quoteSymbols(symbol)}/financials?period=${
+          period || "quarter"
+        }&last=${last || 1}`,
+        token,
+        version,
+        filter,
+        format,
+      })
+    ).financials || []
   );
 };
 
@@ -289,15 +297,17 @@ export const fundamentals = async (
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", 1);
   return (
-    (await _get({
-      url: `stock/${_quoteSymbols(symbol)}/fundamentals?period=${
-        period || "quarter"
-      }`,
-      token,
-      version,
-      filter,
-      format,
-    }).fundamentals) || []
+    (
+      await _get({
+        url: `stock/${_quoteSymbols(symbol)}/fundamentals?period=${
+          period || "quarter"
+        }`,
+        token,
+        version,
+        filter,
+        format,
+      })
+    ).fundamentals || []
   );
 };
 
@@ -336,15 +346,17 @@ export const incomeStatement = async (
   _raiseIfNotStr(symbol);
   _checkPeriodLast(period || "quarter", last || 1);
   return (
-    (await _get({
-      url: `stock/${_quoteSymbols(symbol)}/income?period=${
-        period || "quarter"
-      }&last=${last || 1}`,
-      token,
-      version,
-      filter,
-      format,
-    }).income) || []
+    (
+      await _get({
+        url: `stock/${_quoteSymbols(symbol)}/income?period=${
+          period || "quarter"
+        }&last=${last || 1}`,
+        token,
+        version,
+        filter,
+        format,
+      })
+    ).income || []
   );
 };
 
