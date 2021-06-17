@@ -42,6 +42,10 @@ export const _LIST_OPTIONS = [
   "losers",
   "iexvolume",
   "iexpercent",
+  "premarket_losers",
+  "postmarket_losers",
+  "premarket_gainers",
+  "postmarket_gainers",
 ];
 export const _COLLECTION_TAGS = ["sector", "tag", "list"];
 export const _DATE_RANGES = [
