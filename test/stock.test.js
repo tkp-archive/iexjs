@@ -100,19 +100,19 @@ describe("Stock", () => {
 
   test("balanceSheet", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.balanceSheet(SYMBOL);
+    const res = await client.balanceSheet({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("cashFlow", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.cashFlow(SYMBOL);
+    const res = await client.cashFlow({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("dividendsBasic", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.dividendsBasic(SYMBOL);
+    const res = await client.dividendsBasic({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
@@ -124,19 +124,19 @@ describe("Stock", () => {
 
   test("financials", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.financials(SYMBOL);
+    const res = await client.financials({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("fundamentals", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.fundamentals(SYMBOL);
+    const res = await client.fundamentals({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("incomeStatement", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.incomeStatement(SYMBOL);
+    const res = await client.incomeStatement({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
@@ -412,25 +412,25 @@ describe("Stock", () => {
 
   test("tenQ", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tenQ(SYMBOL);
+    const res = await client.tenQ({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("tenK", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tenK(SYMBOL);
+    const res = await client.tenK({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("twentyF", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tenK("BABA");
+    const res = await client.twentyF({ symbol: "BABA" });
     expect(res).toBeDefined();
   });
 
   test("fortyF", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.tenK("SHOP");
+    const res = await client.fortyF({ symbol: "SHOP" });
     expect(res).toBeDefined();
   });
 });

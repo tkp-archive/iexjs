@@ -442,8 +442,8 @@ export const tenK = (options, { token, version, filter, format } = {}) => {
   );
 };
 
-Client.prototype.tenK = function (symbol, options, { filter, format } = {}) {
-  return tenK(symbol, options, {
+Client.prototype.tenK = function (options, { filter, format } = {}) {
+  return tenK(options, {
     token: this._token,
     version: this._version,
     filter,
@@ -498,7 +498,7 @@ Client.prototype.twentyF = function (options, { filter, format } = {}) {
 export const fortyF = (options, { token, version, filter, format } = {}) => {
   const { symbol } = options;
   _raiseIfNotStr(symbol);
-  timeSeries(
+  return timeSeries(
     {
       id: "REPORTED_FINANCIALS",
       key: symbol,
