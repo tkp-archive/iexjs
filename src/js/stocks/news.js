@@ -90,7 +90,7 @@ export const marketNews = (
   });
 
 Client.prototype.marketNews = function (
-  { last, language },
+  { last, language } = {},
   { filter, format } = {},
 ) {
   return marketNews(
