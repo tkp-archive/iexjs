@@ -6,6 +6,7 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
+/* eslint-disable no-param-reassign */
 import { _get, _quoteSymbols, _raiseIfNotStr } from "../common";
 import { Client } from "../client";
 
@@ -14,17 +15,26 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#news
  *
- * @param {string} symbol ticker to request
- * @param {number} last number to get
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
+ * @param {number} options.last number to get
+ * @param {string} options.language filter news by language
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const news = (symbol, last, { token, version, filter, format } = {}) => {
+export const news = (
+  { symbol, last, language } = {},
+  { token, version, filter, format } = {},
+) => {
+  symbol = symbol || "market";
   _raiseIfNotStr(symbol);
   return _get({
-    url: `stock/${_quoteSymbols(symbol)}/news/last/${last || 10}`,
+    url: `stock/${_quoteSymbols(symbol)}/news/last/${last || 10}${
+      language ? `?language=${language}` : ""
+    }`,
     token,
     version,
     filter,
@@ -32,13 +42,23 @@ export const news = (symbol, last, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.news = function (symbol, last, { filter, format } = {}) {
-  return news(symbol, last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.news = function (
+  { symbol, last, language } = {},
+  { filter, format } = {},
+) {
+  return news(
+    {
+      symbol,
+      last,
+      language,
+    },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -46,26 +66,40 @@ Client.prototype.news = function (symbol, last, { filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#news
  *
- * @param {number} last number to get
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {number} options.last number to get
+ * @param {string} options.language filter news by language
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const marketNews = (last, { token, version, filter, format } = {}) =>
+export const marketNews = (
+  { last, language } = {},
+  { token, version, filter, format } = {},
+) =>
   _get({
-    url: `stock/market/news/last/${last || 10}`,
+    url: `stock/market/news/last/${last || 10}${
+      language ? `?language=${language}` : ""
+    }`,
     token,
     version,
     filter,
     format,
   });
 
-Client.prototype.marketNews = function (last, { filter, format } = {}) {
-  return marketNews(last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.marketNews = function (
+  { last, language } = {},
+  { filter, format } = {},
+) {
+  return marketNews(
+    { last, language },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
