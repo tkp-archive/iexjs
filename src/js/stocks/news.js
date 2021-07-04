@@ -33,7 +33,7 @@ export const news = (
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/news/last/${last || 10}${
-      language ? `?langauge=${language}` : ""
+      language ? `?language=${language}` : ""
     }`,
     token,
     version,
