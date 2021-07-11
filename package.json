@@ -79,6 +79,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "resolutions": {
+    "bl": "^1.2.3",
     "node-fetch": "^2.6.1"
   }
 }
