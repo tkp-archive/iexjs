@@ -86,10 +86,14 @@ Client.prototype.batch = function (
   { fields, range, last } = {},
   { filter, format } = {},
 ) {
-  return batch(symbols, fields, range, last, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return batch(
+    symbols,
+    { fields, range, last },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
