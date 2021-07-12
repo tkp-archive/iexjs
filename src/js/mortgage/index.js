@@ -11,8 +11,8 @@ import { timeSeries } from "../timeseries";
 import { Client } from "../client";
 
 /**
- * Credit Card Interest Rate
- * https://iexcloud.io/docs/api/#credit-card-interest-rate
+ * US 30-Year fixed rate mortgage average
+ * https://iexcloud.io/docs/api/#mortgage-rates
  * @param {object} timeseriesArgs
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -20,22 +20,19 @@ import { Client } from "../client";
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const creditcard = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
+export const us30 = (timeseriesArgs, { token, version, format, filter } = {}) =>
   timeSeries(
     {
-      id: "RATES",
-      key: "TERMCBCCALLNS",
+      id: "MORTGAGE",
+      key: "MORTGAGE30US",
       ...timeseriesArgs,
     },
     { token, version, format, filter },
   );
 
 /**
- * CD Rate Non-Jumbo less than $100,000 Money market
- * https://iexcloud.io/docs/api/#cd-rates
+ * US 15-Year fixed rate mortgage average
+ * https://iexcloud.io/docs/api/#mortgage-rates
  * @param {object} timeseriesArgs
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -43,19 +40,19 @@ export const creditcard = (
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const cdnj = (timeseriesArgs, { token, version, format, filter } = {}) =>
+export const us15 = (timeseriesArgs, { token, version, format, filter } = {}) =>
   timeSeries(
     {
-      id: "RATES",
-      key: "MMNRNJ",
+      id: "MORTGAGE",
+      key: "MORTGAGE15US",
       ...timeseriesArgs,
     },
     { token, version, format, filter },
   );
 
 /**
- * CD Rate Jumbo more than $100,000 Money market
- * https://iexcloud.io/docs/api/#cd-rates
+ * US 5/1-Year adjustable rate mortgage average
+ * https://iexcloud.io/docs/api/#mortgage-rates
  * @param {object} timeseriesArgs
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -63,21 +60,18 @@ export const cdnj = (timeseriesArgs, { token, version, format, filter } = {}) =>
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const cdj = (timeseriesArgs, { token, version, format, filter } = {}) =>
+export const us5 = (timeseriesArgs, { token, version, format, filter } = {}) =>
   timeSeries(
     {
-      id: "RATES",
-      key: "MMNRJD",
+      id: "MORTGAGE",
+      key: "MORTGAGE5US",
       ...timeseriesArgs,
     },
     { token, version, format, filter },
   );
 
-Client.prototype.creditcard = function (
-  timeseriesArgs,
-  { filter, format } = {},
-) {
-  return creditcard(timeseriesArgs, {
+Client.prototype.us30 = function (timeseriesArgs, { filter, format } = {}) {
+  return us30(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,
@@ -85,8 +79,8 @@ Client.prototype.creditcard = function (
   });
 };
 
-Client.prototype.cdnj = function (timeseriesArgs, { filter, format } = {}) {
-  return cdnj(timeseriesArgs, {
+Client.prototype.us15 = function (timeseriesArgs, { filter, format } = {}) {
+  return us15(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,
@@ -94,8 +88,8 @@ Client.prototype.cdnj = function (timeseriesArgs, { filter, format } = {}) {
   });
 };
 
-Client.prototype.cdj = function (timeseriesArgs, { filter, format } = {}) {
-  return cdj(timeseriesArgs, {
+Client.prototype.us5 = function (timeseriesArgs, { filter, format } = {}) {
+  return us5(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,

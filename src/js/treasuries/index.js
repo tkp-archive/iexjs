@@ -11,8 +11,8 @@ import { timeSeries } from "../timeseries";
 import { Client } from "../client";
 
 /**
- * Federal Funds rate
- * https://iexcloud.io/docs/api/#federal-fund-rates
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
  * @param {object} timeseriesArgs
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -20,325 +20,24 @@ import { Client } from "../client";
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const fedfunds = (
+export const thirtyYear = (
   timeseriesArgs,
   { token, version, format, filter } = {},
 ) =>
   timeSeries(
     {
-      id: "ECONOMIC",
-      key: "FEDFUNDS",
+      id: "TREASURY",
+      key: "DGS30",
       ...timeseriesArgs,
     },
     { token, version, format, filter },
   );
 
-/**
- * Real GDP
- * https://iexcloud.io/docs/api/#real-gdp
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const gdp = (timeseriesArgs, { token, version, format, filter } = {}) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "A191RL1Q225SBEA",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Industrial Production Index
- * https://iexcloud.io/docs/api/#industrial-production-index
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const indpro = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "INDPRO",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Consumer Price Index
- * https://iexcloud.io/docs/api/#consumer-price-index
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const cpi = (timeseriesArgs, { token, version, format, filter } = {}) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "CPIAUCSL",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Total Payrolls
- * https://iexcloud.io/docs/api/#total-payrolls
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const payroll = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "PAYEMS",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Total Housing Starts
- * https://iexcloud.io/docs/api/#total-housing-starts
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const housing = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "HOUST",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Unemployment Rate
- * https://iexcloud.io/docs/api/#unemployment-rate
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const unemployment = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "UNRATE",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Total Vehicle Sales
- * https://iexcloud.io/docs/api/#total-vehicle-sales
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const vehicles = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "TOTALSA",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * US Recession Probabilities
- * https://iexcloud.io/docs/api/#us-recession-probabilities
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const recessionProb = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "RECPROUSM156N",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Initial Claims
- * https://iexcloud.io/docs/api/#initial-claims
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const initialClaims = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "IC4WSA",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Institutional Money Funds
- * https://iexcloud.io/docs/api/#institutional-money-funds
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const institutionalMoney = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "WRMFSL",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-/**
- * Retail Money Funds
- * https://iexcloud.io/docs/api/#retail-money-funds
- * @param {object} timeseriesArgs
- * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
- * @param {string} standardOptions.version API version
- * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
- */
-export const retailMoney = (
-  timeseriesArgs,
-  { token, version, format, filter } = {},
-) =>
-  timeSeries(
-    {
-      id: "ECONOMIC",
-      key: "WIMFSL",
-      ...timeseriesArgs,
-    },
-    { token, version, format, filter },
-  );
-
-Client.prototype.fedfunds = function (timeseriesArgs, { filter, format } = {}) {
-  return fedfunds(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.gdp = function (timeseriesArgs, { filter, format } = {}) {
-  return gdp(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.indpro = function (timeseriesArgs, { filter, format } = {}) {
-  return indpro(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.cpi = function (timeseriesArgs, { filter, format } = {}) {
-  return cpi(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.payroll = function (timeseriesArgs, { filter, format } = {}) {
-  return payroll(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.housing = function (timeseriesArgs, { filter, format } = {}) {
-  return housing(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.unemployment = function (
+Client.prototype.thirtyYear = function (
   timeseriesArgs,
   { filter, format } = {},
 ) {
-  return unemployment(timeseriesArgs, {
+  return thirtyYear(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,
@@ -346,20 +45,34 @@ Client.prototype.unemployment = function (
   });
 };
 
-Client.prototype.vehicles = function (timeseriesArgs, { filter, format } = {}) {
-  return vehicles(timeseriesArgs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const twentyYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS20",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.recessionProb = function (
+Client.prototype.twentyYear = function (
   timeseriesArgs,
   { filter, format } = {},
 ) {
-  return recessionProb(timeseriesArgs, {
+  return twentyYear(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,
@@ -367,11 +80,31 @@ Client.prototype.recessionProb = function (
   });
 };
 
-Client.prototype.initialClaims = function (
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const tenYear = (
   timeseriesArgs,
-  { filter, format } = {},
-) {
-  return initialClaims(timeseriesArgs, {
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS10",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.tenYear = function (timeseriesArgs, { filter, format } = {}) {
+  return tenYear(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,
@@ -379,11 +112,34 @@ Client.prototype.initialClaims = function (
   });
 };
 
-Client.prototype.institutionalMoney = function (
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const sevenYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS7",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.sevenYear = function (
   timeseriesArgs,
   { filter, format } = {},
 ) {
-  return institutionalMoney(timeseriesArgs, {
+  return sevenYear(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,
@@ -391,11 +147,229 @@ Client.prototype.institutionalMoney = function (
   });
 };
 
-Client.prototype.retailMoney = function (
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const fiveYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS5",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.fiveYear = function (timeseriesArgs, { filter, format } = {}) {
+  return fiveYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const threeYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS3",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.threeYear = function (
   timeseriesArgs,
   { filter, format } = {},
 ) {
-  return retailMoney(timeseriesArgs, {
+  return threeYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const twoYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS2",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.twoYear = function (timeseriesArgs, { filter, format } = {}) {
+  return twoYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const oneYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS1",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.oneYear = function (timeseriesArgs, { filter, format } = {}) {
+  return oneYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const sixMonth = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS6MO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.sixMonth = function (timeseriesArgs, { filter, format } = {}) {
+  return sixMonth(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const threeMonth = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS3MO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.threeMonth = function (
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return threeMonth(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const oneMonth = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS1MO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.oneMonth = function (timeseriesArgs, { filter, format } = {}) {
+  return oneMonth(timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,

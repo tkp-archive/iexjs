@@ -21,6 +21,7 @@ export * from "./files";
 export * from "./futures";
 export * from "./fx";
 export * from "./metadata";
+export * from "./mortgage";
 export * from "./options";
 export * from "./points";
 export * from "./premium";
@@ -31,5 +32,6 @@ export * from "./stats";
 export * from "./stocks";
 export * from "./streaming";
 export * from "./timeseries";
+export * from "./treasuries";
 
 export * from "./client";
