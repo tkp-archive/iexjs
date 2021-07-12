@@ -25,22 +25,22 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client - Economic", () => {
-  test("us30", async () => {
+describe("Client - Rates", () => {
+  test("creditcard", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.us30();
+    const res = await client.creditcard();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("us15", async () => {
+  test("cdnj", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.us15();
+    const res = await client.cdnj();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("us5", async () => {
+  test("cdj", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.us5();
+    const res = await client.cdj();
     expect(Array.isArray(res)).toBe(true);
   });
 });

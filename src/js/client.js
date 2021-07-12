@@ -17,8 +17,9 @@ export class Client {
   static premiumfiles = class PremiumFiles {};
 
   constructor(options = {}) {
-    const { api_token = (process ? process.env.IEX_TOKEN : null) || "" } =
-      options;
+    const {
+      api_token = (process ? process.env.IEX_TOKEN : null) || "",
+    } = options;
 
     let { version = "v1" } = options;
 

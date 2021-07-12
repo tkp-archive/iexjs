@@ -23,7 +23,7 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client - Rates", () => {
+describe("Client - Treasuries", () => {
   test("thirtyYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.thirtyYear();
