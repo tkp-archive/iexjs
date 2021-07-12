@@ -13,20 +13,26 @@ import { timeSeries } from "../../timeseries";
  * internal
  * @param {string} id
  * @param {string} symbol
- * @param  {object} timeseriesArgs
- * @returns
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
+const _base = (
+  id,
+  symbol,
+  timeseriesArgs,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id,
       key: symbol,
       ...timeseriesArgs,
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
 /**
@@ -34,43 +40,36 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * K Score is a stock rating and ranking score with values ranging from 1-to-9. A higher K Score (7-9) assigned to a stock indicates a higher probability of outperformance, whereas a lower K Score (1-3) indicates a lower probability of outperformance in the next month.
  * https://iexcloud.io/docs/api/#k-score-for-us-equities
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const kScoreKavout = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
-  _base(
-    "PREMIUM_KAVOUT_KSCORE",
-    symbol,
+  _base("PREMIUM_KAVOUT_KSCORE", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 
 Client.premium.prototype.kScore = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return kScoreKavout(
-    symbol,
-    this._token,
-    this._version,
+  return kScoreKavout(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -85,41 +84,34 @@ Client.premium.prototype.kScore = function (
  * CSI 800 Index consists of all the constituents of the CSI 300 Index and CSI 500 Index, similar to the largest 3,000 US stocks by market cap.
  * https://iexcloud.io/docs/api/#k-score-for-china-a-shares
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const kScoreChinaKavout = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
-  _base(
-    "PREMIUM_KAVOUT_KSCORE_A_SHARES",
-    symbol,
+  _base("PREMIUM_KAVOUT_KSCORE_A_SHARES", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 
 Client.premium.prototype.kScoreChina = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return kScoreChinaKavout(
-    symbol,
-    this._token,
-    this._version,
+  return kScoreChinaKavout(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };

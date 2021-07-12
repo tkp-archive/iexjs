@@ -32,9 +32,9 @@ describe("Stock", () => {
   //   expect(res).toBeDefined();
   // });
 
-  test("stockSplits", async () => {
+  test("splitsBasic", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.stockSplits(SYMBOL);
+    const res = await client.splitsBasic(SYMBOL);
     expect(res).toBeDefined();
   });
 
@@ -404,12 +404,6 @@ describe("Stock", () => {
     expect(res).toBeDefined();
   });
 
-  // test("threshold", async () => {
-  //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.threshold(SYMBOL);
-  //   expect(res).toBeDefined();
-  // });
-
   // test("shortInterest", async () => {
   //   const client = new Client({ version: "sandbox" });
   //   const res = await client.shortInterest(SYMBOL);
@@ -438,5 +432,13 @@ describe("Stock", () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fortyF({ symbol: "SHOP" });
     expect(res).toBeDefined();
+  });
+
+  test("ceoCompensation", async () => {
+    const client = new Client({ version: "sandbox" });
+
+    const res = await client.ceoCompensation(SYMBOL);
+    expect(typeof res).toBe("object");
+    expect(res.symbol).toBe(SYMBOL);
   });
 });

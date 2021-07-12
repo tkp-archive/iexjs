@@ -13,20 +13,27 @@ import { timeSeries } from "../../timeseries";
  * internal
  * @param {string} id
  * @param {string} symbol
- * @param  {object} timeseriesArgs
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  * @returns
  */
-const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
+const _base = (
+  id,
+  symbol,
+  timeseriesArgs,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id,
       key: symbol,
       ...timeseriesArgs,
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
 /**
@@ -36,43 +43,36 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * Data available from 2001 with coverage of about 23,000 equities
  * https://iexcloud.io/docs/api/#similiarity-index
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const similarityIndexFraudFactors = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
-  _base(
-    "PREMIUM_FRAUD_FACTORS_SIMILARITY_INDEX",
-    symbol,
+  _base("PREMIUM_FRAUD_FACTORS_SIMILARITY_INDEX", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 
 Client.premium.prototype.similarityIndex = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return similarityIndexFraudFactors(
-    symbol,
-    this._token,
-    this._version,
+  return similarityIndexFraudFactors(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -81,41 +81,34 @@ Client.premium.prototype.similarityIndex = function (
  * Data available from 1994 with coverage of about 18,000 equities
  * https://iexcloud.io/docs/api/#non-timely-filings
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const nonTimelyFilingsFraudFactors = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
-  _base(
-    "PREMIUM_FRAUD_FACTORS_NON_TIMELY_FILINGS",
-    symbol,
+  _base("PREMIUM_FRAUD_FACTORS_NON_TIMELY_FILINGS", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 
 Client.premium.prototype.nonTimelyFilings = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return nonTimelyFilingsFraudFactors(
-    symbol,
-    this._token,
-    this._version,
+  return nonTimelyFilingsFraudFactors(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };

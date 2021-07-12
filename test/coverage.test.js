@@ -164,6 +164,15 @@ const {
   tradeShowsWallStreetHorizon,
   witchingHoursWallStreetHorizon,
   workshopsWallStreetHorizon,
+  // cityfalcon
+  newsCityFalcon,
+  // invisage
+  analystRecommendationsAndPriceTargetsInvisage,
+  // refinitiv
+  analystRecommendationsRefinitiv,
+  earningsRefinitiv,
+  estimatesRefinitiv,
+  priceTargetRefinitiv,
   // rates
   thirtyYear,
   twentyYear,
@@ -215,7 +224,6 @@ const {
   daily,
   // stocks
   batch,
-  stockSplits,
   bonusIssue,
   distribution,
   dividends,
@@ -226,6 +234,7 @@ const {
   securitySwap,
   spinoff,
   splits,
+  splitsBasic,
   balanceSheet,
   cashFlow,
   dividendsBasic,
@@ -276,7 +285,6 @@ const {
   keyStats,
   priceTarget,
   technicals,
-  threshold,
   shortInterest,
   timeSeriesInventory,
   timeSeries,
@@ -294,6 +302,7 @@ const {
   iexSecurityEvent,
   iexSsrStatus,
   iexSystemEvent,
+  iexThreshold,
   iexTrades,
   iexTradeBreak,
   iexTradingStatus,
@@ -853,6 +862,30 @@ describe("Premium", () => {
   test("workshops", () => {
     expect(workshopsWallStreetHorizon).toBeDefined();
   });
+
+  test("newsCityFalcon", () => {
+    expect(newsCityFalcon).toBeDefined();
+  });
+
+  test("analystRecommendationsAndPriceTargetsInvisage", () => {
+    expect(analystRecommendationsAndPriceTargetsInvisage).toBeDefined();
+  });
+
+  test("analystRecommendationsRefinitiv", () => {
+    expect(analystRecommendationsRefinitiv).toBeDefined();
+  });
+
+  test("earningsRefinitiv", () => {
+    expect(earningsRefinitiv).toBeDefined();
+  });
+
+  test("estimatesRefinitiv", () => {
+    expect(estimatesRefinitiv).toBeDefined();
+  });
+
+  test("priceTargetRefinitiv", () => {
+    expect(priceTargetRefinitiv).toBeDefined();
+  });
 });
 
 describe("Rates", () => {
@@ -1003,10 +1036,6 @@ describe("Stock", () => {
     expect(batch).toBeDefined();
   });
 
-  test("stockSplits", () => {
-    expect(stockSplits).toBeDefined();
-  });
-
   test("bonusIssue", () => {
     expect(bonusIssue).toBeDefined();
   });
@@ -1045,6 +1074,10 @@ describe("Stock", () => {
 
   test("splits", () => {
     expect(splits).toBeDefined();
+  });
+
+  test("splitsBasic", () => {
+    expect(splitsBasic).toBeDefined();
   });
 
   test("balanceSheet", () => {
@@ -1247,10 +1280,6 @@ describe("Stock", () => {
     expect(technicals).toBeDefined();
   });
 
-  test("threshold", () => {
-    expect(threshold).toBeDefined();
-  });
-
   test("shortInterest", () => {
     expect(shortInterest).toBeDefined();
   });
@@ -1333,5 +1362,9 @@ describe("Stock", () => {
 
   test("hist", () => {
     expect(iexHist).toBeDefined();
+  });
+
+  test("threshold", () => {
+    expect(iexThreshold).toBeDefined();
   });
 });

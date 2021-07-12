@@ -33,12 +33,4 @@ describe("Client - Alternative", () => {
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });
-
-  test("ceoCompensation", async () => {
-    const client = new Client({ version: "sandbox" });
-
-    const res = await client.ceoCompensation(SYMBOL);
-    expect(typeof res).toBe("object");
-    expect(res.symbol).toBe(SYMBOL);
-  });
 });
