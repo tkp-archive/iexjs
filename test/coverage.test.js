@@ -171,7 +171,9 @@ const {
   thirtyYear,
   twentyYear,
   tenYear,
+  sevenYear,
   fiveYear,
+  threeYear,
   twoYear,
   oneYear,
   sixMonth,
@@ -881,8 +883,16 @@ describe("Rates", () => {
     expect(tenYear).toBeDefined();
   });
 
+  test("sevenYear", () => {
+    expect(sevenYear).toBeDefined();
+  });
+
   test("fiveYear", () => {
     expect(fiveYear).toBeDefined();
+  });
+
+  test("threeYear", () => {
+    expect(threeYear).toBeDefined();
   });
 
   test("twoYear", () => {

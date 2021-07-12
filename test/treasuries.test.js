@@ -12,90 +12,81 @@
 const fetch = require("cross-fetch");
 const { Client } = require("../src/js");
 
-const SYMBOL = "BAC";
-
 beforeAll(() => {
   global.fetch = fetch;
 });
 
-// retry twice and set timeout to 30s for long calls
-jest.retryTimes(2);
+// set timeout to 30s for long calls
 jest.setTimeout(50000);
 
 afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client - Economic", () => {
-  test("fedfunds", async () => {
+describe("Client - Treasuries", () => {
+  test("thirtyYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.fedfunds();
+    const res = await client.thirtyYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("gdp", async () => {
+  test("twentyYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.gdp();
+    const res = await client.twentyYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("indpro", async () => {
+  test("tenYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.indpro();
+    const res = await client.tenYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("cpi", async () => {
+  test("sevenYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.cpi();
+    const res = await client.sevenYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("payroll", async () => {
+  test("fiveYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.payroll();
+    const res = await client.fiveYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("housing", async () => {
+  test("threeYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.housing();
+    const res = await client.threeYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("unemployment", async () => {
+  test("twoYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.unemployment();
+    const res = await client.twoYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("vehicles", async () => {
+  test("oneYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.vehicles();
+    const res = await client.oneYear();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("recessionProb", async () => {
+  test("sixMonth", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.recessionProb();
+    const res = await client.sixMonth();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("initialClaims", async () => {
+  test("threeMonth", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.initialClaims();
+    const res = await client.threeMonth();
     expect(Array.isArray(res)).toBe(true);
   });
 
-  test("institutionalMoney", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.institutionalMoney();
-    expect(Array.isArray(res)).toBe(true);
-  });
-
-  test("retailMoney", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.retailMoney();
-    expect(Array.isArray(res)).toBe(true);
-  });
+  // test("oneMonth", async () => {
+  //   const client = new Client({ version: "sandbox" });
+  //   const res = await client.oneMonth();
+  //   expect(typeof res).toBe("number");
+  // });
 });
