@@ -88,7 +88,10 @@ const {
   queryMetadata,
   // options
   optionExpirations,
+  stockOptions,
   options,
+  // futures
+  futures,
   // points
   points,
   // premium
@@ -600,6 +603,12 @@ describe("Options", () => {
 
   test("options", () => {
     expect(options).toBeDefined();
+  });
+});
+
+describe("Future", () => {
+  test("futures", () => {
+    expect(futures).toBeDefined();
   });
 });
 
