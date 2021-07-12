@@ -443,21 +443,17 @@ export const languageMetricsOnCompanyFilingsDifferenceAllBrain = (
     ...timeseriesArgs,
   );
 
-Client.premium.prototype.languageMetricsOnCompanyFilingsDifferenceAll = function (
-  symbol,
-  filter,
-  format,
-  ...timeseriesArgs
-) {
-  return languageMetricsOnCompanyFilingsDifferenceAllBrain(
-    symbol,
-    this._token,
-    this._version,
-    filter,
-    format,
-    ...timeseriesArgs,
-  );
-};
+Client.premium.prototype.languageMetricsOnCompanyFilingsDifferenceAll =
+  function (symbol, filter, format, ...timeseriesArgs) {
+    return languageMetricsOnCompanyFilingsDifferenceAllBrain(
+      symbol,
+      this._token,
+      this._version,
+      filter,
+      format,
+      ...timeseriesArgs,
+    );
+  };
 
 /**
  * Compares Brain’s sentiment and language metrics from the company’s most recent annual filing (10K) to the report from last year.
