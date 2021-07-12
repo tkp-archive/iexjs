@@ -9,6 +9,7 @@
 
 import { _get, _raiseIfNotStr } from "../common";
 import { Client } from "../client";
+import { timeSeries } from "../timeseries";
 
 /**
  * Returns end of day options data
@@ -92,6 +93,54 @@ Client.prototype.stockOptions = function (
   { filter, format } = {},
 ) {
   return stockOptions(symbol, expiration, side, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Returns end of day options data
+ *
+ * https://iexcloud.io/docs/api/#options
+ *
+ * @param {string} contract  Specific dated option contract, e.g. NG0Z
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const options = (
+  contract,
+  timeseriesArgs,
+  { token, version, filter, format } = {},
+) => {
+  _raiseIfNotStr(contract);
+  return timeSeries(
+    {
+      id: contract,
+      key: "chart",
+      overrideBase: "options",
+      ...timeseriesArgs,
+    },
+    {
+      token,
+      version,
+      filter,
+      format,
+    },
+  );
+};
+
+Client.prototype.options = function (
+  contract,
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return options(contract, timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,

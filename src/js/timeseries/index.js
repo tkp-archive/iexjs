@@ -118,11 +118,12 @@ export const timeSeries = (
     on = "",
     last = 0,
     first = 0,
+    overrideBase = "",
   } = options || {};
 
   if (!id) return timeSeriesInventory({ token, version, filter, format });
 
-  let base_url = `time-series/${id}`;
+  let base_url = `${overrideBase || "time-series"}/${id}`;
   if (key) base_url += `/${_quoteSymbols(key)}`;
   if (subkey) base_url += `/${_quoteSymbols(subkey)}`;
 

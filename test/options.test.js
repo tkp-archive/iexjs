@@ -46,4 +46,12 @@ describe("Client - Options", () => {
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });
+
+  test("options", async () => {
+    const client = new Client({ version: "sandbox" });
+    const [{ symbol }] = await client.optionsSymbols("SPY");
+    const res = await client.options(symbol);
+    // expect(typeof res).toBe("object");
+    // expect(res.symbol).toBe(SYMBOL);
+  });
 });
