@@ -594,6 +594,10 @@ describe("Options", () => {
     expect(optionExpirations).toBeDefined();
   });
 
+  test("stockOptions", () => {
+    expect(stockOptions).toBeDefined();
+  });
+
   test("options", () => {
     expect(options).toBeDefined();
   });
