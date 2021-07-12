@@ -27,7 +27,7 @@ import { Client } from "../client";
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const stockSplits = (
+export const splitsBasic = (
   symbol,
   timeframe,
   { token, version, filter, format } = {},
@@ -45,12 +45,12 @@ export const stockSplits = (
   });
 };
 
-Client.prototype.stockSplits = function (
+Client.prototype.splitsBasic = function (
   symbol,
   timeframe,
   { filter, format } = {},
 ) {
-  return stockSplits(symbol, timeframe, {
+  return splitsBasic(symbol, timeframe, {
     token: this._token,
     version: this._version,
     filter,

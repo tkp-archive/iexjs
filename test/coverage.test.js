@@ -17,7 +17,6 @@ const {
   usage,
   // alternative
   sentiment,
-  ceoCompensation,
   // commodities
   wti,
   brent,
@@ -223,6 +222,7 @@ const {
   summary,
   daily,
   // stocks
+  ceoCompensation,
   batch,
   bonusIssue,
   distribution,
