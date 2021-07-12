@@ -25,76 +25,58 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client - Economic", () => {
-  test("fedfunds", async () => {
+describe("Client - Rates", () => {
+  test("thirtyYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.fedfunds();
+    const res = await client.thirtyYear();
     expect(typeof res).toBe("number");
   });
 
-  test("gdp", async () => {
+  test("twentyYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.gdp();
+    const res = await client.twentyYear();
     expect(typeof res).toBe("number");
   });
 
-  test("indpro", async () => {
+  test("tenYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.indpro();
+    const res = await client.tenYear();
     expect(typeof res).toBe("number");
   });
 
-  test("cpi", async () => {
+  test("fiveYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.cpi();
+    const res = await client.fiveYear();
     expect(typeof res).toBe("number");
   });
 
-  test("payroll", async () => {
+  test("twoYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.payroll();
+    const res = await client.twoYear();
     expect(typeof res).toBe("number");
   });
 
-  test("housing", async () => {
+  test("oneYear", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.housing();
+    const res = await client.oneYear();
     expect(typeof res).toBe("number");
   });
 
-  test("unemployment", async () => {
+  test("sixMonth", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.unemployment();
+    const res = await client.sixMonth();
     expect(typeof res).toBe("number");
   });
 
-  test("vehicles", async () => {
+  test("threeMonth", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.vehicles();
+    const res = await client.threeMonth();
     expect(typeof res).toBe("number");
   });
 
-  test("recessionProb", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.recessionProb();
-    expect(typeof res).toBe("number");
-  });
-
-  test("initialClaims", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.initialClaims();
-    expect(typeof res).toBe("number");
-  });
-
-  test("institutionalMoney", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.institutionalMoney();
-    expect(typeof res).toBe("number");
-  });
-
-  test("retailMoney", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.retailMoney();
-    expect(typeof res).toBe("number");
-  });
+  // test("oneMonth", async () => {
+  //   const client = new Client({ version: "sandbox" });
+  //   const res = await client.oneMonth();
+  //   expect(typeof res).toBe("number");
+  // });
 });

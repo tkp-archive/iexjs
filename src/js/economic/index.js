@@ -10,20 +10,8 @@
 import { points } from "../points";
 import { Client } from "../client";
 
-export const us30 = ({ token, version } = {}) =>
-  points({ key: "MORTGAGE30US" }, { token, version });
-export const us15 = ({ token, version } = {}) =>
-  points({ key: "MORTGAGE15US" }, { token, version });
-export const us5 = ({ token, version } = {}) =>
-  points({ key: "MORTGAGE5US" }, { token, version });
 export const fedfunds = ({ token, version } = {}) =>
   points({ key: "FEDFUNDS" }, { token, version });
-export const creditcard = ({ token, version } = {}) =>
-  points({ key: "TERMCBCCALLNS" }, { token, version });
-export const cdnj = ({ token, version } = {}) =>
-  points({ key: "MMNRNJ" }, { token, version });
-export const cdj = ({ token, version } = {}) =>
-  points({ key: "MMNRJD" }, { token, version });
 export const gdp = ({ token, version } = {}) =>
   points({ key: "A191RL1Q225SBEA" }, { token, version });
 export const indpro = ({ token, version } = {}) =>
@@ -47,32 +35,8 @@ export const institutionalMoney = ({ token, version } = {}) =>
 export const retailMoney = ({ token, version } = {}) =>
   points({ key: "WIMFSL" }, { token, version });
 
-Client.prototype.us30 = function () {
-  return us30({ token: this._token, version: this._version });
-};
-
-Client.prototype.us15 = function () {
-  return us15({ token: this._token, version: this._version });
-};
-
-Client.prototype.us5 = function () {
-  return us5({ token: this._token, version: this._version });
-};
-
 Client.prototype.fedfunds = function () {
   return fedfunds({ token: this._token, version: this._version });
-};
-
-Client.prototype.creditcard = function () {
-  return creditcard({ token: this._token, version: this._version });
-};
-
-Client.prototype.cdnj = function () {
-  return cdnj({ token: this._token, version: this._version });
-};
-
-Client.prototype.cdj = function () {
-  return cdj({ token: this._token, version: this._version });
 };
 
 Client.prototype.gdp = function () {
