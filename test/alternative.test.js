@@ -9,6 +9,7 @@
  */
 /* eslint-disable no-undef */
 
+
 const fetch = require("cross-fetch");
 const { Client } = require("../src/js");
 
@@ -18,7 +19,8 @@ beforeAll(() => {
   global.fetch = fetch;
 });
 
-// set timeout to 30s for long calls
+// retry twice and set timeout to 30s for long calls
+jest.retryTimes(2);
 jest.setTimeout(50000);
 
 afterEach(async () => {
