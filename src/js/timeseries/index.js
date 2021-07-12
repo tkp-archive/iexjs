@@ -57,6 +57,7 @@ Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
  * @param {string} on (Returns data on the given date. Format YYYY-MM-DD
  * @param {number} last Returns the latest n number of records in the series
  * @param {number} first Returns the first n number of records in the series
+ * @param {number} interval return every nth record
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
@@ -118,6 +119,7 @@ export const timeSeries = (
     on = "",
     last = 0,
     first = 0,
+    interval = 0,
   } = options || {};
 
   if (!id) return timeSeriesInventory({ token, version, filter, format });
@@ -141,6 +143,7 @@ export const timeSeries = (
   if (on) base_url += `on=${_strOrDate(on)}&`;
   if (last) base_url += `last=${last}&`;
   if (first) base_url += `first=${first}&`;
+  if (interval) base_url += `interval=${interval}&`;
 
   // TODO
   // if extra_params:
