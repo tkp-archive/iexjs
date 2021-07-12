@@ -7,8 +7,8 @@
  *
  */
 
-import { Client } from "../client";
 import { timeSeries } from "../timeseries";
+import { Client } from "../client";
 
 /**
  * Federal Funds rate

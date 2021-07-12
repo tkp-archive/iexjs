@@ -7,24 +7,92 @@
  *
  */
 
-import { points } from "../points";
+import { timeSeries } from "../timeseries";
 import { Client } from "../client";
 
-export const us30 = ({ token, version } = {}) =>
-  points({ key: "MORTGAGE30US" }, { token, version });
-export const us15 = ({ token, version } = {}) =>
-  points({ key: "MORTGAGE15US" }, { token, version });
-export const us5 = ({ token, version } = {}) =>
-  points({ key: "MORTGAGE5US" }, { token, version });
+/**
+ * US 30-Year fixed rate mortgage average
+ * https://iexcloud.io/docs/api/#mortgage-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const us30 = (timeseriesArgs, { token, version, format, filter } = {}) =>
+  timeSeries(
+    {
+      id: "MORTGAGE",
+      key: "MORTGAGE30US",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.us30 = function () {
-  return us30({ token: this._token, version: this._version });
+/**
+ * US 15-Year fixed rate mortgage average
+ * https://iexcloud.io/docs/api/#mortgage-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const us15 = (timeseriesArgs, { token, version, format, filter } = {}) =>
+  timeSeries(
+    {
+      id: "MORTGAGE",
+      key: "MORTGAGE15US",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+/**
+ * US 5/1-Year adjustable rate mortgage average
+ * https://iexcloud.io/docs/api/#mortgage-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const us5 = (timeseriesArgs, { token, version, format, filter } = {}) =>
+  timeSeries(
+    {
+      id: "MORTGAGE",
+      key: "MORTGAGE5US",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.us30 = function (timeseriesArgs, { filter, format } = {}) {
+  return us30(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.us15 = function () {
-  return us15({ token: this._token, version: this._version });
+Client.prototype.us15 = function (timeseriesArgs, { filter, format } = {}) {
+  return us15(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.us5 = function () {
-  return us5({ token: this._token, version: this._version });
+Client.prototype.us5 = function (timeseriesArgs, { filter, format } = {}) {
+  return us5(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
