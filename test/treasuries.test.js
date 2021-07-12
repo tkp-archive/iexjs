@@ -12,8 +12,6 @@
 const fetch = require("cross-fetch");
 const { Client } = require("../src/js");
 
-const SYMBOL = "BAC";
-
 beforeAll(() => {
   global.fetch = fetch;
 });
@@ -29,49 +27,61 @@ describe("Client - Rates", () => {
   test("thirtyYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.thirtyYear();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("twentyYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.twentyYear();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("tenYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.tenYear();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
+  });
+
+  test("sevenYear", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.sevenYear();
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("fiveYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fiveYear();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
+  });
+
+  test("threeYear", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.threeYear();
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("twoYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.twoYear();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("oneYear", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.oneYear();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("sixMonth", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.sixMonth();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("threeMonth", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.threeMonth();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   // test("oneMonth", async () => {

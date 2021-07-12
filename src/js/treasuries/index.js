@@ -7,68 +7,372 @@
  *
  */
 
-import { points } from "../points";
+import { timeSeries } from "../timeseries";
 import { Client } from "../client";
 
-export const thirtyYear = ({ token, version } = {}) =>
-  points({ key: "DGS30" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const thirtyYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS30",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.thirtyYear = function () {
-  return thirtyYear({ token: this._token, version: this._version });
+Client.prototype.thirtyYear = function (
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return thirtyYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const twentyYear = ({ token, version } = {}) =>
-  points({ key: "DGS20" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const twentyYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS20",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.twentyYear = function () {
-  return twentyYear({ token: this._token, version: this._version });
+Client.prototype.twentyYear = function (
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return twentyYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const tenYear = ({ token, version } = {}) =>
-  points({ key: "DGS10" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const tenYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS10",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.tenYear = function () {
-  return tenYear({ token: this._token, version: this._version });
+Client.prototype.tenYear = function (timeseriesArgs, { filter, format } = {}) {
+  return tenYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const fiveYear = ({ token, version } = {}) =>
-  points({ key: "DGS5" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const sevenYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS7",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.fiveYear = function () {
-  return fiveYear({ token: this._token, version: this._version });
+Client.prototype.sevenYear = function (
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return sevenYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const twoYear = ({ token, version } = {}) =>
-  points({ key: "DGS2" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const fiveYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS5",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.twoYear = function () {
-  return twoYear({ token: this._token, version: this._version });
+Client.prototype.fiveYear = function (timeseriesArgs, { filter, format } = {}) {
+  return fiveYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const oneYear = ({ token, version } = {}) =>
-  points({ key: "DGS1" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const threeYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS3",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.oneYear = function () {
-  return oneYear({ token: this._token, version: this._version });
+Client.prototype.threeYear = function (
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return threeYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const sixMonth = ({ token, version } = {}) =>
-  points({ key: "DGS6MO" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const twoYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS2",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.sixMonth = function () {
-  return thirtyYear({ token: this._token, version: this._version });
+Client.prototype.twoYear = function (timeseriesArgs, { filter, format } = {}) {
+  return twoYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const threeMonth = ({ token, version } = {}) =>
-  points({ key: "DGS3MO" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const oneYear = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS1",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.threeMonth = function () {
-  return threeMonth({ token: this._token, version: this._version });
+Client.prototype.oneYear = function (timeseriesArgs, { filter, format } = {}) {
+  return oneYear(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-export const oneMonth = ({ token, version } = {}) =>
-  points({ key: "DGS1MO" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const sixMonth = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS6MO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.oneMonth = function () {
-  return oneMonth({ token: this._token, version: this._version });
+Client.prototype.sixMonth = function (timeseriesArgs, { filter, format } = {}) {
+  return sixMonth(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const threeMonth = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS3MO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.threeMonth = function (
+  timeseriesArgs,
+  { filter, format } = {},
+) {
+  return threeMonth(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
+};
+
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const oneMonth = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "TREASURY",
+      key: "DGS1MO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.oneMonth = function (timeseriesArgs, { filter, format } = {}) {
+  return oneMonth(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
