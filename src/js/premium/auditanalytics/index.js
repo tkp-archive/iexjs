@@ -13,104 +13,97 @@ import { timeSeries } from "../../timeseries";
  * internal
  * @param {string} id
  * @param {string} symbol
- * @param  {object} timeseriesArgs
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  * @returns
  */
-const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
+const _base = (
+  id,
+  symbol,
+  timeseriesArgs,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id,
       key: symbol,
       ...timeseriesArgs,
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
 /**
  * The Director & Officer Changes data set covers all SEC registrants who have disclosed a director or officer change in Item 5.02 of an 8-K or 8-K/A since August 2004. As of January 1, 2018, the dataset also includes director or officer change disclosures in 6-K & 6-K/A filings.
  * https://iexcloud.io/docs/api/#audit-analytics-director-and-officer-changes
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const directorAndOfficerChangesAuditAnalytics = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
   _base(
     "PREMIUM_AUDIT_ANALYTICS_DIRECTOR_OFFICER_CHANGES",
     symbol,
-    token,
-    version,
-    filter,
-    format,
-    ...timeseriesArgs,
+    timeseriesArgs,
+    { token, version, filter, format },
   );
 
 Client.premium.prototype.directorAndOfficerChanges = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return directorAndOfficerChangesAuditAnalytics(
-    symbol,
-    this._token,
-    this._version,
+  return directorAndOfficerChangesAuditAnalytics(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
  * AQRM is an interactive tool designed to quickly identify and understand qualitative and contextual metrics of governance and reporting quality. Red flags and events highlighted in the risk matrix can be used for screening, idea generation, portfolio monitoring, and risk management for every SEC registrant.
  * https://iexcloud.io/docs/api/#audit-analytics-accounting-quality-and-risk-matrix
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const accountingQualityAndRiskMatrixAuditAnalytics = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
   _base(
     "PREMIUM_AUDIT_ANALYTICS_ACCOUNTING_QUALITY_RISK_MATRIX",
     symbol,
-    token,
-    version,
-    filter,
-    format,
-    ...timeseriesArgs,
+    timeseriesArgs,
+    { token, version, filter, format },
   );
 
 Client.premium.prototype.accountingQualityAndRiskMatrix = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return accountingQualityAndRiskMatrixAuditAnalytics(
-    symbol,
-    this._token,
-    this._version,
+  return accountingQualityAndRiskMatrixAuditAnalytics(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };

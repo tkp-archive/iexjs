@@ -61,37 +61,3 @@ Client.prototype.sentiment = function (
     format,
   });
 };
-
-/**
- * This endpoint provides CEO compensation for a company by symbol.
- *
- * https://iexcloud.io/docs/api/#ceo-compensation
- *
- * @param {string} symbol Ticker to request
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
- */
-export const ceoCompensation = (
-  symbol,
-  { token, version, filter, format } = {},
-) => {
-  _raiseIfNotStr(symbol);
-  return _get({
-    url: `stock/${symbol}/ceo-compensation/`,
-    token,
-    version,
-    filter,
-    format,
-  });
-};
-
-Client.prototype.ceoCompensation = function (symbol, { filter, format } = {}) {
-  return ceoCompensation(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
-};

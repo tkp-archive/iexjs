@@ -14,20 +14,26 @@ import { timeSeries } from "../../timeseries";
  * internal
  * @param {string} id
  * @param {string} symbol
- * @param  {object} timeseriesArgs
- * @returns
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
+const _base = (
+  id,
+  symbol,
+  timeseriesArgs,
+  { token, version, filter, format } = {},
+) =>
   timeSeries(
     {
       id,
       key: symbol,
       ...timeseriesArgs,
     },
-    token,
-    version,
-    filter,
-    format,
+    { token, version, filter, format },
   );
 
 /**
@@ -36,43 +42,36 @@ const _base = (id, symbol, token, version, filter, format, ...timeseriesArgs) =>
  * History available from July 2005
  * https://iexcloud.io/docs/api/#cross-asset-model-1
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const cam1ExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
-  _base(
-    "PREMIUM_EXTRACT_ALPHA_CAM",
-    symbol,
+  _base("PREMIUM_EXTRACT_ALPHA_CAM", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 
 Client.premium.prototype.cam1 = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return cam1ExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return cam1ExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -82,45 +81,38 @@ Client.premium.prototype.cam1 = function (
  * History available from 2011
  * https://iexcloud.io/docs/api/#esg-cfpb-complaints
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgCFPBComplaintsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 1;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgCFPBComplaints = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgCFPBComplaintsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgCFPBComplaintsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -130,45 +122,38 @@ Client.premium.prototype.esgCFPBComplaints = function (
  * History available from 1974
  * https://iexcloud.io/docs/api/#esg-cpsc-recalls
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgCPSCRecallsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 5;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgCPSCRecalls = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgCPSCRecallsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgCPSCRecallsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -179,45 +164,38 @@ Client.premium.prototype.esgCPSCRecalls = function (
  * History available from 1999
  * https://iexcloud.io/docs/api/#esg-dol-visa-applications
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgDOLVisaApplicationsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 8;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgDOLVisaApplications = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgDOLVisaApplicationsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgDOLVisaApplicationsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -228,45 +206,38 @@ Client.premium.prototype.esgDOLVisaApplications = function (
  * History available from 1975
  * https://iexcloud.io/docs/api/#esg-epa-enforcements
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgEPAEnforcementsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 2;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgEPAEnforcements = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgEPAEnforcementsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgEPAEnforcementsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -274,45 +245,38 @@ Client.premium.prototype.esgEPAEnforcements = function (
  * History available from 1975
  * https://iexcloud.io/docs/api/#esg-epa-milestones
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgEPAMilestonesExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 3;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgEPAMilestones = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgEPAMilestonesExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgEPAMilestonesExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -320,44 +284,36 @@ Client.premium.prototype.esgEPAMilestones = function (
  * History available from 1997
  * https://iexcloud.io/docs/api/#esg-fec-individual-campaign-contributions
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgFECIndividualCampaingContributionsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 7;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgFECIndividualCampaingContributions = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
   return esgFECIndividualCampaingContributionsExtractAlpha(
     symbol,
-    this._token,
-    this._version,
-    filter,
-    format,
-    ...timeseriesArgs,
+    timeseriesArgs,
+    { token: this._token, version: this._version, filter, format },
   );
 };
 
@@ -367,45 +323,38 @@ Client.premium.prototype.esgFECIndividualCampaingContributions = function (
  * History available from 1972
  * https://iexcloud.io/docs/api/#esg-osha-inspections
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgOSHAInspectionsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 4;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgOSHAInspections = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgOSHAInspectionsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgOSHAInspectionsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -413,45 +362,38 @@ Client.premium.prototype.esgOSHAInspections = function (
  * History available from 1999
  * https://iexcloud.io/docs/api/#esg-senate-lobbying
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgSenateLobbyingExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 6;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgSenateLobbying = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgSenateLobbyingExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgSenateLobbyingExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -462,45 +404,38 @@ Client.premium.prototype.esgSenateLobbying = function (
  * History available from 1975
  * https://iexcloud.io/docs/api/#esg-epa-enforcements
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgUSASpendingExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 9;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgUSASpending = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgUSASpendingExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgUSASpendingExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -509,45 +444,38 @@ Client.premium.prototype.esgUSASpending = function (
  * History available from 1995
  * https://iexcloud.io/docs/api/#esg-usa-spending
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgUSPTOPatentApplicationsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 10;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgUSPTOPatentApplications = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgUSPTOPatentApplicationsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgUSPTOPatentApplicationsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -557,45 +485,38 @@ Client.premium.prototype.esgUSPTOPatentApplications = function (
  * History available from 2002
  * https://iexcloud.io/docs/api/#esg-uspto-patent-grants
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const esgUSPTOPatentGrantsExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 11;
-  return _base(
-    "PREMIUM_EXTRACT_ALPHA_ESG",
-    symbol,
+  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 Client.premium.prototype.esgUSPTOPatentGrants = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return esgUSPTOPatentGrantsExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return esgUSPTOPatentGrantsExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };
 
 /**
@@ -607,41 +528,34 @@ Client.premium.prototype.esgUSPTOPatentGrants = function (
  * History available from January 2000
  * https://iexcloud.io/docs/api/#tactical-model-1
  * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
- * @param  {object} rest
+ * @param {object} timeseriesArgs The standard arguments from time-series
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const tacticalModel1ExtractAlpha = (
   symbol,
-  token,
-  version,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { token, version, filter, format } = {},
 ) =>
-  _base(
-    "PREMIUM_EXTRACT_ALPHA_TM",
-    symbol,
+  _base("PREMIUM_EXTRACT_ALPHA_TM", symbol, timeseriesArgs, {
     token,
     version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 
 Client.premium.prototype.tacticalModel1 = function (
   symbol,
-  filter,
-  format,
-  ...timeseriesArgs
+  timeseriesArgs,
+  { filter, format } = {},
 ) {
-  return tacticalModel1ExtractAlpha(
-    symbol,
-    this._token,
-    this._version,
+  return tacticalModel1ExtractAlpha(symbol, timeseriesArgs, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-    ...timeseriesArgs,
-  );
+  });
 };

@@ -8,11 +8,14 @@
  */
 export * from "./auditanalytics";
 export * from "./brain";
+export * from "./cityfalcon";
 export * from "./extractalpha";
 export * from "./fraudfactors";
+export * from "./invisage";
 export * from "./kavout";
 export * from "./newconstructs";
 export * from "./precisionalpha";
+export * from "./refinitiv";
 export * from "./stocktwits";
 export * from "./valuengine";
 export * from "./wallstreethorizon";

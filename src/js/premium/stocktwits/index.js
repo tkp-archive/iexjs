@@ -15,21 +15,20 @@ import { IEXJSException, _get, _raiseIfNotStr, _strOrDate } from "../../common";
  * https://iexcloud.io/docs/api/#balance-sheet
  *
  * @param {string} symbol Symbol to look up
- * @param {string} type Can only be daily or minute. Default is daily.
- * @param {string} date Format YYYYMMDD date to fetch sentiment data. Default is today.
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.type Can only be daily or minute. Default is daily.
+ * @param {string} options.date Format YYYYMMDD date to fetch sentiment data. Default is today.
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const socialSentimentStockTwits = async (
   symbol,
   type,
   date,
-  token,
-  version,
-  filter,
-  format,
+  { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
   if (["daily", "minute"].indexOf(type || "daily") < 0) {
@@ -56,16 +55,12 @@ Client.premium.prototype.socialSentiment = function (
   symbol,
   type,
   date,
-  filter,
-  format,
+  { filter, format } = {},
 ) {
-  return socialSentimentStockTwits(
-    symbol,
-    type,
-    date,
-    this._token,
-    this._version,
+  return socialSentimentStockTwits(symbol, type, date, {
+    token: this._token,
+    version: this._version,
     filter,
     format,
-  );
+  });
 };
