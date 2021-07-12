@@ -7,66 +7,319 @@
  *
  */
 
-import { points } from "../points";
+import { timeSeries } from "../timeseries";
 import { Client } from "../client";
 
-export const wti = ({ token, version } = {}) =>
-  points({ key: "DCOILWTICO" }, { token, version });
-export const brent = ({ token, version } = {}) =>
-  points({ key: "DCOILBRENTEU" }, { token, version });
-export const natgas = ({ token, version } = {}) =>
-  points({ key: "DHHNGSP" }, { token, version });
-export const heatoil = ({ token, version } = {}) =>
-  points({ key: "DHOILNYH" }, { token, version });
-export const jet = ({ token, version } = {}) =>
-  points({ key: "DJFUELUSGULF" }, { token, version });
-export const diesel = ({ token, version } = {}) =>
-  points({ key: "GASDESW" }, { token, version });
-export const gasreg = ({ token, version } = {}) =>
-  points({ key: "GASREGCOVW" }, { token, version });
-export const gasmid = ({ token, version } = {}) =>
-  points({ key: "GASMIDCOVW" }, { token, version });
-export const gasprm = ({ token, version } = {}) =>
-  points({ key: "GASPRMCOVW" }, { token, version });
-export const propane = ({ token, version } = {}) =>
-  points({ key: "DPROPANEMBTX" }, { token, version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const wti = (timeseriesArgs, { token, version, format, filter } = {}) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "DCOILWTICO",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
 
-Client.prototype.wti = function () {
-  return wti({ token: this._token, version: this._version });
+Client.prototype.wti = function (timeseriesArgs, { filter, format } = {}) {
+  return wti(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.brent = function () {
-  return brent({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const brent = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "DCOILBRENTEU",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.brent = function (timeseriesArgs, { filter, format } = {}) {
+  return brent(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.natgas = function () {
-  return natgas({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const natgas = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "DHHNGSP",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.natgas = function (timeseriesArgs, { filter, format } = {}) {
+  return natgas(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.heatoil = function () {
-  return heatoil({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const heatoil = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "DHOILNYH",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.heatoil = function (timeseriesArgs, { filter, format } = {}) {
+  return heatoil(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.jet = function () {
-  return jet({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const jet = (timeseriesArgs, { token, version, format, filter } = {}) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "DJFUELUSGULF",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.jet = function (timeseriesArgs, { filter, format } = {}) {
+  return jet(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.diesel = function () {
-  return diesel({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const diesel = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "GASDESW",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.diesel = function (timeseriesArgs, { filter, format } = {}) {
+  return diesel(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.gasreg = function () {
-  return gasreg({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const gasreg = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "GASREGCOVW",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.gasreg = function (timeseriesArgs, { filter, format } = {}) {
+  return gasreg(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.gasmid = function () {
-  return gasmid({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const gasmid = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "GASMIDCOVW",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.gasmid = function (timeseriesArgs, { filter, format } = {}) {
+  return gasmid(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.gasprm = function () {
-  return gasprm({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const gasprm = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "GASPRMCOVW",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.gasprm = function (timeseriesArgs, { filter, format } = {}) {
+  return gasprm(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
 
-Client.prototype.propane = function () {
-  return propane({ token: this._token, version: this._version });
+/**
+ * Daily Treasury Rates
+ * https://iexcloud.io/docs/api/#daily-treasury-rates
+ * @param {object} timeseriesArgs
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
+ */
+export const propane = (
+  timeseriesArgs,
+  { token, version, format, filter } = {},
+) =>
+  timeSeries(
+    {
+      id: "ENERGY",
+      key: "DPROPANEMBTX",
+      ...timeseriesArgs,
+    },
+    { token, version, format, filter },
+  );
+
+Client.prototype.propane = function (timeseriesArgs, { filter, format } = {}) {
+  return propane(timeseriesArgs, {
+    token: this._token,
+    version: this._version,
+    filter,
+    format,
+  });
 };
