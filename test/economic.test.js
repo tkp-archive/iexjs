@@ -29,72 +29,72 @@ describe("Client - Economic", () => {
   test("fedfunds", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fedfunds();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("gdp", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.gdp();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("indpro", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.indpro();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("cpi", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.cpi();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("payroll", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.payroll();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("housing", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.housing();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("unemployment", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.unemployment();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("vehicles", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.vehicles();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("recessionProb", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.recessionProb();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("initialClaims", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.initialClaims();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("institutionalMoney", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.institutionalMoney();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("retailMoney", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.retailMoney();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 });

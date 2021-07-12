@@ -29,18 +29,18 @@ describe("Client - Economic", () => {
   test("us30", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.us30();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("us15", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.us15();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("us5", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.us5();
-    expect(typeof res).toBe("number");
+    expect(Array.isArray(res)).toBe(true);
   });
 });
