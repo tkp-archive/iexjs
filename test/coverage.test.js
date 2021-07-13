@@ -243,9 +243,11 @@ const {
   balanceSheet,
   cashFlow,
   dividendsBasic,
+  dividendsForecast,
   earnings,
   financials,
   fundamentals,
+  fundamentalValuations,
   incomeStatement,
   collections,
   earningsToday,
@@ -1389,5 +1391,13 @@ describe("Stock", () => {
 
   test("threshold", () => {
     expect(iexThreshold).toBeDefined();
+  });
+
+  test("dividendsForecast", () => {
+    expect(dividendsForecast).toBeDefined();
+  });
+
+  test("fundamentalValuations", () => {
+    expect(fundamentalValuations).toBeDefined();
   });
 });
