@@ -19,6 +19,7 @@ beforeAll(() => {
 });
 
 // set timeout to 30s for long calls
+jest.retryTimes(2);
 jest.setTimeout(50000);
 
 afterEach(async () => {
@@ -112,8 +113,18 @@ describe("Client- RefData", () => {
 
   test("optionsSymbols", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.optionsSymbols();
+    let res = await client.optionsSymbols();
     expect(typeof res).toBe("object");
+    res = await client.optionsSymbols("SPY");
+    expect(Array.isArray(res)).toBe(true);
+  });
+
+  test("futuresSymbols", async () => {
+    const client = new Client({ version: "sandbox" });
+    let res = await client.futuresSymbols();
+    expect(Array.isArray(res)).toBe(true);
+    res = await client.futuresSymbols("ES");
+    expect(Array.isArray(res)).toBe(true);
   });
 
   test("cryptoSymbols", async () => {
@@ -160,7 +171,17 @@ describe("Client- RefData", () => {
 
   test("optionsSymbolsList", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.optionsSymbolsList();
+    let res = await client.optionsSymbolsList();
+    expect(Array.isArray(res)).toBe(true);
+    res = await client.optionsSymbolsList("SPY");
+    expect(Array.isArray(res)).toBe(true);
+  });
+
+  test("futuresSymbolsList", async () => {
+    const client = new Client({ version: "sandbox" });
+    let res = await client.futuresSymbolsList();
+    expect(Array.isArray(res)).toBe(true);
+    res = await client.futuresSymbolsList("ES");
     expect(Array.isArray(res)).toBe(true);
   });
 

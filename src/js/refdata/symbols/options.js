@@ -15,27 +15,47 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#options-symbols
  *
+ * @param {string} underlyingSymbol underlying symbol
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const optionsSymbols = ({
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
-} = {}) =>
-  _get({
-    url: `ref-data/options/symbols`,
+export const optionsSymbols = (
+  underlyingSymbol,
+  { token = "", version = "", filter = "", format = "json" } = {},
+) => {
+  let url;
+  if (underlyingSymbol) {
+    url = `ref-data/options/symbols/${underlyingSymbol}`;
+  } else {
+    url = `ref-data/options/symbols`;
+  }
+  return _get({
+    url,
     token,
     version,
     filter,
     format,
   });
+};
 
-Client.prototype.optionsSymbols = function ({ filter, format } = {}) {
-  return optionsSymbols({
+/**
+ * This call returns an object keyed by symbol with the value of each symbol being an array of available contract dates.
+ *
+ * https://iexcloud.io/docs/api/#options-symbols
+ *
+ * @param {string} underlyingSymbol underlying symbol
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+Client.prototype.optionsSymbols = function (
+  underlyingSymbol,
+  { filter, format } = {},
+) {
+  return optionsSymbols(underlyingSymbol, {
     token: this._token,
     version: this._version,
     filter,
@@ -43,24 +63,55 @@ Client.prototype.optionsSymbols = function ({ filter, format } = {}) {
   });
 };
 
-const convertOptionsSymbolsToList = (data) => {
+const convertOptionsSymbolsToList = (underlyingSymbol, data) => {
   const ret = [];
-  Object.keys(data).forEach((symbol) => {
-    data[symbol].forEach((date) => {
-      ret.push(`${symbol}-${date}`);
+  if (!underlyingSymbol) {
+    Object.keys(data).forEach((symbol) => {
+      data[symbol].forEach((date) => {
+        ret.push(`${symbol}-${date}`);
+      });
     });
-  });
+  } else {
+    data.forEach((record) => ret.push(record.symbol));
+  }
   return ret;
 };
 
-export const optionsSymbolsList = async ({ token, version } = {}) =>
+/**
+ * This call returns a list of options symbols
+ *
+ * https://iexcloud.io/docs/api/#options-symbols
+ *
+ * @param {string} underlyingSymbol underlying symbol
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+export const optionsSymbolsList = async (
+  underlyingSymbol,
+  { token, version } = {},
+) =>
   convertOptionsSymbolsToList(
+    underlyingSymbol,
     await optionsSymbols({ token, version, filter: "symbol" }),
   );
 
-Client.prototype.optionsSymbolsList = async function () {
+/**
+ * This call returns a list of options symbols
+ *
+ * https://iexcloud.io/docs/api/#options-symbols
+ *
+ * @param {string} underlyingSymbol underlying symbol
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+Client.prototype.optionsSymbolsList = async function (underlyingSymbol) {
   return convertOptionsSymbolsToList(
-    await optionsSymbols({
+    underlyingSymbol,
+    await optionsSymbols(underlyingSymbol, {
       token: this._token,
       version: this._version,
       filter: "symbol",

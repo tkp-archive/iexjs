@@ -19,6 +19,7 @@ beforeAll(() => {
 });
 
 // set timeout to 30s for long calls
+jest.retryTimes(2);
 jest.setTimeout(50000);
 
 afterEach(async () => {

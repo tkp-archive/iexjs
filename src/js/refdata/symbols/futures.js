@@ -16,27 +16,47 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#futures-symbols
  *
+ * @param {string} underlyingSymbol underlying symbol
  * @param {string} token Access token
  * @param {string} version API version
  * @param {string} filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
-export const futuresSymbols = ({
-  token = "",
-  version = "",
-  filter = "",
-  format = "json",
-} = {}) =>
-  _get({
-    url: `ref-data/futures/symbols`,
+export const futuresSymbols = (
+  underlyingSymbol,
+  { token = "", version = "", filter = "", format = "json" } = {},
+) => {
+  let url;
+  if (underlyingSymbol) {
+    url = `ref-data/futures/symbols/${underlyingSymbol}`;
+  } else {
+    url = `ref-data/futures/symbols`;
+  }
+  return _get({
+    url,
     token,
     version,
     filter,
     format,
   });
+};
 
-Client.prototype.futuresSymbols = function ({ filter, format } = {}) {
-  return futuresSymbols({
+/**
+ * This call returns an array of futures symbols that IEX Cloud supports for API calls.
+ *
+ * https://iexcloud.io/docs/api/#futures-symbols
+ *
+ * @param {string} underlyingSymbol underlying symbol
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+Client.prototype.futuresSymbols = function (
+  underlyingSymbol,
+  { filter, format } = {},
+) {
+  return futuresSymbols(underlyingSymbol, {
     token: this._token,
     version: this._version,
     filter,
@@ -44,15 +64,35 @@ Client.prototype.futuresSymbols = function ({ filter, format } = {}) {
   });
 };
 
-export const futuresSymbolsList = ({ token, version } = {}) =>
-  convertToList(futuresSymbols({ token, version, filter: "symbol" }));
-
-Client.prototype.futuresSymbolsList = function () {
+export const futuresSymbolsList = (
+  underlyingSymbol,
+  { token, version } = {},
+) => {
+  let filter;
+  if (underlyingSymbol) {
+    filter = "underlying";
+  } else {
+    filter = "symbol";
+  }
   return convertToList(
-    futuresSymbols({
-      token: this._token,
-      version: this._version,
-      filter: "symbol",
-    }),
+    futuresSymbols(underlyingSymbol, { token, version, filter }),
   );
+};
+
+/**
+ * This call returns an array of futures symbols that IEX Cloud supports for API calls.
+ *
+ * https://iexcloud.io/docs/api/#futures-symbols
+ *
+ * @param {string} underlyingSymbol underlying symbol
+ * @param {string} token Access token
+ * @param {string} version API version
+ * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} format output format
+ */
+Client.prototype.futuresSymbolsList = function (underlyingSymbol) {
+  return futuresSymbolsList(underlyingSymbol, {
+    token: this._token,
+    version: this._version,
+  });
 };

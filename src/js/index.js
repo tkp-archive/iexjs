@@ -18,6 +18,7 @@ export * from "./commodities";
 export * from "./cryptocurrency";
 export * from "./economic";
 export * from "./files";
+export * from "./futures";
 export * from "./fx";
 export * from "./metadata";
 export * from "./mortgage";

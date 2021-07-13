@@ -7,5 +7,5 @@
  *
  */
 
-export const convertToList = async (res) =>
-  (await res).map((record) => record.symbol);
+export const convertToList = async (res, field = "symbol") =>
+  (await res).map((record) => record[field]);

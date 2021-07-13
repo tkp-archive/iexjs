@@ -26,20 +26,12 @@ afterEach(async () => {
   await new Promise((r) => setTimeout(r, 500));
 });
 
-describe("Client - FX", () => {
-  test("latestFX", async () => {
+describe("Client - Futures", () => {
+  test("futures", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.latestFX({ symbols: "EURUSD" });
-  });
-  test("convertFX", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.convertFX({ symbols: "EURUSD", amount: 5 });
-  });
-  test("historicalFX", async () => {
-    const client = new Client({ version: "sandbox" });
-    const res = await client.historicalFX({
-      symbols: "EURUSD",
-      date: "20210201",
-    });
+    const [{ symbol }] = await client.futuresSymbols("ES");
+    const res = await client.futures(symbol);
+    // expect(typeof res).toBe("object");
+    // expect(res.symbol).toBe(SYMBOL);
   });
 });
