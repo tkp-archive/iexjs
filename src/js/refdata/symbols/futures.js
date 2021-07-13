@@ -68,13 +68,15 @@ export const futuresSymbolsList = (
   underlyingSymbol,
   { token, version } = {},
 ) => {
+  let filter;
   if (underlyingSymbol) {
-    return convertToList(
-      futuresSymbols({ token, version, filter: "symbol" }),
-      "underlying",
-    );
+    filter = "underlying";
+  } else {
+    filter = "symbol";
   }
-  return convertToList(futuresSymbols({ token, version, filter: "symbol" }));
+  return convertToList(
+    futuresSymbols(underlyingSymbol, { token, version, filter }),
+  );
 };
 
 /**
@@ -89,12 +91,8 @@ export const futuresSymbolsList = (
  * @param {string} format output format
  */
 Client.prototype.futuresSymbolsList = function (underlyingSymbol) {
-  return convertToList(
-    underlyingSymbol,
-    futuresSymbols(underlyingSymbol, {
-      token: this._token,
-      version: this._version,
-      filter: "symbol",
-    }),
-  );
+  return futuresSymbolsList(underlyingSymbol, {
+    token: this._token,
+    version: this._version,
+  });
 };
