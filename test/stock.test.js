@@ -59,7 +59,7 @@ describe("Stock", () => {
 
   test("dividendsForecast", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.dividendsForecast(SYMBOL);
+    const res = await client.dividendsForecast({symbol: SYMBOL});
     expect(res).toBeDefined();
   });
 
