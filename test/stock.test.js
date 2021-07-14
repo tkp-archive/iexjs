@@ -57,6 +57,12 @@ describe("Stock", () => {
     expect(res).toBeDefined();
   });
 
+  test("dividendsForecast", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.dividendsForecast({symbol: SYMBOL});
+    expect(res).toBeDefined();
+  });
+
   test("returnOfCapital", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.returnOfCapital(SYMBOL);
@@ -132,6 +138,12 @@ describe("Stock", () => {
   test("fundamentals", async () => {
     const client = new Client({ version: "sandbox" });
     const res = await client.fundamentals({ symbol: SYMBOL });
+    expect(res).toBeDefined();
+  });
+
+  test("fundamentalValuations", async () => {
+    const client = new Client({ version: "sandbox" });
+    const res = await client.fundamentalValuations({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
