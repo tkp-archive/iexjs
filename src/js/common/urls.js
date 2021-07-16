@@ -85,7 +85,7 @@ const _getIEXCloudBase = async (options) => {
   }
 
   let tries = 0;
-  let res = { status: 429 };
+  let res = { status: 429, text: () => "Error 429 - Too Many Requests" };
 
   while (res.status === 429 && tries++ < 5) {
     res = await fetch(endpoint.href, {
@@ -101,7 +101,7 @@ const _getIEXCloudBase = async (options) => {
     }
 
     // exponential backoff
-    await sleep(Math.random() * 100 * tries);
+    await sleep(Math.random() * 50 * tries);
   }
 
   if (res.ok) {
