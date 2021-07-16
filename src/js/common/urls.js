@@ -6,8 +6,9 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-
 /* eslint-disable import/no-mutable-exports */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-await-in-loop */
 
 import { IEXJSException } from "./exception";
 
@@ -22,6 +23,8 @@ const _URL_PREFIX_CLOUD_SANDBOX_ORIG = _URL_PREFIX_CLOUD_SANDBOX;
 
 export const _SIO_URL_PREFIX = "https://ws-api.iextrading.com";
 export const _SIO_PORT = 443;
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export let _SSE_URL_PREFIX = (version, channel, symbols, token) =>
   `https://cloud-sse.iexapis.com/${version}/${channel}?symbols=${symbols}&token=${token}`;
@@ -81,24 +84,37 @@ const _getIEXCloudBase = async (options) => {
     contentType = "application/json";
   }
 
-  return fetch(endpoint.href, {
-    method: "GET",
-    headers: {
-      "Content-Type": contentType,
-    },
-  }).then(async (res) => {
+  let tries = 0;
+  let res = { status: 429, text: () => "Error 429 - Too Many Requests" };
+
+  while (res.status === 429 && tries++ < 5) {
+    res = await fetch(endpoint.href, {
+      method: "GET",
+      headers: {
+        "Content-Type": contentType,
+      },
+    });
+
+    // break out
     if (res.ok) {
-      if (format === "json") {
-        return res.json();
-      }
-      if (format === "schema") {
-        const ret = res.json();
-        return Array.isArray(ret) ? ret[0] : ret;
-      }
-      return res.text();
+      break;
     }
-    throw IEXJSException(`Response ${res.status} - ${await res.text()}`);
-  });
+
+    // exponential backoff
+    await sleep(Math.random() * 50 * tries);
+  }
+
+  if (res.ok) {
+    if (format === "json") {
+      return res.json();
+    }
+    if (format === "schema") {
+      const ret = res.json();
+      return Array.isArray(ret) ? ret[0] : ret;
+    }
+    return res.text();
+  }
+  throw IEXJSException(`Response ${res.status} - ${await res.text()}`);
 };
 
 /**
