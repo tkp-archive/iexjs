@@ -215,7 +215,11 @@ describe("Stock", () => {
 
   test("upcomingEvents", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.upcomingEvents();
+    let res = await client.upcomingEvents();
+    expect(res).toBeDefined();
+    res = await client.upcomingEvents(SYMBOL);
+    expect(res).toBeDefined();
+    res = await client.upcomingEvents("AAPL,BAC");
     expect(res).toBeDefined();
   });
 
