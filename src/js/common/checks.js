@@ -406,8 +406,12 @@ export const _INDICATOR_RETURNS = {
 };
 
 export const _strToList = (st) => {
-  if (typeof st === "string") {
-    return [st];
+  if (st && typeof st === "string") {
+    return st.trim().split(",");
+  }
+  if (typeof st === "undefined" || typeof st === "string") {
+    // empty or undefined
+    return [];
   }
   return st;
 };
