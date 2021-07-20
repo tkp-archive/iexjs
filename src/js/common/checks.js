@@ -407,7 +407,7 @@ export const _INDICATOR_RETURNS = {
 
 export const _strToList = (st) => {
   if (st && typeof st === "string") {
-    return st.strip().split(",");
+    return st.trim().split(",");
   }
   if (typeof st === "undefined" || typeof st === "string") {
     // empty or undefined
