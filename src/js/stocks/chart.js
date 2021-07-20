@@ -23,7 +23,7 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#historical-prices
  *
  * @param {string} symbol ticker to request
- * @param {string} timeframe Timeframe to request e.g. 1m
+ * @param {string} range Timeframe to request e.g. 1m
  * @param {string} date date, if requesting intraday
  * @param {string} exactDate Same as `date`, takes precedence
  * @param {number} last If passed, chart data will return the last N elements from the time period defined by the range parameter
@@ -47,7 +47,7 @@ export const chart = (
   { token, version, filter, format } = {},
 ) => {
   const {
-    timeframe = "1m",
+    range = "1m",
     date = "",
     exactDate = "",
     last = -1,
@@ -62,7 +62,7 @@ export const chart = (
   } = options || {};
 
   _raiseIfNotStr(symbol);
-  let base_url = `stock/${_quoteSymbols(symbol)}/chart/${timeframe}?`;
+  let base_url = `stock/${_quoteSymbols(symbol)}/chart/${range}?`;
 
   // exactDate takes precedence
   let thedate = exactDate || date;
@@ -70,9 +70,9 @@ export const chart = (
     thedate = _strOrDate(thedate);
   }
 
-  if (timeframe && timeframe !== "1d") {
-    if (_TIMEFRAME_CHART.indexOf(timeframe) < 0) {
-      throw new IEXJSException(`Timeframe not recognized ${timeframe}`);
+  if (range && range !== "1d") {
+    if (_TIMEFRAME_CHART.indexOf(range) < 0) {
+      throw new IEXJSException(`Range not recognized ${range}`);
     }
   }
 
