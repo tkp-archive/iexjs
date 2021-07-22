@@ -31,7 +31,13 @@ export const BOOK = "book";
 export const SYSTEMEVENT = "system-event";
 export const ALL = "deep";
 
-export const _runSSE = (method, symbols, on_data, { token, version } = {}) => {
+export const _runSSE = (
+  method,
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => {
   if (!method) {
     throw new IEXJSException("method cannot be blank");
   }
@@ -46,6 +52,7 @@ export const _runSSE = (method, symbols, on_data, { token, version } = {}) => {
           token,
         ),
         on_data,
+        nosnapshot,
       );
     }
     return _streamSSE(
@@ -56,12 +63,21 @@ export const _runSSE = (method, symbols, on_data, { token, version } = {}) => {
         token,
       ),
       on_data,
+      nosnapshot,
     );
   }
   if (version === "sandbox") {
-    return _streamSSE(_SSE_URL_PREFIX_ALL_SANDBOX(method, token), on_data);
+    return _streamSSE(
+      _SSE_URL_PREFIX_ALL_SANDBOX(method, token),
+      on_data,
+      nosnapshot,
+    );
   }
-  return _streamSSE(_SSE_URL_PREFIX_ALL(version, method, token), on_data);
+  return _streamSSE(
+    _SSE_URL_PREFIX_ALL(version, method, token),
+    on_data,
+    nosnapshot,
+  );
 };
 
 /**
@@ -70,14 +86,19 @@ export const _runSSE = (method, symbols, on_data, { token, version } = {}) => {
  * https://iexcloud.io/docs/api/#tops
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const topsSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("tops", symbols, on_data, token, version);
+export const topsSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("tops", symbols, on_data, nosnapshot, token, version);
 
-Client.prototype.topsSSE = function (symbols, on_data) {
-  return topsSSE(symbols, on_data, {
+Client.prototype.topsSSE = function (symbols, on_data, nosnapshot) {
+  return topsSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -89,14 +110,19 @@ Client.prototype.topsSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#last
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const lastSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("last", symbols, on_data, { token, version });
+export const lastSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("last", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.lastSSE = function (symbols, on_data) {
-  return lastSSE(symbols, on_data, {
+Client.prototype.lastSSE = function (symbols, on_data, nosnapshot) {
+  return lastSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -114,6 +140,7 @@ Client.prototype.lastSSE = function (symbols, on_data) {
  * @param {string} symbols Tickers to request
  * @param {string} channels deep channels to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
@@ -121,6 +148,7 @@ export const deepSSE = (
   symbols,
   channels,
   on_data,
+  nosnapshot,
   { token, version } = {},
 ) => {
   if (!channels) {
@@ -156,6 +184,7 @@ export const deepSSE = (
         token,
       ),
       on_data,
+      nosnapshot,
     );
   }
   return _streamSSE(
@@ -166,11 +195,12 @@ export const deepSSE = (
       token,
     ),
     on_data,
+    nosnapshot,
   );
 };
 
-Client.prototype.deepSSE = function (symbols, channels, on_data) {
-  return deepSSE(symbols, channels, on_data, {
+Client.prototype.deepSSE = function (symbols, channels, on_data, nosnapshot) {
+  return deepSSE(symbols, channels, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -181,10 +211,16 @@ Client.prototype.deepSSE = function (symbols, channels, on_data) {
  * https://iexcloud.io/docs/api/#deep-trades
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const tradesSSE = (symbols, on_data, { token, version } = {}) => {
+export const tradesSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => {
   if (version === "sandbox") {
     return _streamSSE(
       _SSE_DEEP_URL_PREFIX_SANDBOX(
@@ -193,6 +229,7 @@ export const tradesSSE = (symbols, on_data, { token, version } = {}) => {
         token,
       ),
       on_data,
+      nosnapshot,
     );
   }
   return _streamSSE(
@@ -203,11 +240,12 @@ export const tradesSSE = (symbols, on_data, { token, version } = {}) => {
       token,
     ),
     on_data,
+    nosnapshot,
   );
 };
 
-Client.prototype.tradesSSE = function (symbols, on_data) {
-  return tradesSSE(symbols, on_data, {
+Client.prototype.tradesSSE = function (symbols, on_data, nosnapshot) {
+  return tradesSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -219,14 +257,19 @@ Client.prototype.tradesSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-auction
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const auctionSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("auction", symbols, on_data, { token, version });
+export const auctionSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("auction", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.auctionSSE = function (symbols, on_data) {
-  return auctionSSE(symbols, on_data, {
+Client.prototype.auctionSSE = function (symbols, on_data, nosnapshot) {
+  return auctionSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -237,14 +280,19 @@ Client.prototype.auctionSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-book
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const bookSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("book", symbols, on_data, { token, version });
+export const bookSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("book", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.bookSSE = function (symbols, on_data) {
-  return bookSSE(symbols, on_data, {
+Client.prototype.bookSSE = function (symbols, on_data, nosnapshot) {
+  return bookSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -261,14 +309,20 @@ Client.prototype.bookSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-operational-halt-status
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const opHaltStatusSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("op-halt-status", symbols, on_data, { token, version });
+export const opHaltStatusSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) =>
+  _runSSE("op-halt-status", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.opHaltStatusSSE = function (symbols, on_data) {
-  return opHaltStatusSSE(symbols, on_data, {
+Client.prototype.opHaltStatusSSE = function (symbols, on_data, nosnapshot) {
+  return opHaltStatusSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -280,14 +334,20 @@ Client.prototype.opHaltStatusSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-official-price
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const officialPriceSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("official-price", symbols, on_data, { token, version });
+export const officialPriceSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) =>
+  _runSSE("official-price", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.officialPriceSSE = function (symbols, on_data) {
-  return officialPriceSSE(symbols, on_data, {
+Client.prototype.officialPriceSSE = function (symbols, on_data, nosnapshot) {
+  return officialPriceSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -297,14 +357,20 @@ Client.prototype.officialPriceSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-security-event
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const securityEventSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("security-event", symbols, on_data, { token, version });
+export const securityEventSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) =>
+  _runSSE("security-event", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.securityEventSSE = function (symbols, on_data) {
-  return securityEventSSE(symbols, on_data, {
+Client.prototype.securityEventSSE = function (symbols, on_data, nosnapshot) {
+  return securityEventSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -319,14 +385,19 @@ Client.prototype.securityEventSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-short-sale-price-test-status
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const ssrStatusSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("ssr-status", symbols, on_data, { token, version });
+export const ssrStatusSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("ssr-status", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.ssrStatusSSE = function (symbols, on_data) {
-  return ssrStatusSSE(symbols, on_data, {
+Client.prototype.ssrStatusSSE = function (symbols, on_data, nosnapshot) {
+  return ssrStatusSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -339,14 +410,19 @@ Client.prototype.ssrStatusSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-system-event
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const systemEventSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("system-event", symbols, on_data, { token, version });
+export const systemEventSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("system-event", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.systemEventSSE = function (symbols, on_data) {
-  return systemEventSSE(symbols, on_data, {
+Client.prototype.systemEventSSE = function (symbols, on_data, nosnapshot) {
+  return systemEventSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -358,14 +434,19 @@ Client.prototype.systemEventSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-trades
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const tradeBreaksSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("trade-breaks", symbols, on_data, { token, version });
+export const tradeBreaksSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("trade-breaks", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.tradeBreaksSSE = function (symbols, on_data) {
-  return tradeBreaksSSE(symbols, on_data, {
+Client.prototype.tradeBreaksSSE = function (symbols, on_data, nosnapshot) {
+  return tradeBreaksSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -391,14 +472,20 @@ Client.prototype.tradeBreaksSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#deep-trading-status
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
+ * @param {boolean} nosnapshot
  * @param {string} token Access token
  * @param {string} version API version
  */
-export const tradingStatusSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("trading-status", symbols, on_data, { token, version });
+export const tradingStatusSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) =>
+  _runSSE("trading-status", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.tradingStatusSSE = function (symbols, on_data) {
-  return tradingStatusSSE(symbols, on_data, {
+Client.prototype.tradingStatusSSE = function (symbols, on_data, nosnapshot) {
+  return tradingStatusSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });

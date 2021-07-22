@@ -221,7 +221,13 @@ const _deleteIEXCloud = (options) =>
 const _deleteIEXCloudSandbox = (options) =>
   _deleteIEXCloudBase({ base_url: _URL_PREFIX_CLOUD_SANDBOX, ...options });
 
-export const _streamSSE = (url, on_data, accrue = false) => {
+export const _streamSSE = (
+  url,
+  on_data,
+  { nosnapshot = false, accrue = false },
+) => {
+  // eslint-disable-next-line no-param-reassign
+  if (nosnapshot) url = `${url}&nosnapshot=true`;
   const messages = new EventSource(url);
 
   // eslint-disable-next-line no-console
@@ -250,8 +256,6 @@ export const overrideUrl = ({ url = "", env = "" } = {}) => {
   if (env) {
     _URL_PREFIX_CLOUD = (version) =>
       `https://cloud.${env}.iexapis.com/${version}/`;
-    _URL_PREFIX_CLOUD = (version) =>
-      `https://cloud.${env}.iexapis.com/${version}/`;
     _URL_PREFIX_CLOUD_SANDBOX = () =>
       `https://sandbox.${env}.iexapis.com/stable/`;
     _SSE_URL_PREFIX = (version, channel, symbols, token) =>
@@ -269,6 +273,18 @@ export const overrideUrl = ({ url = "", env = "" } = {}) => {
   } else if (url) {
     _URL_PREFIX_CLOUD = () => url;
     _URL_PREFIX_CLOUD_SANDBOX = () => url;
+    _SSE_URL_PREFIX = (version, channel, symbols, token) =>
+      `${url}${channel}?symbols=${symbols}&token=${token}`;
+    _SSE_URL_PREFIX_ALL = (version, channel, token) =>
+      `${url}${channel}?token=${token}`;
+    _SSE_DEEP_URL_PREFIX = (version, symbols, channels, token) =>
+      `${url}deep?symbols=${symbols}&channels=${channels}&token=${token}`;
+    _SSE_URL_PREFIX_SANDBOX = (version, channel, symbols, token) =>
+      `${url}${channel}?symbols=${symbols}&token=${token}`;
+    _SSE_URL_PREFIX_ALL_SANDBOX = (channel, token) =>
+      `${url}${channel}?token=${token}`;
+    _SSE_DEEP_URL_PREFIX_SANDBOX = (symbols, channels, token) =>
+      `${url}deep?symbols=${symbols}&channels=${channels}&token=${token}`;
   } else {
     // reset
     _URL_PREFIX_CLOUD = _URL_PREFIX_CLOUD_ORIG;

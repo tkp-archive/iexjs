@@ -19,18 +19,20 @@ export const FOREX1MINUTE = "forex1Minute";
  * https://iexcloud.io/docs/api/#forex-currencies
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
 export const fxSSE = (
   symbols,
   on_data,
+  nosnapshot,
   name = "forex",
   { token, version } = {},
-) => _runSSE(name, symbols, on_data, { token, version });
+) => _runSSE(name, symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.fxSSE = function (symbols, on_data) {
-  return fxSSE(symbols, on_data, {
+Client.prototype.fxSSE = function (symbols, on_data, nosnapshot) {
+  return fxSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -41,14 +43,19 @@ Client.prototype.fxSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#forex-currencies
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const forex1SecondSSE = (symbols, on_data, { token, version } = {}) =>
-  fxSSE(symbols, on_data, "forex1Second", { token, version });
+export const forex1SecondSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => fxSSE(symbols, on_data, nosnapshot, "forex1Second", { token, version });
 
-Client.prototype.forex1SecondSSE = function (symbols, on_data) {
-  return forex1SecondSSE(symbols, on_data, {
+Client.prototype.forex1SecondSSE = function (symbols, on_data, nosnapshot) {
+  return forex1SecondSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -59,14 +66,19 @@ Client.prototype.forex1SecondSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#forex-currencies
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const forex5SecondSSE = (symbols, on_data, { token, version } = {}) =>
-  fxSSE(symbols, on_data, "forex5Second", { token, version });
+export const forex5SecondSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => fxSSE(symbols, on_data, nosnapshot, "forex5Second", { token, version });
 
-Client.prototype.forex5SecondSSE = function (symbols, on_data) {
-  return forex5SecondSSE(symbols, on_data, {
+Client.prototype.forex5SecondSSE = function (symbols, on_data, nosnapshot) {
+  return forex5SecondSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -77,14 +89,19 @@ Client.prototype.forex5SecondSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#forex-currencies
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const forex1MinuteSSE = (symbols, on_data, { token, version } = {}) =>
-  fxSSE(symbols, on_data, "forex1Minute", { token, version });
+export const forex1MinuteSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => fxSSE(symbols, on_data, nosnapshot, "forex1Minute", { token, version });
 
-Client.prototype.forex1MinuteSSE = function (symbols, on_data) {
-  return forex1MinuteSSE(symbols, on_data, {
+Client.prototype.forex1MinuteSSE = function (symbols, on_data, nosnapshot) {
+  return forex1MinuteSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
