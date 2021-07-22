@@ -18,14 +18,19 @@ export const CRYPTOQUOTES = "cryptoQuotes";
  * https://iexcloud.io/docs/api/#cryptocurrency-book
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const cryptoBookSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("cryptoBook", symbols, on_data, { token, version });
+export const cryptoBookSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("cryptoBook", symbols, on_data, { token, version });
 
-Client.prototype.cryptoBookSSE = function (symbols, on_data) {
-  return cryptoBookSSE(symbols, on_data, {
+Client.prototype.cryptoBookSSE = function (symbols, on_data, nosnapshot) {
+  return cryptoBookSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -36,14 +41,19 @@ Client.prototype.cryptoBookSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#cryptocurrency-events
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const cryptoEventsSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("cryptoEvents", symbols, on_data, { token, version });
+export const cryptoEventsSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("cryptoEvents", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.cryptoEventsSSE = function (symbols, on_data) {
-  return cryptoEventsSSE(symbols, on_data, {
+Client.prototype.cryptoEventsSSE = function (symbols, on_data, nosnapshot) {
+  return cryptoEventsSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
@@ -54,14 +64,19 @@ Client.prototype.cryptoEventsSSE = function (symbols, on_data) {
  * https://iexcloud.io/docs/api/#cryptocurrency-quote
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const cryptoQuotesSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("cryptoQuotes", symbols, on_data, { token, version });
+export const cryptoQuotesSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("cryptoQuotes", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.cryptoQuotesSSE = function (symbols, on_data) {
-  return cryptoQuotesSSE(symbols, on_data, {
+Client.prototype.cryptoQuotesSSE = function (symbols, on_data, nosnapshot) {
+  return cryptoQuotesSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });

@@ -14,14 +14,19 @@ import { _runSSE } from "./sse";
  * https://iexcloud.io/docs/api/#sse-streaming
  * @param {string} symbols
  * @param {function} on_data
+ * @param {boolean} nosnapshot
  * @param {string} token
  * @param {string} version
  */
-export const newsSSE = (symbols, on_data, { token, version } = {}) =>
-  _runSSE("news-stream", symbols, on_data, { token, version });
+export const newsSSE = (
+  symbols,
+  on_data,
+  nosnapshot,
+  { token, version } = {},
+) => _runSSE("news-stream", symbols, on_data, nosnapshot, { token, version });
 
-Client.prototype.newsSSE = function (symbols, on_data) {
-  return newsSSE(symbols, on_data, {
+Client.prototype.newsSSE = function (symbols, on_data, nosnapshot) {
+  return newsSSE(symbols, on_data, nosnapshot, {
     token: this._token,
     version: this._version,
   });
