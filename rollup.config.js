@@ -63,6 +63,7 @@ export default () => [
       inject({
         EventSource: "eventsource", // inject for node
         fetch: "cross-fetch", // inject for node
+        include: "**/*.js",
       }),
       nodeResolve({ browser: false, preferBuiltins: true }),
       commonjs(),
