@@ -20,8 +20,9 @@ export const STOCKSUS1MINUTE = "stocksUS1Minute";
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUSNoUTPSSE = (
   symbols,
@@ -42,8 +43,9 @@ Client.prototype.stocksUSNoUTPSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUSSSE = (
   symbols,
@@ -64,8 +66,9 @@ Client.prototype.stocksUSSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUS1SecondSSE = (
   symbols,
@@ -87,8 +90,9 @@ Client.prototype.stocksUS1SecondSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUSNoUTP1SecondSSE = (
   symbols,
@@ -117,8 +121,9 @@ Client.prototype.stocksUSNoUTP1SecondSSE = function (
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUS5SecondSSE = (
   symbols,
@@ -140,8 +145,9 @@ Client.prototype.stocksUS5SecondSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUSNoUTP5SecondSSE = (
   symbols,
@@ -170,8 +176,9 @@ Client.prototype.stocksUSNoUTP5SecondSSE = function (
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUS1MinuteSSE = (
   symbols,
@@ -193,8 +200,9 @@ Client.prototype.stocksUS1MinuteSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const stocksUSNoUTP1MinuteSSE = (
   symbols,
