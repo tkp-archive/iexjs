@@ -22,7 +22,8 @@ import { Client } from "../client";
    * https://iexcloud.io/docs/api/#technical-indicators
    *
    * @param {string} symbol ticker to request
-   * @param {string} indicator Technical indicator to request, in:
+   * @param {object} options
+   * @param {string} options.indicator Technical indicator to request, in:
               Indicator   Description                              Inputs                       Defaults         Outputs
               -------------------------------------------------------------------------------------------------------------
               abs         Vector Absolute Value                                                                   abs
@@ -130,22 +131,25 @@ import { Client } from "../client";
               wma         Weighted Moving Average                 period                          5               wma
               zlema       Zero-Lag Exponential Moving Average     period                          5               zlema
   
-   * @param {string} range Timeframe to request e.g. 1m
-   * @param {string} inputs array of inputs to request
-   * @param {string} token Access token
-   * @param {string} version API version
-   * @param {string} filter https://iexcloud.io/docs/api/#filter-results
-   * @param {string} format output format
+ * @param {string} options.range Timeframe to request e.g. 1m
+ * @param {string} options.inputs array of inputs to request
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
   */
 export const technicals = (
   symbol,
-  indicator,
-  range,
-  inputs,
+  { indicator, range, inputs } = {},
   { token, version, filter, format } = {},
 ) => {
   // eslint-disable-next-line no-param-reassign
+  indicator = indicator || "sma";
+
+  // eslint-disable-next-line no-param-reassign
   inputs = inputs || [];
+
   _raiseIfNotStr(symbol);
   if (_INDICATORS.indexOf(indicator) < 0) {
     throw new IEXJSException("Indicator not recognized");
@@ -299,15 +303,17 @@ export const technicals = (
 
 Client.prototype.technicals = function (
   symbol,
-  indicator,
-  range,
-  inputs,
+  { indicator, range, inputs } = {},
   { filter, format } = {},
 ) {
-  return technicals(symbol, indicator, range, inputs, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return technicals(
+    symbol,
+    { indicator, range, inputs },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };

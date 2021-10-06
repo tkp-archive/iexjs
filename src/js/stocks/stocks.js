@@ -16,13 +16,18 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#listed-regulation-sho-threshold-securities-list-in-dev
  *
- * @param {string} date date
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.date date
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const threshold = (date, { token, version, filter, format } = {}) => {
+export const threshold = (
+  { date } = {},
+  { token, version, filter, format } = {},
+) => {
   if (date) {
     return _get({
       url: `stock/market/threshold-securities/${_strOrDate(date)}`,
@@ -41,13 +46,16 @@ export const threshold = (date, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.threshold = function (date, { filter, format } = {}) {
-  return threshold(date, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.threshold = function ({ date } = {}, { filter, format } = {}) {
+  return threshold(
+    { date },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -56,15 +64,17 @@ Client.prototype.threshold = function (date, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#listed-short-interest-list-in-dev
  *
  * @param {string} symbol Ticker to request
- * @param {string} date Effective Datetime
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.date Effective Datetime
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const shortInterest = (
   symbol,
-  date,
+  { date } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -88,13 +98,17 @@ export const shortInterest = (
 
 Client.prototype.shortInterest = function (
   symbol,
-  date,
+  { date } = {},
   { filter, format } = {},
 ) {
-  return shortInterest(symbol, date, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return shortInterest(
+    symbol,
+    { date },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };

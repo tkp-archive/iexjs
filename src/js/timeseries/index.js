@@ -12,10 +12,11 @@ import { Client } from "../client";
 /**
  * Get inventory of available time series endpoints
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptionstoken Access token
+ * @param {string} standardOptionsversion API version
+ * @param {string} standardOptionsfilter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptionsformat output format
  */
 export const timeSeriesInventory = ({ token, version, filter, format } = {}) =>
   _get({
@@ -39,29 +40,32 @@ Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
  * Time series is the most common type of data available, and consists of a collection of data points over a period of time. Time series data is indexed by a single date field, and can be retrieved by any portion of time.
  *
  * https://iexcloud.io/docs/api/#time-series
- * @param {string} id ID used to identify a time series dataset.
- * @param {string} key Key used to identify data within a dataset. A common example is a symbol such as AAPL.
- * @param {string} subkey The optional subkey can used to further refine data for a particular key if available.
- * @param {string} range Returns data for a given range. Supported ranges described below.
- * @param {boolean} calendar Used in conjunction with range to return data in the future.
- * @param {number} limit Limits the number of results returned. Defaults to 1.
- * @param {string} subattribute Allows you to query time series by any field in the result set. All time series data is stored by ID, then key, then subkey. If you want to query by any other field in the data, you can use subattribute.
+ *
+ * @param {object} options
+ * @param {string} options.id ID used to identify a time series dataset.
+ * @param {string} options.key Key used to identify data within a dataset. A common example is a symbol such as AAPL.
+ * @param {string} options.subkey The optional subkey can used to further refine data for a particular key if available.
+ * @param {string} options.range Returns data for a given range. Supported ranges described below.
+ * @param {boolean} options.calendar Used in conjunction with range to return data in the future.
+ * @param {number} options.limit Limits the number of results returned. Defaults to 1.
+ * @param {string} options.subattribute Allows you to query time series by any field in the result set. All time series data is stored by ID, then key, then subkey. If you want to query by any other field in the data, you can use subattribute.
  *                              For example, news may be stored as /news/{symbol}/{newsId}, and the result data returns the keys id, symbol, date, sector, hasPaywall
  *                              By default you can only query by symbol or id. Maybe you want to query all news where the sector is Technology. Your query would be:
  *                              /time-series/news?subattribute=source|WSJ
  *                              The syntax is subattribute={keyName}|{value}. Both the key name and the value are case sensitive. A pipe symbol is used to represent ‘equal to’.
- * @param {string} dateField All time series data is stored by a single date field, and that field is used for any range or date parameters. You may want to query time series data by a different date in the result set. To change the date field used by range queries, pass the case sensitive field name with this parameter.
+ * @param {string} options.dateField All time series data is stored by a single date field, and that field is used for any range or date parameters. You may want to query time series data by a different date in the result set. To change the date field used by range queries, pass the case sensitive field name with this parameter.
  *                           For example, corporate buy back data may be stored by announce date, but also contains an end date which you’d rather query by. To query by end date you would use dateField=endDate&range=last-week
- * @param {string} from Returns data on or after the given from date. Format YYYY-MM-DD
- * @param {string} to Returns data on or before the given to date. Format YYYY-MM-DD
- * @param {string} on (Returns data on the given date. Format YYYY-MM-DD
- * @param {number} last Returns the latest n number of records in the series
- * @param {number} first Returns the first n number of records in the series
- * @param {number} interval return every nth record
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format *
+ * @param {string} options.from Returns data on or after the given from date. Format YYYY-MM-DD
+ * @param {string} options.to Returns data on or before the given to date. Format YYYY-MM-DD
+ * @param {string} options.on (Returns data on the given date. Format YYYY-MM-DD
+ * @param {number} options.last Returns the latest n number of records in the series
+ * @param {number} options.first Returns the first n number of records in the series
+ * @param {number} options.interval return every nth record
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format *
  *     Date Ranges:
  *     +--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
  *     | today        | Returns data for today                                                                                                                     |
@@ -110,7 +114,7 @@ export const timeSeries = (
     key = "",
     subkey = "",
     range = "",
-    // calendar = false,
+    calendar = false,
     limit = 1,
     subattribute = "",
     dateField = "",
@@ -133,8 +137,7 @@ export const timeSeries = (
 
   if (range) base_url += `range=${_dateRange(range)}&`;
 
-  // TODO https://github.com/iexcloud/pyEX/issues/164
-  // base_url += "calendar={}&".format(str(calendar))
+  base_url += `calendar=${calendar.toString()}&`;
 
   if (!last && (!to || !from)) base_url += `limit=${limit}&`;
   if (subattribute) base_url += `subattribute=${subattribute}&`;

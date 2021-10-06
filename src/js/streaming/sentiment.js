@@ -15,8 +15,9 @@ import { _runSSE } from "./sse";
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token API Token
+ * @param {string} standardOptions.version API Version
  */
 export const sentimentSSE = (
   symbols,
