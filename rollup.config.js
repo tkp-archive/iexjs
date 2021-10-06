@@ -13,7 +13,6 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 import { terser } from "rollup-plugin-terser";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import builtins from "rollup-plugin-node-builtins";
 import globals from "rollup-plugin-node-globals";
 import nodePolyfills from "rollup-plugin-node-polyfills";
 import inject from "@rollup/plugin-inject";
@@ -38,7 +37,6 @@ export default () => [
         babelHelpers: "bundled",
       }),
       nodePolyfills(),
-      builtins(),
       globals(),
       filesize(),
       json(),
@@ -72,7 +70,6 @@ export default () => [
         babelHelpers: "bundled",
       }),
       json(),
-      builtins(),
       globals(),
       sourcemaps(),
     ],
