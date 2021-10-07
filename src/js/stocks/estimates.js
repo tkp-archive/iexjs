@@ -46,17 +46,10 @@ export const estimates = (
   });
 };
 
-Client.prototype.estimates = function (
-  { symbol, period, last } = {},
-  { filter, format } = {},
-) {
-  return estimates(
-    { symbol, period, last },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.estimates = function (options, standardOptions) {
+  return estimates(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

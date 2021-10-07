@@ -37,17 +37,10 @@ export const delayedQuote = (
   });
 };
 
-Client.prototype.delayedQuote = function (
-  { symbol } = {},
-  { filter, format } = {},
-) {
-  return delayedQuote(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.delayedQuote = function (options, standardOptions) {
+  return delayedQuote(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

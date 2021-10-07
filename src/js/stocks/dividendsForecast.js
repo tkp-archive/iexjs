@@ -44,14 +44,13 @@ export const dividendsForecast = (
 };
 
 Client.prototype.dividendsForecast = function (
-  { symbol, frequency } = {},
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return dividendsForecast({ symbol, frequency }, timeseriesArgs, {
+  return dividendsForecast(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

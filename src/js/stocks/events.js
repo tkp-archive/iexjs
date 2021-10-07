@@ -76,19 +76,12 @@ export const upcomingEvents = (
     },
   );
 
-Client.prototype.upcomingEvents = function (
-  { symbol, exactDate } = {},
-  { filter, format } = {},
-) {
-  return upcomingEvents(
-    { symbol, exactDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.upcomingEvents = function (options, standardOptions) {
+  return upcomingEvents(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -117,19 +110,12 @@ export const upcomingEarnings = (
     },
   );
 
-Client.prototype.upcomingEarnings = function (
-  { symbol, exactDate } = {},
-  { filter, format } = {},
-) {
-  return upcomingEarnings(
-    { symbol, exactDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.upcomingEarnings = function (options, standardOptions) {
+  return upcomingEarnings(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -158,19 +144,12 @@ export const upcomingDividends = (
     },
   );
 
-Client.prototype.upcomingDividends = function (
-  { symbol, exactDate } = {},
-  { filter, format } = {},
-) {
-  return upcomingDividends(
-    { symbol, exactDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.upcomingDividends = function (options, standardOptions) {
+  return upcomingDividends(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -199,19 +178,12 @@ export const upcomingSplits = (
     },
   );
 
-Client.prototype.upcomingSplits = function (
-  { symbol, exactDate } = {},
-  { filter, format } = {},
-) {
-  return upcomingSplits(
-    { symbol, exactDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.upcomingSplits = function (options, standardOptions) {
+  return upcomingSplits(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -240,17 +212,10 @@ export const upcomingIPOs = (
     },
   );
 
-Client.prototype.upcomingIPOs = function (
-  { symbol, exactDate } = {},
-  { filter, format } = {},
-) {
-  return upcomingIPOs(
-    { symbol, exactDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.upcomingIPOs = function (options, standardOptions) {
+  return upcomingIPOs(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

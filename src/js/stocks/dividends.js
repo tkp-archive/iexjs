@@ -51,14 +51,13 @@ export const dividends = (
 };
 
 Client.prototype.dividends = function (
-  { symbol, refid } = {},
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return dividends({ symbol, refid }, timeseriesArgs, {
+  return dividends(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

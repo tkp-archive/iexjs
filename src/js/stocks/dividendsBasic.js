@@ -47,17 +47,10 @@ export const dividendsBasic = (
   });
 };
 
-Client.prototype.dividendsBasic = function (
-  { symbol, range } = {},
-  { filter, format } = {},
-) {
-  return dividendsBasic(
-    { symbol, range },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.dividendsBasic = function (options, standardOptions) {
+  return dividendsBasic(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

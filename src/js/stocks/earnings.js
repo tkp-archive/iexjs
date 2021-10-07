@@ -65,19 +65,12 @@ export const earnings = async (
   );
 };
 
-Client.prototype.earnings = function (
-  { symbol, period, last, field } = {},
-  { filter, format } = {},
-) {
-  return earnings(
-    { symbol, period, last, field },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.earnings = function (options, standardOptions) {
+  return earnings(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -101,11 +94,10 @@ export const earningsToday = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.earningsToday = function ({ filter, format } = {}) {
+Client.prototype.earningsToday = function (standardOptions) {
   return earningsToday({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

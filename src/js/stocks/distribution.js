@@ -45,14 +45,13 @@ export const distribution = (
 };
 
 Client.prototype.distribution = function (
-  { symbol, refid } = {},
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return distribution({ symbol, refid }, timeseriesArgs, {
+  return distribution(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

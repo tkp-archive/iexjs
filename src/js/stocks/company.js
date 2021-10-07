@@ -37,14 +37,10 @@ export const company = (
   });
 };
 
-Client.prototype.company = function ({ symbol } = {}, { filter, format } = {}) {
-  return company(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.company = function (options, standardOptions) {
+  return company(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
