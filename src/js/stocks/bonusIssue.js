@@ -15,29 +15,30 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#bonus-issue
  *
- * @param {string} symbol Ticker to request
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
- * @param {object} timeseries_args Arguments to pass through to timeseries call
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {object} timeseriesArgs Arguments to pass through to timeseries call
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const bonusIssue = (
-  symbol,
-  refid,
-  timeseries_options,
+  { symbol, refid } = {},
+  timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  _timeseriesWrapper(timeseries_options);
+  _timeseriesWrapper(timeseriesArgs);
 
   return timeSeries(
     {
       id: "advanced_bonus",
       key: symbol,
       subkey: refid || "",
-      ...(timeseries_options || {}),
+      ...(timeseriesArgs || {}),
     },
     {
       token,
@@ -49,15 +50,13 @@ export const bonusIssue = (
 };
 
 Client.prototype.bonusIssue = function (
-  symbol,
-  refid,
-  timeseries_options,
-  { filter, format } = {},
+  options,
+  timeseriesArgs,
+  standardOptions,
 ) {
-  return bonusIssue(symbol, refid, timeseries_options, {
+  return bonusIssue(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    format,
-    filter,
+    ...standardOptions,
   });
 };

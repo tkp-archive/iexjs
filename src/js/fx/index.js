@@ -16,10 +16,11 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#latest-currency-rates
  *
  * @param {string} symbols comma seperated list of symbols
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const latestFX = (
   { symbols } = {},
@@ -66,10 +67,11 @@ Client.prototype.latestFX = function (
  * @param {object} options
  * @param {string} symbols comma seperated list of symbols
  * @param {number} amount amount to convert
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const convertFX = (
   { symbols, amount } = {},
@@ -117,10 +119,11 @@ Client.prototype.convertFX = function (
  * @param {string or date} options.on Returns data on the given date. Format YYYY-MM-DD
  * @param {number} options.last Returns the latest n number of records in the series
  * @param {number} options.first Returns the first n number of records in the series
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const historicalFX = (
   { symbols, from, to, on, last, first } = {},

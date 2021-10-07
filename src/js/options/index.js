@@ -17,10 +17,11 @@ import { timeSeries } from "../timeseries";
  * https://iexcloud.io/docs/api/#options
  *
  * @param {string} symbol ticker
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const optionExpirations = (
   symbol,
@@ -56,10 +57,11 @@ Client.prototype.optionExpirations = function (
  * @param {string} symbol ticker
  * @param {string} expiration expiration string
  * @param {string} side option side
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const stockOptions = (
   symbol,

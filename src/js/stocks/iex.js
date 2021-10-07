@@ -14,12 +14,18 @@ import { Client } from "../client";
  * TOPS provides IEX’s aggregated best quoted bid and offer position in near real time for all securities on IEX’s displayed limit order book.
  * TOPS is ideal for developers needing both quote and trade data.
  * https://iexcloud.io/docs/api/#tops
- * @param {string} symbols
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexTops = (symbols, { token, version, filter, format } = {}) => {
+export const iexTops = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
   if (symbols) {
     return _get({
       url: `tops?symbols=${_strToList(symbols).join(",")}%2b`,
@@ -38,25 +44,34 @@ export const iexTops = (symbols, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexTops = function (symbols, { filter, format } = {}) {
-  return iexTops(symbols, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexTops = function ({ symbols }, { filter, format } = {}) {
+  return iexTops(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * Last provides trade data for executions on IEX. It is a near real time, intraday API that provides IEX last sale price, size and time.
  * Last is ideal for developers that need a lightweight stock quote.
  * https://iexcloud.io/docs/api/#last
- * @param {string} symbols
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexLast = (symbols, { token, version, filter, format } = {}) => {
+export const iexLast = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
   if (symbols) {
     return _get({
       url: `last?symbols=${_strToList(symbols).join(",")}%2b`,
@@ -75,13 +90,19 @@ export const iexLast = (symbols, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexLast = function (symbols, { filter, format } = {}) {
-  return iexLast(symbols, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexLast = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexLast(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -93,16 +114,22 @@ Client.prototype.iexLast = function (symbols, { filter, format } = {}) {
  * DEEP also provides last trade price and size information. Trades resulting from either displayed or non-displayed orders matching on IEX will be reported. Routed executions will not be reported.
  *
  * https://iexcloud.io/docs/api/#deep
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexDeep = (symbol, { token, version, filter, format } = {}) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+export const iexDeep = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep?symbols=${symbol}`,
+      url: `deep?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -118,29 +145,41 @@ export const iexDeep = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexDeep = function (symbol, { filter, format } = {}) {
-  return iexDeep(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexDeep = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexDeep(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * DEEP broadcasts an Auction Information Message every one second between the Lock-in Time and the auction match for Opening and Closing Auctions,
  * and during the Display Only Period for IPO, Halt, and Volatility Auctions. Only IEX listed securities are eligible for IEX Auctions.
  * https://iexcloud.io/docs/api/#deep-auction
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexAuction = (symbol, { token, version, filter, format } = {}) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+export const iexAuction = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/auction?symbols=${symbol}`,
+      url: `deep/auction?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -156,28 +195,40 @@ export const iexAuction = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexAuction = function (symbol, { filter, format } = {}) {
-  return iexAuction(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexAuction = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexAuction(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * Book shows IEX’s bids and asks for given symbols.
  * https://iexcloud.io/docs/api/#deep-book
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexBook = (symbol, { token, version, filter, format } = {}) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+export const iexBook = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/book?symbols=${symbol}`,
+      url: `deep/book?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -193,13 +244,19 @@ export const iexBook = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexBook = function (symbol, { filter, format } = {}) {
-  return iexBook(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexBook = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexBook(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -212,19 +269,22 @@ Client.prototype.iexBook = function (symbol, { filter, format } = {}) {
  * After the pre-market spin, IEX will use the Operational halt status message to relay changes in operational halt status for an individual security.
  *
  * https://iexcloud.io/docs/api/#deep-operational-halt-status
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexOpHaltStatus = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/op-halt-status?symbols=${symbol}`,
+      url: `deep/op-halt-status?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -240,13 +300,19 @@ export const iexOpHaltStatus = (
   });
 };
 
-Client.prototype.iexOpHaltStatus = function (symbol, { filter, format } = {}) {
-  return iexOpHaltStatus(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexOpHaltStatus = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexOpHaltStatus(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -255,19 +321,22 @@ Client.prototype.iexOpHaltStatus = function (symbol, { filter, format } = {}) {
  * These messages will be provided only for IEX Listed Securities.
  *
  * https://iexcloud.io/docs/api/#deep-official-price
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexOfficialPrice = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/official-price?symbols=${symbol}`,
+      url: `deep/official-price?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -283,31 +352,40 @@ export const iexOfficialPrice = (
   });
 };
 
-Client.prototype.iexOfficialPrice = function (symbol, { filter, format } = {}) {
-  return iexOfficialPrice(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexOfficialPrice = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexOfficialPrice(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * The Security event message is used to indicate events that apply to a security. A Security event message will be sent whenever such event occurs
  * https://iexcloud.io/docs/api/#deep-security-event
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexSecurityEvent = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/security-event?symbols=${symbol}`,
+      url: `deep/security-event?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -323,13 +401,19 @@ export const iexSecurityEvent = (
   });
 };
 
-Client.prototype.iexSecurityEvent = function (symbol, { filter, format } = {}) {
-  return iexSecurityEvent(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexSecurityEvent = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexSecurityEvent(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -341,19 +425,22 @@ Client.prototype.iexSecurityEvent = function (symbol, { filter, format } = {}) {
  * The IEX Trading System will process orders based on the latest short sale price test restriction status.
  *
  * https://iexcloud.io/docs/api/#deep-short-sale-price-test-status
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexSsrStatus = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/ssr-status?symbols=${symbol}`,
+      url: `deep/ssr-status?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -369,13 +456,19 @@ export const iexSsrStatus = (
   });
 };
 
-Client.prototype.iexSsrStatus = function (symbol, { filter, format } = {}) {
-  return iexSsrStatus(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexSsrStatus = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexSsrStatus(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -384,19 +477,22 @@ Client.prototype.iexSsrStatus = function (symbol, { filter, format } = {}) {
  * There will be a single message disseminated per channel for each System Event type within a given trading session.
  *
  * https://iexcloud.io/docs/api/#deep-system-event
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexSystemEvent = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/system-event?symbols=${symbol}`,
+      url: `deep/system-event?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -414,28 +510,40 @@ export const iexSystemEvent = (
   );
 };
 
-Client.prototype.iexSystemEvent = function (symbol, { filter, format } = {}) {
-  return iexSystemEvent(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexSystemEvent = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexSystemEvent(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * Trade report messages are sent when an order on the IEX Order Book is executed in whole or in part. DEEP sends a Trade report message for every individual fill.
  * https://iexcloud.io/docs/api/#deep-trades
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexTrades = (symbol, { token, version, filter, format } = {}) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+export const iexTrades = (
+  { symbols } = {},
+  { token, version, filter, format } = {},
+) => {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/trades?symbols=${symbol}`,
+      url: `deep/trades?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -451,31 +559,40 @@ export const iexTrades = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexTrades = function (symbol, { filter, format } = {}) {
-  return iexTrades(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexTrades = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexTrades(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * Trade break messages are sent when an execution on IEX is broken on that same trading day. Trade breaks are rare and only affect applications that rely upon IEX execution based data.
  * https://iexcloud.io/docs/api/#deep-trade-break
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexTradeBreak = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/trade-breaks?symbols=${symbol}`,
+      url: `deep/trade-breaks?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -491,13 +608,19 @@ export const iexTradeBreak = (
   });
 };
 
-Client.prototype.iexTradeBreak = function (symbol, { filter, format } = {}) {
-  return iexTradeBreak(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexTradeBreak = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexTradeBreak(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -518,19 +641,22 @@ Client.prototype.iexTradeBreak = function (symbol, { filter, format } = {}) {
  * Released for trading
  * *The paused and released into an Order Acceptance Period status will be disseminated for IEX-listed securities only. Trading pauses on non-IEX-listed securities will be treated simply as a halt.
  * https://iexcloud.io/docs/api/#deep-trading-status
- * @param {string} symbol
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} options
+ * @param {string} options.symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexTradingStatus = (
-  symbol,
+  { symbols } = {},
   { token, version, filter, format } = {},
 ) => {
-  _raiseIfNotStr(symbol);
-  if (symbol) {
+  _raiseIfNotStr(symbols);
+  if (symbols) {
     return _get({
-      url: `deep/trading-status?symbols=${symbol}`,
+      url: `deep/trading-status?symbols=${symbols}`,
       token,
       version,
       filter,
@@ -546,22 +672,33 @@ export const iexTradingStatus = (
   });
 };
 
-Client.prototype.iexTradingStatus = function (symbol, { filter, format } = {}) {
-  return iexTradingStatus(symbol, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexTradingStatus = function (
+  { symbols } = {},
+  { filter, format } = {},
+) {
+  return iexTradingStatus(
+    { symbols },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
  * @param {string} date
- * @param {string} token
- * @param {string} version
- * @param {string} filter
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexHist = (date, { token, version, filter, format } = {}) => {
+export const iexHist = (
+  { date } = {},
+  { token, version, filter, format } = {},
+) => {
   if (date) {
     return _get({
       url: `hist?date=${_strOrDate(date)}`,
@@ -580,13 +717,16 @@ export const iexHist = (date, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexHist = function (date, { filter, format } = {}) {
-  return iexHist(date, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexHist = function ({ date } = {}, { filter, format } = {}) {
+  return iexHist(
+    { date },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };
 
 /**
@@ -596,12 +736,16 @@ Client.prototype.iexHist = function (date, { filter, format } = {}) {
  * https://iexcloud.io/docs/api/#listed-regulation-sho-threshold-securities-list-in-dev
  *
  * @param {string} date date
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const iexThreshold = (date, { token, version, filter, format } = {}) => {
+export const iexThreshold = (
+  { date } = {},
+  { token, version, filter, format } = {},
+) => {
   if (date) {
     return _get({
       url: `stock/market/threshold-securities/${_strOrDate(date)}`,
@@ -620,11 +764,17 @@ export const iexThreshold = (date, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.iexThreshold = function (date, { filter, format } = {}) {
-  return iexThreshold(date, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+Client.prototype.iexThreshold = function (
+  { date } = {},
+  { filter, format } = {},
+) {
+  return iexThreshold(
+    { date },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };

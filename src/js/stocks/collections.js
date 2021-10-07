@@ -15,17 +15,18 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#collections
  *
- * @param {string} tag Sector, Tag, or List
- * @param {string} collectionName Associated name for tag
- * @param {number} count number to get
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.tag Sector, Tag, or List
+ * @param {string} options.collectionName Associated name for tag
+ * @param {number} options.count number to get
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const collections = (
-  tag,
-  collectionName,
+  { tag, collectionName } = {},
   { token, version, filter, format } = {},
 ) => {
   if (_COLLECTION_TAGS.indexOf(tag) < 0) {
@@ -42,15 +43,10 @@ export const collections = (
   });
 };
 
-Client.prototype.collections = function (
-  tag,
-  collectionName,
-  { filter, format } = {},
-) {
-  return collections(tag, collectionName, {
+Client.prototype.collections = function (options, standardOptions) {
+  return collections(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

@@ -12,10 +12,11 @@ import { Client } from "../client";
 /**
  * Get inventory of available time series endpoints
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const timeSeriesInventory = ({ token, version, filter, format } = {}) =>
   _get({
@@ -58,10 +59,11 @@ Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
  * @param {number} last Returns the latest n number of records in the series
  * @param {number} first Returns the first n number of records in the series
  * @param {number} interval return every nth record
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format *
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format *
  *     Date Ranges:
  *     +--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
  *     | today        | Returns data for today                                                                                                                     |

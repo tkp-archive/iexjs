@@ -15,20 +15,26 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#list
  *
- * @param {string} option Option to query
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.list List to query
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const list = (option, { token, version, filter, format } = {}) => {
+export const list = (
+  // eslint-disable-next-line no-shadow
+  { list } = {},
+  { token, version, filter, format } = {},
+) => {
   // eslint-disable-next-line no-param-reassign
-  option = option || "mostactive";
-  if (_LIST_OPTIONS.indexOf(option) < 0) {
+  list = list || "mostactive";
+  if (_LIST_OPTIONS.indexOf(list) < 0) {
     throw new IEXJSException("Option not recognized");
   }
   return _get({
-    url: `stock/market/list/${option}`,
+    url: `stock/market/list/${list}`,
     token,
     version,
     filter,
@@ -36,8 +42,8 @@ export const list = (option, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.list = function (option, { filter, format } = {}) {
-  return list(option, {
+Client.prototype.list = function (options, { filter, format } = {}) {
+  return list(options, {
     token: this._token,
     version: this._version,
     filter,

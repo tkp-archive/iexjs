@@ -26,18 +26,18 @@ import { timeSeries } from "../timeseries";
  */
 export const fundamentalValuations = (
   { symbol, frequency } = {},
-  timeseries_options,
+  timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  _timeseriesWrapper(timeseries_options);
+  _timeseriesWrapper(timeseriesArgs);
 
   return timeSeries(
     {
       id: "fundamental_valuations",
       key: symbol,
       subkey: frequency || "",
-      ...(timeseries_options || {}),
+      ...(timeseriesArgs || {}),
     },
     { token, version, filter, format },
   );
@@ -45,10 +45,10 @@ export const fundamentalValuations = (
 
 Client.prototype.fundamentalValuations = function (
   { symbol, frequency } = {},
-  timeseries_options,
+  timeseriesArgs,
   { filter, format } = {},
 ) {
-  return fundamentalValuations({ symbol, frequency }, timeseries_options, {
+  return fundamentalValuations({ symbol, frequency }, timeseriesArgs, {
     token: this._token,
     version: this._version,
     filter,

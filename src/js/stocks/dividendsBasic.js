@@ -19,11 +19,11 @@ import { Client } from "../client";
 /**
  * Dividend history
  *
- * https://iexcloud.io/docs/api/#dividends
+ * https://iexcloud.io/docs/api/#dividends-basic
  *
  * @param {object} options
  * @param {string} options.symbol Ticker to request
- * @param {string} options.timeframe timeframe for data
+ * @param {string} options.range range for data
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -31,15 +31,15 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const dividendsBasic = (
-  { symbol, timeframe } = {},
+  { symbol, range } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  if (_TIMEFRAME_DIVSPLIT.indexOf(timeframe || "ytd") < 0) {
+  if (_TIMEFRAME_DIVSPLIT.indexOf(range || "ytd") < 0) {
     throw new IEXJSException("Timeframe not recognized");
   }
   return _get({
-    url: `stock/${_quoteSymbols(symbol)}/dividends/${timeframe || "ytd"}`,
+    url: `stock/${_quoteSymbols(symbol)}/dividends/${range || "ytd"}`,
     token,
     version,
     filter,
@@ -48,11 +48,11 @@ export const dividendsBasic = (
 };
 
 Client.prototype.dividendsBasic = function (
-  { symbol, timeframe } = {},
+  { symbol, range } = {},
   { filter, format } = {},
 ) {
   return dividendsBasic(
-    { symbol, timeframe },
+    { symbol, range },
     {
       token: this._token,
       version: this._version,

@@ -21,9 +21,10 @@ import { Client } from "../client";
  * Pull the latest schema for data points, notification types, and operators used to construct rules.
  * https://iexcloud.io/docs/api/#rules-schema
  * @param {string} lookup_ If a schema object has “isLookup”: true, pass the value key to /stable/rules/lookup/{value}. This returns all valid values for the rightValue of a condition.
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const lookup = (lookup_, { token, version, format = "json" } = {}) => {
   _raiseIfNotStr(lookup_);
@@ -45,9 +46,10 @@ Client.prototype.lookup = function (lookup_, { format }) {
  * Pull the latest schema for data points, notification types, and operators used to construct rules.
  * https://iexcloud.io/docs/api/#rules-schema
  * @param {string} lookup If a schema object has “isLookup”: true, pass the value key to /stable/rules/lookup/{value}. This returns all valid values for the rightValue of a condition.
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const schema = ({ token, version, format = "json" } = {}) =>
   _get({ url: "rules/schema", token, version, format });
@@ -64,9 +66,10 @@ Client.prototype.schema = function ({ format } = {}) {
  * @param {string} ruleSet Valid US symbol or the string ANYEVENT. If the string ANYEVENT is passed, the rule will be triggered for any symbol in the system. The cool down period for alerts (frequency) is applied on a per symbol basis.
  * @param {string} type Specify either any, where if any condition is true you get an alert, or all, where all conditions must be true to trigger an alert. any is the default value
  * @param {string} existingId The id of an existing rule only if you are editing the existing rule
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const create = (
   rule,
@@ -127,9 +130,10 @@ Client.prototype.create = function (
 /**
  * You can control the output of rules by pausing and resume per rule id.
  * @param {string} ruleId The id of an existing rule to puase
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const pause = (ruleId, { token, version, format = "json" } = {}) =>
   _post({
@@ -147,9 +151,10 @@ Client.prototype.pause = function (ruleId, { format } = {}) {
 /**
  * You can control the output of rules by pausing and resume per rule id.
  * @param {string} ruleId The id of an existing rule to puase
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const resume = (ruleId, { token, version, format = "json" } = {}) =>
   _post({
@@ -168,9 +173,10 @@ Client.prototype.resume = function (ruleId, { format } = {}) {
 /**
  * You can delete a rule by using an __HTTP DELETE__ request. This will stop rule executions and delete the rule from your dashboard. If you only want to temporarily stop a rule, use the pause/resume functionality instead.
  * @param {string} ruleId The id of an existing rule to puase
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const delete_ = (ruleId, { token, version, format = "json" } = {}) =>
   _delete({
@@ -189,9 +195,10 @@ Client.prototype.delete = function (ruleId, { format } = {}) {
 /**
  * Rule information such as the current rule status and execution statistics.
  * @param {string} ruleId The id of an existing rule to puase
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const rule = (ruleId, { token, version, format = "json" } = {}) =>
   _get({
@@ -205,9 +212,10 @@ Client.prototype.rule = function (ruleId, { format } = {}) {
 };
 /**
  * List all rules that are currently on your account. Each rule object returned will include the current rule status and execution statistics."""
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const rules = ({ token, version, format = "json" } = {}) =>
   _get({
@@ -222,9 +230,10 @@ Client.prototype.rules = function ({ format } = {}) {
 /**
  * If you choose `logs` as your rule output method, IEX Cloud will save the output objects on our server. You can use this method to retrieve those data objects.
  * @param {string} ruleId The id of an existing rule to puase
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.format output format
  */
 export const output = (ruleId, { token, version, format = "json" } = {}) =>
   _get({

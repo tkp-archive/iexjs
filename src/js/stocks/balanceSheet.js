@@ -51,17 +51,10 @@ export const balanceSheet = async (
   );
 };
 
-Client.prototype.balanceSheet = function (
-  { symbol, period, last } = {},
-  { filter, format } = {},
-) {
-  return balanceSheet(
-    { symbol, period, last },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.balanceSheet = function (options, standardOptions) {
+  return balanceSheet(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

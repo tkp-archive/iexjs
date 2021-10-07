@@ -17,10 +17,11 @@ import { Client } from "../client";
  *
  * @param {string} symbol Ticker to request
  * @param {string} date Effective Datetime
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const shortInterest = (
   symbol,
@@ -65,10 +66,11 @@ Client.prototype.shortInterest = function (
  * https://iexcloud.io/docs/api/#listed-short-interest-list-in-dev
  *
  * @param {string} date effective datetime
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const marketShortInterest = (
   date,

@@ -21,23 +21,25 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#splits
  *
  * @param {string} symbol Ticker to request
- * @param {string} timeframe timeframe for data
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.range range for data
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const splitsBasic = (
   symbol,
-  timeframe,
+  { range } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  if (_TIMEFRAME_DIVSPLIT.indexOf(timeframe || "ytd") < 0) {
+  if (_TIMEFRAME_DIVSPLIT.indexOf(range || "ytd") < 0) {
     throw new IEXJSException("Timeframe not recognized");
   }
   return _get({
-    url: `stock/${_quoteSymbols(symbol)}/splits/${timeframe || "ytd"}`,
+    url: `stock/${_quoteSymbols(symbol)}/splits/${range || "ytd"}`,
     token,
     version,
     filter,
@@ -47,13 +49,17 @@ export const splitsBasic = (
 
 Client.prototype.splitsBasic = function (
   symbol,
-  timeframe,
+  { range } = {},
   { filter, format } = {},
 ) {
-  return splitsBasic(symbol, timeframe, {
-    token: this._token,
-    version: this._version,
-    filter,
-    format,
-  });
+  return splitsBasic(
+    symbol,
+    { range },
+    {
+      token: this._token,
+      version: this._version,
+      filter,
+      format,
+    },
+  );
 };

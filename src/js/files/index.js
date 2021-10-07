@@ -18,8 +18,9 @@ import { Client } from "../client";
  * @param {string} options.id file id
  * @param {string} options.symbol symbol to fetch
  * @param {string} options.date date to fetch for
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const files = ({ id, symbol, date } = {}, { token, version } = {}) => {
   if (id) {
@@ -42,8 +43,9 @@ export const files = ({ id, symbol, date } = {}, { token, version } = {}) => {
  * @param {string} id file id
  * @param {string} symbol symbol to fetch
  * @param {string} date date to fetch for
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const download = async (
   { id, symbol, date } = {},

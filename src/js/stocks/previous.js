@@ -16,10 +16,11 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#previous-day-prices
  *
  * @param {string} symbol ticker to request
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const yesterday = (symbol, { token, version, filter, format } = {}) => {
   _raiseIfNotStr(symbol);
@@ -47,10 +48,11 @@ Client.prototype.previous = Client.prototype.yesterday;
 /**
  * This returns previous day adjusted price data for whole market
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const marketYesterday = ({ token, version, filter, format } = {}) =>
   _get({

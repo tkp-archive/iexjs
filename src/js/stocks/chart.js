@@ -22,31 +22,30 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#historical-prices
  *
- * @param {string} symbol ticker to request
- * @param {string} range Timeframe to request e.g. 1m
- * @param {string} date date, if requesting intraday
- * @param {string} exactDate Same as `date`, takes precedence
- * @param {number} last If passed, chart data will return the last N elements from the time period defined by the range parameter
- * @param {boolean} closeOnly Will return adjusted data only with keys date, close, and volume.
- * @param {boolean} byDay Used only when range is date to return OHLCV data instead of minute bar data.
- * @param {boolean} simplifyIf true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.
- * @param {number} intervalIf passed, chart data will return every Nth element as defined by chartInterval
- * @param {boolean} changeFromClose If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.
- * @param {boolean} displayPercent If set to true, all percentage values will be multiplied by a factor of 100 (Ex: /stock/twtr/chart?displayPercent=true)
- * @param {string} range Same format as the path parameter. This can be used for batch calls.
- * @param {string} sort Can be "asc" or "desc" to sort results by date. Defaults to "desc"
- * @param {boolean} includeToday If true, current trading day data is appended
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
+ * @param {string} options.range Timeframe to request e.g. 1m
+ * @param {string} options.date date, if requesting intraday
+ * @param {string} options.exactDate Same as `date`, takes precedence
+ * @param {number} options.last If passed, chart data will return the last N elements from the time period defined by the range parameter
+ * @param {boolean} options.closeOnly Will return adjusted data only with keys date, close, and volume.
+ * @param {boolean} options.byDay Used only when range is date to return OHLCV data instead of minute bar data.
+ * @param {boolean} options.simplifyIf true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.
+ * @param {number} options.intervalIf passed, chart data will return every Nth element as defined by chartInterval
+ * @param {boolean} options.changeFromClose If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.
+ * @param {boolean} options.displayPercent If set to true, all percentage values will be multiplied by a factor of 100 (Ex: /stock/twtr/chart?displayPercent=true)
+ * @param {string} options.range Same format as the path parameter. This can be used for batch calls.
+ * @param {string} options.sort Can be "asc" or "desc" to sort results by date. Defaults to "desc"
+ * @param {boolean} options.includeToday If true, current trading day data is appended
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const chart = (
-  symbol,
-  options,
-  { token, version, filter, format } = {},
-) => {
+export const chart = (options, { token, version, filter, format } = {}) => {
   const {
+    symbol,
     range = "1m",
     date = "",
     exactDate = "",
@@ -126,11 +125,10 @@ export const chart = (
   });
 };
 
-Client.prototype.chart = function (symbol, options, { filter, format } = {}) {
-  return chart(symbol, options, {
+Client.prototype.chart = function (options, standardOptions) {
+  return chart(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

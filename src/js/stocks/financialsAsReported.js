@@ -50,10 +50,11 @@ Client.prototype.tenQ = function (options, { filter, format } = {}) {
  *
  * @param {object} options `timeseries` options
  * @param {string} options.symbol company symbol
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const tenK = (options, { token, version, filter, format } = {}) => {
   const { symbol } = options;
@@ -84,10 +85,11 @@ Client.prototype.tenK = function (options, { filter, format } = {}) {
  *
  * @param {object} options `timeseries` options
  * @param {string} options.symbol company symbol
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const twentyF = (options, { token, version, filter, format } = {}) => {
   const { symbol } = options;
@@ -118,10 +120,11 @@ Client.prototype.twentyF = function (options, { filter, format } = {}) {
  *
  * @param {object} options `timeseries` options
  * @param {string} options.symbol company symbol
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const fortyF = (options, { token, version, filter, format } = {}) => {
   const { symbol } = options;

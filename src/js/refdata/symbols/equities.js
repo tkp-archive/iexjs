@@ -16,10 +16,11 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#symbols
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const symbols = ({
   token = "",
@@ -49,10 +50,11 @@ Client.prototype.symbols = function ({ filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#otc-symbols
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const otcSymbols = ({
   token = "",
@@ -85,10 +87,11 @@ Client.prototype.otcSymbols = function ({ filter, format } = {}) {
  * @param {object} options
  * @param {string} options.region 2 letter case insensitive string of country codes using ISO 3166-1 alpha-2
  * @param {string} options.exchange Case insensitive string of Exchange using IEX Supported Exchanges list
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const internationalSymbols = (
   { region, exchange } = {},

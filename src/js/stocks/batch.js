@@ -22,19 +22,19 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#batch-requests
  *
- * @param {string} symbols List of tickers to request
  * @param {object} options
+ * @param {string} options.symbols List of tickers to request
  * @param {string} options.fields List of fields to request
  * @param {string} options.range Date range for chart
  * @param {number} options.last last number of records
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const batch = (
-  symbols,
-  { fields, range, last } = {},
+  { symbols, fields, range, last } = {},
   { token, version, filter, format } = {},
 ) => {
   fields = fields || "quote";
@@ -81,19 +81,10 @@ export const batch = (
   });
 };
 
-Client.prototype.batch = function (
-  symbols,
-  { fields, range, last } = {},
-  { filter, format } = {},
-) {
-  return batch(
-    symbols,
-    { fields, range, last },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.batch = function (options, standardOptions) {
+  return batch(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

@@ -87,8 +87,9 @@ export const _runSSE = (
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const topsSSE = (
   symbols,
@@ -111,8 +112,9 @@ Client.prototype.topsSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const lastSSE = (
   symbols,
@@ -141,8 +143,9 @@ Client.prototype.lastSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} channels deep channels to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const deepSSE = (
   symbols,
@@ -212,8 +215,9 @@ Client.prototype.deepSSE = function (symbols, channels, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const tradesSSE = (
   symbols,
@@ -258,8 +262,9 @@ Client.prototype.tradesSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const auctionSSE = (
   symbols,
@@ -281,8 +286,9 @@ Client.prototype.auctionSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const bookSSE = (
   symbols,
@@ -310,8 +316,9 @@ Client.prototype.bookSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const opHaltStatusSSE = (
   symbols,
@@ -335,8 +342,9 @@ Client.prototype.opHaltStatusSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const officialPriceSSE = (
   symbols,
@@ -358,8 +366,9 @@ Client.prototype.officialPriceSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const securityEventSSE = (
   symbols,
@@ -386,8 +395,9 @@ Client.prototype.securityEventSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const ssrStatusSSE = (
   symbols,
@@ -411,8 +421,9 @@ Client.prototype.ssrStatusSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const systemEventSSE = (
   symbols,
@@ -435,8 +446,9 @@ Client.prototype.systemEventSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const tradeBreaksSSE = (
   symbols,
@@ -473,8 +485,9 @@ Client.prototype.tradeBreaksSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols Tickers to request
  * @param {function} on_data Callback on data
  * @param {boolean} nosnapshot
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const tradingStatusSSE = (
   symbols,

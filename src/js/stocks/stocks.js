@@ -17,10 +17,11 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#listed-regulation-sho-threshold-securities-list-in-dev
  *
  * @param {string} date date
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const threshold = (date, { token, version, filter, format } = {}) => {
   if (date) {
@@ -57,10 +58,11 @@ Client.prototype.threshold = function (date, { filter, format } = {}) {
  *
  * @param {string} symbol Ticker to request
  * @param {string} date Effective Datetime
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const shortInterest = (
   symbol,
