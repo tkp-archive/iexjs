@@ -15,7 +15,8 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#peers
  *
- * @param {string} symbol ticker to request
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -33,11 +34,10 @@ export const relevant = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.relevant = function (symbol, { filter, format } = {}) {
-  return relevant(symbol, {
+Client.prototype.relevant = function (options, standardOptions) {
+  return relevant(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

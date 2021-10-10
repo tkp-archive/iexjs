@@ -30,8 +30,7 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const splitsBasic = (
-  symbol,
-  { range } = {},
+  { symbol, range } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -47,19 +46,10 @@ export const splitsBasic = (
   });
 };
 
-Client.prototype.splitsBasic = function (
-  symbol,
-  { range } = {},
-  { filter, format } = {},
-) {
-  return splitsBasic(
-    symbol,
-    { range },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.splitsBasic = function (options, standardOptions) {
+  return splitsBasic(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

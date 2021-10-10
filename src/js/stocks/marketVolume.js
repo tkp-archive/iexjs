@@ -30,11 +30,10 @@ export const marketVolume = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.marketVolume = function ({ filter, format } = {}) {
+Client.prototype.marketVolume = function (standardOptions) {
   return marketVolume({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

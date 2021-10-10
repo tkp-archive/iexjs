@@ -37,17 +37,10 @@ export const insiderRoster = (
   });
 };
 
-Client.prototype.insiderRoster = function (
-  { symbol },
-  { filter, format } = {},
-) {
-  return insiderRoster(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.insiderRoster = function (options, standardOptions) {
+  return insiderRoster(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

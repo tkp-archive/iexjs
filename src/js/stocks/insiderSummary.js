@@ -37,17 +37,10 @@ export const insiderSummary = (
   });
 };
 
-Client.prototype.insiderSummary = function (
-  { symbol } = {},
-  { filter, format } = {},
-) {
-  return insiderSummary(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.insiderSummary = function (options, standardOptions) {
+  return insiderSummary(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

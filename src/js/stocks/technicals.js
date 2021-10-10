@@ -21,8 +21,9 @@ import { Client } from "../client";
    *
    * https://iexcloud.io/docs/api/#technical-indicators
    *
-   * @param {string} symbol ticker to request
-   * @param {string} indicator Technical indicator to request, in:
+   * @param {object} options
+   * @param {string} options.symbol ticker to request
+   * @param {string} options.indicator Technical indicator to request, in:
               Indicator   Description                              Inputs                       Defaults         Outputs
               -------------------------------------------------------------------------------------------------------------
               abs         Vector Absolute Value                                                                   abs
@@ -130,8 +131,8 @@ import { Client } from "../client";
               wma         Weighted Moving Average                 period                          5               wma
               zlema       Zero-Lag Exponential Moving Average     period                          5               zlema
   
-   * @param {string} range Timeframe to request e.g. 1m
-   * @param {string} inputs array of inputs to request
+   * @param {string} options.range Timeframe to request e.g. 1m
+   * @param {string} options.inputs array of inputs to request
    * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
    * @param {string} standardOptions.version API version
@@ -139,10 +140,7 @@ import { Client } from "../client";
    * @param {string} standardOptions.format output format
   */
 export const technicals = (
-  symbol,
-  indicator,
-  range,
-  inputs,
+  { symbol, indicator, range, inputs } = {},
   { token, version, filter, format } = {},
 ) => {
   // eslint-disable-next-line no-param-reassign
@@ -298,17 +296,10 @@ export const technicals = (
   return _get({ url: base_url, token, version, filter, format });
 };
 
-Client.prototype.technicals = function (
-  symbol,
-  indicator,
-  range,
-  inputs,
-  { filter, format } = {},
-) {
-  return technicals(symbol, indicator, range, inputs, {
+Client.prototype.technicals = function (options, standardOptions) {
+  return technicals(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

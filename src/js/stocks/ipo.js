@@ -31,12 +31,11 @@ export const ipoToday = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.ipoToday = function ({ filter, format } = {}) {
+Client.prototype.ipoToday = function (standardOptions) {
   return ipoToday({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -61,11 +60,10 @@ export const ipoUpcoming = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.ipoUpcoming = function ({ filter, format } = {}) {
+Client.prototype.ipoUpcoming = function (standardOptions) {
   return ipoUpcoming({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

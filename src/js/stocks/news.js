@@ -42,23 +42,12 @@ export const news = (
   });
 };
 
-Client.prototype.news = function (
-  { symbol, last, language } = {},
-  { filter, format } = {},
-) {
-  return news(
-    {
-      symbol,
-      last,
-      language,
-    },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.news = function (options, standardOptions) {
+  return news(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -89,17 +78,10 @@ export const marketNews = (
     format,
   });
 
-Client.prototype.marketNews = function (
-  { last, language } = {},
-  { filter, format } = {},
-) {
-  return marketNews(
-    { last, language },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.marketNews = function (options, standardOptions) {
+  return marketNews(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

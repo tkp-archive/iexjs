@@ -84,11 +84,10 @@ export const intraday = (options, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.intraday = function (options, { filter, format } = {}) {
+Client.prototype.intraday = function (options, standardOptions) {
   return intraday(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

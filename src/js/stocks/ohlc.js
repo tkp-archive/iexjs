@@ -15,14 +15,18 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#ohlc
  *
- * @param {string} symbol ticker to request
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const ohlc = (symbol, { token, version, filter, format } = {}) => {
+export const ohlc = (
+  { symbol } = {},
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/ohlc`,
@@ -33,12 +37,11 @@ export const ohlc = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.ohlc = function (symbol, { filter, format } = {}) {
-  return ohlc(symbol, {
+Client.prototype.ohlc = function (options, standardOptions) {
+  return ohlc(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -60,11 +63,10 @@ export const marketOhlc = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.marketOhlc = function ({ filter, format } = {}) {
+Client.prototype.marketOhlc = function (options, standardOptions) {
   return marketOhlc({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

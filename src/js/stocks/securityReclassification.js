@@ -15,8 +15,9 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#security-reclassification
  *
- * @param {string} symbol Ticker to request
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {object} timeseriesArgs Arguments to pass through to timeseries call
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -25,8 +26,7 @@ import { timeSeries } from "../timeseries";
  * @param {string} standardOptions.format output format
  */
 export const securityReclassification = (
-  symbol,
-  refid,
+  { symbol, refid } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
@@ -45,15 +45,13 @@ export const securityReclassification = (
 };
 
 Client.prototype.securityReclassification = function (
-  symbol,
-  refid,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return securityReclassification(symbol, refid, timeseriesArgs, {
+  return securityReclassification(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

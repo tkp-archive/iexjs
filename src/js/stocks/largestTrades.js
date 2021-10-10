@@ -37,17 +37,10 @@ export const largestTrades = (
   });
 };
 
-Client.prototype.largestTrades = function (
-  { symbol } = {},
-  { filter, format } = {},
-) {
-  return largestTrades(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.largestTrades = function (options, standardOptions) {
+  return largestTrades(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

@@ -37,14 +37,10 @@ export const logo = (
   });
 };
 
-Client.prototype.logo = function ({ symbol } = {}, { filter, format } = {}) {
-  return logo(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.logo = function (options, standardOptions) {
+  return logo(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

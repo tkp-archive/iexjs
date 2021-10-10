@@ -42,11 +42,10 @@ export const list = (
   });
 };
 
-Client.prototype.list = function (options, { filter, format } = {}) {
+Client.prototype.list = function (options, standardOptions) {
   return list(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

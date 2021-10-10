@@ -15,8 +15,9 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#listed-short-interest-list-in-dev
  *
- * @param {string} symbol Ticker to request
- * @param {string} date Effective Datetime
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.date Effective Datetime
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -24,8 +25,7 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const shortInterest = (
-  symbol,
-  date,
+  { symbol, date } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -47,16 +47,11 @@ export const shortInterest = (
   });
 };
 
-Client.prototype.shortInterest = function (
-  symbol,
-  date,
-  { filter, format } = {},
-) {
-  return shortInterest(symbol, date, {
+Client.prototype.shortInterest = function (options, standardOptions) {
+  return shortInterest(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -65,7 +60,8 @@ Client.prototype.shortInterest = function (
  *
  * https://iexcloud.io/docs/api/#listed-short-interest-list-in-dev
  *
- * @param {string} date effective datetime
+ * @param {object} options
+ * @param {string} options.date effective datetime
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -73,7 +69,7 @@ Client.prototype.shortInterest = function (
  * @param {string} standardOptions.format output format
  */
 export const marketShortInterest = (
-  date,
+  { date } = {},
   { token, version, filter, format } = {},
 ) => {
   if (date) {
@@ -94,14 +90,10 @@ export const marketShortInterest = (
   });
 };
 
-Client.prototype.marketShortInterest = function (
-  date,
-  { filter, format } = {},
-) {
-  return marketShortInterest(date, {
+Client.prototype.marketShortInterest = function (options, standardOptions) {
+  return marketShortInterest(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

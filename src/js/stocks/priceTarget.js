@@ -14,7 +14,8 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#price-target
  *
- * @param {string} symbol ticker to request
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -22,7 +23,7 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const priceTarget = (
-  symbol,
+  { symbol } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -35,11 +36,10 @@ export const priceTarget = (
   });
 };
 
-Client.prototype.priceTarget = function (symbol, { filter, format } = {}) {
-  return priceTarget(symbol, {
+Client.prototype.priceTarget = function (options, standardOptions) {
+  return priceTarget(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

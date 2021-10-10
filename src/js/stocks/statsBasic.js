@@ -55,17 +55,10 @@ export const statsBasic = (
   });
 };
 
-Client.prototype.statsBasic = function (
-  { symbol, stat } = {},
-  { filter, format } = {},
-) {
-  return statsBasic(
-    { symbol, stat },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.statsBasic = function (options, standardOptions) {
+  return statsBasic(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

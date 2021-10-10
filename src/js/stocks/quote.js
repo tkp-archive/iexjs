@@ -15,14 +15,18 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#quote
  *
- * @param {string} symbol ticker to request
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const quote = (symbol, { token, version, filter, format } = {}) => {
+export const quote = (
+  { symbol } = {},
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/quote`,
@@ -33,11 +37,10 @@ export const quote = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.quote = function (symbol, { filter, format } = {}) {
-  return quote(symbol, {
+Client.prototype.quote = function (options, standardOptions) {
+  return quote(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

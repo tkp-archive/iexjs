@@ -30,11 +30,10 @@ export const sectorPerformance = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.sectorPerformance = function ({ filter, format } = {}) {
+Client.prototype.sectorPerformance = function (standardOptions) {
   return sectorPerformance({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

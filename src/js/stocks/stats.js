@@ -22,7 +22,7 @@ import { Client } from "../client";
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-export const advancedStats = (
+export const stats = (
   { symbol } = {},
   { token, version, filter, format } = {},
 ) => {
@@ -36,8 +36,8 @@ export const advancedStats = (
   });
 };
 
-Client.prototype.advancedStats = function (options, standardOptions) {
-  return advancedStats(options, {
+Client.prototype.stats = function (options, standardOptions) {
+  return stats(options, {
     token: this._token,
     version: this._version,
     ...standardOptions,

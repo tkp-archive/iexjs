@@ -36,17 +36,10 @@ export const institutionalOwnership = (
   });
 };
 
-Client.prototype.institutionalOwnership = function (
-  { symbol } = {},
-  { filter, format } = {},
-) {
-  return institutionalOwnership(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.institutionalOwnership = function (options, standardOptions) {
+  return institutionalOwnership(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
