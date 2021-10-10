@@ -44,16 +44,12 @@ export const iexTops = (
   });
 };
 
-Client.prototype.iexTops = function ({ symbols }, { filter, format } = {}) {
-  return iexTops(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexTops = function (options, standardOptions) {
+  return iexTops(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -90,19 +86,12 @@ export const iexLast = (
   });
 };
 
-Client.prototype.iexLast = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexLast(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexLast = function (options, standardOptions) {
+  return iexLast(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -145,19 +134,12 @@ export const iexDeep = (
   });
 };
 
-Client.prototype.iexDeep = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexDeep(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexDeep = function (options, standardOptions) {
+  return iexDeep(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -195,19 +177,12 @@ export const iexAuction = (
   });
 };
 
-Client.prototype.iexAuction = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexAuction(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexAuction = function (options, standardOptions) {
+  return iexAuction(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -244,19 +219,12 @@ export const iexBook = (
   });
 };
 
-Client.prototype.iexBook = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexBook(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexBook = function (options, standardOptions) {
+  return iexBook(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -300,19 +268,12 @@ export const iexOpHaltStatus = (
   });
 };
 
-Client.prototype.iexOpHaltStatus = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexOpHaltStatus(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexOpHaltStatus = function (options, standardOptions) {
+  return iexOpHaltStatus(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -352,19 +313,12 @@ export const iexOfficialPrice = (
   });
 };
 
-Client.prototype.iexOfficialPrice = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexOfficialPrice(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexOfficialPrice = function (options, standardOptions) {
+  return iexOfficialPrice(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -401,19 +355,12 @@ export const iexSecurityEvent = (
   });
 };
 
-Client.prototype.iexSecurityEvent = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexSecurityEvent(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexSecurityEvent = function (options, standardOptions) {
+  return iexSecurityEvent(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -456,19 +403,12 @@ export const iexSsrStatus = (
   });
 };
 
-Client.prototype.iexSsrStatus = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexSsrStatus(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexSsrStatus = function (options, standardOptions) {
+  return iexSsrStatus(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -510,19 +450,12 @@ export const iexSystemEvent = (
   );
 };
 
-Client.prototype.iexSystemEvent = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexSystemEvent(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexSystemEvent = function (options, standardOptions) {
+  return iexSystemEvent(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -559,19 +492,12 @@ export const iexTrades = (
   });
 };
 
-Client.prototype.iexTrades = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexTrades(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexTrades = function (options, standardOptions) {
+  return iexTrades(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -608,19 +534,12 @@ export const iexTradeBreak = (
   });
 };
 
-Client.prototype.iexTradeBreak = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexTradeBreak(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexTradeBreak = function (options, standardOptions) {
+  return iexTradeBreak(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -672,19 +591,12 @@ export const iexTradingStatus = (
   });
 };
 
-Client.prototype.iexTradingStatus = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return iexTradingStatus(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexTradingStatus = function (options, standardOptions) {
+  return iexTradingStatus(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -717,16 +629,12 @@ export const iexHist = (
   });
 };
 
-Client.prototype.iexHist = function ({ date } = {}, { filter, format } = {}) {
-  return iexHist(
-    { date },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexHist = function (options, standardOptions) {
+  return iexHist(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -764,17 +672,10 @@ export const iexThreshold = (
   });
 };
 
-Client.prototype.iexThreshold = function (
-  { date } = {},
-  { filter, format } = {},
-) {
-  return iexThreshold(
-    { date },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.iexThreshold = function (options, standardOptions) {
+  return iexThreshold(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

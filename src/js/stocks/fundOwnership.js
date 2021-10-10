@@ -37,17 +37,10 @@ export const fundOwnership = (
   });
 };
 
-Client.prototype.fundOwnership = function (
-  { symbol } = {},
-  { filter, format } = {},
-) {
-  return fundOwnership(
-    { symbol },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.fundOwnership = function (options, standardOptions) {
+  return fundOwnership(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

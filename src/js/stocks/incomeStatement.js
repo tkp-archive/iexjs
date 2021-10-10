@@ -51,17 +51,10 @@ export const incomeStatement = async (
   );
 };
 
-Client.prototype.incomeStatement = function (
-  { symbol, period, last } = {},
-  { filter, format } = {},
-) {
-  return incomeStatement(
-    { symbol, period, last },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.incomeStatement = function (options, standardOptions) {
+  return incomeStatement(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

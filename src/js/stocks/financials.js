@@ -51,17 +51,10 @@ export const financials = async (
   );
 };
 
-Client.prototype.financials = function (
-  { symbol, period, last } = {},
-  { filter, format } = {},
-) {
-  return financials(
-    { symbol, period, last },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.financials = function (options, standardOptions) {
+  return financials(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

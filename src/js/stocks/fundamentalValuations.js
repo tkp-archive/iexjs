@@ -44,14 +44,13 @@ export const fundamentalValuations = (
 };
 
 Client.prototype.fundamentalValuations = function (
-  { symbol, frequency } = {},
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return fundamentalValuations({ symbol, frequency }, timeseriesArgs, {
+  return fundamentalValuations(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

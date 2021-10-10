@@ -50,17 +50,10 @@ export const fundamentals = async (
   );
 };
 
-Client.prototype.fundamentals = function (
-  { symbol, period } = {},
-  { filter, format } = {},
-) {
-  return fundamentals(
-    { symbol, period },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.fundamentals = function (options, standardOptions) {
+  return fundamentals(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

@@ -36,12 +36,11 @@ export const tenQ = (options, { token, version, filter, format } = {}) => {
   );
 };
 
-Client.prototype.tenQ = function (options, { filter, format } = {}) {
+Client.prototype.tenQ = function (options, standardOptions) {
   return tenQ(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -71,12 +70,11 @@ export const tenK = (options, { token, version, filter, format } = {}) => {
   );
 };
 
-Client.prototype.tenK = function (options, { filter, format } = {}) {
+Client.prototype.tenK = function (options, standardOptions) {
   return tenK(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -106,12 +104,11 @@ export const twentyF = (options, { token, version, filter, format } = {}) => {
   );
 };
 
-Client.prototype.twentyF = function (options, { filter, format } = {}) {
+Client.prototype.twentyF = function (options, standardOptions) {
   return twentyF(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -140,11 +137,10 @@ export const fortyF = (options, { token, version, filter, format } = {}) => {
   );
 };
 
-Client.prototype.fortyF = function (options, { filter, format } = {}) {
+Client.prototype.fortyF = function (options, standardOptions) {
   return fortyF(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
