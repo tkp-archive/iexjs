@@ -35,12 +35,11 @@ export const fxSymbols = ({
     format,
   });
 
-Client.prototype.fxSymbols = function ({ filter, format } = {}) {
+Client.prototype.fxSymbols = function (standardOptions) {
   return fxSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 

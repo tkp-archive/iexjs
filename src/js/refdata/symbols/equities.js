@@ -36,12 +36,11 @@ export const symbols = ({
     format,
   });
 
-Client.prototype.symbols = function ({ filter, format } = {}) {
+Client.prototype.symbols = function (standardOptions) {
   return symbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -70,12 +69,11 @@ export const otcSymbols = ({
     format,
   });
 
-Client.prototype.otcSymbols = function ({ filter, format } = {}) {
+Client.prototype.otcSymbols = function (standardOptions) {
   return otcSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -124,14 +122,12 @@ export const internationalSymbols = (
   });
 };
 
-Client.prototype.internationalSymbols = function (
-  { region, exchange } = {},
-  { filter, format } = {},
-) {
-  return internationalSymbols(
-    { region, exchange },
-    { token: this._token, version: this._version, filter, format },
-  );
+Client.prototype.internationalSymbols = function (options, standardOptions) {
+  return internationalSymbols(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 export const symbolsList = ({ token, version } = {}) =>
@@ -167,14 +163,12 @@ export const internationalSymbolsList = (
     ),
   );
 
-Client.prototype.internationalSymbolsList = function ({
-  region,
-  exchange,
-} = {}) {
+Client.prototype.internationalSymbolsList = function (options) {
   return convertToList(
-    internationalSymbols(
-      { region, exchange },
-      { token: this._token, version: this._version, filter: "symbol" },
-    ),
+    internationalSymbols(options, {
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
   );
 };

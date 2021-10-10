@@ -16,7 +16,7 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#futures-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -24,7 +24,7 @@ import { Client } from "../../client";
  * @param {string} standardOptions.format output format
  */
 export const futuresSymbols = (
-  underlyingSymbol,
+  { underlyingSymbol } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   let url;
@@ -47,22 +47,19 @@ export const futuresSymbols = (
  *
  * https://iexcloud.io/docs/api/#futures-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {object} options
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-Client.prototype.futuresSymbols = function (
-  underlyingSymbol,
-  { filter, format } = {},
-) {
-  return futuresSymbols(underlyingSymbol, {
+Client.prototype.futuresSymbols = function (options, standardOptions) {
+  return futuresSymbols(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -86,15 +83,16 @@ export const futuresSymbolsList = (
  *
  * https://iexcloud.io/docs/api/#futures-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {object} options
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-Client.prototype.futuresSymbolsList = function (underlyingSymbol) {
-  return futuresSymbolsList(underlyingSymbol, {
+Client.prototype.futuresSymbolsList = function (options) {
+  return futuresSymbolsList(options, {
     token: this._token,
     version: this._version,
   });

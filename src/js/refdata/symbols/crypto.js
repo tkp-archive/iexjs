@@ -19,7 +19,7 @@ import { Client } from "../../client";
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptions.format output format
+ * @param {string} format output format
  */
 export const cryptoSymbols = ({
   token = "",
@@ -35,12 +35,11 @@ export const cryptoSymbols = ({
     format,
   });
 
-Client.prototype.cryptoSymbols = function ({ filter, format } = {}) {
+Client.prototype.cryptoSymbols = function (standardOptions) {
   return cryptoSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 

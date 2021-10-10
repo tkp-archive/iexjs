@@ -15,7 +15,8 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#options-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {object} options
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -23,7 +24,7 @@ import { Client } from "../../client";
  * @param {string} standardOptions.format output format
  */
 export const optionsSymbols = (
-  underlyingSymbol,
+  { underlyingSymbol } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   let url;
@@ -46,22 +47,19 @@ export const optionsSymbols = (
  *
  * https://iexcloud.io/docs/api/#options-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {object} options
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-Client.prototype.optionsSymbols = function (
-  underlyingSymbol,
-  { filter, format } = {},
-) {
-  return optionsSymbols(underlyingSymbol, {
+Client.prototype.optionsSymbols = function (options, standardOptions) {
+  return optionsSymbols(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -84,7 +82,8 @@ const convertOptionsSymbolsToList = (underlyingSymbol, data) => {
  *
  * https://iexcloud.io/docs/api/#options-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {object} options
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -92,7 +91,7 @@ const convertOptionsSymbolsToList = (underlyingSymbol, data) => {
  * @param {string} standardOptions.format output format
  */
 export const optionsSymbolsList = async (
-  underlyingSymbol,
+  { underlyingSymbol } = {},
   { token, version } = {},
 ) =>
   convertOptionsSymbolsToList(
@@ -105,14 +104,17 @@ export const optionsSymbolsList = async (
  *
  * https://iexcloud.io/docs/api/#options-symbols
  *
- * @param {string} underlyingSymbol underlying symbol
+ * @param {object} options
+ * @param {string} options.underlyingSymbol underlying symbol
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
  * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} standardOptions.format output format
  */
-Client.prototype.optionsSymbolsList = async function (underlyingSymbol) {
+Client.prototype.optionsSymbolsList = async function ({
+  underlyingSymbol,
+} = {}) {
   return convertOptionsSymbolsToList(
     underlyingSymbol,
     await optionsSymbols(underlyingSymbol, {

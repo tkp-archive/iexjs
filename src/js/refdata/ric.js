@@ -15,7 +15,8 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#ric-mapping
  *
- * @param {string} ric ric
+ * @param {object} options
+ * @param {string} options.ric ric
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -23,7 +24,7 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const ricLookup = (
-  ric,
+  { ric } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) =>
   _get({
@@ -34,11 +35,10 @@ export const ricLookup = (
     format,
   });
 
-Client.prototype.ricLookup = function (ric, { filter, format } = {}) {
-  return ricLookup(ric, {
+Client.prototype.ricLookup = function (options, standardOptions) {
+  return ricLookup(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

@@ -52,32 +52,18 @@ export const calendar = (
 
 export const holidays = calendar;
 
-Client.prototype.calendar = function (
-  { type, direction, last, startDate } = {},
-  { filter, format } = {},
-) {
-  return calendar(
-    { type, direction, last, startDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.calendar = function (options, standardOptions) {
+  return calendar(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
-Client.prototype.holidays = function (
-  { type, direction, last, startDate } = {},
-  { filter, format } = {},
-) {
-  return calendar(
-    { type, direction, last, startDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.holidays = function (options, standardOptions) {
+  return calendar(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

@@ -11,10 +11,10 @@ import { _get, _raiseIfNotStr } from "../common";
 import { Client } from "../client";
 
 /**
- * Returns an array of U.S. exchanges.
+ * Returns a lookup for the given figi
  *
- * https://iexcloud.io/docs/api/#u-s-exchanges
- *
+ * @param {object} options
+ * @param {object} options.figi figi to lookup
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -22,12 +22,13 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const figi = (
-  figi_,
+  // eslint-disable-next-line no-shadow
+  { figi } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
-  _raiseIfNotStr(figi_);
+  _raiseIfNotStr(figi);
   return _get({
-    url: `ref-data/figi?figi=${figi_}`,
+    url: `ref-data/figi?figi=${figi}`,
     token,
     version,
     filter,
@@ -35,11 +36,10 @@ export const figi = (
   });
 };
 
-Client.prototype.figi = function (figi_, { filter, format } = {}) {
-  return figi(figi_, {
+Client.prototype.figi = function (options, standardOptions) {
+  return figi(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

@@ -73,32 +73,26 @@ export const cdj = (timeseriesArgs, { token, version, format, filter } = {}) =>
     { token, version, format, filter },
   );
 
-Client.prototype.creditcard = function (
-  timeseriesArgs,
-  { filter, format } = {},
-) {
+Client.prototype.creditcard = function (timeseriesArgs, standardOptions) {
   return creditcard(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.cdnj = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.cdnj = function (timeseriesArgs, standardOptions) {
   return cdnj(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.cdj = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.cdj = function (timeseriesArgs, standardOptions) {
   return cdj(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

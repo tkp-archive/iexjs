@@ -36,12 +36,11 @@ export const mutualFundSymbols = ({
     format,
   });
 
-Client.prototype.mutualFundSymbols = function ({ filter, format } = {}) {
+Client.prototype.mutualFundSymbols = function (standardOptions) {
   return mutualFundSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 

@@ -35,12 +35,11 @@ export const exchanges = ({
     format,
   });
 
-Client.prototype.exchanges = function ({ filter, format } = {}) {
+Client.prototype.exchanges = function (standardOptions) {
   return exchanges({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -69,11 +68,10 @@ export const internationalExchanges = ({
     format,
   });
 
-Client.prototype.internationalExchanges = function ({ filter, format } = {}) {
+Client.prototype.internationalExchanges = function (standardOptions) {
   return internationalExchanges({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

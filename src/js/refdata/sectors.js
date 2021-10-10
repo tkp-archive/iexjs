@@ -35,12 +35,11 @@ export const sectors = ({
     format,
   });
 
-Client.prototype.sectors = function ({ filter, format } = {}) {
+Client.prototype.sectors = function (standardOptions) {
   return sectors({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -69,6 +68,10 @@ export const tags = ({
     format,
   });
 
-Client.prototype.tags = function ({ filter, format } = {}) {
-  return tags({ token: this._token, version: this._version, filter, format });
+Client.prototype.tags = function (standardOptions) {
+  return tags({
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

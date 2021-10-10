@@ -36,12 +36,11 @@ export const iexSymbols = ({
     format,
   });
 
-Client.prototype.iexSymbols = function ({ filter, format } = {}) {
+Client.prototype.iexSymbols = function (standardOptions) {
   return iexSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
