@@ -15,7 +15,8 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#latest-currency-rates
  *
- * @param {string} symbols comma seperated list of symbols
+ * @param {object} options
+ * @param {string} options.symbols comma seperated list of symbols
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -44,19 +45,12 @@ export const latestFX = (
   });
 };
 
-Client.prototype.latestFX = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return latestFX(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.latestFX = function (options, standardOptions) {
+  return latestFX(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -97,14 +91,12 @@ export const convertFX = (
   });
 };
 
-Client.prototype.convertFX = function (
-  { symbols, amount } = {},
-  { filter, format } = {},
-) {
-  return convertFX(
-    { symbols, amount },
-    { token: this._token, version: this._version, filter, format },
-  );
+Client.prototype.convertFX = function (options, standardOptions) {
+  return convertFX(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -145,13 +137,10 @@ export const historicalFX = (
   });
 };
 
-Client.prototype.historicalFX = function (
-  { symbols, from, to, on, last, first } = {},
-  { filter, format } = {},
-) {
+Client.prototype.historicalFX = function (options, standardOptions) {
   return historicalFX(
-    { symbols, from, to, on, last, first },
+    options,
 
-    { token: this._token, version: this._version, filter, format },
+    { token: this._token, version: this._version, ...standardOptions },
   );
 };

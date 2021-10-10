@@ -61,16 +61,10 @@ export const download = async (
   document.body.removeChild(a);
 };
 
-Client.prototype.files = function ({ id, symbol, date } = {}) {
-  return files(
-    { id, symbol, date },
-    { token: this._token, version: this._version },
-  );
+Client.prototype.files = function (options) {
+  return files(options, { token: this._token, version: this._version });
 };
 
-Client.prototype.download = function ({ id, symbol, date } = {}) {
-  return download(
-    { id, symbol, date },
-    { token: this._token, version: this._version },
-  );
+Client.prototype.download = function (options) {
+  return download(options, { token: this._token, version: this._version });
 };

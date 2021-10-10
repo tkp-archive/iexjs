@@ -48,17 +48,10 @@ export const queryMetadata = (
   });
 };
 
-Client.prototype.queryMetadata = function (
-  { id, key, subkey } = {},
-  { filter, format } = {},
-) {
-  return queryMetadata(
-    { id, key, subkey },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.queryMetadata = function (options, standardOptions) {
+  return queryMetadata(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

@@ -70,29 +70,26 @@ export const us5 = (timeseriesArgs, { token, version, format, filter } = {}) =>
     { token, version, format, filter },
   );
 
-Client.prototype.us30 = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.us30 = function (timeseriesArgs, standardOptions) {
   return us30(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.us15 = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.us15 = function (timeseriesArgs, standardOptions) {
   return us15(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.us5 = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.us5 = function (timeseriesArgs, standardOptions) {
   return us5(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

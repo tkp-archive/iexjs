@@ -16,7 +16,8 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#options
  *
- * @param {string} symbol ticker
+ * @param {object} options
+ * @param {string} options.symbol ticker
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -24,7 +25,7 @@ import { timeSeries } from "../timeseries";
  * @param {string} standardOptions.format output format
  */
 export const optionExpirations = (
-  symbol,
+  { symbol } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -37,15 +38,11 @@ export const optionExpirations = (
   });
 };
 
-Client.prototype.optionExpirations = function (
-  symbol,
-  { filter, format } = {},
-) {
-  return optionExpirations(symbol, {
+Client.prototype.optionExpirations = function (options, standardOptions) {
+  return optionExpirations(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -54,9 +51,10 @@ Client.prototype.optionExpirations = function (
  *
  * https://iexcloud.io/docs/api/#options
  *
- * @param {string} symbol ticker
- * @param {string} expiration expiration string
- * @param {string} side option side
+ * @param {object} options
+ * @param {string} options.symbol ticker
+ * @param {string} options.expiration expiration string
+ * @param {string} options.side option side
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -64,9 +62,7 @@ Client.prototype.optionExpirations = function (
  * @param {string} standardOptions.format output format
  */
 export const stockOptions = (
-  symbol,
-  expiration,
-  side,
+  { symbol, expiration, side } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -88,17 +84,11 @@ export const stockOptions = (
   });
 };
 
-Client.prototype.stockOptions = function (
-  symbol,
-  expiration,
-  side,
-  { filter, format } = {},
-) {
-  return stockOptions(symbol, expiration, side, {
+Client.prototype.stockOptions = function (options, standardOptions) {
+  return stockOptions(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -107,7 +97,8 @@ Client.prototype.stockOptions = function (
  *
  * https://iexcloud.io/docs/api/#options
  *
- * @param {string} contract  Specific dated option contract, e.g. NG0Z
+ * @param {object} options
+ * @param {string} options.contract  Specific dated option contract, e.g. NG0Z
  * @param {object} timeseriesArgs
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -116,7 +107,7 @@ Client.prototype.stockOptions = function (
  * @param {string} standardOptions.format output format
  */
 export const options = (
-  contract,
+  { contract } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
@@ -138,14 +129,13 @@ export const options = (
 };
 
 Client.prototype.options = function (
-  contract,
+  options_,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return options(contract, timeseriesArgs, {
+  return options(options_, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
