@@ -15,8 +15,13 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#splits
  *
+<<<<<<< HEAD
  * @param {object} options
  * @param {string} options.symbol Ticker to request
+=======
+ * @param {string} symbol Ticker to request
+ * @param {object} options
+>>>>>>> main
  * @param {string} options.refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {object} timeseriesArgs Arguments to pass through to timeseries call
  * @param {object} standardOptions

@@ -18,7 +18,6 @@ import { Client } from "../client";
  *
  * @param {object} options
  * @param {string} options.symbol ticker to request
- * @param {number} options.count number to get
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version

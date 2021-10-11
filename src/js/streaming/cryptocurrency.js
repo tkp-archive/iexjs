@@ -19,8 +19,9 @@ export const CRYPTOQUOTES = "cryptoQuotes";
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token API Token
+ * @param {string} standardOptions.version API Version
  */
 export const cryptoBookSSE = (
   symbols,
@@ -42,8 +43,9 @@ Client.prototype.cryptoBookSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token API Token
+ * @param {string} standardOptions.version API Version
  */
 export const cryptoEventsSSE = (
   symbols,
@@ -65,8 +67,9 @@ Client.prototype.cryptoEventsSSE = function (symbols, on_data, nosnapshot) {
  * @param {string} symbols
  * @param {function} on_data
  * @param {boolean} nosnapshot
- * @param {string} token
- * @param {string} version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token API Token
+ * @param {string} standardOptions.version API Version
  */
 export const cryptoQuotesSSE = (
   symbols,

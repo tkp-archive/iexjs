@@ -134,7 +134,7 @@ import { Client } from "../client";
    * @param {string} options.range Timeframe to request e.g. 1m
    * @param {string} options.inputs array of inputs to request
    * @param {object} standardOptions
- * @param {string} standardOptions.token Access token
+   * @param {string} standardOptions.token Access token
    * @param {string} standardOptions.version API version
    * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
    * @param {string} standardOptions.format output format
@@ -144,7 +144,11 @@ export const technicals = (
   { token, version, filter, format } = {},
 ) => {
   // eslint-disable-next-line no-param-reassign
+  indicator = indicator || "sma";
+
+  // eslint-disable-next-line no-param-reassign
   inputs = inputs || [];
+
   _raiseIfNotStr(symbol);
   if (_INDICATORS.indexOf(indicator) < 0) {
     throw new IEXJSException("Indicator not recognized");
