@@ -30,12 +30,11 @@ export const wti = (timeseriesArgs, { token, version, format, filter } = {}) =>
     { token, version, format, filter },
   );
 
-Client.prototype.wti = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.wti = function (timeseriesArgs, standardOptions) {
   return wti(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -62,12 +61,11 @@ export const brent = (
     { token, version, format, filter },
   );
 
-Client.prototype.brent = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.brent = function (timeseriesArgs, standardOptions) {
   return brent(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -94,12 +92,11 @@ export const natgas = (
     { token, version, format, filter },
   );
 
-Client.prototype.natgas = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.natgas = function (timeseriesArgs, standardOptions) {
   return natgas(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -126,12 +123,11 @@ export const heatoil = (
     { token, version, format, filter },
   );
 
-Client.prototype.heatoil = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.heatoil = function (timeseriesArgs, standardOptions) {
   return heatoil(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -155,12 +151,11 @@ export const jet = (timeseriesArgs, { token, version, format, filter } = {}) =>
     { token, version, format, filter },
   );
 
-Client.prototype.jet = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.jet = function (timeseriesArgs, standardOptions) {
   return jet(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -187,12 +182,11 @@ export const diesel = (
     { token, version, format, filter },
   );
 
-Client.prototype.diesel = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.diesel = function (timeseriesArgs, standardOptions) {
   return diesel(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -219,12 +213,11 @@ export const gasreg = (
     { token, version, format, filter },
   );
 
-Client.prototype.gasreg = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.gasreg = function (timeseriesArgs, standardOptions) {
   return gasreg(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -251,12 +244,11 @@ export const gasmid = (
     { token, version, format, filter },
   );
 
-Client.prototype.gasmid = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.gasmid = function (timeseriesArgs, standardOptions) {
   return gasmid(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -283,12 +275,11 @@ export const gasprm = (
     { token, version, format, filter },
   );
 
-Client.prototype.gasprm = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.gasprm = function (timeseriesArgs, standardOptions) {
   return gasprm(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -315,11 +306,10 @@ export const propane = (
     { token, version, format, filter },
   );
 
-Client.prototype.propane = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.propane = function (timeseriesArgs, standardOptions) {
   return propane(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

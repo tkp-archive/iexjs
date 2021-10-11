@@ -280,125 +280,101 @@ export const retailMoney = (
     { token, version, format, filter },
   );
 
-Client.prototype.fedfunds = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.fedfunds = function (timeseriesArgs, standardOptions) {
   return fedfunds(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.gdp = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.gdp = function (timeseriesArgs, standardOptions) {
   return gdp(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.indpro = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.indpro = function (timeseriesArgs, standardOptions) {
   return indpro(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.cpi = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.cpi = function (timeseriesArgs, standardOptions) {
   return cpi(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.payroll = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.payroll = function (timeseriesArgs, standardOptions) {
   return payroll(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.housing = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.housing = function (timeseriesArgs, standardOptions) {
   return housing(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.unemployment = function (
-  timeseriesArgs,
-  { filter, format } = {},
-) {
+Client.prototype.unemployment = function (timeseriesArgs, standardOptions) {
   return unemployment(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.vehicles = function (timeseriesArgs, { filter, format } = {}) {
+Client.prototype.vehicles = function (timeseriesArgs, standardOptions) {
   return vehicles(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.recessionProb = function (
-  timeseriesArgs,
-  { filter, format } = {},
-) {
+Client.prototype.recessionProb = function (timeseriesArgs, standardOptions) {
   return recessionProb(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.initialClaims = function (
-  timeseriesArgs,
-  { filter, format } = {},
-) {
+Client.prototype.initialClaims = function (timeseriesArgs, standardOptions) {
   return initialClaims(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
 Client.prototype.institutionalMoney = function (
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
   return institutionalMoney(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
-Client.prototype.retailMoney = function (
-  timeseriesArgs,
-  { filter, format } = {},
-) {
+Client.prototype.retailMoney = function (timeseriesArgs, standardOptions) {
   return retailMoney(timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
