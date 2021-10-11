@@ -29,21 +29,21 @@ afterEach(async () => {
 describe("Client - Cryptocurrency", () => {
   test("cryptoBook", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.cryptoBook("BTCUSD");
+    const res = await client.cryptoBook({ symbol: "BTCUSD" });
     expect(typeof res).toBe("object");
     expect(res.symbol).toBe("BTCUSD");
   });
 
   test("cryptoPrice", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.cryptoPrice("BTCUSD");
+    const res = await client.cryptoPrice({ symbol: "BTCUSD" });
     expect(typeof res).toBe("object");
     expect(res.symbol).toBe("BTCUSD");
   });
 
   test("cryptoQuote", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.cryptoQuote("BTCUSD");
+    const res = await client.cryptoQuote({ symbol: "BTCUSD" });
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });

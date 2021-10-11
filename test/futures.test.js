@@ -29,8 +29,10 @@ afterEach(async () => {
 describe("Client - Futures", () => {
   test("futures", async () => {
     const client = new Client({ version: "sandbox" });
-    const [{ symbol }] = await client.futuresSymbols("ES");
-    const res = await client.futures(symbol);
+    const [{ symbol }] = await client.futuresSymbols({
+      underlyingSymbol: "ES",
+    });
+    const res = await client.futures({ contract: symbol });
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });

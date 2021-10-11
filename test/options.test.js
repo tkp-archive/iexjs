@@ -29,29 +29,38 @@ afterEach(async () => {
 describe("Client - Options", () => {
   test("optionsExpirations", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.optionExpirations(SYMBOL);
+    const res = await client.optionExpirations({ symbol: SYMBOL });
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });
 
   test("stockOptions", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.stockOptions(SYMBOL, "20210416");
+    const res = await client.stockOptions({
+      symbol: SYMBOL,
+      expiration: "20210416",
+    });
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });
 
   test("stockOptions", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.stockOptions(SYMBOL, "20210416", "call");
+    const res = await client.stockOptions({
+      symbol: SYMBOL,
+      expiration: "20210416",
+      side: "call",
+    });
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });
 
   test("options", async () => {
     const client = new Client({ version: "sandbox" });
-    const [{ symbol }] = await client.optionsSymbols("SPY");
-    const res = await client.options(symbol);
+    const [{ symbol }] = await client.optionsSymbols({
+      underlyingSymbol: "SPY",
+    });
+    const res = await client.options({ contract: symbol });
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });

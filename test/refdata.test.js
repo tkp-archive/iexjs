@@ -53,7 +53,7 @@ describe("Client- RefData", () => {
 
   test("figi", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.figi(SYMBOL);
+    const res = await client.figi({ figi: SYMBOL });
     expect(Array.isArray(res)).toBe(true);
   });
 
@@ -115,7 +115,7 @@ describe("Client- RefData", () => {
     const client = new Client({ version: "sandbox" });
     let res = await client.optionsSymbols();
     expect(typeof res).toBe("object");
-    res = await client.optionsSymbols("SPY");
+    res = await client.optionsSymbols({ underlyingSymbol: "SPY" });
     expect(Array.isArray(res)).toBe(true);
   });
 
@@ -123,7 +123,7 @@ describe("Client- RefData", () => {
     const client = new Client({ version: "sandbox" });
     let res = await client.futuresSymbols();
     expect(Array.isArray(res)).toBe(true);
-    res = await client.futuresSymbols("ES");
+    res = await client.futuresSymbols({ underlyingSymbol: "ES" });
     expect(Array.isArray(res)).toBe(true);
   });
 

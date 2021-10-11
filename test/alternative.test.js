@@ -9,7 +9,6 @@
  */
 /* eslint-disable no-undef */
 
-
 const fetch = require("cross-fetch");
 const { Client } = require("../src/js");
 
@@ -31,7 +30,7 @@ describe("Client - Alternative", () => {
   test("sentiment", async () => {
     // const client = new Client({ version: "sandbox" });
     // 451
-    // const res = await client.sentiment(SYMBOL);
+    // const res = await client.sentiment({symbol: SYMBOL});
     // expect(typeof res).toBe("object");
     // expect(res.symbol).toBe(SYMBOL);
   });
