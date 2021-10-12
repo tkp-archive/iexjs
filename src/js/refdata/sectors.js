@@ -15,10 +15,11 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#sectors
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const sectors = ({
   token = "",
@@ -34,12 +35,11 @@ export const sectors = ({
     format,
   });
 
-Client.prototype.sectors = function ({ filter, format } = {}) {
+Client.prototype.sectors = function (standardOptions) {
   return sectors({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -48,10 +48,11 @@ Client.prototype.sectors = function ({ filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#tags
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const tags = ({
   token = "",
@@ -67,6 +68,10 @@ export const tags = ({
     format,
   });
 
-Client.prototype.tags = function ({ filter, format } = {}) {
-  return tags({ token: this._token, version: this._version, filter, format });
+Client.prototype.tags = function (standardOptions) {
+  return tags({
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

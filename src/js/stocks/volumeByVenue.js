@@ -16,7 +16,8 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#volume-by-venue
  *
- * @param {string} symbol ticker to request
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -24,7 +25,7 @@ import { Client } from "../client";
  * @param {string} standardOptions.format output format
  */
 export const volumeByVenue = (
-  symbol,
+  { symbol } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -37,11 +38,10 @@ export const volumeByVenue = (
   });
 };
 
-Client.prototype.volumeByVenue = function (symbol, { filter, format } = {}) {
-  return volumeByVenue(symbol, {
+Client.prototype.volumeByVenue = function (options, standardOptions) {
+  return volumeByVenue(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

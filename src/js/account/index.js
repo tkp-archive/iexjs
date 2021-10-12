@@ -25,8 +25,9 @@ import { Client } from "../client";
  * https://iexcloud.io/docs/api/#message-budget
  *
  * @param {number} totalMessages The total messages your account is allowed to consume for the current month above your quota. For example: If your account is allowed 5 million messages, and you do not want to exceed 10 million for the month, then you will pass 10000000 as total messages.
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const messageBudget = (totalMessages, token, version, format) => {
   _requireSecret(token);
@@ -45,8 +46,9 @@ Client.prototype.messageBudget = function (totalMessages, format) {
 /**
  * Used to retrieve account details such as current tier, payment status, message quote usage, etc.
  * https://iexcloud.io/docs/api/#metadata
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const metadata = (token, version, format) => {
   _requireSecret(token);
@@ -66,8 +68,9 @@ Client.prototype.metadata = function (format) {
  * Used to toggle Pay-as-you-go on your account.
  * https://iexcloud.io/docs/api/#pay-as-you-go
  * @param {boolean} allow
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const payAsYouGo = (allow = false, token = "", version = "") => {
   _requireSecret(token);
@@ -91,8 +94,9 @@ Client.prototype.payAsYouGo = function (allow) {
  * Used to retrieve current month usage for your account.
  * https://iexcloud.io/docs/api/#usage
  * @param {string} type type to request
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const usage = (type, token, version, format) => {
   _requireSecret(token);
@@ -123,8 +127,9 @@ Client.prototype.usage = function (type, format) {
  * Used to retrieve current system status.
  * https://iexcloud.io/docs/api/#status
  * @param {string} type type to request
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const status = (token, version, format) =>
   _get({

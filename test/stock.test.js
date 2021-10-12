@@ -35,73 +35,73 @@ describe("Stock", () => {
 
   test("splitsBasic", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.splitsBasic(SYMBOL);
+    const res = await client.splitsBasic({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("bonusIssue", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.bonusIssue(SYMBOL);
+    const res = await client.bonusIssue({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("distribution", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.distribution(SYMBOL);
+    const res = await client.distribution({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("dividends", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.dividends(SYMBOL);
+    const res = await client.dividends({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("dividendsForecast", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.dividendsForecast({symbol: SYMBOL});
+    const res = await client.dividendsForecast({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("returnOfCapital", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.returnOfCapital(SYMBOL);
+    const res = await client.returnOfCapital({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("rightsIssue", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.rightsIssue(SYMBOL);
+    const res = await client.rightsIssue({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("rightToPurchase", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.rightToPurchase(SYMBOL);
+    const res = await client.rightToPurchase({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("securityReclassification", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.securityReclassification(SYMBOL);
+    const res = await client.securityReclassification({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("securitySwap", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.securitySwap(SYMBOL);
+    const res = await client.securitySwap({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("spinoff", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.spinoff(SYMBOL);
+    const res = await client.spinoff({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("splits", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.splits(SYMBOL);
+    const res = await client.splits({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
@@ -155,7 +155,10 @@ describe("Stock", () => {
 
   test("collections", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.collections("sector", "Technology");
+    const res = await client.collections({
+      tag: "sector",
+      collectionName: "Technology",
+    });
     expect(res).toBeDefined();
   });
 
@@ -217,7 +220,7 @@ describe("Stock", () => {
     const client = new Client({ version: "sandbox" });
     let res = await client.upcomingEvents();
     expect(res).toBeDefined();
-    res = await client.upcomingEvents(SYMBOL);
+    res = await client.upcomingEvents({ symbol: SYMBOL });
     expect(res).toBeDefined();
     res = await client.upcomingEvents("AAPL,BAC");
     expect(res).toBeDefined();
@@ -267,163 +270,163 @@ describe("Stock", () => {
 
   test("book", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.book(SYMBOL);
+    const res = await client.book({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("delayedQuote", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.delayedQuote(SYMBOL);
+    const res = await client.delayedQuote({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("largestTrades", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.largestTrades(SYMBOL);
+    const res = await client.largestTrades({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("ohlc", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.ohlc(SYMBOL);
+    const res = await client.ohlc({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("yesterday", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.yesterday(SYMBOL);
+    const res = await client.yesterday({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("previous", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.previous(SYMBOL);
+    const res = await client.previous({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("price", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.price(SYMBOL);
+    const res = await client.price({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("quote", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.quote(SYMBOL);
+    const res = await client.quote({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   // test("spread", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.spread(SYMBOL);
+  //   const res = await client.spread({symbol: SYMBOL});
   //   expect(res).toBeDefined();
   // });
 
   test("volumeByVenue", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.volumeByVenue(SYMBOL);
+    const res = await client.volumeByVenue({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("chart", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.chart(SYMBOL);
+    const res = await client.chart({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("intraday", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.intraday(SYMBOL);
+    const res = await client.intraday({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("company", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.company(SYMBOL);
+    const res = await client.company({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("insiderRoster", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.insiderRoster(SYMBOL);
+    const res = await client.insiderRoster({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("insiderSummary", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.insiderSummary(SYMBOL);
+    const res = await client.insiderSummary({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("insiderTransactions", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.insiderTransactions(SYMBOL);
+    const res = await client.insiderTransactions({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("logo", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.logo(SYMBOL);
+    const res = await client.logo({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("peers", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.peers(SYMBOL);
+    const res = await client.peers({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
-  test("advancedStats", async () => {
+  test("stats", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.advancedStats(SYMBOL);
+    const res = await client.stats({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   // test("analystRecommendations", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.analystRecommendations(SYMBOL);
+  //   const res = await client.analystRecommendations({symbol: SYMBOL});
   //   expect(res).toBeDefined();
   // });
 
   // test("estimates", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.estimates(SYMBOL);
+  //   const res = await client.estimates({symbol: SYMBOL});
   //   expect(res).toBeDefined();
   // });
 
   test("fundOwnership", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.fundOwnership(SYMBOL);
+    const res = await client.fundOwnership({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   test("institutionalOwnership", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.institutionalOwnership(SYMBOL);
+    const res = await client.institutionalOwnership({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
-  test("keyStats", async () => {
+  test("statsBasic", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.keyStats(SYMBOL);
+    const res = await client.statsBasic({ symbol: SYMBOL });
     expect(res).toBeDefined();
   });
 
   // test("priceTarget", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.priceTarget(SYMBOL);
+  //   const res = await client.priceTarget({symbol: SYMBOL});
   //   expect(res).toBeDefined();
   // });
 
   test("technicals", async () => {
     const client = new Client({ version: "sandbox" });
-    const res = await client.technicals(SYMBOL, "sma");
+    const res = await client.technicals({ symbol: SYMBOL, indicator: "sma" });
     expect(res).toBeDefined();
   });
 
   // test("shortInterest", async () => {
   //   const client = new Client({ version: "sandbox" });
-  //   const res = await client.shortInterest(SYMBOL);
+  //   const res = await client.shortInterest({symbol: SYMBOL});
   //   expect(res).toBeDefined();
   // });
 
@@ -454,7 +457,7 @@ describe("Stock", () => {
   test("ceoCompensation", async () => {
     const client = new Client({ version: "sandbox" });
 
-    const res = await client.ceoCompensation(SYMBOL);
+    const res = await client.ceoCompensation({ symbol: SYMBOL });
     expect(typeof res).toBe("object");
     expect(res.symbol).toBe(SYMBOL);
   });

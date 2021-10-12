@@ -16,10 +16,11 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#iex-symbols
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const iexSymbols = ({
   token = "",
@@ -35,12 +36,11 @@ export const iexSymbols = ({
     format,
   });
 
-Client.prototype.iexSymbols = function ({ filter, format } = {}) {
+Client.prototype.iexSymbols = function (standardOptions) {
   return iexSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 

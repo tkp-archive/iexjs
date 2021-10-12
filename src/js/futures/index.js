@@ -16,7 +16,8 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#futures
  *
- * @param {string} contract  Specific dated option contract, e.g. ES21M
+ * @param {object} options
+ * @param {string} options.contract  Specific dated option contract, e.g. ES21M
  * @param {object} timeseriesArgs
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -25,7 +26,7 @@ import { timeSeries } from "../timeseries";
  * @param {string} standardOptions.format output format
  */
 export const futures = (
-  contract,
+  { contract } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
@@ -46,15 +47,10 @@ export const futures = (
   );
 };
 
-Client.prototype.futures = function (
-  contract,
-  timeseriesArgs,
-  { filter, format } = {},
-) {
-  return futures(contract, timeseriesArgs, {
+Client.prototype.futures = function (options, timeseriesArgs, standardOptions) {
+  return futures(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

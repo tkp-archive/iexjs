@@ -15,14 +15,16 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#search
  *
- * @param {string} fragment search fragment
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.fragment search fragment
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const search = (
-  fragment,
+  { fragment } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) =>
   _get({
@@ -33,11 +35,10 @@ export const search = (
     format,
   });
 
-Client.prototype.search = function (fragment, { filter, format } = {}) {
-  return search(fragment, {
+Client.prototype.search = function (options, standardOptions) {
+  return search(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

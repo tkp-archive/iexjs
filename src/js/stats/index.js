@@ -13,10 +13,11 @@ import { Client } from "../client";
 /**
  * https://iexcloud.io/docs/api/#stats-intraday
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const systemStats = ({ token, version, filter, format } = {}) =>
   _get({
@@ -27,22 +28,22 @@ export const systemStats = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.systemStats = function ({ filter, format } = {}) {
+Client.prototype.systemStats = function (standardOptions) {
   return systemStats({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
 /**
  * https://iexcloud.io/docs/api/#stats-recent
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const recent = ({ token, version, filter, format } = {}) =>
   _get({
@@ -53,17 +54,22 @@ export const recent = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.recent = function ({ filter, format } = {}) {
-  return recent({ token: this._token, version: this._version, filter, format });
+Client.prototype.recent = function (standardOptions) {
+  return recent({
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
  * https://iexcloud.io/docs/api/#stats-records
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const records = ({ token, version, filter, format } = {}) =>
   _get({
@@ -74,25 +80,29 @@ export const records = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.records = function ({ filter, format } = {}) {
+Client.prototype.records = function (standardOptions) {
   return records({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
 /**
  * https://iexcloud.io/docs/api/#stats-historical-summary
  *
- * @param {string} date Format YYYYMMDD date to fetch sentiment data. Default is today.
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.date Format YYYYMMDD date to fetch sentiment data. Default is today.
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const summary = (date, { token, version, filter, format } = {}) => {
+export const summary = (
+  { date } = {},
+  { token, version, filter, format } = {},
+) => {
   if (date) {
     return _get({
       url: `stats/historical?date=${date}`,
@@ -111,26 +121,30 @@ export const summary = (date, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.summary = function (date, { filter, format } = {}) {
-  return summary(date, {
+Client.prototype.summary = function (options, standardOptions) {
+  return summary(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
 /**
  * https://iexcloud.io/docs/api/#stats-historical-daily
  *
- * @param {string} date Format YYYYMMDD date to fetch sentiment data. Default is today.
- * @param {number} last Optional last number to include
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.date Format YYYYMMDD date to fetch sentiment data. Default is today.
+ * @param {number} options.last Optional last number to include
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const daily = (date, last, { token, version, filter, format } = {}) => {
+export const daily = (
+  { date, last } = {},
+  { token, version, filter, format } = {},
+) => {
   if (date) {
     return _get({
       url: `stats/historical/daily?date=${date}`,
@@ -157,11 +171,10 @@ export const daily = (date, last, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.daily = function (date, last, { filter, format } = {}) {
-  return daily(date, last, {
+Client.prototype.daily = function (options, standardOptions) {
+  return daily(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

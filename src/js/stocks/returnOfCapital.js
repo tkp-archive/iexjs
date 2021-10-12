@@ -15,44 +15,43 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#return-of-capital
  *
- * @param {string} symbol Ticker to request
- * @param {string} refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
- * @param {object} timeseries_args Arguments to pass through to timeseries call
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol Ticker to request
+ * @param {string} options.refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
+ * @param {object} timeseriesArgs Arguments to pass through to timeseries call
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const returnOfCapital = (
-  symbol,
-  refid,
-  timeseries_options,
+  { symbol, refid } = {},
+  timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  _timeseriesWrapper(timeseries_options);
+  _timeseriesWrapper(timeseriesArgs);
 
   return timeSeries(
     {
       id: "advanced_return_of_capital",
       key: symbol,
       subkey: refid || "",
-      ...(timeseries_options || {}),
+      ...(timeseriesArgs || {}),
     },
     { token, version, filter, format },
   );
 };
 
 Client.prototype.returnOfCapital = function (
-  symbol,
-  refid,
-  timeseries_options,
-  { filter, format } = {},
+  options,
+  timeseriesArgs,
+  standardOptions,
 ) {
-  return returnOfCapital(symbol, refid, timeseries_options, {
+  return returnOfCapital(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

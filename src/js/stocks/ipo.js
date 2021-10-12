@@ -16,10 +16,11 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#ipo-calendar
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const ipoToday = ({ token, version, filter, format } = {}) =>
   _get({
@@ -30,12 +31,11 @@ export const ipoToday = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.ipoToday = function ({ filter, format } = {}) {
+Client.prototype.ipoToday = function (standardOptions) {
   return ipoToday({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -45,10 +45,11 @@ Client.prototype.ipoToday = function ({ filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#ipo-calendar
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const ipoUpcoming = ({ token, version, filter, format } = {}) =>
   _get({
@@ -59,11 +60,10 @@ export const ipoUpcoming = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.ipoUpcoming = function ({ filter, format } = {}) {
+Client.prototype.ipoUpcoming = function (standardOptions) {
   return ipoUpcoming({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

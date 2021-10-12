@@ -16,10 +16,11 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#symbols
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const symbols = ({
   token = "",
@@ -35,12 +36,11 @@ export const symbols = ({
     format,
   });
 
-Client.prototype.symbols = function ({ filter, format } = {}) {
+Client.prototype.symbols = function (standardOptions) {
   return symbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -49,10 +49,11 @@ Client.prototype.symbols = function ({ filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#otc-symbols
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const otcSymbols = ({
   token = "",
@@ -68,12 +69,11 @@ export const otcSymbols = ({
     format,
   });
 
-Client.prototype.otcSymbols = function ({ filter, format } = {}) {
+Client.prototype.otcSymbols = function (standardOptions) {
   return otcSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -85,10 +85,11 @@ Client.prototype.otcSymbols = function ({ filter, format } = {}) {
  * @param {object} options
  * @param {string} options.region 2 letter case insensitive string of country codes using ISO 3166-1 alpha-2
  * @param {string} options.exchange Case insensitive string of Exchange using IEX Supported Exchanges list
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const internationalSymbols = (
   { region, exchange } = {},
@@ -121,14 +122,12 @@ export const internationalSymbols = (
   });
 };
 
-Client.prototype.internationalSymbols = function (
-  { region, exchange } = {},
-  { filter, format } = {},
-) {
-  return internationalSymbols(
-    { region, exchange },
-    { token: this._token, version: this._version, filter, format },
-  );
+Client.prototype.internationalSymbols = function (options, standardOptions) {
+  return internationalSymbols(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 export const symbolsList = ({ token, version } = {}) =>
@@ -164,14 +163,12 @@ export const internationalSymbolsList = (
     ),
   );
 
-Client.prototype.internationalSymbolsList = function ({
-  region,
-  exchange,
-} = {}) {
+Client.prototype.internationalSymbolsList = function (options) {
   return convertToList(
-    internationalSymbols(
-      { region, exchange },
-      { token: this._token, version: this._version, filter: "symbol" },
-    ),
+    internationalSymbols(options, {
+      token: this._token,
+      version: this._version,
+      filter: "symbol",
+    }),
   );
 };

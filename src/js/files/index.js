@@ -18,8 +18,9 @@ import { Client } from "../client";
  * @param {string} options.id file id
  * @param {string} options.symbol symbol to fetch
  * @param {string} options.date date to fetch for
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const files = ({ id, symbol, date } = {}, { token, version } = {}) => {
   if (id) {
@@ -42,8 +43,9 @@ export const files = ({ id, symbol, date } = {}, { token, version } = {}) => {
  * @param {string} id file id
  * @param {string} symbol symbol to fetch
  * @param {string} date date to fetch for
- * @param {string} token Access token
- * @param {string} version API version
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
  */
 export const download = async (
   { id, symbol, date } = {},
@@ -59,16 +61,10 @@ export const download = async (
   document.body.removeChild(a);
 };
 
-Client.prototype.files = function ({ id, symbol, date } = {}) {
-  return files(
-    { id, symbol, date },
-    { token: this._token, version: this._version },
-  );
+Client.prototype.files = function (options) {
+  return files(options, { token: this._token, version: this._version });
 };
 
-Client.prototype.download = function ({ id, symbol, date } = {}) {
-  return download(
-    { id, symbol, date },
-    { token: this._token, version: this._version },
-  );
+Client.prototype.download = function (options) {
+  return download(options, { token: this._token, version: this._version });
 };

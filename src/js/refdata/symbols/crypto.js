@@ -15,9 +15,10 @@ import { Client } from "../../client";
  *
  * https://iexcloud.io/docs/api/#cryptocurrency-symbols
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
  * @param {string} format output format
  */
 export const cryptoSymbols = ({
@@ -34,12 +35,11 @@ export const cryptoSymbols = ({
     format,
   });
 
-Client.prototype.cryptoSymbols = function ({ filter, format } = {}) {
+Client.prototype.cryptoSymbols = function (standardOptions) {
   return cryptoSymbols({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 

@@ -65,19 +65,12 @@ export const earnings = async (
   );
 };
 
-Client.prototype.earnings = function (
-  { symbol, period, last, field } = {},
-  { filter, format } = {},
-) {
-  return earnings(
-    { symbol, period, last, field },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.earnings = function (options, standardOptions) {
+  return earnings(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -86,10 +79,11 @@ Client.prototype.earnings = function (
  *
  * https://iexcloud.io/docs/api/#earnings-today
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const earningsToday = ({ token, version, filter, format } = {}) =>
   _get({
@@ -100,11 +94,10 @@ export const earningsToday = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.earningsToday = function ({ filter, format } = {}) {
+Client.prototype.earningsToday = function (standardOptions) {
   return earningsToday({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

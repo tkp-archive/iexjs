@@ -284,12 +284,12 @@ const {
   insiderTransactions,
   logo,
   peers,
-  advancedStats,
+  stats,
   analystRecommendations,
   estimates,
   fundOwnership,
   institutionalOwnership,
-  keyStats,
+  statsBasic,
   priceTarget,
   technicals,
   shortInterest,
@@ -1273,8 +1273,8 @@ describe("Stock", () => {
     expect(peers).toBeDefined();
   });
 
-  test("advancedStats", () => {
-    expect(advancedStats).toBeDefined();
+  test("stats", () => {
+    expect(stats).toBeDefined();
   });
 
   test("analystRecommendations", () => {
@@ -1293,8 +1293,8 @@ describe("Stock", () => {
     expect(institutionalOwnership).toBeDefined();
   });
 
-  test("keyStats", () => {
-    expect(keyStats).toBeDefined();
+  test("statsBasic", () => {
+    expect(statsBasic).toBeDefined();
   });
 
   test("priceTarget", () => {

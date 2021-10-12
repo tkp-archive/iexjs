@@ -15,10 +15,11 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#u-s-exchanges
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const exchanges = ({
   token = "",
@@ -34,12 +35,11 @@ export const exchanges = ({
     format,
   });
 
-Client.prototype.exchanges = function ({ filter, format } = {}) {
+Client.prototype.exchanges = function (standardOptions) {
   return exchanges({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -48,10 +48,11 @@ Client.prototype.exchanges = function ({ filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#international-exchanges
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const internationalExchanges = ({
   token = "",
@@ -67,11 +68,10 @@ export const internationalExchanges = ({
     format,
   });
 
-Client.prototype.internationalExchanges = function ({ filter, format } = {}) {
+Client.prototype.internationalExchanges = function (standardOptions) {
   return internationalExchanges({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

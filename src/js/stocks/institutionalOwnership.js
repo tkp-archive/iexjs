@@ -14,14 +14,16 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#institutional-ownership
  *
- * @param {string} symbol ticker to request
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const institutionalOwnership = (
-  symbol,
+  { symbol } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -34,14 +36,10 @@ export const institutionalOwnership = (
   });
 };
 
-Client.prototype.institutionalOwnership = function (
-  symbol,
-  { filter, format } = {},
-) {
-  return institutionalOwnership(symbol, {
+Client.prototype.institutionalOwnership = function (options, standardOptions) {
+  return institutionalOwnership(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

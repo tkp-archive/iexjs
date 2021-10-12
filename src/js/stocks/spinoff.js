@@ -15,8 +15,8 @@ import { timeSeries } from "../timeseries";
  *
  * https://iexcloud.io/docs/api/#spinoff
  *
- * @param {string} symbol Ticker to request
  * @param {object} options
+ * @param {string} options.symbol Ticker to request
  * @param {string} options.refid Optional. Id that matches the refid field returned in the response object. This allows you to pull a specific event for a symbol.
  * @param {object} timeseriesArgs Arguments to pass through to timeseries call
  * @param {object} standardOptions
@@ -26,35 +26,28 @@ import { timeSeries } from "../timeseries";
  * @param {string} standardOptions.format output format
  */
 export const spinoff = (
-  symbol,
-  { refid } = {},
-  timeseriesOptions,
+  { symbol, refid } = {},
+  timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  _timeseriesWrapper(timeseriesOptions);
+  _timeseriesWrapper(timeseriesArgs);
 
   return timeSeries(
     {
       id: "advanced_spinoff",
       key: symbol,
       subkey: refid || "",
-      ...(timeseriesOptions || {}),
+      ...(timeseriesArgs || {}),
     },
     { token, version, filter, format },
   );
 };
 
-Client.prototype.spinoff = function (
-  symbol,
-  { refid } = {},
-  timeseriesOptions,
-  { filter, format } = {},
-) {
-  return spinoff(symbol, { refid }, timeseriesOptions, {
+Client.prototype.spinoff = function (options, timeseriesArgs, standardOptions) {
+  return spinoff(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

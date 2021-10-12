@@ -13,10 +13,10 @@ import { Client } from "../client";
  * Get inventory of available time series endpoints
  *
  * @param {object} standardOptions
- * @param {string} standardOptionstoken Access token
- * @param {string} standardOptionsversion API version
- * @param {string} standardOptionsfilter https://iexcloud.io/docs/api/#filter-results
- * @param {string} standardOptionsformat output format
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const timeSeriesInventory = ({ token, version, filter, format } = {}) =>
   _get({
@@ -161,11 +161,10 @@ export const timeSeries = (
   });
 };
 
-Client.prototype.timeSeries = function (options, { filter, format } = {}) {
+Client.prototype.timeSeries = function (options, standardOptions) {
   return timeSeries(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

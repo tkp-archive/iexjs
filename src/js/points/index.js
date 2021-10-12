@@ -49,12 +49,10 @@ export const points = (
   });
 };
 
-Client.prototype.points = function (
-  { symbol, key } = {},
-  { filter, format } = {},
-) {
-  return points(
-    { symbol, key },
-    { token: this._token, version: this._version, filter, format },
-  );
+Client.prototype.points = function (options, standardOptions) {
+  return points(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

@@ -15,13 +15,18 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#cryptocurrency-book
  *
- * @param {string} symbol cryptocurrency ticker
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol cryptocurrency ticker
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const cryptoBook = (symbol, { token, version, filter, format } = {}) =>
+export const cryptoBook = (
+  { symbol } = {},
+  { token, version, filter, format } = {},
+) =>
   _get({
     url: `crypto/${symbol}/book`,
     token,
@@ -30,12 +35,11 @@ export const cryptoBook = (symbol, { token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.cryptoBook = function (symbol, { filter, format } = {}) {
-  return cryptoBook(symbol, {
+Client.prototype.cryptoBook = function (options, standardOptions) {
+  return cryptoBook(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -44,13 +48,18 @@ Client.prototype.cryptoBook = function (symbol, { filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#cryptocurrency-price
  *
- * @param {string} symbol cryptocurrency ticker
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol cryptocurrency ticker
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const cryptoPrice = (symbol, { token, version, filter, format } = {}) =>
+export const cryptoPrice = (
+  { symbol } = {},
+  { token, version, filter, format } = {},
+) =>
   _get({
     url: `crypto/${symbol}/price`,
     token,
@@ -59,12 +68,11 @@ export const cryptoPrice = (symbol, { token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.cryptoPrice = function (symbol, { filter, format } = {}) {
-  return cryptoPrice(symbol, {
+Client.prototype.cryptoPrice = function (options, standardOptions) {
+  return cryptoPrice(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -73,13 +81,18 @@ Client.prototype.cryptoPrice = function (symbol, { filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#cryptocurrency-quote
  *
- * @param {string} symbol cryptocurrency ticker
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol cryptocurrency ticker
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const cryptoQuote = (symbol, { token, version, filter, format } = {}) =>
+export const cryptoQuote = (
+  { symbol } = {},
+  { token, version, filter, format } = {},
+) =>
   _get({
     url: `crypto/${symbol}/quote`,
     token,
@@ -88,11 +101,10 @@ export const cryptoQuote = (symbol, { token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.cryptoQuote = function (symbol, { filter, format } = {}) {
-  return cryptoQuote(symbol, {
+Client.prototype.cryptoQuote = function (options, standardOptions) {
+  return cryptoQuote(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

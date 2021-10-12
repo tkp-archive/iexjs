@@ -15,11 +15,13 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#latest-currency-rates
  *
- * @param {string} symbols comma seperated list of symbols
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbols comma seperated list of symbols
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const latestFX = (
   { symbols } = {},
@@ -43,19 +45,12 @@ export const latestFX = (
   });
 };
 
-Client.prototype.latestFX = function (
-  { symbols } = {},
-  { filter, format } = {},
-) {
-  return latestFX(
-    { symbols },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.latestFX = function (options, standardOptions) {
+  return latestFX(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -66,10 +61,11 @@ Client.prototype.latestFX = function (
  * @param {object} options
  * @param {string} symbols comma seperated list of symbols
  * @param {number} amount amount to convert
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const convertFX = (
   { symbols, amount } = {},
@@ -95,14 +91,12 @@ export const convertFX = (
   });
 };
 
-Client.prototype.convertFX = function (
-  { symbols, amount } = {},
-  { filter, format } = {},
-) {
-  return convertFX(
-    { symbols, amount },
-    { token: this._token, version: this._version, filter, format },
-  );
+Client.prototype.convertFX = function (options, standardOptions) {
+  return convertFX(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -117,10 +111,11 @@ Client.prototype.convertFX = function (
  * @param {string or date} options.on Returns data on the given date. Format YYYY-MM-DD
  * @param {number} options.last Returns the latest n number of records in the series
  * @param {number} options.first Returns the first n number of records in the series
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const historicalFX = (
   { symbols, from, to, on, last, first } = {},
@@ -142,13 +137,10 @@ export const historicalFX = (
   });
 };
 
-Client.prototype.historicalFX = function (
-  { symbols, from, to, on, last, first } = {},
-  { filter, format } = {},
-) {
+Client.prototype.historicalFX = function (options, standardOptions) {
   return historicalFX(
-    { symbols, from, to, on, last, first },
+    options,
 
-    { token: this._token, version: this._version, filter, format },
+    { token: this._token, version: this._version, ...standardOptions },
   );
 };

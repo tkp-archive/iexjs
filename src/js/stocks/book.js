@@ -15,13 +15,18 @@ import { Client } from "../client";
  *
  * https://iextrading.com/developer/docs/#book
  *
- * @param {string} symbol ticker to request
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
-export const book = (symbol, { token, version, filter, format } = {}) => {
+export const book = (
+  { symbol } = {},
+  { token, version, filter, format } = {},
+) => {
   _raiseIfNotStr(symbol);
   return _get({
     url: `stock/${_quoteSymbols(symbol)}/book`,
@@ -32,11 +37,10 @@ export const book = (symbol, { token, version, filter, format } = {}) => {
   });
 };
 
-Client.prototype.book = function (symbol, { filter, format } = {}) {
-  return book(symbol, {
+Client.prototype.book = function (options, standardOptions) {
+  return book(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

@@ -16,10 +16,11 @@ import { Client } from "../client";
  * @param {string} options.id timeseries id
  * @param {string} options.key timeseries key
  * @param {string} options.subkey timeseries subkey
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const queryMetadata = (
   { id, key, subkey } = {},
@@ -47,17 +48,10 @@ export const queryMetadata = (
   });
 };
 
-Client.prototype.queryMetadata = function (
-  { id, key, subkey } = {},
-  { filter, format } = {},
-) {
-  return queryMetadata(
-    { id, key, subkey },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.queryMetadata = function (options, standardOptions) {
+  return queryMetadata(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

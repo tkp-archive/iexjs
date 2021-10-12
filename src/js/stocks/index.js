@@ -6,7 +6,6 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-export * from "./advancedStats";
 export * from "./analystRecommendations";
 export * from "./balanceSheet";
 export * from "./batch";
@@ -38,7 +37,6 @@ export * from "./insiderTransactions";
 export * from "./institutionalOwnership";
 export * from "./intraday";
 export * from "./ipo";
-export * from "./keyStats";
 export * from "./largestTrades";
 export * from "./list";
 export * from "./logo";
@@ -62,5 +60,7 @@ export * from "./spinoff";
 export * from "./splits";
 export * from "./splitsBasic";
 export * from "./spread";
+export * from "./stats";
+export * from "./statsBasic";
 export * from "./technicals";
 export * from "./volumeByVenue";

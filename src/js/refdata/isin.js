@@ -15,14 +15,16 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#isin-mapping
  *
- * @param {string} isin isin
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.isin isin
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const isinLookup = (
-  isin,
+  { isin } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) =>
   _get({
@@ -33,11 +35,10 @@ export const isinLookup = (
     format,
   });
 
-Client.prototype.isinLookup = function (isin, { filter, format } = {}) {
-  return isinLookup(isin, {
+Client.prototype.isinLookup = function (options, standardOptions) {
+  return isinLookup(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

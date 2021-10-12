@@ -19,18 +19,18 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#estimates
  *
- * @param {string} symbol ticker to request
- * @param {string} period Period, either 'annual' or 'quarter'
- * @param {number} last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} options
+ * @param {string} options.symbol ticker to request
+ * @param {string} options.period Period, either 'annual' or 'quarter'
+ * @param {number} options.last Number of records to fetch, up to 12 for 'quarter' and 4 for 'annual'
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const estimates = (
-  symbol,
-  period,
-  last,
+  { symbol, period, last } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -46,16 +46,10 @@ export const estimates = (
   });
 };
 
-Client.prototype.estimates = function (
-  symbol,
-  period,
-  last,
-  { filter, format } = {},
-) {
-  return estimates(symbol, period, last, {
+Client.prototype.estimates = function (options, standardOptions) {
+  return estimates(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

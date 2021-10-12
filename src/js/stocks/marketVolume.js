@@ -15,10 +15,11 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#market-volume-u-s
  *
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const marketVolume = ({ token, version, filter, format } = {}) =>
   _get({
@@ -29,11 +30,10 @@ export const marketVolume = ({ token, version, filter, format } = {}) =>
     format,
   });
 
-Client.prototype.marketVolume = function ({ filter, format } = {}) {
+Client.prototype.marketVolume = function (standardOptions) {
   return marketVolume({
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

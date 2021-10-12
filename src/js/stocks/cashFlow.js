@@ -51,17 +51,10 @@ export const cashFlow = async (
   );
 };
 
-Client.prototype.cashFlow = function (
-  { symbol, period, last } = {},
-  { filter, format } = {},
-) {
-  return cashFlow(
-    { symbol, period, last },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.cashFlow = function (options, standardOptions) {
+  return cashFlow(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

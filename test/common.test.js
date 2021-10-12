@@ -30,17 +30,17 @@ describe("Schema arg", () => {
   const client = new Client({ version: "sandbox" });
 
   test("json", async () => {
-    const res = await client.quote(SYMBOL, { format: "json" });
+    const res = await client.quote({ symbol: SYMBOL }, { format: "json" });
     expect(typeof res).toBe("object");
   });
 
   test("csv", async () => {
-    const res = await client.quote(SYMBOL, { format: "csv" });
+    const res = await client.quote({ symbol: SYMBOL }, { format: "csv" });
     expect(typeof res).toBe("string");
   });
 
   test("schema", async () => {
-    const res = await client.quote(SYMBOL, { format: "schema" });
+    const res = await client.quote({ symbol: SYMBOL }, { format: "schema" });
     expect(typeof res).toBe("object");
     expect(res.symbol).toBe("string");
   });

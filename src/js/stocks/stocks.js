@@ -46,16 +46,12 @@ export const threshold = (
   });
 };
 
-Client.prototype.threshold = function ({ date } = {}, { filter, format } = {}) {
-  return threshold(
-    { date },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.threshold = function (options, standardOptions) {
+  return threshold(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
 /**
@@ -63,8 +59,8 @@ Client.prototype.threshold = function ({ date } = {}, { filter, format } = {}) {
  *
  * https://iexcloud.io/docs/api/#listed-short-interest-list-in-dev
  *
- * @param {string} symbol Ticker to request
  * @param {object} options
+ * @param {string} options.symbol Ticker to request
  * @param {string} options.date Effective Datetime
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -73,8 +69,7 @@ Client.prototype.threshold = function ({ date } = {}, { filter, format } = {}) {
  * @param {string} standardOptions.format output format
  */
 export const shortInterest = (
-  symbol,
-  { date } = {},
+  { symbol, date } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -96,19 +91,10 @@ export const shortInterest = (
   });
 };
 
-Client.prototype.shortInterest = function (
-  symbol,
-  { date } = {},
-  { filter, format } = {},
-) {
-  return shortInterest(
-    symbol,
-    { date },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.shortInterest = function (options, standardOptions) {
+  return shortInterest(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

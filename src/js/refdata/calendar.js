@@ -20,10 +20,11 @@ import { Client } from "../client";
  * @param {string} options.direction "next" or "last"
  * @param {number} options.last number to move in direction
  * @param {string} options.startDate start date for next or last, YYYYMMDD
- * @param {string} token Access token
- * @param {string} version API version
- * @param {string} filter https://iexcloud.io/docs/api/#filter-results
- * @param {string} format output format
+ * @param {object} standardOptions
+ * @param {string} standardOptions.token Access token
+ * @param {string} standardOptions.version API version
+ * @param {string} standardOptions.filter https://iexcloud.io/docs/api/#filter-results
+ * @param {string} standardOptions.format output format
  */
 export const calendar = (
   { type = "holiday", direction = "next", last = 1, startDate = null } = {},
@@ -51,32 +52,18 @@ export const calendar = (
 
 export const holidays = calendar;
 
-Client.prototype.calendar = function (
-  { type, direction, last, startDate } = {},
-  { filter, format } = {},
-) {
-  return calendar(
-    { type, direction, last, startDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.calendar = function (options, standardOptions) {
+  return calendar(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };
 
-Client.prototype.holidays = function (
-  { type, direction, last, startDate } = {},
-  { filter, format } = {},
-) {
-  return calendar(
-    { type, direction, last, startDate },
-    {
-      token: this._token,
-      version: this._version,
-      filter,
-      format,
-    },
-  );
+Client.prototype.holidays = function (options, standardOptions) {
+  return calendar(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
 };

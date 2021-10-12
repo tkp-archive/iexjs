@@ -26,32 +26,31 @@ import { timeSeries } from "../timeseries";
  */
 export const fundamentalValuations = (
   { symbol, frequency } = {},
-  timeseries_options,
+  timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
-  _timeseriesWrapper(timeseries_options);
+  _timeseriesWrapper(timeseriesArgs);
 
   return timeSeries(
     {
       id: "fundamental_valuations",
       key: symbol,
       subkey: frequency || "",
-      ...(timeseries_options || {}),
+      ...(timeseriesArgs || {}),
     },
     { token, version, filter, format },
   );
 };
 
 Client.prototype.fundamentalValuations = function (
-  { symbol, frequency } = {},
-  timeseries_options,
-  { filter, format } = {},
+  options,
+  timeseriesArgs,
+  standardOptions,
 ) {
-  return fundamentalValuations({ symbol, frequency }, timeseries_options, {
+  return fundamentalValuations(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
