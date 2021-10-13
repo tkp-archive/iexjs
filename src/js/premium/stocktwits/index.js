@@ -14,8 +14,8 @@ import { IEXJSException, _get, _raiseIfNotStr, _strOrDate } from "../../common";
  *
  * https://iexcloud.io/docs/api/#balance-sheet
  *
- * @param {string} symbol Symbol to look up
  * @param {object} options
+ * @param {string} options.symbol Symbol to look up
  * @param {string} options.type Can only be daily or minute. Default is daily.
  * @param {string} options.date Format YYYYMMDD date to fetch sentiment data. Default is today.
  * @param {object} standardOptions
@@ -25,9 +25,7 @@ import { IEXJSException, _get, _raiseIfNotStr, _strOrDate } from "../../common";
  * @param {string} standardOptions.format output format
  */
 export const socialSentimentStockTwits = async (
-  symbol,
-  type,
-  date,
+  { symbol, type, date } = {},
   { token, version, filter, format } = {},
 ) => {
   _raiseIfNotStr(symbol);
@@ -51,16 +49,10 @@ export const socialSentimentStockTwits = async (
   });
 };
 
-Client.premium.prototype.socialSentiment = function (
-  symbol,
-  type,
-  date,
-  { filter, format } = {},
-) {
-  return socialSentimentStockTwits(symbol, type, date, {
+Client.premium.prototype.socialSentiment = function (options, standardOptions) {
+  return socialSentimentStockTwits(options, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

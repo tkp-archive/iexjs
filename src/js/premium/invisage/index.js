@@ -11,8 +11,9 @@ import { timeSeries } from "../../timeseries";
 
 /**
  * internal
- * @param {string} id
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.id
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -22,8 +23,7 @@ import { timeSeries } from "../../timeseries";
  * @returns
  */
 const _base = (
-  id,
-  symbol,
+  { id, symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
@@ -39,7 +39,8 @@ const _base = (
 /**
  * Current and historical Consensus Analyst Recommendations and Price Targets. Generated with Invisage’s proprietary smart consensus methodlogy.
  * https://iexcloud.io/docs/api/#analyst-recommendations-and-price-targets-premium
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -48,11 +49,11 @@ const _base = (
  * @param {string} standardOptions.format output format
  */
 export const analystRecommendationsAndPriceTargetsInvisage = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
-  _base("PREMIUM_INVISAGE_ESTIMATES", symbol, timeseriesArgs, {
+  _base({ id: "PREMIUM_INVISAGE_ESTIMATES", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -60,15 +61,14 @@ export const analystRecommendationsAndPriceTargetsInvisage = (
   });
 
 Client.premium.prototype.analystRecommendationsAndPriceTargetsInvisage =
-  function (symbol, timeseriesArgs, { filter, format } = {}) {
+  function (options, timeseriesArgs, standardOptions) {
     return analystRecommendationsAndPriceTargetsInvisage(
-      symbol,
+      options,
       timeseriesArgs,
       {
         token: this._token,
         version: this._version,
-        filter,
-        format,
+        ...standardOptions,
       },
     );
   };

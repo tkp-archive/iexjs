@@ -11,8 +11,9 @@ import { timeSeries } from "../../timeseries";
 
 /**
  * internal
- * @param {string} id
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.id
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -21,8 +22,7 @@ import { timeSeries } from "../../timeseries";
  * @param {string} standardOptions.format output format
  */
 const _base = (
-  id,
-  symbol,
+  { id, symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
@@ -38,7 +38,8 @@ const _base = (
 /**
  * Precision Alpha performs an unbiased non-equilibrium market analysis on six months of closing price data for all NASDAQ and NYSE listed equities, every day after market close. Precision Alpha calculates scientifically and exactly: market emotion, power, resistance, noise/efficiency, and next day probabilities
  * https://iexcloud.io/docs/api/#precision-alpha-price-dynamics
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -47,26 +48,29 @@ const _base = (
  * @param {string} standardOptions.format output format
  */
 export const priceDynamicsPrecisionAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
-  _base("PREMIUM_PRECISION_ALPHA_PRICE_DYNAMICS", symbol, timeseriesArgs, {
-    token,
-    version,
-    filter,
-    format,
-  });
+  _base(
+    { id: "PREMIUM_PRECISION_ALPHA_PRICE_DYNAMICS", symbol },
+    timeseriesArgs,
+    {
+      token,
+      version,
+      filter,
+      format,
+    },
+  );
 
 Client.premium.prototype.priceDynamics = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return priceDynamicsPrecisionAlpha(symbol, timeseriesArgs, {
+  return priceDynamicsPrecisionAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

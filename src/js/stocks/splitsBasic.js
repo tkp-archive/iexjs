@@ -20,8 +20,8 @@ import { Client } from "../client";
  *
  * https://iexcloud.io/docs/api/#splits
  *
- * @param {string} symbol Ticker to request
  * @param {object} options
+ * @param {string} options.symbol Ticker to request
  * @param {string} options.range range for data
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
