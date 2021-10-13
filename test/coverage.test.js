@@ -124,7 +124,6 @@ const {
   esgUSPTOPatentGrantsExtractAlpha,
   tacticalModel1ExtractAlpha,
   // fraud factors
-  similarityIndexFraudFactors,
   nonTimelyFilingsFraudFactors,
   // kavout
   kScoreKavout,
@@ -734,10 +733,6 @@ describe("Premium", () => {
 
   test("tacticalModel1", () => {
     expect(tacticalModel1ExtractAlpha).toBeDefined();
-  });
-
-  test("similarityIndex", () => {
-    expect(similarityIndexFraudFactors).toBeDefined();
   });
 
   test("nonTimelyFilings", () => {

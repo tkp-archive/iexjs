@@ -59,8 +59,8 @@ Client.prototype.latestFX = function (options, standardOptions) {
  * https://iexcloud.io/docs/api/#currency-conversion
  *
  * @param {object} options
- * @param {string} symbols comma seperated list of symbols
- * @param {number} amount amount to convert
+ * @param {string} options.symbols comma seperated list of symbols
+ * @param {number} options.amount amount to convert
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version

@@ -12,8 +12,9 @@ import { timeSeries } from "../../timeseries";
 
 /**
  * internal
- * @param {string} id
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.id
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -22,8 +23,7 @@ import { timeSeries } from "../../timeseries";
  * @param {string} standardOptions.format output format
  */
 const _base = (
-  id,
-  symbol,
+  { id, symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
@@ -41,7 +41,8 @@ const _base = (
  * In historical simulations, high-scoring stocks according to CAM1 outperform low-scoring stocks by 17% per annum with a market-neutral Sharpe ratio of 3.0 before transaction costs. CAM1 is particularly effective in volatile regimes and for mid- and small-cap stocks, and is best used in conjunction with other alpha signals with similar time horizons.
  * History available from July 2005
  * https://iexcloud.io/docs/api/#cross-asset-model-1
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -50,11 +51,11 @@ const _base = (
  * @param {string} standardOptions.format output format
  */
 export const cam1ExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
-  _base("PREMIUM_EXTRACT_ALPHA_CAM", symbol, timeseriesArgs, {
+  _base({ id: "PREMIUM_EXTRACT_ALPHA_CAM", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -62,15 +63,14 @@ export const cam1ExtractAlpha = (
   });
 
 Client.premium.prototype.cam1 = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return cam1ExtractAlpha(symbol, timeseriesArgs, {
+  return cam1ExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -80,7 +80,8 @@ Client.premium.prototype.cam1 = function (
  * The database generally updates daily, and contains certain information for each complaint, including the source of the complaint, the date of submission, and the company the complaint was sent to for response. The database also includes information about the actions taken by the company in response to the complaint, such as, whether the company’s response was timely and how the company responded. If the consumer opts to share it and after we take steps to remove personal information, we publish the consumer’s description of what happened. Companies also have the option to select a public response. Complaints referred to other regulators, such as complaints about depository institutions with less than $10 billion in assets, are not published in the Consumer Complaint Database.
  * History available from 2011
  * https://iexcloud.io/docs/api/#esg-cfpb-complaints
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -89,12 +90,12 @@ Client.premium.prototype.cam1 = function (
  * @param {string} standardOptions.format output format
  */
 export const esgCFPBComplaintsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 1;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -103,15 +104,14 @@ export const esgCFPBComplaintsExtractAlpha = (
 };
 
 Client.premium.prototype.esgCFPBComplaints = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgCFPBComplaintsExtractAlpha(symbol, timeseriesArgs, {
+  return esgCFPBComplaintsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -121,7 +121,8 @@ Client.premium.prototype.esgCFPBComplaints = function (
  * Future versions may include consumers’ reports on product safety-related incidents.
  * History available from 1974
  * https://iexcloud.io/docs/api/#esg-cpsc-recalls
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -130,12 +131,12 @@ Client.premium.prototype.esgCFPBComplaints = function (
  * @param {string} standardOptions.format output format
  */
 export const esgCPSCRecallsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 5;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -144,15 +145,14 @@ export const esgCPSCRecallsExtractAlpha = (
 };
 
 Client.premium.prototype.esgCPSCRecalls = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgCPSCRecallsExtractAlpha(symbol, timeseriesArgs, {
+  return esgCPSCRecallsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -163,7 +163,8 @@ Client.premium.prototype.esgCPSCRecalls = function (
  * Note that because of the different data structures available by year and across application type (H1B and PERM), the density of many of these fields will vary substantially across the dataset.
  * History available from 1999
  * https://iexcloud.io/docs/api/#esg-dol-visa-applications
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -172,12 +173,12 @@ Client.premium.prototype.esgCPSCRecalls = function (
  * @param {string} standardOptions.format output format
  */
 export const esgDOLVisaApplicationsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 8;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -186,15 +187,14 @@ export const esgDOLVisaApplicationsExtractAlpha = (
 };
 
 Client.premium.prototype.esgDOLVisaApplications = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgDOLVisaApplicationsExtractAlpha(symbol, timeseriesArgs, {
+  return esgDOLVisaApplicationsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -205,7 +205,8 @@ Client.premium.prototype.esgDOLVisaApplications = function (
  * Data is organized around two concepts: the enforcement case and a resulting settlement(s) (enforcement conclusion). Enforcement case data describe the enforcement action from initiation through to its conclusion. If multiple defendants, facilities, and/or violations are cited in the case, then a single case may result in multiple settlements. These case conclusions describe what has been ordered and/or agreed upon to be performed to address violations identified by the case complaint.
  * History available from 1975
  * https://iexcloud.io/docs/api/#esg-epa-enforcements
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -214,12 +215,12 @@ Client.premium.prototype.esgDOLVisaApplications = function (
  * @param {string} standardOptions.format output format
  */
 export const esgEPAEnforcementsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 2;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -228,15 +229,14 @@ export const esgEPAEnforcementsExtractAlpha = (
 };
 
 Client.premium.prototype.esgEPAEnforcements = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgEPAEnforcementsExtractAlpha(symbol, timeseriesArgs, {
+  return esgEPAEnforcementsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -244,7 +244,8 @@ Client.premium.prototype.esgEPAEnforcements = function (
  * As described in EPA Enforcements, but including all milestones for an EPA violation event, not just enforcement actions.
  * History available from 1975
  * https://iexcloud.io/docs/api/#esg-epa-milestones
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -253,12 +254,12 @@ Client.premium.prototype.esgEPAEnforcements = function (
  * @param {string} standardOptions.format output format
  */
 export const esgEPAMilestonesExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 3;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -267,15 +268,14 @@ export const esgEPAMilestonesExtractAlpha = (
 };
 
 Client.premium.prototype.esgEPAMilestones = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgEPAMilestonesExtractAlpha(symbol, timeseriesArgs, {
+  return esgEPAMilestonesExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -283,7 +283,8 @@ Client.premium.prototype.esgEPAMilestones = function (
  * Individuals often contribute to political campaigns, and when doing so they are asked to disclose their employer. The individual contributions file contains each campaign contribution from an individual to a federal committee. The files for the current election cycle plus the two most recent election cycles are regularly updated.
  * History available from 1997
  * https://iexcloud.io/docs/api/#esg-fec-individual-campaign-contributions
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -292,12 +293,12 @@ Client.premium.prototype.esgEPAMilestones = function (
  * @param {string} standardOptions.format output format
  */
 export const esgFECIndividualCampaingContributionsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 7;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -306,14 +307,14 @@ export const esgFECIndividualCampaingContributionsExtractAlpha = (
 };
 
 Client.premium.prototype.esgFECIndividualCampaingContributions = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
   return esgFECIndividualCampaingContributionsExtractAlpha(
-    symbol,
+    options,
     timeseriesArgs,
-    { token: this._token, version: this._version, filter, format },
+    { token: this._token, version: this._version, ...standardOptions },
   );
 };
 
@@ -322,7 +323,8 @@ Client.premium.prototype.esgFECIndividualCampaingContributions = function (
  * Future versions may include data on the workplace injuries themselves.
  * History available from 1972
  * https://iexcloud.io/docs/api/#esg-osha-inspections
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -331,12 +333,12 @@ Client.premium.prototype.esgFECIndividualCampaingContributions = function (
  * @param {string} standardOptions.format output format
  */
 export const esgOSHAInspectionsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 4;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -345,15 +347,14 @@ export const esgOSHAInspectionsExtractAlpha = (
 };
 
 Client.premium.prototype.esgOSHAInspections = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgOSHAInspectionsExtractAlpha(symbol, timeseriesArgs, {
+  return esgOSHAInspectionsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -361,7 +362,8 @@ Client.premium.prototype.esgOSHAInspections = function (
  * Companies often employ lobbyists to influence legislation in their favor, and lobbying can be a very high ROI activity for a company [Hutchens, Rego, and Sheneman, 2016]. Under the Lobbying Disclosure Act, in-house and outside lobbyists must file quarterly reports describing lobbying activity. These reports disclose the amount spent on lobbying. The lobbying data is compiled using the lobbying disclosure reports filed with the Secretary of the Senate’s Office of Public Records (SOPR). Quarterly reports are due on the 20th day of January, April, July, and October. Lobbying firms are required to provide a good- faith estimate rounded to the nearest $10,000 of all lobbying-related income from their clients in each quarter. Total spending on lobbying activities are reported each quarter, but are not broken down by how much was spent on a particular issue or bill.
  * History available from 1999
  * https://iexcloud.io/docs/api/#esg-senate-lobbying
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -370,12 +372,12 @@ Client.premium.prototype.esgOSHAInspections = function (
  * @param {string} standardOptions.format output format
  */
 export const esgSenateLobbyingExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 6;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -384,15 +386,14 @@ export const esgSenateLobbyingExtractAlpha = (
 };
 
 Client.premium.prototype.esgSenateLobbying = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgSenateLobbyingExtractAlpha(symbol, timeseriesArgs, {
+  return esgSenateLobbyingExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -403,7 +404,8 @@ Client.premium.prototype.esgSenateLobbying = function (
  * Data is organized around two concepts: the enforcement case and a resulting settlement(s) (enforcement conclusion). Enforcement case data describe the enforcement action from initiation through to its conclusion. If multiple defendants, facilities, and/or violations are cited in the case, then a single case may result in multiple settlements. These case conclusions describe what has been ordered and/or agreed upon to be performed to address violations identified by the case complaint.
  * History available from 1975
  * https://iexcloud.io/docs/api/#esg-epa-enforcements
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -412,12 +414,12 @@ Client.premium.prototype.esgSenateLobbying = function (
  * @param {string} standardOptions.format output format
  */
 export const esgUSASpendingExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 9;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -426,15 +428,14 @@ export const esgUSASpendingExtractAlpha = (
 };
 
 Client.premium.prototype.esgUSASpending = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgUSASpendingExtractAlpha(symbol, timeseriesArgs, {
+  return esgUSASpendingExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -443,7 +444,8 @@ Client.premium.prototype.esgUSASpending = function (
  * All the data on prime recipient transactions is submited by the federal agencies making federal contract, grant, loan, and other financial assistance awards. Agencies are required to submit data within 30 days of making the award or after making a modification or amendment to an award. The exception is the Department of Defense which delays its submission by 90 days to protect operations.
  * History available from 1995
  * https://iexcloud.io/docs/api/#esg-usa-spending
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -452,12 +454,12 @@ Client.premium.prototype.esgUSASpending = function (
  * @param {string} standardOptions.format output format
  */
 export const esgUSPTOPatentApplicationsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 10;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -466,15 +468,14 @@ export const esgUSPTOPatentApplicationsExtractAlpha = (
 };
 
 Client.premium.prototype.esgUSPTOPatentApplications = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgUSPTOPatentApplicationsExtractAlpha(symbol, timeseriesArgs, {
+  return esgUSPTOPatentApplicationsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -484,7 +485,8 @@ Client.premium.prototype.esgUSPTOPatentApplications = function (
  * Currently only the first three assignees listed on the patent are included. Future versions may contain more detail on the content of patent grants, including assignees beyond the first three listed on the grant.
  * History available from 2002
  * https://iexcloud.io/docs/api/#esg-uspto-patent-grants
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -493,12 +495,12 @@ Client.premium.prototype.esgUSPTOPatentApplications = function (
  * @param {string} standardOptions.format output format
  */
 export const esgUSPTOPatentGrantsExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) => {
   timeseriesArgs.subkey = 11;
-  return _base("PREMIUM_EXTRACT_ALPHA_ESG", symbol, timeseriesArgs, {
+  return _base({ id: "PREMIUM_EXTRACT_ALPHA_ESG", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -507,15 +509,14 @@ export const esgUSPTOPatentGrantsExtractAlpha = (
 };
 
 Client.premium.prototype.esgUSPTOPatentGrants = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return esgUSPTOPatentGrantsExtractAlpha(symbol, timeseriesArgs, {
+  return esgUSPTOPatentGrantsExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -527,7 +528,8 @@ Client.premium.prototype.esgUSPTOPatentGrants = function (
  * TM1 is therefore effective as a tactical overlay which can improve risk-adjusted returns without unduly influencing the underlying strategy. The implementation could be as straightforward as a daily pre-trade screen on position entries and exits prior to the open.
  * History available from January 2000
  * https://iexcloud.io/docs/api/#tactical-model-1
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -536,11 +538,11 @@ Client.premium.prototype.esgUSPTOPatentGrants = function (
  * @param {string} standardOptions.format output format
  */
 export const tacticalModel1ExtractAlpha = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
-  _base("PREMIUM_EXTRACT_ALPHA_TM", symbol, timeseriesArgs, {
+  _base({ id: "PREMIUM_EXTRACT_ALPHA_TM", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -548,14 +550,13 @@ export const tacticalModel1ExtractAlpha = (
   });
 
 Client.premium.prototype.tacticalModel1 = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return tacticalModel1ExtractAlpha(symbol, timeseriesArgs, {
+  return tacticalModel1ExtractAlpha(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

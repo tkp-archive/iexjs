@@ -11,8 +11,9 @@ import { timeSeries } from "../../timeseries";
 
 /**
  * internal
- * @param {string} id
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.id
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -21,8 +22,7 @@ import { timeSeries } from "../../timeseries";
  * @param {string} standardOptions.format output format
  */
 const _base = (
-  id,
-  symbol,
+  { id, symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
@@ -39,7 +39,8 @@ const _base = (
  * Kavout takes in over 200 factors and signals including fundamentals, pricing, technical indicators, and alternative data, and then uses an ensemble machine learning technique to analyze and rank stocks.
  * K Score is a stock rating and ranking score with values ranging from 1-to-9. A higher K Score (7-9) assigned to a stock indicates a higher probability of outperformance, whereas a lower K Score (1-3) indicates a lower probability of outperformance in the next month.
  * https://iexcloud.io/docs/api/#k-score-for-us-equities
- * @param {string} symbol
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -48,11 +49,11 @@ const _base = (
  * @param {string} standardOptions.format output format
  */
 export const kScoreKavout = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
-  _base("PREMIUM_KAVOUT_KSCORE", symbol, timeseriesArgs, {
+  _base({ id: "PREMIUM_KAVOUT_KSCORE", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -60,15 +61,14 @@ export const kScoreKavout = (
   });
 
 Client.premium.prototype.kScore = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return kScoreKavout(symbol, timeseriesArgs, {
+  return kScoreKavout(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };
 
@@ -83,7 +83,9 @@ Client.premium.prototype.kScore = function (
  * CSI 500 Index consists of the largest remaining 500 A-Share stocks after excluding the CSI 300 Index, similar to the largest 2,000 US stocks by market cap. CSI 500 Index reflects the overall performance of small-mid cap A-shares.
  * CSI 800 Index consists of all the constituents of the CSI 300 Index and CSI 500 Index, similar to the largest 3,000 US stocks by market cap.
  * https://iexcloud.io/docs/api/#k-score-for-china-a-shares
- * @param {string} symbol
+ *
+ * @param {object} options
+ * @param {string} options.symbol
  * @param {object} timeseriesArgs The standard arguments from time-series
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -92,11 +94,11 @@ Client.premium.prototype.kScore = function (
  * @param {string} standardOptions.format output format
  */
 export const kScoreChinaKavout = (
-  symbol,
+  { symbol } = {},
   timeseriesArgs,
   { token, version, filter, format } = {},
 ) =>
-  _base("PREMIUM_KAVOUT_KSCORE_A_SHARES", symbol, timeseriesArgs, {
+  _base({ id: "PREMIUM_KAVOUT_KSCORE_A_SHARES", symbol }, timeseriesArgs, {
     token,
     version,
     filter,
@@ -104,14 +106,13 @@ export const kScoreChinaKavout = (
   });
 
 Client.premium.prototype.kScoreChina = function (
-  symbol,
+  options,
   timeseriesArgs,
-  { filter, format } = {},
+  standardOptions,
 ) {
-  return kScoreChinaKavout(symbol, timeseriesArgs, {
+  return kScoreChinaKavout(options, timeseriesArgs, {
     token: this._token,
     version: this._version,
-    filter,
-    format,
+    ...standardOptions,
   });
 };

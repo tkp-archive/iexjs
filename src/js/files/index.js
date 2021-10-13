@@ -40,9 +40,10 @@ export const files = ({ id, symbol, date } = {}, { token, version } = {}) => {
  * The Files API allows users to download bulk data files, PDFs, etc.
  * https://iexcloud.io/docs/api/#files
  *
- * @param {string} id file id
- * @param {string} symbol symbol to fetch
- * @param {string} date date to fetch for
+ * @param {object} options
+ * @param {string} options.id file id
+ * @param {string} options.symbol symbol to fetch
+ * @param {string} options.date date to fetch for
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
