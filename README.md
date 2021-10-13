@@ -24,7 +24,7 @@ Install from npm
 
 ```javascript
 const {chart} = require("iexjs");
-chart("AAPL", "1m", token, version).then((res) => {
+chart({symbol: "AAPL", range: "1m"}, {token, version}).then((res) => {
     console.log(res);
 });
 ```
@@ -34,7 +34,7 @@ Since the token rarely changes, we have a `Client` object for convenience:
 ```javascript
 const {Client} = require("iexjs");
 const client = new Client({api_token: "YOUR_TOKEN_HERE", version: "v1"});
-client.chart("AAPL", "1m").then((res) => {
+client.chart({symbol: "AAPL", range: "1m"}).then((res) => {
     console.log(res);
 });
 ```
