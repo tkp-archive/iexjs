@@ -32,7 +32,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@rollup/plugin-inject": "^4.0.2",
     "bl": "^5.0.0",
     "cross-fetch": "^3.0.6",
     "eventsource": "^1.0.7",
@@ -50,6 +49,7 @@
     "@babel/preset-env": "^7.15.4",
     "@rollup/plugin-babel": "^5.0.2",
     "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-inject": "^4.0.2",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
