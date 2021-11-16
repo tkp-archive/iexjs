@@ -17,6 +17,8 @@ import { Client } from "../../client";
  *
  * @param {object} options
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {string} options.expiration expiration date
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -24,14 +26,18 @@ import { Client } from "../../client";
  * @param {string} standardOptions.format output format
  */
 export const optionsSymbols = (
-  { underlyingSymbol } = {},
+  { underlyingSymbol, expiration, includeExpired } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   let url;
   if (underlyingSymbol) {
     url = `ref-data/options/symbols/${underlyingSymbol}`;
+
+    if (expiration) url += `/${expiration}`;
+
+    if (includeExpired) url += `?includeExpired=${includeExpired}`;
   } else {
-    url = `ref-data/options/symbols`;
+    url = "ref-data/options/symbols";
   }
   return _get({
     url,
@@ -49,6 +55,8 @@ export const optionsSymbols = (
  *
  * @param {object} options
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {string} options.expiration expiration date
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -84,6 +92,8 @@ const convertOptionsSymbolsToList = (underlyingSymbol, data) => {
  *
  * @param {object} options
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {string} options.expiration expiration date
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -91,12 +101,15 @@ const convertOptionsSymbolsToList = (underlyingSymbol, data) => {
  * @param {string} standardOptions.format output format
  */
 export const optionsSymbolsList = async (
-  { underlyingSymbol } = {},
+  { underlyingSymbol, expiration, includeExpired } = {},
   { token, version } = {},
 ) =>
   convertOptionsSymbolsToList(
     underlyingSymbol,
-    await optionsSymbols({ token, version, filter: "symbol" }),
+    await optionsSymbols(
+      { underlyingSymbol, expiration, includeExpired },
+      { token, version, filter: "symbol" },
+    ),
   );
 
 /**
@@ -106,6 +119,8 @@ export const optionsSymbolsList = async (
  *
  * @param {object} options
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {string} options.expiration expiration date
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -114,13 +129,18 @@ export const optionsSymbolsList = async (
  */
 Client.prototype.optionsSymbolsList = async function ({
   underlyingSymbol,
+  expiration,
+  includeExpired,
 } = {}) {
   return convertOptionsSymbolsToList(
     underlyingSymbol,
-    await optionsSymbols(underlyingSymbol, {
-      token: this._token,
-      version: this._version,
-      filter: "symbol",
-    }),
+    await optionsSymbols(
+      { underlyingSymbol, expiration, includeExpired },
+      {
+        token: this._token,
+        version: this._version,
+        filter: "symbol",
+      },
+    ),
   );
 };

@@ -17,6 +17,7 @@ import { Client } from "../../client";
  * https://iexcloud.io/docs/api/#futures-symbols
  *
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -24,7 +25,7 @@ import { Client } from "../../client";
  * @param {string} standardOptions.format output format
  */
 export const futuresSymbols = (
-  { underlyingSymbol } = {},
+  { underlyingSymbol, includeExpired } = {},
   { token = "", version = "", filter = "", format = "json" } = {},
 ) => {
   let url;
@@ -33,6 +34,11 @@ export const futuresSymbols = (
   } else {
     url = `ref-data/futures/symbols`;
   }
+
+  if (includeExpired) {
+    url += "?includeExpired=true";
+  }
+
   return _get({
     url,
     token,
@@ -49,6 +55,7 @@ export const futuresSymbols = (
  *
  * @param {object} options
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
@@ -85,6 +92,7 @@ export const futuresSymbolsList = (
  *
  * @param {object} options
  * @param {string} options.underlyingSymbol underlying symbol
+ * @param {boolean} options.includeExpired Include expired contracts in result
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
  * @param {string} standardOptions.version API version
