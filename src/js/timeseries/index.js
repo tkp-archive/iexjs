@@ -48,6 +48,7 @@ Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
  * @param {string} options.range Returns data for a given range. Supported ranges described below.
  * @param {boolean} options.calendar Used in conjunction with range to return data in the future.
  * @param {number} options.limit Limits the number of results returned. Defaults to 1.
+ * @param {number} options.offset Offsets the number of results returned. Defaults to 0.
  * @param {string} options.subattribute Allows you to query time series by any field in the result set. All time series data is stored by ID, then key, then subkey. If you want to query by any other field in the data, you can use subattribute.
  *                              For example, news may be stored as /news/{symbol}/{newsId}, and the result data returns the keys id, symbol, date, sector, hasPaywall
  *                              By default you can only query by symbol or id. Maybe you want to query all news where the sector is Technology. Your query would be:
@@ -116,6 +117,7 @@ export const timeSeries = (
     range = "",
     calendar = false,
     limit = 1,
+    offset = 0,
     subattribute = "",
     dateField = "",
     from = "",
@@ -140,6 +142,7 @@ export const timeSeries = (
   base_url += `calendar=${calendar.toString()}&`;
 
   if (!last && (!to || !from)) base_url += `limit=${limit}&`;
+  if (offset > 0) base_url += `offset=${offset}&`;
   if (subattribute) base_url += `subattribute=${subattribute}&`;
   if (dateField) base_url += `dateField=${dateField}&`;
   if (from) base_url += `from=${_strOrDate(from)}&`;
