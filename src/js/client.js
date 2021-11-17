@@ -35,6 +35,7 @@ export class Client {
     }
 
     if (this._token.startsWith("T") && version !== "sandbox") {
+      // eslint-disable-next-line no-console
       console.warn(
         "Using test key but attempting to connect to non-sandbox environment. Switching to sandbox",
       );

@@ -24,6 +24,7 @@ export * from "./metadata";
 export * from "./mortgage";
 export * from "./options";
 export * from "./points";
+export * from "./platform";
 export * from "./premium";
 export * from "./rates";
 export * from "./refdata";
