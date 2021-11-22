@@ -17,7 +17,7 @@ import {
   _delete,
   IEXJSException,
 } from "../common";
-// import { Client } from "../client";
+import { Client } from "../client";
 
 const _queryUrl = (options) => {
   const {
@@ -105,11 +105,27 @@ export const queryMeta = (options, standardOptions = {}) =>
     ...standardOptions,
   });
 
+Client.platform.prototype.queryMeta = function (options, standardOptions) {
+  return queryMeta(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
+
 export const query = (options, standardOptions = {}) =>
   _get({
     url: _queryUrl(options),
     ...standardOptions,
   });
+
+Client.platform.prototype.query = function (options, standardOptions) {
+  return query(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
 
 export const listJobs = ({ provider, type = "ingest" }, standardOptions) => {
   if (!provider) throw new IEXJSException("Must provide `provider`");
@@ -117,8 +133,24 @@ export const listJobs = ({ provider, type = "ingest" }, standardOptions) => {
   return _get({ url, ...standardOptions });
 };
 
+Client.platform.prototype.listJobs = function (options, standardOptions) {
+  return listJobs(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
+
 export const listDatasets = ({ provider = "CORE", id = "" }, standardOptions) =>
   _get({ url: _queryUrl({ provider, id }), ...standardOptions });
+
+Client.platform.prototype.listDatasets = function (options, standardOptions) {
+  return listDatasets(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
 
 export const createDataset = ({ provider, schema }, standardOptions) => {
   if (!provider) throw new IEXJSException("Must provide `provider`");
@@ -129,6 +161,14 @@ export const createDataset = ({ provider, schema }, standardOptions) => {
     url,
     data: schema,
     token_in_params: true,
+    ...standardOptions,
+  });
+};
+
+Client.platform.prototype.createDataset = function (options, standardOptions) {
+  return createDataset(options, {
+    token: this._token,
+    version: this._version,
     ...standardOptions,
   });
 };
@@ -147,6 +187,14 @@ export const loadData = ({ provider, id, data }, standardOptions) => {
   });
 };
 
+Client.platform.prototype.loadData = function (options, standardOptions) {
+  return loadData(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
+
 export const modifyDataset = ({ provider, schema }, standardOptions) => {
   if (!provider) throw new IEXJSException("Must provide `provider`");
   if (!schema) throw new IEXJSException("Must provide `schema`");
@@ -156,6 +204,14 @@ export const modifyDataset = ({ provider, schema }, standardOptions) => {
     url,
     data: schema,
     token_in_params: true,
+    ...standardOptions,
+  });
+};
+
+Client.platform.prototype.modifyDataset = function (options, standardOptions) {
+  return modifyDataset(options, {
+    token: this._token,
+    version: this._version,
     ...standardOptions,
   });
 };
@@ -171,17 +227,41 @@ export const modifyData = (options, standardOptions = {}) => {
   });
 };
 
+Client.platform.prototype.modifyData = function (options, standardOptions) {
+  return modifyData(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
+
 export const deleteData = (options, standardOptions = {}) =>
   _delete({
     url: _queryUrl(options),
     ...standardOptions,
   });
 
+Client.platform.prototype.deleteData = function (options, standardOptions) {
+  return deleteData(options, {
+    token: this._token,
+    version: this._version,
+    ...standardOptions,
+  });
+};
+
 export const deleteDataset = ({ provider, id }, standardOptions) => {
   if (!provider) throw new IEXJSException("Must provide `provider`");
   if (!id) throw new IEXJSException("Must provide `id`");
   return _delete({
     url: _queryUrl({ provider, id, limit: null, basePath: "datasets" }),
+    ...standardOptions,
+  });
+};
+
+Client.platform.prototype.deleteDataset = function (options, standardOptions) {
+  return deleteDataset(options, {
+    token: this._token,
+    version: this._version,
     ...standardOptions,
   });
 };

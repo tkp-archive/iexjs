@@ -16,6 +16,8 @@ export class Client {
 
   static premiumfiles = class PremiumFiles {};
 
+  static platform = class Platform {};
+
   constructor(options = {}) {
     const { api_token = (process ? process.env.IEX_TOKEN : null) || "" } =
       options;
@@ -46,7 +48,14 @@ export class Client {
     // this is easier than worrying about rebinding
     this.premium = new Client.premium();
     this.premiumfiles = new Client.premiumfiles();
+    this.platform = new Client.platform();
+
     this.premium._token = this._token;
+    this.premiumfiles._token = this._token;
+    this.platform._token = this._token;
+
     this.premium._version = this._version;
+    this.premiumfiles._version = this._version;
+    this.platform._version = this._version;
   }
 }
