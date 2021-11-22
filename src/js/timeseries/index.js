@@ -6,7 +6,13 @@
  * the Apache License 2.0.  The full license can be found in the LICENSE file.
  *
  */
-import { _get, _dateRange, _quoteSymbols, _strOrDate } from "../common";
+import {
+  _get,
+  _dateRange,
+  _quoteSymbols,
+  _strOrDate,
+  IEXJSException,
+} from "../common";
 import { Client } from "../client";
 
 /**
@@ -61,6 +67,7 @@ Client.prototype.timeSeriesInventory = function ({ filter, format } = {}) {
  * @param {string} options.on (Returns data on the given date. Format YYYY-MM-DD
  * @param {number} options.last Returns the latest n number of records in the series
  * @param {number} options.first Returns the first n number of records in the series
+ * @param {string} options.sort order of results, either ASC or DESC
  * @param {number} options.interval return every nth record
  * @param {object} standardOptions
  * @param {string} standardOptions.token Access token
@@ -125,6 +132,7 @@ export const timeSeries = (
     on = "",
     last = 0,
     first = 0,
+    sort = "",
     interval = 0,
     overrideBase = "",
   } = options || {};
@@ -150,6 +158,12 @@ export const timeSeries = (
   if (on) base_url += `on=${_strOrDate(on)}&`;
   if (last) base_url += `last=${last}&`;
   if (first) base_url += `first=${first}&`;
+  if (sort) {
+    if (["asc", "desc"].indexOf(sort.toLowerCase()) < 0)
+      throw new IEXJSException(`Sort must be in (asc, desc), got: ${sort}`);
+    base_url += `sort=${sort}&`;
+  }
+
   if (interval) base_url += `interval=${interval}&`;
 
   // TODO
