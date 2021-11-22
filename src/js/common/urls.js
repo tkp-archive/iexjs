@@ -135,9 +135,10 @@ const _getIEXCloudSandbox = (options) =>
  *
  * @param {object} options
  */
-const _postIEXCloudBase = async (options) => {
+const _pppIEXCloudBase = async (options) => {
   const {
     base_url,
+    method,
     url,
     data = {},
     token = "",
@@ -153,7 +154,7 @@ const _postIEXCloudBase = async (options) => {
   }
 
   return fetch(endpoint, {
-    method: "POST",
+    method,
     body: token_in_params ? { token, ...data } : {},
     headers: {
       "Content-Type": "application/json",
@@ -174,14 +175,58 @@ const _postIEXCloudBase = async (options) => {
  * @param {object} options
  */
 const _postIEXCloud = (options) =>
-  _postIEXCloudBase({ base_url: _URL_PREFIX_CLOUD, ...options });
+  _pppIEXCloudBase({ base_url: _URL_PREFIX_CLOUD, method: "POST", ...options });
 
 /**
  *
  * @param {object} options
  */
 const _postIEXCloudSandbox = (options) =>
-  _postIEXCloudBase({ base_url: _URL_PREFIX_CLOUD_SANDBOX, ...options });
+  _pppIEXCloudBase({
+    base_url: _URL_PREFIX_CLOUD_SANDBOX,
+    method: "POST",
+    ...options,
+  });
+
+/**
+ *
+ * @param {object} options
+ */
+const _putIEXCloud = (options) =>
+  _pppIEXCloudBase({ base_url: _URL_PREFIX_CLOUD, method: "PUT", ...options });
+
+/**
+ *
+ * @param {object} options
+ */
+const _putIEXCloudSandbox = (options) =>
+  _pppIEXCloudBase({
+    base_url: _URL_PREFIX_CLOUD_SANDBOX,
+    method: "PUT",
+    ...options,
+  });
+
+/**
+ *
+ * @param {object} options
+ */
+const _patchIEXCloud = (options) =>
+  _pppIEXCloudBase({
+    base_url: _URL_PREFIX_CLOUD,
+    method: "PATCH",
+    ...options,
+  });
+
+/**
+ *
+ * @param {object} options
+ */
+const _patchIEXCloudSandbox = (options) =>
+  _pppIEXCloudBase({
+    base_url: _URL_PREFIX_CLOUD_SANDBOX,
+    method: "PATCH",
+    ...options,
+  });
 
 /**
  *
@@ -326,6 +371,31 @@ export const _post = async (options) => {
   return _postIEXCloud(options);
 };
 
+/**
+ *
+ * @param {object} options
+ */
+export const _put = async (options) => {
+  const { version = "" } = options;
+
+  if (version === "sandbox") {
+    return _putIEXCloudSandbox(options);
+  }
+  return _putIEXCloud(options);
+};
+
+/**
+ *
+ * @param {object} options
+ */
+export const _patch = async (options) => {
+  const { version = "" } = options;
+
+  if (version === "sandbox") {
+    return _patchIEXCloudSandbox(options);
+  }
+  return _patchIEXCloud(options);
+};
 /**
  *
  * @param {object} options
