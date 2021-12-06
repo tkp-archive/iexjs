@@ -1,9 +1,9 @@
-# <img src="https://raw.githubusercontent.com/iexcloud/iexjs/main/docs/img/icon.png" width="300">
+# <img src="https://raw.githubusercontent.com/timkpaine/iexjs/main/docs/img/icon.png" width="300">
 
 JavaScript interface to [IEX Cloud](https://iexcloud.io/docs/api/)
 
-[![Build Status](https://github.com/iexcloud/iexjs/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/iexcloud/iexjs/actions?query=workflow%3A%22Build+Status%22)
-[![License](https://img.shields.io/github/license/iexcloud/iexjs.svg)](https://github.com/iexcloud/iexjs/)
+[![Build Status](https://github.com/timkpaine/iexjs/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/timkpaine/iexjs/actions?query=workflow%3A%22Build+Status%22)
+[![License](https://img.shields.io/github/license/timkpaine/iexjs.svg)](https://github.com/timkpaine/iexjs/)
 [![npm](https://img.shields.io/npm/v/iexjs)](https://www.npmjs.com/package/iexjs)
 
 ## Referral
