@@ -6,10 +6,6 @@ JavaScript interface to [IEX Cloud](https://iexcloud.io/docs/api/)
 [![License](https://img.shields.io/github/license/timkpaine/iexjs.svg)](https://github.com/timkpaine/iexjs/)
 [![npm](https://img.shields.io/npm/v/iexjs)](https://www.npmjs.com/package/iexjs)
 
-## Referral
-
-Please subscribe to IEX Cloud using [this referral code](https://iexcloud.io/s/6332a3c3 ).
-
 ## Install
 
 Install from npm
