@@ -4,7 +4,7 @@
   "description": "JS interface to IEX and IEX Cloud APIs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iexcloud/iexjs"
+    "url": "https://github.com/timkpaine/iexjs"
   },
   "engines": {
     "node": ">=10.18.1"
