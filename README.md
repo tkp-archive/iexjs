@@ -1,3 +1,5 @@
+# 🚨 This library is no longer actively maintained 🚨
+
 # <img src="https://raw.githubusercontent.com/timkpaine/iexjs/main/docs/img/icon.png" width="300">
 
 JavaScript interface to [IEX Cloud](https://iexcloud.io/docs/api/)
