@@ -76,7 +76,7 @@ const _getIEXCloudBase = async (options) => {
 
   if (format === "csv" || format === "text") {
     endpoint.searchParams.append("format", format);
-    contentType = "test/plain";
+    contentType = "text/plain";
   } else if (format === "schema") {
     endpoint.searchParams.append("schema", true);
     contentType = "application/json";

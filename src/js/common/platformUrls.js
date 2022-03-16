@@ -12,8 +12,6 @@
 
 import { IEXJSException } from "./exception";
 
-export let _URL_PREFIX_CLOUD = (version) =>
-`https://cloud.iexapis.com/${version}/`;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 /**
