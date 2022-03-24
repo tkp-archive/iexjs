@@ -11,6 +11,7 @@
 /* eslint-disable no-await-in-loop */
 
 import { IEXJSException } from "./exception";
+import { _URL_PREFIX_CLOUD } from "./urls";
 
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
