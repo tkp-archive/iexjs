@@ -34,7 +34,7 @@
   "dependencies": {
     "bl": "^5.0.0",
     "cross-fetch": "^3.0.6",
-    "eventsource": "^1.0.7",
+    "eventsource": "^2.0.2",
     "node-fetch": "^3.0.0",
     "regenerator-runtime": "^0.13.9",
     "temporal-cache": "^0.1.0"
